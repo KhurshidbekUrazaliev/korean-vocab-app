@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/korean-vocab-app/static/css/main.e6c13ad2.css",
+    "main.js": "/korean-vocab-app/static/js/main.8e56dcfd.js",
+    "static/js/453.49894deb.chunk.js": "/korean-vocab-app/static/js/453.49894deb.chunk.js",
+    "index.html": "/korean-vocab-app/index.html",
+    "main.e6c13ad2.css.map": "/korean-vocab-app/static/css/main.e6c13ad2.css.map",
+    "main.8e56dcfd.js.map": "/korean-vocab-app/static/js/main.8e56dcfd.js.map",
+    "453.49894deb.chunk.js.map": "/korean-vocab-app/static/js/453.49894deb.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.8e56dcfd.js"
+  ]
+}
