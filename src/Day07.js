@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Book, Trophy, RotateCcw, CheckCircle, XCircle } from 'lucide-react';
 
-function Day06({ darkMode }) {
+function Day07({ darkMode }) {
   const vocabulary = [
-    { korean: '일기', english: 'diary', romanization: 'ilgi' },
-    { korean: '외롭다', english: 'to be lonely', romanization: 'oeropta' },
-    { korean: '사실', english: 'fact, truth', romanization: 'sasil' },
-    { korean: '가정', english: 'home, household', romanization: 'gajeong' },
-    { korean: '부모', english: 'parents', romanization: 'bumo' },
-    { korean: '역할', english: 'role', romanization: 'yeokhal' },
-    { korean: '직장', english: 'workplace, job', romanization: 'jikjang' },
-    { korean: '키우다', english: 'to raise, to grow', romanization: 'kiuda' },
-    { korean: '추억', english: 'memory', romanization: 'chueok' },
-    { korean: '노력하다', english: 'to make an effort', romanization: 'noryeokhada' }
+    { korean: '기대하다', english: 'to expect, to look forward to', romanization: 'gidaehada' },
+    { korean: '좌석', english: 'seat', romanization: 'jwaseok' },
+    { korean: '앞뒤', english: 'front and back', romanization: 'apdwi' },
+    { korean: '공간', english: 'space', romanization: 'gonggan' },
+    { korean: '펴다', english: 'to spread, to unfold', romanization: 'pyeoda' },
+    { korean: '창밖', english: 'outside the window', romanization: 'changbak' },
+    { korean: '풍경', english: 'scenery, landscape', romanization: 'punggyeong' },
+    { korean: '어지럽다', english: 'to be dizzy, messy', romanization: 'eojireopda' },
+    { korean: '등', english: 'back (body part)', romanization: 'deung' },
+    { korean: '건조하다', english: 'to be dry', romanization: 'geonjohada' }
   ];
 
   const [mode, setMode] = useState('menu');
@@ -94,25 +94,26 @@ function Day06({ darkMode }) {
   };
 
   const bgClass = darkMode
-    ? 'bg-gradient-to-br from-gray-900 via-teal-900 to-gray-800'
-    : 'bg-gradient-to-br from-teal-500 via-green-500 to-blue-400';
-  const cardBg = darkMode ? 'bg-gray-800' : 'bg-white';
-  const textColor = darkMode ? 'text-gray-100' : 'text-gray-800';
-  const secondaryText = darkMode ? 'text-gray-300' : 'text-gray-500';
+    ? "bg-gradient-to-br from-gray-900 via-blue-900 to-gray-800"
+    : "bg-gradient-to-br from-blue-500 via-cyan-500 to-teal-400";
+  const cardBg = darkMode ? "bg-gray-800" : "bg-white";
+  const textColor = darkMode ? "text-gray-100" : "text-gray-800";
+  const secondaryText = darkMode ? "text-gray-300" : "text-gray-500";
 
   if (mode === 'menu') {
     return (
       <div className={`min-h-screen ${bgClass} p-8 flex items-center justify-center`}>
         <div className="max-w-2xl w-full">
           <div className="text-center mb-12">
-            <h1 className="text-6xl font-bold text-white mb-4 drop-shadow-lg">Day 06</h1>
+            <h1 className="text-6xl font-bold text-white mb-4 drop-shadow-lg">Day 07</h1>
             <p className="text-2xl text-white/90">Korean Vocabulary Practice</p>
             <p className="text-lg text-white/80 mt-2">10 Essential Words</p>
           </div>
+
           <div className="grid gap-6">
             <button
               onClick={startFlashcards}
-              className={`${cardBg} hover:${darkMode ? 'bg-gray-700' : 'bg-yellow-50'} ${darkMode ? 'text-teal-400' : 'text-teal-600'} font-bold py-8 px-8 rounded-3xl shadow-2xl transform hover:scale-105 transition-all duration-200 flex items-center gap-4`}
+              className={`flex items-center gap-4 justify-center ${cardBg} hover:${darkMode ? 'bg-gray-700' : 'bg-yellow-50'} ${darkMode ? 'text-blue-400' : 'text-blue-600'} font-bold py-8 px-8 rounded-3xl shadow-2xl transform hover:scale-105 transition-all duration-200`}
             >
               <Book className="w-10 h-10" />
               <div className="text-left">
@@ -123,7 +124,7 @@ function Day06({ darkMode }) {
 
             <button
               onClick={startQuiz}
-              className={`${cardBg} hover:${darkMode ? 'bg-gray-700' : 'bg-green-50'} ${darkMode ? 'text-green-400' : 'text-green-600'} font-bold py-8 px-8 rounded-3xl shadow-2xl transform hover:scale-105 transition-all duration-200 flex items-center gap-4`}
+              className={`flex items-center gap-4 justify-center ${cardBg} hover:${darkMode ? 'bg-gray-700' : 'bg-green-50'} ${darkMode ? 'text-cyan-400' : 'text-cyan-600'} font-bold py-8 px-8 rounded-3xl shadow-2xl transform hover:scale-105 transition-all duration-200`}
             >
               <Trophy className="w-10 h-10" />
               <div className="text-left">
@@ -152,11 +153,11 @@ function Day06({ darkMode }) {
           </div>
 
           <div
-            className={`${cardBg} rounded-3xl shadow-2xl p-12 min-h-96 flex flex-col items-center justify-center cursor-pointer transform hover:scale-102 transition-all`}
+            className={`cursor-pointer transform hover:scale-102 transition-all ${cardBg} rounded-3xl shadow-2xl p-12 min-h-96 flex flex-col items-center justify-center`}
             onClick={() => setShowAnswer(!showAnswer)}
           >
             <div className="text-center w-full">
-              <div className={`text-8xl font-bold mb-8 ${darkMode ? 'text-teal-400' : 'text-teal-600'}`}>
+              <div className={`text-8xl font-bold mb-8 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>
                 {currentWord.korean}
               </div>
 
@@ -174,7 +175,7 @@ function Day06({ darkMode }) {
           <div className="mt-8 flex justify-center">
             <button
               onClick={nextCard}
-              className={`${cardBg} ${darkMode ? 'text-teal-400 hover:bg-gray-700' : 'text-teal-600 hover:bg-yellow-50'} font-bold py-4 px-12 rounded-full shadow-lg transform hover:scale-105 transition-all text-xl`}
+              className={`font-bold py-4 px-12 rounded-full shadow-lg transform hover:scale-105 transition-all text-xl ${cardBg} hover:${darkMode ? 'bg-gray-700' : 'bg-yellow-50'} ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}
             >
               {currentIndex === vocabulary.length - 1 ? 'Finish' : 'Next →'}
             </button>
@@ -206,7 +207,7 @@ function Day06({ darkMode }) {
               <div className={`text-sm ${secondaryText} mb-4`}>
                 Question {currentIndex + 1} of {vocabulary.length}
               </div>
-              <div className={`text-5xl font-bold ${textColor} mb-2`}>{currentWord.korean}</div>
+              <div className={`text-5xl font-bold mb-2 ${textColor}`}>{currentWord.korean}</div>
               <div className={`text-xl italic ${secondaryText}`}>[{currentWord.romanization}]</div>
             </div>
 
@@ -217,13 +218,13 @@ function Day06({ darkMode }) {
                 const isSelected = selectedAnswer === option;
                 const isCorrect = option.korean === currentWord.korean;
                 let buttonClass = darkMode
-                  ? 'bg-gray-700 hover:bg-gray-600 text-gray-100'
-                  : 'bg-gray-100 hover:bg-gray-200 text-gray-800';
+                  ? "bg-gray-700 hover:bg-gray-600 text-gray-100"
+                  : "bg-gray-100 hover:bg-gray-200 text-gray-800";
 
                 if (answered) {
-                  if (isSelected && isCorrect) buttonClass = 'bg-green-500 text-white';
-                  else if (isSelected && !isCorrect) buttonClass = 'bg-red-500 text-white';
-                  else if (isCorrect) buttonClass = darkMode ? 'bg-green-700 text-green-100' : 'bg-green-200 text-green-800';
+                  if (isSelected && isCorrect) buttonClass = "bg-green-500 text-white";
+                  else if (isSelected && !isCorrect) buttonClass = "bg-red-500 text-white";
+                  else if (isCorrect) buttonClass = darkMode ? "bg-green-700 text-green-100" : "bg-green-200 text-green-800";
                 }
 
                 return (
@@ -231,7 +232,7 @@ function Day06({ darkMode }) {
                     key={idx}
                     onClick={() => handleQuizAnswer(option)}
                     disabled={answered}
-                    className={`${buttonClass} font-bold py-6 px-8 rounded-2xl shadow-md transform hover:scale-102 transition-all text-xl flex items-center justify-between`}
+                    className={`font-bold py-6 px-8 rounded-2xl shadow-md transform hover:scale-102 transition-all text-xl flex items-center justify-between ${buttonClass}`}
                   >
                     <span>{option.english}</span>
                     {answered && isSelected && (isCorrect ? <CheckCircle className="w-7 h-7" /> : <XCircle className="w-7 h-7" />)}
@@ -244,7 +245,7 @@ function Day06({ darkMode }) {
               <div className="mt-8 flex justify-center">
                 <button
                   onClick={nextCard}
-                  className={`bg-gradient-to-r ${darkMode ? 'from-teal-700 to-green-700' : 'from-teal-500 to-green-500'} hover:${darkMode ? 'from-teal-600 to-green-600' : 'from-teal-400 to-green-400'} text-white font-bold py-4 px-12 rounded-full shadow-lg transform hover:scale-105 transition-all text-xl`}
+                  className={`bg-gradient-to-r ${darkMode ? 'from-blue-700 to-cyan-700' : 'from-blue-500 to-cyan-500'} hover:${darkMode ? 'from-blue-600 to-cyan-600' : 'from-blue-400 to-cyan-400'} text-white font-bold py-4 px-12 rounded-full shadow-lg transform hover:scale-105 transition-all text-xl`}
                 >
                   {currentIndex === vocabulary.length - 1 ? 'See Results' : 'Next Question →'}
                 </button>
@@ -262,22 +263,25 @@ function Day06({ darkMode }) {
       <div className={`min-h-screen ${bgClass} p-8 flex items-center justify-center`}>
         <div className={`max-w-2xl w-full ${cardBg} rounded-3xl shadow-2xl p-12 text-center`}>
           <Trophy className="w-24 h-24 text-yellow-500 mx-auto mb-6 animate-bounce" />
-          <h2 className={`text-5xl font-bold ${textColor} mb-4`}>Great Job! 잘했어요!</h2>
-          <div className={`text-7xl font-bold ${darkMode ? 'text-teal-400' : 'text-teal-600'} mb-4`}>
+          <h2 className={`text-5xl font-bold mb-4 ${textColor}`}>Great Job! 잘했어요!</h2>
+          <div className={`text-7xl font-bold mb-4 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>
             {score} / {vocabulary.length}
           </div>
-          <div className={`text-3xl ${secondaryText} mb-8`}>{percentage}% Correct</div>
+          <div className={`text-3xl mb-8 ${secondaryText}`}>{percentage}% Correct</div>
 
           <div className="mb-8">
             <div className={`${darkMode ? 'bg-gray-700' : 'bg-gray-200'} rounded-full h-6 overflow-hidden`}>
-              <div className="bg-gradient-to-r from-green-400 to-teal-500 h-full rounded-full transition-all duration-1000" style={{ width: `${percentage}%` }} />
+              <div
+                className="bg-gradient-to-r from-blue-400 to-cyan-500 h-full rounded-full transition-all duration-1000"
+                style={{ width: `${percentage}%` }}
+              />
             </div>
           </div>
 
           <div className="grid gap-4">
             <button
               onClick={startQuiz}
-              className={`bg-gradient-to-r ${darkMode ? 'from-teal-700 to-green-700' : 'from-teal-500 to-green-500'} hover:${darkMode ? 'from-teal-600 to-green-600' : 'from-teal-400 to-green-400'} text-white font-bold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all text-xl`}
+              className={`bg-gradient-to-r ${darkMode ? 'from-blue-700 to-cyan-700' : 'from-blue-500 to-cyan-500'} hover:${darkMode ? 'from-blue-600 to-cyan-600' : 'from-blue-400 to-cyan-400'} text-white font-bold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all text-xl`}
             >
               Try Again
             </button>
@@ -294,4 +298,4 @@ function Day06({ darkMode }) {
   }
 }
 
-export default Day06;
+export default Day07;
