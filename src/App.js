@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BookOpen, Calendar, ArrowLeft, Moon, Sun } from 'lucide-react';
+import Day01 from './Day01';
 import Day02 from './Day02';
 import Day03 from './Day03';
 import Day04 from './Day04';
@@ -8,6 +9,7 @@ import Day06 from './Day06';
 import Day07 from './Day07';
 import Day08 from './Day08';
 import Day09 from './Day09';
+import Day10 from './Day10';
 
 function App() {
   const [selectedDay, setSelectedDay] = useState(null);
@@ -19,6 +21,7 @@ function App() {
 
   const renderSelectedDay = () => {
     switch (selectedDay) {
+      case 'day01': return <Day01 darkMode={darkMode} />;
       case 'day02': return <Day02 darkMode={darkMode} />;
       case 'day03': return <Day03 darkMode={darkMode} />;
       case 'day04': return <Day04 darkMode={darkMode} />;
@@ -27,6 +30,7 @@ function App() {
       case 'day07': return <Day07 darkMode={darkMode} />;
       case 'day08': return <Day08 darkMode={darkMode} />;
       case 'day09': return <Day09 darkMode={darkMode} />;
+      case 'day10': return <Day10 darkMode={darkMode} />;
       default: return null;
     }
   };
@@ -52,8 +56,6 @@ function App() {
       </div>
     );
   }
-
-  const cardBg = darkMode ? "bg-gray-800" : "bg-white";
 
   return (
     <div className={bgClass}>
@@ -86,7 +88,14 @@ function App() {
           <p className="text-xl text-white/80">Choose Your Day</p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
+          <DayCard 
+            day="Day 01" 
+            color="violet" 
+            description="Basics" 
+            onClick={() => setSelectedDay('day01')} 
+            darkMode={darkMode} 
+          />
           <DayCard 
             day="Day 02" 
             color="sky" 
@@ -143,11 +152,18 @@ function App() {
             onClick={() => setSelectedDay('day09')} 
             darkMode={darkMode} 
           />
+          <DayCard 
+            day="Day 10" 
+            color="lime" 
+            description="Advanced" 
+            onClick={() => setSelectedDay('day10')} 
+            darkMode={darkMode} 
+          />
         </div>
 
         <div className="mt-12 text-center">
           <p className="text-white/80 text-lg">
-            📚 80 Essential Words across 8 days! 화이팅! 💪
+            📚 100 Essential Words across 10 days! 화이팅! 💪
           </p>
         </div>
       </div>
@@ -162,7 +178,7 @@ function DayCard({ day, color, description, onClick, darkMode }) {
   return (
     <button
       onClick={onClick}
-      className={`${cardBg} rounded-3xl shadow-2xl p-6 transform hover:scale-105 transition-all duration-200 hover:shadow-${color}-500/50 text-left`}
+      className={`${cardBg} rounded-3xl shadow-2xl p-6 transform hover:scale-105 transition-all duration-200 text-left`}
     >
       <div className="flex flex-col items-center text-center gap-3">
         <Calendar className={`w-12 h-12 text-${color}-600`} />
