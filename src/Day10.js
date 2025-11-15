@@ -8,7 +8,7 @@ function Day10({ darkMode }) {
     { korean: '직접', english: 'directly, personally', romanization: 'jikjeop' },
     { korean: '장난감', english: 'toy', romanization: 'jangnangam' },
     { korean: '인형', english: 'doll', romanization: 'inhyeong' },
-    { korean: '공선', english: 'fair, impartial', romanization: 'gongseon' },
+    { korean: "풍선", english: "balloon", romanization: "pungseon" },
     { korean: '멋지다', english: 'to be cool, wonderful', romanization: 'meotjida' },
     { korean: '꾸미다', english: 'to decorate, to make up', romanization: 'kkumida' },
     { korean: '정신없다', english: 'to be busy, hectic', romanization: 'jeongsineopda' },
