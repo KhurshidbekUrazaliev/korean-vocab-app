@@ -6,7 +6,7 @@ function Day01({ darkMode }) {
     { korean: '외식', english: 'dining out', romanization: 'oesik' },
     { korean: '다양하다', english: 'to be various, diverse', romanization: 'dayanghada' },
     { korean: '마늘', english: 'garlic', romanization: 'maneul' },
-    { korean: '붓다', english: 'to pour, to swell', romanization: 'butda' },
+    { korean: '볶다', english: 'to fry, stir-fry', romanization: 'boktta' },
     { korean: '후식', english: 'dessert', romanization: 'husik' },
     { korean: '탐구하다', english: 'to explore, to investigate', romanization: 'tamguhada' },
     { korean: '야경', english: 'night view', romanization: 'yagyeong' },
