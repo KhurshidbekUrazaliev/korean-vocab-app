@@ -10,6 +10,7 @@ import Day07 from './Day07';
 import Day08 from './Day08';
 import Day09 from './Day09';
 import Day10 from './Day10';
+import Day11 from './Day11';
 
 function App() {
   const [selectedDay, setSelectedDay] = useState(null);
@@ -33,6 +34,7 @@ function App() {
     { id: 'day08', name: 'Day 08', description: 'Culture', color: 'amber' },
     { id: 'day09', name: 'Day 09', description: 'Daily Life', color: 'red' },
     { id: 'day10', name: 'Day 10', description: 'Imagination', color: 'lime' },
+    { id: 'day11', name: 'Day 11', description: 'Personality', color: 'rose' },
   ];
 
   const extraDays = [
@@ -52,6 +54,7 @@ function App() {
       case 'day08': return <Day08 darkMode={darkMode} />;
       case 'day09': return <Day09 darkMode={darkMode} />;
       case 'day10': return <Day10 darkMode={darkMode} />;
+      case 'day11': return <Day11 darkMode={darkMode} />;
       default: return null;
     }
   };
@@ -200,9 +203,10 @@ function App() {
         </div>
 
         {/* Day Content */}
-        <div className="pt-20">
-          {renderSelectedDay()}
-        </div>
+        {/* Day Content */}
+<div className="min-h-screen">
+  {renderSelectedDay()}
+</div>
       </div>
     );
   }
