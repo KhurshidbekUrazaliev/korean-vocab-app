@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Book, Trophy, RotateCcw, CheckCircle, XCircle } from 'lucide-react';
+import { Book, Trophy, RotateCcw, CheckCircle, XCircle, Volume2 } from 'lucide-react';
 
-function Day07({ darkMode }) {
+// Renamed the function to App to align with React single-file conventions
+function App({ darkMode }) {
   const vocabulary = [
     { korean: '기대하다', english: 'to expect, to look forward to', romanization: 'gidaehada' },
     { korean: '좌석', english: 'seat', romanization: 'jwaseok' },
@@ -23,6 +24,28 @@ function Day07({ darkMode }) {
   const [quizOptions, setQuizOptions] = useState([]);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [shuffledIndices, setShuffledIndices] = useState([]);
+
+  // Function to handle Text-to-Speech
+  const speakText = (text) => {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      const speech = new SpeechSynthesisUtterance(text);
+      speech.lang = 'ko-KR'; // Ensure Korean language is set
+
+      const voices = window.speechSynthesis.getVoices();
+      const koreanVoice = voices.find(voice => voice.lang === 'ko-KR' || voice.lang.startsWith('ko'));
+
+      if (koreanVoice) {
+        speech.voice = koreanVoice;
+        speech.rate = 0.9;
+        speech.pitch = 1;
+      }
+
+      window.speechSynthesis.speak(speech);
+    } else {
+      console.error('Speech Synthesis not supported in this browser.');
+    }
+  };
 
   const shuffleWords = () => {
     const indices = Array.from({ length: vocabulary.length }, (_, i) => i);
@@ -93,12 +116,23 @@ function Day07({ darkMode }) {
     setSelectedAnswer(null);
   };
 
+  // Determine the current word based on the mode
+  const currentWord =
+    mode === 'flashcard'
+      ? vocabulary[currentIndex]
+      : mode === 'quiz'
+      ? vocabulary[shuffledIndices[currentIndex]]
+      : null;
+
+  // Styling based on darkMode
   const bgClass = darkMode
     ? "bg-gradient-to-br from-gray-900 via-blue-900 to-gray-800"
     : "bg-gradient-to-br from-blue-500 via-cyan-500 to-teal-400";
   const cardBg = darkMode ? "bg-gray-800" : "bg-white";
   const textColor = darkMode ? "text-gray-100" : "text-gray-800";
   const secondaryText = darkMode ? "text-gray-300" : "text-gray-500";
+  const primaryAccent = darkMode ? 'text-blue-400' : 'text-blue-600';
+  const secondaryAccent = darkMode ? 'text-cyan-400' : 'text-cyan-600';
 
   if (mode === 'menu') {
     return (
@@ -113,7 +147,7 @@ function Day07({ darkMode }) {
           <div className="grid gap-6">
             <button
               onClick={startFlashcards}
-              className={`flex items-center gap-4 justify-center ${cardBg} hover:${darkMode ? 'bg-gray-700' : 'bg-yellow-50'} ${darkMode ? 'text-blue-400' : 'text-blue-600'} font-bold py-8 px-8 rounded-3xl shadow-2xl transform hover:scale-105 transition-all duration-200`}
+              className={`flex items-center gap-4 justify-center ${cardBg} hover:bg-blue-50 ${darkMode ? 'hover:bg-gray-700' : ''} ${primaryAccent} font-bold py-8 px-8 rounded-3xl shadow-2xl transform hover:scale-105 transition-all duration-200`}
             >
               <Book className="w-10 h-10" />
               <div className="text-left">
@@ -124,7 +158,7 @@ function Day07({ darkMode }) {
 
             <button
               onClick={startQuiz}
-              className={`flex items-center gap-4 justify-center ${cardBg} hover:${darkMode ? 'bg-gray-700' : 'bg-green-50'} ${darkMode ? 'text-cyan-400' : 'text-cyan-600'} font-bold py-8 px-8 rounded-3xl shadow-2xl transform hover:scale-105 transition-all duration-200`}
+              className={`flex items-center gap-4 justify-center ${cardBg} hover:bg-cyan-50 ${darkMode ? 'hover:bg-gray-700' : ''} ${secondaryAccent} font-bold py-8 px-8 rounded-3xl shadow-2xl transform hover:scale-105 transition-all duration-200`}
             >
               <Trophy className="w-10 h-10" />
               <div className="text-left">
@@ -138,8 +172,7 @@ function Day07({ darkMode }) {
     );
   }
 
-  if (mode === 'flashcard') {
-    const currentWord = vocabulary[currentIndex];
+  if (mode === 'flashcard' && currentWord) {
     return (
       <div className={`min-h-screen ${bgClass} p-8`}>
         <div className="max-w-4xl mx-auto">
@@ -153,12 +186,25 @@ function Day07({ darkMode }) {
           </div>
 
           <div
-            className={`cursor-pointer transform hover:scale-102 transition-all ${cardBg} rounded-3xl shadow-2xl p-12 min-h-96 flex flex-col items-center justify-center`}
+            className={`cursor-pointer transform hover:scale-[1.02] transition-all ${cardBg} rounded-3xl shadow-2xl p-12 min-h-[24rem] flex flex-col items-center justify-center`}
             onClick={() => setShowAnswer(!showAnswer)}
           >
             <div className="text-center w-full">
-              <div className={`text-8xl font-bold mb-8 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>
-                {currentWord.korean}
+              {/* Korean Word and Speaker Button */}
+              <div className="flex flex-col items-center justify-center mb-8">
+                <div className={`text-8xl font-bold ${primaryAccent}`}>
+                  {currentWord.korean}
+                </div>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation(); // Prevents card flip when clicking the speaker
+                    speakText(currentWord.korean);
+                  }}
+                  className={`mt-4 p-3 rounded-full ${darkMode ? 'bg-gray-700 text-blue-300 hover:bg-gray-600' : 'bg-gray-100 text-blue-600 hover:bg-gray-200'} transition-colors shadow-md`}
+                  aria-label={`Listen to ${currentWord.korean}`}
+                >
+                  <Volume2 className="w-6 h-6" />
+                </button>
               </div>
 
               {showAnswer ? (
@@ -175,7 +221,7 @@ function Day07({ darkMode }) {
           <div className="mt-8 flex justify-center">
             <button
               onClick={nextCard}
-              className={`font-bold py-4 px-12 rounded-full shadow-lg transform hover:scale-105 transition-all text-xl ${cardBg} hover:${darkMode ? 'bg-gray-700' : 'bg-yellow-50'} ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}
+              className={`font-bold py-4 px-12 rounded-full shadow-lg transform hover:scale-105 transition-all text-xl ${cardBg} hover:bg-blue-50 ${darkMode ? 'hover:bg-gray-700' : ''} ${primaryAccent}`}
             >
               {currentIndex === vocabulary.length - 1 ? 'Finish' : 'Next →'}
             </button>
@@ -185,8 +231,7 @@ function Day07({ darkMode }) {
     );
   }
 
-  if (mode === 'quiz') {
-    const currentWord = vocabulary[shuffledIndices[currentIndex]];
+  if (mode === 'quiz' && currentWord) {
     return (
       <div className={`min-h-screen ${bgClass} p-8`}>
         <div className="max-w-4xl mx-auto">
@@ -207,7 +252,19 @@ function Day07({ darkMode }) {
               <div className={`text-sm ${secondaryText} mb-4`}>
                 Question {currentIndex + 1} of {vocabulary.length}
               </div>
-              <div className={`text-5xl font-bold mb-2 ${textColor}`}>{currentWord.korean}</div>
+              
+              {/* Quiz Question: Korean Word + Speaker Button */}
+              <div className="flex items-center justify-center gap-4">
+                  <div className={`text-5xl font-bold ${textColor} mb-2`}>{currentWord.korean}</div>
+                  <button
+                      onClick={() => speakText(currentWord.korean)}
+                      className={`p-2 rounded-full ${darkMode ? 'bg-gray-700 text-blue-300 hover:bg-gray-600' : 'bg-gray-100 text-blue-600 hover:bg-gray-200'} transition-colors shadow-md`}
+                      aria-label={`Listen to ${currentWord.korean}`}
+                  >
+                      <Volume2 className="w-5 h-5" />
+                  </button>
+              </div>
+
               <div className={`text-xl italic ${secondaryText}`}>[{currentWord.romanization}]</div>
             </div>
 
@@ -232,7 +289,7 @@ function Day07({ darkMode }) {
                     key={idx}
                     onClick={() => handleQuizAnswer(option)}
                     disabled={answered}
-                    className={`font-bold py-6 px-8 rounded-2xl shadow-md transform hover:scale-102 transition-all text-xl flex items-center justify-between ${buttonClass}`}
+                    className={`font-bold py-6 px-8 rounded-2xl shadow-md transform hover:scale-[1.02] transition-all text-xl flex items-center justify-between ${buttonClass}`}
                   >
                     <span>{option.english}</span>
                     {answered && isSelected && (isCorrect ? <CheckCircle className="w-7 h-7" /> : <XCircle className="w-7 h-7" />)}
@@ -264,7 +321,7 @@ function Day07({ darkMode }) {
         <div className={`max-w-2xl w-full ${cardBg} rounded-3xl shadow-2xl p-12 text-center`}>
           <Trophy className="w-24 h-24 text-yellow-500 mx-auto mb-6 animate-bounce" />
           <h2 className={`text-5xl font-bold mb-4 ${textColor}`}>Great Job! 잘했어요!</h2>
-          <div className={`text-7xl font-bold mb-4 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>
+          <div className={`text-7xl font-bold mb-4 ${primaryAccent}`}>
             {score} / {vocabulary.length}
           </div>
           <div className={`text-3xl mb-8 ${secondaryText}`}>{percentage}% Correct</div>
@@ -298,4 +355,4 @@ function Day07({ darkMode }) {
   }
 }
 
-export default Day07;
+export default App;

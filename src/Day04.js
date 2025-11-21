@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Book, Trophy, RotateCcw, CheckCircle, XCircle } from 'lucide-react';
+import { Book, Trophy, RotateCcw, CheckCircle, XCircle, Volume2 } from 'lucide-react';
 
 function Day04({ darkMode }) {
   const vocabulary = [
@@ -21,8 +21,34 @@ function Day04({ darkMode }) {
   const [score, setScore] = useState(0);
   const [answered, setAnswered] = useState(false);
   const [quizOptions, setQuizOptions] = useState([]);
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [selectedAnswer, setSelectedAnswer] = useState(null); // FIX: Added useState() around the initial value
   const [shuffledIndices, setShuffledIndices] = useState([]);
+
+  // Function to handle Text-to-Speech
+  const speakText = (text) => {
+    if ('speechSynthesis' in window) {
+      // Cancel any current speech synthesis to avoid overlapping
+      window.speechSynthesis.cancel();
+      const speech = new SpeechSynthesisUtterance(text);
+      speech.lang = 'ko-KR'; // Ensure Korean language is set
+
+      // Attempt to find a suitable Korean voice (this selection is system-dependent)
+      const voices = window.speechSynthesis.getVoices();
+      const koreanVoice = voices.find(voice => voice.lang === 'ko-KR' || voice.lang.startsWith('ko'));
+
+      if (koreanVoice) {
+        speech.voice = koreanVoice;
+        // Optionally adjust rate for clearer pronunciation
+        speech.rate = 0.9;
+        speech.pitch = 1;
+      }
+      
+      window.speechSynthesis.speak(speech);
+    } else {
+      console.error('Speech Synthesis not supported in this browser.');
+    }
+  };
+
 
   const shuffleWords = () => {
     const indices = Array.from({ length: vocabulary.length }, (_, i) => i);
@@ -154,9 +180,24 @@ function Day04({ darkMode }) {
           <div className={`${cardBg} rounded-3xl shadow-2xl p-12 min-h-96 flex flex-col items-center justify-center cursor-pointer transform hover:scale-102 transition-all`}
                onClick={() => setShowAnswer(!showAnswer)}>
             <div className="text-center w-full">
-              <div className={`text-8xl font-bold ${darkMode ? 'text-pink-400' : 'text-pink-600'} mb-8`}>
-                {currentWord.korean}
+              
+              {/* Korean Word and Speaker Button */}
+              <div className="flex flex-col items-center justify-center mb-8">
+                <div className={`text-8xl font-bold ${darkMode ? 'text-pink-400' : 'text-pink-600'}`}>
+                  {currentWord.korean}
+                </div>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation(); // Prevents card flip when clicking the speaker
+                    speakText(currentWord.korean);
+                  }}
+                  className={`mt-4 p-3 rounded-full ${darkMode ? 'bg-gray-700 text-pink-300 hover:bg-gray-600' : 'bg-gray-100 text-pink-600 hover:bg-gray-200'} transition-colors shadow-md`}
+                  aria-label={`Listen to ${currentWord.korean}`}
+                >
+                  <Volume2 className="w-6 h-6" />
+                </button>
               </div>
+              
               {showAnswer ? (
                 <div className="space-y-4 animate-fadeIn">
                   <div className={`text-4xl ${textColor} font-semibold`}>{currentWord.english}</div>
@@ -202,7 +243,19 @@ function Day04({ darkMode }) {
           <div className={`${cardBg} rounded-3xl shadow-2xl p-12`}>
             <div className="text-center mb-8">
               <div className={`text-sm ${secondaryText} mb-4`}>Question {currentIndex + 1} of {vocabulary.length}</div>
-              <div className={`text-5xl font-bold ${textColor} mb-2`}>{currentWord.korean}</div>
+              
+              {/* Quiz Question: Korean Word + Speaker Button */}
+              <div className="flex items-center justify-center gap-4">
+                <div className={`text-5xl font-bold ${textColor} mb-2`}>{currentWord.korean}</div>
+                <button
+                    onClick={() => speakText(currentWord.korean)}
+                    className={`p-2 rounded-full ${darkMode ? 'bg-gray-700 text-pink-300 hover:bg-gray-600' : 'bg-gray-100 text-pink-600 hover:bg-gray-200'} transition-colors shadow-md`}
+                    aria-label={`Listen to ${currentWord.korean}`}
+                >
+                    <Volume2 className="w-5 h-5" />
+                </button>
+              </div>
+
               <div className={`text-xl ${secondaryText} italic`}>[{currentWord.romanization}]</div>
             </div>
 

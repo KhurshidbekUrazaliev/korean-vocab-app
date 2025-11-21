@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BookOpen, Calendar, ArrowLeft, Moon, Sun, Menu, X, ChevronDown, ChevronRight } from 'lucide-react';
 import Day01 from './Day01';
 import Day02 from './Day02';
@@ -11,6 +11,7 @@ import Day08 from './Day08';
 import Day09 from './Day09';
 import Day10 from './Day10';
 import Day11 from './Day11';
+import Day12 from './Day12';
 
 function App() {
   const [selectedDay, setSelectedDay] = useState(null);
@@ -18,6 +19,15 @@ function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [regularDaysExpanded, setRegularDaysExpanded] = useState(true);
   const [extraDaysExpanded, setExtraDaysExpanded] = useState(true);
+
+  // Apply dark mode to the global document element
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [darkMode]);
 
   const bgClass = darkMode
     ? "min-h-screen bg-gradient-to-br from-gray-900 via-indigo-900 to-purple-900"
@@ -35,16 +45,17 @@ function App() {
     { id: 'day09', name: 'Day 09', description: 'Daily Life', color: 'red' },
     { id: 'day10', name: 'Day 10', description: 'Imagination', color: 'lime' },
     { id: 'day11', name: 'Day 11', description: 'Personality', color: 'rose' },
+    { id: 'day12', name: 'Day 12', description: 'Fatigue & Change', color: 'amber' },
   ];
 
   const extraDays = [
-    // We'll add Extra Days here as you create them
-    // { id: 'extra01', name: 'Extra 01', description: 'Coming Soon', color: 'cyan' },
+    // Extra Days will appear here
   ];
 
   const renderSelectedDay = () => {
     switch (selectedDay) {
       case 'day01': return <Day01 darkMode={darkMode} />;
+      // Note: Day02 through Day11 components are assumed to exist based on imports.
       case 'day02': return <Day02 darkMode={darkMode} />;
       case 'day03': return <Day03 darkMode={darkMode} />;
       case 'day04': return <Day04 darkMode={darkMode} />;
@@ -55,6 +66,7 @@ function App() {
       case 'day09': return <Day09 darkMode={darkMode} />;
       case 'day10': return <Day10 darkMode={darkMode} />;
       case 'day11': return <Day11 darkMode={darkMode} />;
+      case 'day12': return <Day12 darkMode={darkMode} />;
       default: return null;
     }
   };
@@ -63,13 +75,33 @@ function App() {
     setSelectedDay(dayId);
     setSidebarOpen(false); // Close sidebar on mobile when day is selected
   };
+  
+  // Helper to ensure Tailwind colors are correctly mapped/used in the DayCard
+  // This helps avoid issues with dynamic string concatenation in Tailwind.
+  const getColorClass = (color, prefix) => {
+    const map = {
+        violet: `${prefix}-violet-600`,
+        sky: `${prefix}-sky-600`,
+        emerald: `${prefix}-emerald-600`,
+        pink: `${prefix}-pink-600`,
+        purple: `${prefix}-purple-600`,
+        teal: `${prefix}-teal-600`,
+        blue: `${prefix}-blue-600`,
+        amber: `${prefix}-amber-600`,
+        red: `${prefix}-red-600`,
+        lime: `${prefix}-lime-600`,
+        rose: `${prefix}-rose-600`,
+    };
+    return map[color] || `${prefix}-gray-600`;
+  };
+
 
   // If a day is selected, show that day with top navigation
   if (selectedDay) {
     return (
       <div className="relative">
         {/* Top Navigation Bar */}
-        <div className="fixed top-0 left-0 right-0 z-50 bg-white/10 backdrop-blur-md border-b border-white/20">
+        <div className="fixed top-0 left-0 right-0 z-50 bg-white/10 dark:bg-gray-900/50 backdrop-blur-md border-b border-white/20 dark:border-gray-700">
           <div className="flex justify-between items-center p-4">
             <div className="flex items-center gap-4">
               {/* Hamburger Menu */}
@@ -203,10 +235,9 @@ function App() {
         </div>
 
         {/* Day Content */}
-        {/* Day Content */}
-<div className="min-h-screen">
-  {renderSelectedDay()}
-</div>
+        <div className="min-h-screen pt-16">
+          {renderSelectedDay()}
+        </div>
       </div>
     );
   }
@@ -247,7 +278,7 @@ function App() {
 
         {/* Regular Days Grid */}
         <div className="mb-12">
-          <h2 className="text-3xl font-bold text-white mb-6 text-center">Regular Days (1-10)</h2>
+          <h2 className="text-3xl font-bold text-white mb-6 text-center">Regular Days (1-12)</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
             {regularDays.map((day) => (
               <DayCard
@@ -295,19 +326,40 @@ function App() {
 function DayCard({ day, color, description, onClick, darkMode }) {
   const cardBg = darkMode ? "bg-gray-800" : "bg-white";
   const textColor = darkMode ? "text-gray-400" : "text-gray-600";
+  
+  // Helper function to safely map color strings to Tailwind classes (avoids JIT issues)
+  const getDynamicClass = (color, prefix) => {
+    const map = {
+        violet: `${prefix}-violet-600`,
+        sky: `${prefix}-sky-600`,
+        emerald: `${prefix}-emerald-600`,
+        pink: `${prefix}-pink-600`,
+        purple: `${prefix}-purple-600`,
+        teal: `${prefix}-teal-600`,
+        blue: `${prefix}-blue-600`,
+        amber: `${prefix}-amber-600`,
+        red: `${prefix}-red-600`,
+        lime: `${prefix}-lime-600`,
+        rose: `${prefix}-rose-600`,
+    };
+    return map[color] || `${prefix}-gray-600`;
+  };
+
+  const iconColorClass = getDynamicClass(color, 'text');
+  const hoverShadowClass = getDynamicClass(color, 'hover:shadow');
 
   return (
     <button
       onClick={onClick}
-      className={`${cardBg} rounded-3xl shadow-2xl p-6 transform hover:scale-105 transition-all duration-200 hover:shadow-${color}-500/50 text-left`}
+      className={`${cardBg} rounded-3xl shadow-2xl p-6 transform hover:scale-105 transition-all duration-200 ${hoverShadowClass}/50 text-left`}
     >
       <div className="flex flex-col items-center text-center gap-3">
-        <Calendar className={`w-12 h-12 text-${color}-600`} />
+        <Calendar className={`w-12 h-12 ${iconColorClass}`} /> 
         <div>
-          <h2 className={`text-2xl font-bold text-${color}-600`}>{day}</h2>
+          <h2 className={`text-2xl font-bold ${iconColorClass}`}>{day}</h2>
           <p className={`${textColor} text-sm mt-1`}>{description}</p>
         </div>
-        <div className={`text-${color}-600 font-semibold text-sm`}>10 Words →</div>
+        <div className={`${iconColorClass} font-semibold text-sm`}>10 Words →</div>
       </div>
     </button>
   );

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Book, Trophy, RotateCcw, CheckCircle, XCircle } from 'lucide-react';
+import { Book, Trophy, RotateCcw, CheckCircle, XCircle, Volume2 } from 'lucide-react';
 
 function Day10({ darkMode }) {
+  // Day 10 Vocabulary focused on Family and Actions
   const vocabulary = [
     { korean: '조카', english: 'nephew, niece', romanization: 'joka' },
     { korean: '서투르다', english: 'to be clumsy, unskilled', romanization: 'seotureuda' },
@@ -24,11 +25,38 @@ function Day10({ darkMode }) {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [shuffledIndices, setShuffledIndices] = useState([]);
 
+  // Function to handle Text-to-Speech
+  const speakText = (text) => {
+    if ('speechSynthesis' in window) {
+      // Cancel any current speech synthesis to avoid overlapping
+      window.speechSynthesis.cancel();
+      const speech = new SpeechSynthesisUtterance(text);
+      speech.lang = 'ko-KR'; // Ensure Korean language is set
+
+      // Attempt to find a suitable Korean voice (this selection is system-dependent)
+      const voices = window.speechSynthesis.getVoices();
+      const koreanVoice = voices.find(voice => voice.lang === 'ko-KR' || voice.lang.startsWith('ko'));
+
+      if (koreanVoice) {
+        speech.voice = koreanVoice;
+        // Optionally adjust rate for clearer pronunciation
+        speech.rate = 0.9;
+        speech.pitch = 1;
+      }
+      
+      window.speechSynthesis.speak(speech);
+    } else {
+      console.error('Speech Synthesis not supported in this browser.');
+    }
+  };
+  
+  // Function to shuffle word indices for the quiz
   const shuffleWords = () => {
     const indices = Array.from({ length: vocabulary.length }, (_, i) => i);
     return indices.sort(() => Math.random() - 0.5);
   };
 
+  // Function to generate 4 unique quiz options, including the correct one
   const generateQuizOptions = (correctIndex) => {
     const options = [vocabulary[correctIndex]];
     const used = new Set([correctIndex]);
@@ -42,8 +70,9 @@ function Day10({ darkMode }) {
     return options.sort(() => Math.random() - 0.5);
   };
 
+  // Effect to generate new quiz options when moving to the next question
   useEffect(() => {
-    if (mode === 'quiz' && shuffledIndices.length > 0) {
+    if (mode === 'quiz' && shuffledIndices.length > 0 && currentIndex < shuffledIndices.length) {
       setQuizOptions(generateQuizOptions(shuffledIndices[currentIndex]));
     }
   }, [currentIndex, mode, shuffledIndices]);
@@ -93,13 +122,17 @@ function Day10({ darkMode }) {
     setSelectedAnswer(null);
   };
 
+  // Tailwind CSS classes based on dark mode state and Day 10's lime/emerald theme
+  const themeColor = darkMode ? 'text-lime-400' : 'text-lime-600';
   const bgClass = darkMode
     ? "bg-gradient-to-br from-gray-900 via-lime-900 to-gray-800"
     : "bg-gradient-to-br from-lime-500 via-green-500 to-emerald-400";
   const cardBg = darkMode ? "bg-gray-800" : "bg-white";
   const textColor = darkMode ? "text-gray-100" : "text-gray-800";
   const secondaryText = darkMode ? "text-gray-300" : "text-gray-500";
+  const speakerClass = darkMode ? 'bg-gray-700 text-lime-300 hover:bg-gray-600' : 'bg-gray-100 text-lime-600 hover:bg-gray-200';
 
+  // --- Menu Component ---
   if (mode === 'menu') {
     return (
       <div className={`min-h-screen ${bgClass} p-8 flex items-center justify-center`}>
@@ -136,6 +169,7 @@ function Day10({ darkMode }) {
     );
   }
 
+  // --- Flashcard Component ---
   if (mode === 'flashcard') {
     const currentWord = vocabulary[currentIndex];
     return (
@@ -148,18 +182,37 @@ function Day10({ darkMode }) {
             >
               <RotateCcw className="w-5 h-5" /> Menu
             </button>
+            <div className="text-white font-bold text-xl">
+              Card {currentIndex + 1} / {vocabulary.length}
+            </div>
           </div>
 
+          {/* Flashcard Body */}
           <div className={`${cardBg} rounded-3xl shadow-2xl p-12 min-h-96 flex flex-col items-center justify-center cursor-pointer transform hover:scale-102 transition-all`}
                onClick={() => setShowAnswer(!showAnswer)}>
             <div className="text-center w-full">
-              <div className={`text-8xl font-bold ${darkMode ? 'text-lime-400' : 'text-lime-600'} mb-8`}>
-                {currentWord.korean}
+              
+              {/* Korean Word and Speaker Button */}
+              <div className="flex flex-col items-center justify-center mb-8">
+                <div className={`text-8xl font-bold ${themeColor}`}>
+                  {currentWord.korean}
+                </div>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation(); // Prevents card flip when clicking the speaker
+                    speakText(currentWord.korean);
+                  }}
+                  className={`mt-4 p-3 rounded-full ${speakerClass} transition-colors shadow-md`}
+                  aria-label={`Listen to ${currentWord.korean}`}
+                >
+                  <Volume2 className="w-6 h-6" />
+                </button>
               </div>
+
               {showAnswer ? (
                 <div className="space-y-4 animate-fadeIn">
                   <div className={`text-4xl ${textColor} font-semibold`}>{currentWord.english}</div>
-                  <div className={`text-2xl ${secondaryText} italic`}>[{currentWord.romanization}]</div>
+                  <div className={`text-3xl ${secondaryText} font-medium`}>[{currentWord.romanization}]</div>
                 </div>
               ) : (
                 <div className="text-gray-400 text-xl mt-8 animate-pulse">Click to reveal answer</div>
@@ -180,6 +233,7 @@ function Day10({ darkMode }) {
     );
   }
 
+  // --- Quiz Component ---
   if (mode === 'quiz') {
     const currentWord = vocabulary[shuffledIndices[currentIndex]];
     return (
@@ -193,15 +247,27 @@ function Day10({ darkMode }) {
               <RotateCcw className="w-5 h-5" /> Menu
             </button>
             <div className="bg-white/20 backdrop-blur-sm text-white font-bold py-3 px-6 rounded-full">
-              Score: {score} / {vocabulary.length}
+              Score: {score} / {currentIndex}
             </div>
           </div>
 
           <div className={`${cardBg} rounded-3xl shadow-2xl p-12`}>
             <div className="text-center mb-8">
               <div className={`text-sm ${secondaryText} mb-4`}>Question {currentIndex + 1} of {vocabulary.length}</div>
-              <div className={`text-5xl font-bold ${textColor} mb-2`}>{currentWord.korean}</div>
-              <div className={`text-xl ${secondaryText} italic`}>[{currentWord.romanization}]</div>
+              
+              {/* Quiz Question: Korean Word + Speaker Button */}
+              <div className="flex items-center justify-center gap-4">
+                <div className={`text-5xl font-bold ${textColor} mb-2`}>{currentWord.korean}</div>
+                <button
+                    onClick={() => speakText(currentWord.korean)}
+                    className={`p-2 rounded-full ${speakerClass} transition-colors shadow-md`}
+                    aria-label={`Listen to ${currentWord.korean}`}
+                >
+                    <Volume2 className="w-5 h-5" />
+                </button>
+              </div>
+              
+              <div className={`text-2xl ${secondaryText} font-medium`}>[{currentWord.romanization}]</div>
             </div>
 
             <div className={`text-2xl ${textColor} mb-8 text-center font-semibold`}>What does this mean?</div>
@@ -211,17 +277,21 @@ function Day10({ darkMode }) {
                 const isSelected = selectedAnswer === option;
                 const isCorrect = option.korean === currentWord.korean;
                 let buttonClass = darkMode ? "bg-gray-700 hover:bg-gray-600 text-gray-100" : "bg-gray-100 hover:bg-gray-200 text-gray-800";
+                
+                // Styling when answered
                 if (answered) {
-                  if (isSelected && isCorrect) buttonClass = "bg-green-500 text-white";
-                  else if (isSelected && !isCorrect) buttonClass = "bg-red-500 text-white";
-                  else if (isCorrect) buttonClass = darkMode ? "bg-green-700 text-green-100" : "bg-green-200 text-green-800";
+                  if (isSelected && isCorrect) buttonClass = "bg-green-500 text-white shadow-lg shadow-green-500/50";
+                  else if (isSelected && !isCorrect) buttonClass = "bg-red-500 text-white shadow-lg shadow-red-500/50";
+                  else if (isCorrect) buttonClass = darkMode ? "bg-green-700 text-green-100 border-2 border-green-500" : "bg-green-200 text-green-800 border-2 border-green-500";
+                  else buttonClass = darkMode ? "bg-gray-700 text-gray-400 opacity-60" : "bg-gray-100 text-gray-500 opacity-60";
                 }
+
                 return (
                   <button
                     key={idx}
                     onClick={() => handleQuizAnswer(option)}
                     disabled={answered}
-                    className={`${buttonClass} font-bold py-6 px-8 rounded-2xl shadow-md transform hover:scale-102 transition-all text-xl flex items-center justify-between`}
+                    className={`${buttonClass} font-bold py-6 px-8 rounded-2xl shadow-md transform hover:scale-102 transition-all text-xl flex items-center justify-between disabled:cursor-not-allowed`}
                   >
                     <span>{option.english}</span>
                     {answered && isSelected && (isCorrect ? <CheckCircle className="w-7 h-7" /> : <XCircle className="w-7 h-7" />)}
@@ -246,6 +316,7 @@ function Day10({ darkMode }) {
     );
   }
 
+  // --- Results Component ---
   if (mode === 'results') {
     const percentage = Math.round((score / vocabulary.length) * 100);
     return (
@@ -253,7 +324,7 @@ function Day10({ darkMode }) {
         <div className={`${cardBg} max-w-2xl w-full rounded-3xl shadow-2xl p-12 text-center`}>
           <Trophy className="w-24 h-24 text-yellow-500 mx-auto mb-6 animate-bounce" />
           <h2 className={`text-5xl font-bold ${textColor} mb-4`}>Great Job! 잘했어요!</h2>
-          <div className={`text-7xl font-bold ${darkMode ? 'text-lime-400' : 'text-lime-600'} mb-4`}>
+          <div className={`text-7xl font-bold ${themeColor} mb-4`}>
             {score} / {vocabulary.length}
           </div>
           <div className={`text-3xl ${secondaryText} mb-8`}>{percentage}% Correct</div>
@@ -263,10 +334,10 @@ function Day10({ darkMode }) {
             </div>
           </div>
           <button
-            onClick={startQuiz}
+            onClick={resetToMenu}
             className={`bg-gradient-to-r ${darkMode ? 'from-lime-700 to-emerald-700' : 'from-lime-500 to-emerald-500'} hover:from-lime-600 hover:to-emerald-600 text-white font-bold py-4 px-12 rounded-full shadow-lg transform hover:scale-105 transition-all text-xl`}
           >
-            Try Again
+            Back to Menu
           </button>
         </div>
       </div>
