@@ -12,6 +12,7 @@ import Day09 from './Day09';
 import Day10 from './Day10';
 import Day11 from './Day11';
 import Day12 from './Day12';
+import Day13 from './Day13';
 
 function App() {
   const [selectedDay, setSelectedDay] = useState(null);
@@ -46,6 +47,7 @@ function App() {
     { id: 'day10', name: 'Day 10', description: 'Imagination', color: 'lime' },
     { id: 'day11', name: 'Day 11', description: 'Personality', color: 'rose' },
     { id: 'day12', name: 'Day 12', description: 'Fatigue & Change', color: 'amber' },
+    { id: 'day13', name: 'Day 13', description: 'Gardening&Weather', color: 'emerald' },
   ];
 
   const extraDays = [
@@ -67,6 +69,7 @@ function App() {
       case 'day10': return <Day10 darkMode={darkMode} />;
       case 'day11': return <Day11 darkMode={darkMode} />;
       case 'day12': return <Day12 darkMode={darkMode} />;
+      case 'day13': return <Day13 darkMode={darkMode} />;
       default: return null;
     }
   };
@@ -75,26 +78,8 @@ function App() {
     setSelectedDay(dayId);
     setSidebarOpen(false); // Close sidebar on mobile when day is selected
   };
-  
-  // Helper to ensure Tailwind colors are correctly mapped/used in the DayCard
-  // This helps avoid issues with dynamic string concatenation in Tailwind.
-  const getColorClass = (color, prefix) => {
-    const map = {
-        violet: `${prefix}-violet-600`,
-        sky: `${prefix}-sky-600`,
-        emerald: `${prefix}-emerald-600`,
-        pink: `${prefix}-pink-600`,
-        purple: `${prefix}-purple-600`,
-        teal: `${prefix}-teal-600`,
-        blue: `${prefix}-blue-600`,
-        amber: `${prefix}-amber-600`,
-        red: `${prefix}-red-600`,
-        lime: `${prefix}-lime-600`,
-        rose: `${prefix}-rose-600`,
-    };
-    return map[color] || `${prefix}-gray-600`;
-  };
 
+  // getColorClass removed because it was unused; color mapping is handled inside DayCard's getDynamicClass.
 
   // If a day is selected, show that day with top navigation
   if (selectedDay) {
