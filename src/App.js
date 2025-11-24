@@ -13,6 +13,7 @@ import Day10 from './Day10';
 import Day11 from './Day11';
 import Day12 from './Day12';
 import Day13 from './Day13';
+import Day14 from './Day14';
 
 function App() {
   const [selectedDay, setSelectedDay] = useState(null);
@@ -48,6 +49,7 @@ function App() {
     { id: 'day11', name: 'Day 11', description: 'Personality', color: 'rose' },
     { id: 'day12', name: 'Day 12', description: 'Fatigue & Change', color: 'amber' },
     { id: 'day13', name: 'Day 13', description: 'Gardening&Weather', color: 'emerald' },
+    { id: 'day14', name: 'Day 14', description: 'Work & Time', color: 'cyan' },
   ];
 
   const extraDays = [
@@ -57,7 +59,6 @@ function App() {
   const renderSelectedDay = () => {
     switch (selectedDay) {
       case 'day01': return <Day01 darkMode={darkMode} />;
-      // Note: Day02 through Day11 components are assumed to exist based on imports.
       case 'day02': return <Day02 darkMode={darkMode} />;
       case 'day03': return <Day03 darkMode={darkMode} />;
       case 'day04': return <Day04 darkMode={darkMode} />;
@@ -70,6 +71,7 @@ function App() {
       case 'day11': return <Day11 darkMode={darkMode} />;
       case 'day12': return <Day12 darkMode={darkMode} />;
       case 'day13': return <Day13 darkMode={darkMode} />;
+      case 'day14': return <Day14 darkMode={darkMode} />; 
       default: return null;
     }
   };
@@ -78,8 +80,6 @@ function App() {
     setSelectedDay(dayId);
     setSidebarOpen(false); // Close sidebar on mobile when day is selected
   };
-
-  // getColorClass removed because it was unused; color mapping is handled inside DayCard's getDynamicClass.
 
   // If a day is selected, show that day with top navigation
   if (selectedDay) {
@@ -263,7 +263,7 @@ function App() {
 
         {/* Regular Days Grid */}
         <div className="mb-12">
-          <h2 className="text-3xl font-bold text-white mb-6 text-center">Regular Days (1-12)</h2>
+          <h2 className="text-3xl font-bold text-white mb-6 text-center">Regular Days (1-14)</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
             {regularDays.map((day) => (
               <DayCard
@@ -326,6 +326,8 @@ function DayCard({ day, color, description, onClick, darkMode }) {
         red: `${prefix}-red-600`,
         lime: `${prefix}-lime-600`,
         rose: `${prefix}-rose-600`,
+        // 🌟 Ensure 'cyan' is included here for correct styling! 🌟
+        cyan: `${prefix}-cyan-600`, 
     };
     return map[color] || `${prefix}-gray-600`;
   };
