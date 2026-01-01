@@ -14,6 +14,7 @@ import Day11 from './Day11';
 import Day12 from './Day12';
 import Day13 from './Day13';
 import Day14 from './Day14';
+import Day15 from './Day15';
 
 function App() {
   const [selectedDay, setSelectedDay] = useState(null);
@@ -50,6 +51,7 @@ function App() {
     { id: 'day12', name: 'Day 12', description: 'Fatigue & Change', color: 'amber' },
     { id: 'day13', name: 'Day 13', description: 'Gardening&Weather', color: 'emerald' },
     { id: 'day14', name: 'Day 14', description: 'Work & Time', color: 'cyan' },
+    { id: 'day15', name: 'Day 15', description: 'Actions & Objects', color: 'orange' },
   ];
 
   const extraDays = [
@@ -72,6 +74,7 @@ function App() {
       case 'day12': return <Day12 darkMode={darkMode} />;
       case 'day13': return <Day13 darkMode={darkMode} />;
       case 'day14': return <Day14 darkMode={darkMode} />; 
+      case 'day15': return <Day15 darkMode={darkMode} />;
       default: return null;
     }
   };
@@ -263,7 +266,7 @@ function App() {
 
         {/* Regular Days Grid */}
         <div className="mb-12">
-          <h2 className="text-3xl font-bold text-white mb-6 text-center">Regular Days (1-14)</h2>
+          <h2 className="text-3xl font-bold text-white mb-6 text-center">Regular Days (1-15)</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
             {regularDays.map((day) => (
               <DayCard
@@ -314,23 +317,23 @@ function DayCard({ day, color, description, onClick, darkMode }) {
   
   // Helper function to safely map color strings to Tailwind classes (avoids JIT issues)
   const getDynamicClass = (color, prefix) => {
-    const map = {
-        violet: `${prefix}-violet-600`,
-        sky: `${prefix}-sky-600`,
-        emerald: `${prefix}-emerald-600`,
-        pink: `${prefix}-pink-600`,
-        purple: `${prefix}-purple-600`,
-        teal: `${prefix}-teal-600`,
-        blue: `${prefix}-blue-600`,
-        amber: `${prefix}-amber-600`,
-        red: `${prefix}-red-600`,
-        lime: `${prefix}-lime-600`,
-        rose: `${prefix}-rose-600`,
-        // 🌟 Ensure 'cyan' is included here for correct styling! 🌟
-        cyan: `${prefix}-cyan-600`, 
-    };
-    return map[color] || `${prefix}-gray-600`;
+  const map = {
+      violet: `${prefix}-violet-600`,
+      sky: `${prefix}-sky-600`,
+      emerald: `${prefix}-emerald-600`,
+      pink: `${prefix}-pink-600`,
+      purple: `${prefix}-purple-600`,
+      teal: `${prefix}-teal-600`,
+      blue: `${prefix}-blue-600`,
+      amber: `${prefix}-amber-600`,
+      red: `${prefix}-red-600`,
+      lime: `${prefix}-lime-600`,
+      rose: `${prefix}-rose-600`,
+      cyan: `${prefix}-cyan-600`,
+      orange: `${prefix}-orange-600`,  // ← ADD THIS LINE
   };
+  return map[color] || `${prefix}-gray-600`;
+};
 
   const iconColorClass = getDynamicClass(color, 'text');
   const hoverShadowClass = getDynamicClass(color, 'hover:shadow');
