@@ -10,15 +10,19 @@ export function Privacy() {
         <h1 className="display">Privacy</h1>
         <p>Last updated 27 November 2026.</p>
         <h2>What is stored</h2>
-        <p>Your practice progress (which words you answered, when they are due for review, your streak) and your light or dark theme choice. Both are saved in your browser’s local storage on your device. They are never sent to us or anyone else.</p>
+        <p>Your practice progress (which words you answered, when they are due for review, your streak), your light or dark theme choice and whether practice sound effects are on. All of it is saved in your browser’s local storage on your device. They are never sent to us or anyone else.</p>
         <h2>No accounts, no tracking</h2>
         <p>The site has no sign-up, no analytics, no advertising and no tracking cookies.</p>
         <h2>Third parties</h2>
-        <p>The site is hosted on GitHub Pages, which may log basic request data such as IP addresses as described in GitHub’s privacy statement. Fonts are loaded from the jsDelivr CDN (Pretendard) and Google Fonts (Noto Serif KR), which receive your IP address when the fonts download. Pronunciation uses your device’s built-in speech voice; the audio is generated on your device.</p>
+        <p>The site is hosted on GitHub Pages, which may log basic request data such as IP addresses as described in GitHub’s privacy statement. Fonts are loaded from the jsDelivr CDN (Pretendard) and Google Fonts (Noto Serif KR), which receive your IP address when the fonts download. Pronunciation plays short recorded audio files served from this site, made in advance with an open text-to-speech model. If a file can’t load, your device’s built-in speech voice is used instead, and that audio is generated on your device.</p>
         <h2>Deleting your data</h2>
         <p>Clear this site’s data in your browser settings to remove all saved progress.</p>
         <h2>Contact</h2>
-        <p><span className="todo">TODO(owner): contact email for privacy questions</span></p>
+        {/* TODO(owner): add a contact email for privacy questions. */}
+        <p>
+          Questions about privacy: open an issue on the{' '}
+          <a href="https://github.com/KhurshidbekUrazaliev/korean-vocab-app/issues">project’s GitHub page</a>.
+        </p>
       </div>
     </article>
   );
@@ -40,7 +44,13 @@ export function Terms() {
         <h2>No warranty</h2>
         <p>The site is provided as is, without any warranty. Your saved progress lives in your browser and can be lost if browser data is cleared.</p>
         <h2>Owner and contact</h2>
-        <p><span className="todo">TODO(owner): legal name of the site owner, country, and contact email</span></p>
+        {/* TODO(owner): add the owner's legal name, country and a contact email. */}
+        <p>
+          The site is run by the owner of the{' '}
+          <a href="https://github.com/KhurshidbekUrazaliev">KhurshidbekUrazaliev</a> GitHub account. To report an error in a
+          word list or ask a question, open an issue on the{' '}
+          <a href="https://github.com/KhurshidbekUrazaliev/korean-vocab-app/issues">project’s GitHub page</a>.
+        </p>
       </div>
     </article>
   );

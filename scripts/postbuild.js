@@ -181,7 +181,7 @@ writeFileSync(
   join(DIST, 'llms.txt'),
   `# ${NAME}
 
-> A free website for learning Korean vocabulary in daily sets of 10 words. ${days.length} days, ${wordCount} words. Each word has Hangul, romanization, an English meaning and audio from the device's Korean voice. Learners practice with flashcards, multiple choice (both directions), typing and listening, and missed words come back through spaced review (Leitner boxes: 1, 3, 7 and 16 days). No account is needed; progress stays in the browser.
+> A free website for learning Korean vocabulary in daily sets of 10 words. ${days.length} days, ${wordCount} words. Each word has Hangul, romanization, an English meaning and a recorded pronunciation. Learners practice with flashcards, multiple choice (both directions), typing and listening, and missed words come back through spaced review (Leitner boxes: 1, 3, 7 and 16 days). No account is needed; progress stays in the browser.
 
 ${draftDays.length ? `Days ${draftDays.join(', ')} are draft lists under review.\n\n` : ''}## Days
 ${days.map((d) => `- [Day ${pad(d.number)}: ${d.title} (${d.titleKo})](${SITE}/day/${d.number})`).join('\n')}

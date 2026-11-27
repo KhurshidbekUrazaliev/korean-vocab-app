@@ -665,14 +665,6 @@ button {
 .prose p + p {
   margin-top: var(--s-4);
 }
-.todo {
-  padding: var(--s-1) var(--s-2);
-  border-radius: var(--r-sm);
-  background: var(--accent-soft);
-  color: var(--accent);
-  font-size: var(--fs-14);
-  font-weight: 600;
-}
 
 /* ---------- 404 ---------- */
 .not-found {

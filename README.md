@@ -35,8 +35,10 @@ npm run dev
 |---|---|
 | `npm run dev` | Dev server |
 | `npm run build` | Production build into `dist/`, then `scripts/postbuild.js` writes per-route HTML (titles, descriptions, Open Graph, JSON-LD, plain-HTML content), `404.html`, `sitemap.xml`, `robots.txt` and `llms.txt` |
-| `npm test` | Unit tests for the practice logic and the word data |
-| `npm run deploy` | Builds and publishes `dist/` to the `gh-pages` branch |
+| `npm test` | Unit tests for the practice logic, the practice session and the word data |
+| `npm run test:a11y` | Scans the built site with axe in Chromium (both themes, desktop and mobile). See `e2e/README.md` |
+| `npm run deploy` | Builds and publishes `dist/` to the `gh-pages` branch by hand. Pushing to `main` does the same through GitHub Actions after the tests pass |
+| `python scripts/make-audio.py` | Records missing word clips into `public/audio/` with Supertonic 3, an open text-to-speech model. Setup and options are at the top of the script; `--check` transcribes each clip with Whisper to catch mispronunciations |
 | `node scripts/make-images.cjs` | Regenerates sharing images and icons using Playwright, Chromium and a Korean font. Use `--previews-only` after a lesson or cover changes. Set `CHROMIUM_CHANNEL=chrome` to use local Chrome. |
 
 ## Adding a day
@@ -44,6 +46,7 @@ npm run dev
 1. Add `src/data/days/dayNN.json` following the schema in `AGENTS.md` (10 words, unique Korean words across all days). Save the cover as `public/images/days/dayNN.webp` and use `images/days/dayNN.webp` in the JSON.
 2. Run `npm test` (checks numbering, word count, duplicates).
 3. Run `node scripts/make-images.cjs --previews-only` to regenerate sharing images.
+4. Run `python scripts/make-audio.py --check` to record the new words.
 
 ## Project structure
 
