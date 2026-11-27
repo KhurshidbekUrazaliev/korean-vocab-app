@@ -1,0 +1,72 @@
+{
+  "id": "day46",
+  "number": 46,
+  "slug": "time-and-plans",
+  "title": "Time & Plans",
+  "titleKo": "시간과 계획",
+  "status": "draft",
+  "source": "generated",
+  "cover": null,
+  "words": [
+    {
+      "id": "day46-01",
+      "korean": "계획",
+      "romanization": "gyehoek",
+      "english": "plan"
+    },
+    {
+      "id": "day46-02",
+      "korean": "약속",
+      "romanization": "yaksok",
+      "english": "appointment, promise"
+    },
+    {
+      "id": "day46-03",
+      "korean": "미루다",
+      "romanization": "miruda",
+      "english": "to put off"
+    },
+    {
+      "id": "day46-04",
+      "korean": "연기하다",
+      "romanization": "yeongihada",
+      "english": "to postpone"
+    },
+    {
+      "id": "day46-05",
+      "korean": "일찍",
+      "romanization": "iljjik",
+      "english": "early"
+    },
+    {
+      "id": "day46-06",
+      "korean": "늦게",
+      "romanization": "neutge",
+      "english": "late"
+    },
+    {
+      "id": "day46-07",
+      "korean": "마침내",
+      "romanization": "machimnae",
+      "english": "finally, at last"
+    },
+    {
+      "id": "day46-08",
+      "korean": "당분간",
+      "romanization": "dangbungan",
+      "english": "for the time being"
+    },
+    {
+      "id": "day46-09",
+      "korean": "나중에",
+      "romanization": "najunge",
+      "english": "later"
+    },
+    {
+      "id": "day46-10",
+      "korean": "미리",
+      "romanization": "miri",
+      "english": "in advance"
+    }
+  ]
+}

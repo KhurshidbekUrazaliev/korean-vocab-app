@@ -1,0 +1,72 @@
+{
+  "id": "day22",
+  "number": 22,
+  "slug": "hobbies",
+  "title": "Hobbies",
+  "titleKo": "취미",
+  "status": "draft",
+  "source": "generated",
+  "cover": null,
+  "words": [
+    {
+      "id": "day22-01",
+      "korean": "취미",
+      "romanization": "chwimi",
+      "english": "hobby"
+    },
+    {
+      "id": "day22-02",
+      "korean": "여가",
+      "romanization": "yeoga",
+      "english": "leisure, free time"
+    },
+    {
+      "id": "day22-03",
+      "korean": "수집하다",
+      "romanization": "sujiphada",
+      "english": "to collect"
+    },
+    {
+      "id": "day22-04",
+      "korean": "악기",
+      "romanization": "akgi",
+      "english": "musical instrument"
+    },
+    {
+      "id": "day22-05",
+      "korean": "등산",
+      "romanization": "deungsan",
+      "english": "hiking"
+    },
+    {
+      "id": "day22-06",
+      "korean": "낚시",
+      "romanization": "naksi",
+      "english": "fishing"
+    },
+    {
+      "id": "day22-07",
+      "korean": "뜨개질",
+      "romanization": "tteugaejil",
+      "english": "knitting"
+    },
+    {
+      "id": "day22-08",
+      "korean": "동호회",
+      "romanization": "donghohoe",
+      "english": "hobby club"
+    },
+    {
+      "id": "day22-09",
+      "korean": "꾸준히",
+      "romanization": "kkujunhi",
+      "english": "steadily, consistently"
+    },
+    {
+      "id": "day22-10",
+      "korean": "즐기다",
+      "romanization": "jeulgida",
+      "english": "to enjoy"
+    }
+  ]
+}

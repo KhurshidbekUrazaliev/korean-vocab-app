@@ -1,0 +1,72 @@
+{
+  "id": "day34",
+  "number": 34,
+  "slug": "appearance-and-clothes",
+  "title": "Appearance & Clothes",
+  "titleKo": "외모와 옷",
+  "status": "draft",
+  "source": "generated",
+  "cover": null,
+  "words": [
+    {
+      "id": "day34-01",
+      "korean": "외모",
+      "romanization": "oemo",
+      "english": "appearance, looks"
+    },
+    {
+      "id": "day34-02",
+      "korean": "날씬하다",
+      "romanization": "nalssinhada",
+      "english": "to be slim"
+    },
+    {
+      "id": "day34-03",
+      "korean": "통통하다",
+      "romanization": "tongtonghada",
+      "english": "to be chubby"
+    },
+    {
+      "id": "day34-04",
+      "korean": "곱슬머리",
+      "romanization": "gopseulmeori",
+      "english": "curly hair"
+    },
+    {
+      "id": "day34-05",
+      "korean": "어울리다",
+      "romanization": "eoullida",
+      "english": "to suit, look good on"
+    },
+    {
+      "id": "day34-06",
+      "korean": "유행",
+      "romanization": "yuhaeng",
+      "english": "trend, fashion"
+    },
+    {
+      "id": "day34-07",
+      "korean": "입어 보다",
+      "romanization": "ibeo boda",
+      "english": "to try on"
+    },
+    {
+      "id": "day34-08",
+      "korean": "헐렁하다",
+      "romanization": "heolleonghada",
+      "english": "to be loose, baggy"
+    },
+    {
+      "id": "day34-09",
+      "korean": "꽉 끼다",
+      "romanization": "kkwak kkida",
+      "english": "to be tight"
+    },
+    {
+      "id": "day34-10",
+      "korean": "단정하다",
+      "romanization": "danjeonghada",
+      "english": "to be neat, tidy"
+    }
+  ]
+}

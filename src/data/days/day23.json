@@ -1,0 +1,72 @@
+{
+  "id": "day23",
+  "number": 23,
+  "slug": "emotions",
+  "title": "Emotions",
+  "titleKo": "감정",
+  "status": "draft",
+  "source": "generated",
+  "cover": null,
+  "words": [
+    {
+      "id": "day23-01",
+      "korean": "설레다",
+      "romanization": "seolleda",
+      "english": "to be excited, flutter"
+    },
+    {
+      "id": "day23-02",
+      "korean": "섭섭하다",
+      "romanization": "seopseopada",
+      "english": "to feel hurt, sad"
+    },
+    {
+      "id": "day23-03",
+      "korean": "속상하다",
+      "romanization": "soksanghada",
+      "english": "to be upset"
+    },
+    {
+      "id": "day23-04",
+      "korean": "당황하다",
+      "romanization": "danghwanghada",
+      "english": "to be flustered"
+    },
+    {
+      "id": "day23-05",
+      "korean": "창피하다",
+      "romanization": "changpihada",
+      "english": "to be embarrassed"
+    },
+    {
+      "id": "day23-06",
+      "korean": "답답하다",
+      "romanization": "dapdapada",
+      "english": "to feel stifled, frustrated"
+    },
+    {
+      "id": "day23-07",
+      "korean": "후회하다",
+      "romanization": "huhoehada",
+      "english": "to regret"
+    },
+    {
+      "id": "day23-08",
+      "korean": "뿌듯하다",
+      "romanization": "ppudeutada",
+      "english": "to feel proud"
+    },
+    {
+      "id": "day23-09",
+      "korean": "그립다",
+      "romanization": "geuripda",
+      "english": "to miss, long for"
+    },
+    {
+      "id": "day23-10",
+      "korean": "짜증 나다",
+      "romanization": "jjajeung nada",
+      "english": "to be annoyed"
+    }
+  ]
+}

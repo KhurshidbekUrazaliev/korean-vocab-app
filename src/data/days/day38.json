@@ -1,0 +1,72 @@
+{
+  "id": "day38",
+  "number": 38,
+  "slug": "law-and-rules",
+  "title": "Law & Rules",
+  "titleKo": "법과 규칙",
+  "status": "draft",
+  "source": "generated",
+  "cover": null,
+  "words": [
+    {
+      "id": "day38-01",
+      "korean": "법",
+      "romanization": "beop",
+      "english": "law"
+    },
+    {
+      "id": "day38-02",
+      "korean": "규칙",
+      "romanization": "gyuchik",
+      "english": "rule"
+    },
+    {
+      "id": "day38-03",
+      "korean": "지키다",
+      "romanization": "jikida",
+      "english": "to keep, follow (a rule)"
+    },
+    {
+      "id": "day38-04",
+      "korean": "어기다",
+      "romanization": "eogida",
+      "english": "to break (a rule)"
+    },
+    {
+      "id": "day38-05",
+      "korean": "벌금",
+      "romanization": "beolgeum",
+      "english": "fine (penalty)"
+    },
+    {
+      "id": "day38-06",
+      "korean": "금지",
+      "romanization": "geumji",
+      "english": "ban, prohibition"
+    },
+    {
+      "id": "day38-07",
+      "korean": "허락",
+      "romanization": "heorak",
+      "english": "permission"
+    },
+    {
+      "id": "day38-08",
+      "korean": "신고하다",
+      "romanization": "singohada",
+      "english": "to report (to the authorities)"
+    },
+    {
+      "id": "day38-09",
+      "korean": "경찰",
+      "romanization": "gyeongchal",
+      "english": "police"
+    },
+    {
+      "id": "day38-10",
+      "korean": "범죄",
+      "romanization": "beomjoe",
+      "english": "crime"
+    }
+  ]
+}

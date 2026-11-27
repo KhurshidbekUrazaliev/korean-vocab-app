@@ -1,0 +1,72 @@
+{
+  "id": "day29",
+  "number": 29,
+  "slug": "phones-and-internet",
+  "title": "Phones & Internet",
+  "titleKo": "휴대폰과 인터넷",
+  "status": "draft",
+  "source": "generated",
+  "cover": null,
+  "words": [
+    {
+      "id": "day29-01",
+      "korean": "충전하다",
+      "romanization": "chungjeonhada",
+      "english": "to charge"
+    },
+    {
+      "id": "day29-02",
+      "korean": "배터리",
+      "romanization": "baeteori",
+      "english": "battery"
+    },
+    {
+      "id": "day29-03",
+      "korean": "문자",
+      "romanization": "munja",
+      "english": "text message"
+    },
+    {
+      "id": "day29-04",
+      "korean": "검색하다",
+      "romanization": "geomsaekada",
+      "english": "to search"
+    },
+    {
+      "id": "day29-05",
+      "korean": "저장하다",
+      "romanization": "jeojanghada",
+      "english": "to save (a file)"
+    },
+    {
+      "id": "day29-06",
+      "korean": "다운로드",
+      "romanization": "daunnodeu",
+      "english": "download"
+    },
+    {
+      "id": "day29-07",
+      "korean": "비밀번호",
+      "romanization": "bimilbeonho",
+      "english": "password"
+    },
+    {
+      "id": "day29-08",
+      "korean": "화면",
+      "romanization": "hwamyeon",
+      "english": "screen"
+    },
+    {
+      "id": "day29-09",
+      "korean": "댓글",
+      "romanization": "daetgeul",
+      "english": "comment (online)"
+    },
+    {
+      "id": "day29-10",
+      "korean": "올리다",
+      "romanization": "ollida",
+      "english": "to post, upload"
+    }
+  ]
+}

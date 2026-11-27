@@ -1,0 +1,72 @@
+{
+  "id": "day25",
+  "number": 25,
+  "slug": "job-hunting",
+  "title": "Job Hunting",
+  "titleKo": "취업",
+  "status": "draft",
+  "source": "generated",
+  "cover": null,
+  "words": [
+    {
+      "id": "day25-01",
+      "korean": "취업",
+      "romanization": "chwieop",
+      "english": "getting a job"
+    },
+    {
+      "id": "day25-02",
+      "korean": "이력서",
+      "romanization": "iryeokseo",
+      "english": "résumé"
+    },
+    {
+      "id": "day25-03",
+      "korean": "자기소개서",
+      "romanization": "jagisogaeseo",
+      "english": "cover letter"
+    },
+    {
+      "id": "day25-04",
+      "korean": "경력",
+      "romanization": "gyeongnyeok",
+      "english": "work experience"
+    },
+    {
+      "id": "day25-05",
+      "korean": "채용",
+      "romanization": "chaeyong",
+      "english": "hiring, recruitment"
+    },
+    {
+      "id": "day25-06",
+      "korean": "합격하다",
+      "romanization": "hapgyeokada",
+      "english": "to pass (an exam, interview)"
+    },
+    {
+      "id": "day25-07",
+      "korean": "불합격",
+      "romanization": "bulhapgyeok",
+      "english": "failing, rejection"
+    },
+    {
+      "id": "day25-08",
+      "korean": "자격증",
+      "romanization": "jagyeokjeung",
+      "english": "certificate, qualification"
+    },
+    {
+      "id": "day25-09",
+      "korean": "연봉",
+      "romanization": "yeonbong",
+      "english": "annual salary"
+    },
+    {
+      "id": "day25-10",
+      "korean": "신입",
+      "romanization": "sinip",
+      "english": "newcomer, entry-level"
+    }
+  ]
+}

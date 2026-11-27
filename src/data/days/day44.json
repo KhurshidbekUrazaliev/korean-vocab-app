@@ -1,0 +1,72 @@
+{
+  "id": "day44",
+  "number": 44,
+  "slug": "public-life",
+  "title": "Public Life",
+  "titleKo": "정치와 선거",
+  "status": "draft",
+  "source": "generated",
+  "cover": null,
+  "words": [
+    {
+      "id": "day44-01",
+      "korean": "정치",
+      "romanization": "jeongchi",
+      "english": "politics"
+    },
+    {
+      "id": "day44-02",
+      "korean": "선거",
+      "romanization": "seongeo",
+      "english": "election"
+    },
+    {
+      "id": "day44-03",
+      "korean": "투표하다",
+      "romanization": "tupyohada",
+      "english": "to vote"
+    },
+    {
+      "id": "day44-04",
+      "korean": "정부",
+      "romanization": "jeongbu",
+      "english": "government"
+    },
+    {
+      "id": "day44-05",
+      "korean": "대통령",
+      "romanization": "daetongnyeong",
+      "english": "president"
+    },
+    {
+      "id": "day44-06",
+      "korean": "국민",
+      "romanization": "gungmin",
+      "english": "the people, citizens"
+    },
+    {
+      "id": "day44-07",
+      "korean": "정책",
+      "romanization": "jeongchaek",
+      "english": "policy"
+    },
+    {
+      "id": "day44-08",
+      "korean": "지지하다",
+      "romanization": "jijihada",
+      "english": "to support (a person, idea)"
+    },
+    {
+      "id": "day44-09",
+      "korean": "비판하다",
+      "romanization": "bipanhada",
+      "english": "to criticize"
+    },
+    {
+      "id": "day44-10",
+      "korean": "토론",
+      "romanization": "toron",
+      "english": "debate, discussion"
+    }
+  ]
+}

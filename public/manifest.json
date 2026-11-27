@@ -1,25 +1,13 @@
 {
-  "short_name": "EssentialKoreanVocab",
-  "name": "Korean Vocab Practice App",
+  "short_name": "한국어 공부",
+  "name": "Essential Korean Vocabulary",
   "icons": [
-    {
-      "src": "kvocabim.png",
-      "sizes": "128x128 64x64 32x32 24x24",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "kvocabim.png",
-      "type": "image/png",
-      "sizes": "256x256"
-    },
-    {
-      "src": "kvocabim.png",
-      "type": "image/png",
-      "sizes": "1024x1024"
-    }
+    { "src": "icon-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "icon-512.png", "type": "image/png", "sizes": "512x512" }
   ],
-  "start_url": ".",
+  "start_url": "/korean-vocab-app/",
+  "scope": "/korean-vocab-app/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#f3f2ec",
+  "background_color": "#f3f2ec"
 }

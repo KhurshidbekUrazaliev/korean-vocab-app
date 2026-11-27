@@ -1,0 +1,72 @@
+{
+  "id": "day30",
+  "number": 30,
+  "slug": "environment",
+  "title": "Environment",
+  "titleKo": "환경",
+  "status": "draft",
+  "source": "generated",
+  "cover": null,
+  "words": [
+    {
+      "id": "day30-01",
+      "korean": "환경",
+      "romanization": "hwangyeong",
+      "english": "environment"
+    },
+    {
+      "id": "day30-02",
+      "korean": "오염",
+      "romanization": "oyeom",
+      "english": "pollution"
+    },
+    {
+      "id": "day30-03",
+      "korean": "쓰레기",
+      "romanization": "sseuregi",
+      "english": "trash"
+    },
+    {
+      "id": "day30-04",
+      "korean": "재활용",
+      "romanization": "jaehwaryong",
+      "english": "recycling"
+    },
+    {
+      "id": "day30-05",
+      "korean": "분리수거",
+      "romanization": "bullisugeo",
+      "english": "sorting trash for recycling"
+    },
+    {
+      "id": "day30-06",
+      "korean": "일회용품",
+      "romanization": "ilhoeyongpum",
+      "english": "disposable products"
+    },
+    {
+      "id": "day30-07",
+      "korean": "절약하다",
+      "romanization": "jeoryakada",
+      "english": "to save, conserve"
+    },
+    {
+      "id": "day30-08",
+      "korean": "미세먼지",
+      "romanization": "misemeonji",
+      "english": "fine dust"
+    },
+    {
+      "id": "day30-09",
+      "korean": "지구 온난화",
+      "romanization": "jigu onnanhwa",
+      "english": "global warming"
+    },
+    {
+      "id": "day30-10",
+      "korean": "보호하다",
+      "romanization": "bohohada",
+      "english": "to protect"
+    }
+  ]
+}

@@ -1,11 +1,11 @@
 # Image brief
 
-Status: **waiting for owner OK on the style (AGENTS.md Q4).** Generate one
+Status: **optional (AGENTS.md T14).** The site works without these; they would add a cover to each day page. Generate one
 test image (Day 01) first and share it before doing the rest.
 
 ## Specs
 
-- Size: generate at **1600 x 1000** (16:10) or larger. Crop the
+- Size: generate at **1600 x 1000** (16:10) or larger. the build crops the
   1200 x 630 link-preview versions from these automatically, so keep the main
   subject in the center 70%.
 - Save as: `public/images/days/day01.webp` ... `day50.webp` (PNG is fine too,
@@ -17,7 +17,7 @@ test image (Day 01) first and share it before doing the rest.
 ## Shared style (paste this at the start of every prompt)
 
 > Editorial flat illustration, calm and minimal, set in Korea. Warm off-white
-> paper background (#F7F5F0). Limited palette: deep ink black, warm greys, one
+> paper background (#F3F2EC). Limited palette: deep ink black, warm greys, one
 > accent of muted seal red (#B3261E). Soft paper grain texture, subtle shadows,
 > no gradients, no glow, no neon, no text or letters anywhere. Wide 16:10
 > composition, generous empty space on the left third.
@@ -41,7 +41,7 @@ test image (Day 01) first and share it before doing the rest.
 | 13 | Gardening and weather | A small rooftop garden in Seoul with planters, a watering can and light rain clouds. |
 | 14 | Work and time | A clean work desk with a wall clock, a planner, a laptop and a cup of tea, shadows showing late afternoon. |
 | 15 | Cleaning at home | A wooden floor with a broom, a mop bucket, a low table, and a chair with one broken leg. |
-| 16-50 | TBD | Added once the word lists for these days exist (task T13). |
+| 16-50 | See titles in `src/data/days/` | One quiet scene per day's theme, same style. |
 
 ## Site hero
 

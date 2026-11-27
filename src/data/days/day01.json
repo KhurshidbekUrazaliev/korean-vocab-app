@@ -1,0 +1,72 @@
+{
+  "id": "day01",
+  "number": 1,
+  "slug": "dining-out",
+  "title": "Dining Out",
+  "titleKo": "외식",
+  "status": "verified",
+  "source": "owner-notes",
+  "cover": null,
+  "words": [
+    {
+      "id": "day01-01",
+      "korean": "외식",
+      "romanization": "oesik",
+      "english": "dining out"
+    },
+    {
+      "id": "day01-02",
+      "korean": "다양하다",
+      "romanization": "dayanghada",
+      "english": "to be various, diverse"
+    },
+    {
+      "id": "day01-03",
+      "korean": "마늘",
+      "romanization": "maneul",
+      "english": "garlic"
+    },
+    {
+      "id": "day01-04",
+      "korean": "볶다",
+      "romanization": "bokda",
+      "english": "to fry, stir-fry"
+    },
+    {
+      "id": "day01-05",
+      "korean": "후식",
+      "romanization": "husik",
+      "english": "dessert"
+    },
+    {
+      "id": "day01-06",
+      "korean": "달콤하다",
+      "romanization": "dalkomhada",
+      "english": "to be sweet"
+    },
+    {
+      "id": "day01-07",
+      "korean": "야경",
+      "romanization": "yagyeong",
+      "english": "night view"
+    },
+    {
+      "id": "day01-08",
+      "korean": "선약",
+      "romanization": "seonyak",
+      "english": "prior engagement"
+    },
+    {
+      "id": "day01-09",
+      "korean": "취소하다",
+      "romanization": "chwisohada",
+      "english": "to cancel"
+    },
+    {
+      "id": "day01-10",
+      "korean": "흡족하다",
+      "romanization": "heupjokhada",
+      "english": "to be satisfied"
+    }
+  ]
+}

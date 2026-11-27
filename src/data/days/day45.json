@@ -1,0 +1,72 @@
+{
+  "id": "day45",
+  "number": 45,
+  "slug": "worries-and-advice",
+  "title": "Worries & Advice",
+  "titleKo": "고민과 조언",
+  "status": "draft",
+  "source": "generated",
+  "cover": null,
+  "words": [
+    {
+      "id": "day45-01",
+      "korean": "고민",
+      "romanization": "gomin",
+      "english": "worry, something on your mind"
+    },
+    {
+      "id": "day45-02",
+      "korean": "조언",
+      "romanization": "joeon",
+      "english": "advice"
+    },
+    {
+      "id": "day45-03",
+      "korean": "상담",
+      "romanization": "sangdam",
+      "english": "counseling, consultation"
+    },
+    {
+      "id": "day45-04",
+      "korean": "걱정하다",
+      "romanization": "geokjeonghada",
+      "english": "to worry"
+    },
+    {
+      "id": "day45-05",
+      "korean": "스트레스",
+      "romanization": "seuteureseu",
+      "english": "stress"
+    },
+    {
+      "id": "day45-06",
+      "korean": "풀다",
+      "romanization": "pulda",
+      "english": "to relieve; to solve"
+    },
+    {
+      "id": "day45-07",
+      "korean": "털어놓다",
+      "romanization": "teoreonota",
+      "english": "to open up, confide"
+    },
+    {
+      "id": "day45-08",
+      "korean": "위로하다",
+      "romanization": "wirohada",
+      "english": "to comfort"
+    },
+    {
+      "id": "day45-09",
+      "korean": "격려하다",
+      "romanization": "gyeongnyeohada",
+      "english": "to encourage"
+    },
+    {
+      "id": "day45-10",
+      "korean": "극복하다",
+      "romanization": "geukbokada",
+      "english": "to overcome"
+    }
+  ]
+}

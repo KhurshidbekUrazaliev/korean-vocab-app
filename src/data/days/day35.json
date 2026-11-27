@@ -1,0 +1,72 @@
+{
+  "id": "day35",
+  "number": 35,
+  "slug": "education",
+  "title": "Education",
+  "titleKo": "교육",
+  "status": "draft",
+  "source": "generated",
+  "cover": null,
+  "words": [
+    {
+      "id": "day35-01",
+      "korean": "교육",
+      "romanization": "gyoyuk",
+      "english": "education"
+    },
+    {
+      "id": "day35-02",
+      "korean": "수업",
+      "romanization": "sueop",
+      "english": "class, lesson"
+    },
+    {
+      "id": "day35-03",
+      "korean": "과제",
+      "romanization": "gwaje",
+      "english": "assignment"
+    },
+    {
+      "id": "day35-04",
+      "korean": "시험",
+      "romanization": "siheom",
+      "english": "exam, test"
+    },
+    {
+      "id": "day35-05",
+      "korean": "성적",
+      "romanization": "seongjeok",
+      "english": "grades"
+    },
+    {
+      "id": "day35-06",
+      "korean": "장학금",
+      "romanization": "janghakgeum",
+      "english": "scholarship"
+    },
+    {
+      "id": "day35-07",
+      "korean": "전공",
+      "romanization": "jeongong",
+      "english": "major (subject)"
+    },
+    {
+      "id": "day35-08",
+      "korean": "졸업하다",
+      "romanization": "joreopada",
+      "english": "to graduate"
+    },
+    {
+      "id": "day35-09",
+      "korean": "입학하다",
+      "romanization": "ipakada",
+      "english": "to enter a school"
+    },
+    {
+      "id": "day35-10",
+      "korean": "복습하다",
+      "romanization": "bokseupada",
+      "english": "to review (a lesson)"
+    }
+  ]
+}

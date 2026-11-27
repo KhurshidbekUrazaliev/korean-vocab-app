@@ -1,0 +1,54 @@
+// Generates link-preview images (1200x630) and app icons from the day data.
+// Dev-only: needs Playwright with Chromium. Run with `node scripts/make-images.cjs`
+// after adding or renaming days, then commit the files in public/.
+const { chromium } = require('playwright');
+const fs = require('fs');
+const path = require('path');
+
+const root = path.join(__dirname, '..');
+const days = fs.readdirSync(path.join(root, 'src/data/days')).filter((f) => f.endsWith('.json'))
+  .map((f) => JSON.parse(fs.readFileSync(path.join(root, 'src/data/days', f), 'utf8'))).sort((a, b) => a.number - b.number);
+const pad = (n) => String(n).padStart(2, '0');
+const FONT = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">';
+const base = `*{margin:0;box-sizing:border-box}body{width:1200px;height:630px;background:#f3f2ec;color:#141511;font-family:'Pretendard Variable',sans-serif;overflow:hidden;position:relative}
+.brand{position:absolute;left:64px;bottom:56px;display:flex;align-items:center;gap:14px;font-size:22px;font-weight:600}
+.mark{width:48px;height:48px;border-radius:50%;background:#141511;color:#d4ea6b;display:grid;place-items:center;font-weight:700;font-size:22px}
+.meta{position:absolute;right:64px;bottom:62px;font-size:20px;color:#55564e;font-weight:500}
+.chip{display:inline-block;background:#d4ea6b;padding:4px 12px;border-radius:8px}`;
+
+const dayHtml = (d) => `<!doctype html><html><head>${FONT}<style>${base}
+.num{position:absolute;right:40px;top:-40px;font-size:520px;font-weight:200;letter-spacing:-0.08em;color:#e4e2d9;line-height:1}
+.ko{position:absolute;left:64px;top:150px;font-size:${d.titleKo.length > 5 ? 108 : 132}px;font-weight:700;letter-spacing:-0.03em;line-height:1}
+.en{position:absolute;left:68px;top:${d.titleKo.length > 5 ? 290 : 310}px;font-size:44px;font-weight:300;letter-spacing:-0.03em}
+.eyebrow{position:absolute;left:68px;top:84px;font-size:18px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#55564e}
+.words{position:absolute;left:68px;top:${d.titleKo.length > 5 ? 370 : 390}px;font-size:26px;font-weight:600;color:#55564e}
+</style></head><body><div class="num">${pad(d.number)}</div><div class="eyebrow">Day ${pad(d.number)} · 10 Korean words</div>
+<div class="ko">${d.titleKo}</div><div class="en">${d.title}</div><div class="words">${d.words.slice(0, 4).map((w) => w.korean).join(' · ')}</div>
+<div class="brand"><span class="mark">한</span>Essential Korean Vocabulary</div><div class="meta"><span class="chip">Audio</span> · Flashcards · Quiz · Typing · Listening</div></body></html>`;
+
+const homeHtml = `<!doctype html><html><head>${FONT}<style>${base}
+h1{position:absolute;left:64px;top:84px;font-size:112px;font-weight:300;letter-spacing:-0.05em;line-height:.95}
+.big{position:absolute;right:-20px;bottom:-70px;font-size:330px;font-weight:700;letter-spacing:-0.06em;color:#141511;line-height:1}
+.big span{color:#d4ea6b;-webkit-text-stroke:0}
+</style></head><body><h1>Learn Korean<br>one day<br>at a time.</h1><div class="big">공부</div>
+<div class="brand"><span class="mark">한</span>${days.length} days · ${days.length * 10} words</div></body></html>`;
+
+const iconHtml = (size) => `<!doctype html><html><head>${FONT}<style>*{margin:0}body{width:${size}px;height:${size}px;background:#141511;display:grid;place-items:center;font-family:'Pretendard Variable',sans-serif}
+span{color:#d4ea6b;font-weight:700;font-size:${Math.round(size * 0.56)}px;line-height:1;letter-spacing:-0.04em}</style></head><body><span>한</span></body></html>`;
+
+(async () => {
+  const browser = await chromium.launch();
+  const page = await browser.newPage({ viewport: { width: 1200, height: 630 } });
+  fs.mkdirSync(path.join(root, 'public/og'), { recursive: true });
+  const shot = async (html, file, w = 1200, h = 630) => {
+    await page.setViewportSize({ width: w, height: h });
+    await page.setContent(html, { waitUntil: 'networkidle' });
+    await page.evaluate(() => document.fonts.ready);
+    await page.screenshot({ path: path.join(root, 'public', file) });
+  };
+  await shot(homeHtml, 'og/home.png');
+  for (const d of days) await shot(dayHtml(d), `og/day${pad(d.number)}.png`);
+  for (const [s, f] of [[32, 'favicon-32.png'], [180, 'apple-touch-icon.png'], [192, 'icon-192.png'], [512, 'icon-512.png']]) await shot(iconHtml(s), f, s, s);
+  await browser.close();
+  console.log(`made ${days.length + 1} preview images and 4 icons`);
+})();

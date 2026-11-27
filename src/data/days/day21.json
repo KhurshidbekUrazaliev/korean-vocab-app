@@ -1,0 +1,72 @@
+{
+  "id": "day21",
+  "number": 21,
+  "slug": "cooking",
+  "title": "Cooking",
+  "titleKo": "요리",
+  "status": "draft",
+  "source": "generated",
+  "cover": null,
+  "words": [
+    {
+      "id": "day21-01",
+      "korean": "재료",
+      "romanization": "jaeryo",
+      "english": "ingredient"
+    },
+    {
+      "id": "day21-02",
+      "korean": "썰다",
+      "romanization": "sseolda",
+      "english": "to slice, chop"
+    },
+    {
+      "id": "day21-03",
+      "korean": "굽다",
+      "romanization": "gupda",
+      "english": "to grill, bake"
+    },
+    {
+      "id": "day21-04",
+      "korean": "끓이다",
+      "romanization": "kkeurida",
+      "english": "to boil"
+    },
+    {
+      "id": "day21-05",
+      "korean": "양념",
+      "romanization": "yangnyeom",
+      "english": "seasoning, sauce"
+    },
+    {
+      "id": "day21-06",
+      "korean": "간을 보다",
+      "romanization": "ganeul boda",
+      "english": "to taste for seasoning"
+    },
+    {
+      "id": "day21-07",
+      "korean": "섞다",
+      "romanization": "seokda",
+      "english": "to mix"
+    },
+    {
+      "id": "day21-08",
+      "korean": "데우다",
+      "romanization": "deuda",
+      "english": "to heat up"
+    },
+    {
+      "id": "day21-09",
+      "korean": "냄비",
+      "romanization": "naembi",
+      "english": "pot"
+    },
+    {
+      "id": "day21-10",
+      "korean": "프라이팬",
+      "romanization": "peuraipaen",
+      "english": "frying pan"
+    }
+  ]
+}

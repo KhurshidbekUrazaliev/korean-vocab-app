@@ -1,0 +1,72 @@
+{
+  "id": "day20",
+  "number": 20,
+  "slug": "housing",
+  "title": "Finding a Home",
+  "titleKo": "집 구하기",
+  "status": "draft",
+  "source": "generated",
+  "cover": null,
+  "words": [
+    {
+      "id": "day20-01",
+      "korean": "월세",
+      "romanization": "wolse",
+      "english": "monthly rent"
+    },
+    {
+      "id": "day20-02",
+      "korean": "전세",
+      "romanization": "jeonse",
+      "english": "lump-sum deposit lease"
+    },
+    {
+      "id": "day20-03",
+      "korean": "보증금",
+      "romanization": "bojeunggeum",
+      "english": "deposit"
+    },
+    {
+      "id": "day20-04",
+      "korean": "집주인",
+      "romanization": "jipjuin",
+      "english": "landlord"
+    },
+    {
+      "id": "day20-05",
+      "korean": "이사하다",
+      "romanization": "isahada",
+      "english": "to move house"
+    },
+    {
+      "id": "day20-06",
+      "korean": "계약",
+      "romanization": "gyeyak",
+      "english": "contract"
+    },
+    {
+      "id": "day20-07",
+      "korean": "관리비",
+      "romanization": "gwallibi",
+      "english": "maintenance fee"
+    },
+    {
+      "id": "day20-08",
+      "korean": "원룸",
+      "romanization": "wollum",
+      "english": "studio apartment"
+    },
+    {
+      "id": "day20-09",
+      "korean": "층간 소음",
+      "romanization": "cheunggan soeum",
+      "english": "noise between floors"
+    },
+    {
+      "id": "day20-10",
+      "korean": "세입자",
+      "romanization": "seipja",
+      "english": "tenant"
+    }
+  ]
+}

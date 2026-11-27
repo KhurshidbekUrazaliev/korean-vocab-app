@@ -1,0 +1,72 @@
+{
+  "id": "day09",
+  "number": 9,
+  "slug": "daily-life",
+  "title": "Daily Life",
+  "titleKo": "일상생활",
+  "status": "verified",
+  "source": "owner-notes",
+  "cover": null,
+  "words": [
+    {
+      "id": "day09-01",
+      "korean": "늦잠",
+      "romanization": "neutjam",
+      "english": "oversleeping, sleeping in"
+    },
+    {
+      "id": "day09-02",
+      "korean": "대표",
+      "romanization": "daepyo",
+      "english": "representative, president"
+    },
+    {
+      "id": "day09-03",
+      "korean": "발표",
+      "romanization": "balpyo",
+      "english": "presentation, announcement"
+    },
+    {
+      "id": "day09-04",
+      "korean": "평가",
+      "romanization": "pyeongga",
+      "english": "evaluation, assessment"
+    },
+    {
+      "id": "day09-05",
+      "korean": "면접",
+      "romanization": "myeonjeop",
+      "english": "interview"
+    },
+    {
+      "id": "day09-06",
+      "korean": "지각하다",
+      "romanization": "jigakhada",
+      "english": "to be late, to perceive"
+    },
+    {
+      "id": "day09-07",
+      "korean": "인생",
+      "romanization": "insaeng",
+      "english": "life"
+    },
+    {
+      "id": "day09-08",
+      "korean": "방해하다",
+      "romanization": "banghaehada",
+      "english": "to disturb, to interfere"
+    },
+    {
+      "id": "day09-09",
+      "korean": "버릇",
+      "romanization": "beoreut",
+      "english": "habit, manners"
+    },
+    {
+      "id": "day09-10",
+      "korean": "해결하다",
+      "romanization": "haegyeolhada",
+      "english": "to solve, to resolve"
+    }
+  ]
+}

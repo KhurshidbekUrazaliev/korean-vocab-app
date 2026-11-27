@@ -1,0 +1,73 @@
+{
+  "id": "day15",
+  "number": 15,
+  "slug": "actions-and-objects",
+  "title": "Actions & Objects",
+  "titleKo": "집안일",
+  "status": "verified",
+  "source": "owner-notes",
+  "cover": null,
+  "words": [
+    {
+      "id": "day15-01",
+      "korean": "올려놓다",
+      "romanization": "ollyeonota",
+      "english": "to put up, place on top"
+    },
+    {
+      "id": "day15-02",
+      "korean": "쓸다",
+      "romanization": "sseulda",
+      "english": "to sweep"
+    },
+    {
+      "id": "day15-03",
+      "korean": "걸레",
+      "romanization": "geolle",
+      "english": "rag, mop"
+    },
+    {
+      "id": "day15-04",
+      "korean": "밟다",
+      "romanization": "bapda",
+      "english": "to step on, tread on"
+    },
+    {
+      "id": "day15-05",
+      "korean": "엉덩이",
+      "romanization": "eongdeongi",
+      "english": "buttocks, bottom",
+      "note": "Corrected from 영덩이"
+    },
+    {
+      "id": "day15-06",
+      "korean": "묻다",
+      "romanization": "mutda",
+      "english": "to get dirty, stain"
+    },
+    {
+      "id": "day15-07",
+      "korean": "탁자",
+      "romanization": "takja",
+      "english": "table, desk"
+    },
+    {
+      "id": "day15-08",
+      "korean": "차다",
+      "romanization": "chada",
+      "english": "to kick"
+    },
+    {
+      "id": "day15-09",
+      "korean": "빠져",
+      "romanization": "ppajyeo",
+      "english": "fall out, escape (빠지다)"
+    },
+    {
+      "id": "day15-10",
+      "korean": "부러지다",
+      "romanization": "bureojida",
+      "english": "to break, snap"
+    }
+  ]
+}

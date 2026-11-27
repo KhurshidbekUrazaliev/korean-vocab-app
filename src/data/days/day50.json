@@ -1,0 +1,72 @@
+{
+  "id": "day50",
+  "number": 50,
+  "slug": "dreams-and-future",
+  "title": "Dreams & Future",
+  "titleKo": "꿈과 미래",
+  "status": "draft",
+  "source": "generated",
+  "cover": null,
+  "words": [
+    {
+      "id": "day50-01",
+      "korean": "꿈",
+      "romanization": "kkum",
+      "english": "dream"
+    },
+    {
+      "id": "day50-02",
+      "korean": "목표",
+      "romanization": "mokpyo",
+      "english": "goal"
+    },
+    {
+      "id": "day50-03",
+      "korean": "이루다",
+      "romanization": "iruda",
+      "english": "to achieve"
+    },
+    {
+      "id": "day50-04",
+      "korean": "도전하다",
+      "romanization": "dojeonhada",
+      "english": "to take on a challenge"
+    },
+    {
+      "id": "day50-05",
+      "korean": "포기하다",
+      "romanization": "pogihada",
+      "english": "to give up"
+    },
+    {
+      "id": "day50-06",
+      "korean": "미래",
+      "romanization": "mirae",
+      "english": "future"
+    },
+    {
+      "id": "day50-07",
+      "korean": "희망",
+      "romanization": "huimang",
+      "english": "hope"
+    },
+    {
+      "id": "day50-08",
+      "korean": "성공",
+      "romanization": "seonggong",
+      "english": "success"
+    },
+    {
+      "id": "day50-09",
+      "korean": "실패",
+      "romanization": "silpae",
+      "english": "failure"
+    },
+    {
+      "id": "day50-10",
+      "korean": "성장하다",
+      "romanization": "seongjanghada",
+      "english": "to grow (as a person)"
+    }
+  ]
+}
