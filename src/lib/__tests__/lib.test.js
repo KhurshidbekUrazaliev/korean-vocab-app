@@ -59,16 +59,31 @@ describe('checkTyped', () => {
 
 describe('srs', () => {
   const now = new Date('2026-01-01T10:00:00Z');
-  it('moves up a box on correct answers and back to 1 on a miss', () => {
+  const day = 86_400_000;
+  const later = (d) => new Date(now.getTime() + d * day);
+  it('sends a known new word to box 2 and a missed one to box 1', () => {
+    const known = schedule(undefined, true, now);
+    expect(known.box).toBe(2);
+    expect(new Date(known.dueAt) - now).toBe(INTERVAL_DAYS[1] * day);
+    const missed = schedule(undefined, false, now);
+    expect(missed.box).toBe(1);
+    expect(new Date(missed.dueAt) - now).toBe(0);
+  });
+  it('moves up only when the word was due, and back to 1 on any miss', () => {
     let s = schedule(undefined, true, now);
-    expect(s.box).toBe(1);
+    const again = schedule(s, true, now); // same sitting, not due yet
+    expect(again).toMatchObject({ box: 2, dueAt: s.dueAt, seen: 2, correctCount: 2 });
+    s = schedule(again, true, later(1)); // due tomorrow
+    expect(s.box).toBe(3);
+    expect(new Date(s.dueAt) - later(1)).toBe(INTERVAL_DAYS[2] * day);
+    s = schedule(s, false, later(1));
+    expect(s).toMatchObject({ box: 1, seen: 4, correctCount: 3 });
+  });
+  it('caps at box 5', () => {
+    let s = { box: 5, dueAt: now.toISOString(), seen: 9, correctCount: 9 };
     s = schedule(s, true, now);
-    expect(s.box).toBe(2);
-    expect(new Date(s.dueAt) - now).toBe(INTERVAL_DAYS[1] * 86_400_000);
-    s = schedule(s, false, now);
-    expect(s.box).toBe(1);
-    expect(s.seen).toBe(3);
-    expect(s.correctCount).toBe(2);
+    expect(s.box).toBe(5);
+    expect(new Date(s.dueAt) - now).toBe(INTERVAL_DAYS[4] * day);
   });
   it('lists only due words', () => {
     const progress = { words: { a: { dueAt: '2025-12-31T00:00:00Z' }, b: { dueAt: '2026-02-01T00:00:00Z' } } };

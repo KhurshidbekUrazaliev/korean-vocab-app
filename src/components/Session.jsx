@@ -416,7 +416,7 @@ function Results({ results, before, seconds, bestRun, onRetry, exitTo, exitLabel
   const pct = Math.round((score / total) * 100);
   const missed = results.filter((r) => !r.correct).map((r) => r.word);
   const after = progressStore.get().words;
-  const movedUp = Object.keys(before).filter((id) => (after[id]?.box ?? 0) > before[id]).length;
+  const movedUp = Object.keys(before).filter((id) => (after[id]?.box ?? 0) > Math.max(before[id], 1)).length;
   const C = 2 * Math.PI * 54;
   const verdict = pct === 100 ? ['완벽해요!', 'Perfect round.'] : pct >= 80 ? ['잘했어요!', 'Strong round.'] : pct >= 50 ? ['좋아요.', 'Getting there.'] : ['다시 해 봐요.', 'A tough one. Run it again.'];
   const time = seconds < 60 ? `${seconds}s` : `${Math.floor(seconds / 60)}m ${seconds % 60}s`;
