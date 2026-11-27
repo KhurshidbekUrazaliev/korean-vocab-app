@@ -146,7 +146,7 @@ Status: `todo` · `doing` · `review` · `done` · `blocked`
 | T05-T09 | App shell, Home, Day, Practice modes, Review, 404 | Claude | done |
 | T10 | Static HTML per route with meta + JSON-LD + plain content | Claude | done (string-template prerender). Full React prerender optional, see T22 |
 | T11 | sitemap, robots (AI bots), llms.txt, 404.html, OG images per day | Claude | done |
-| T12 | GitHub Actions: `npm ci && npm test && npm run build` on PRs; deploy `dist` to Pages on push to `main` (actions/deploy-pages or keep gh-pages branch, document which) | **Codex** | todo |
+| T12 | GitHub Actions: `npm ci && npm test && npm run build` on PRs; deploy `dist` to Pages on push to `main` (actions/deploy-pages or keep gh-pages branch, document which) | **Codex** | review. PR checks and main-only publication to the existing Pages branch are in [.github](.github/README.md). |
 | T13 | Vocabulary for Days 16–50 | Codex / Claude | done. All 350 entries were reviewed for spelling, romanization and meaning. Corrections are recorded in the vocabulary review. |
 | T14 | Day covers and Seoul street hero | Codex, integrated by Claude | done. All 50 lessons use their corresponding illustrations in the day index, lesson hero and sharing card. The Seoul scene appears on Home. |
 | T24 | Fill nine gaps in the illustrated course | Codex | done. Realigning the lessons to the original artwork restored coverage for all 50 days. The nine archived images have matching files in `public/images/days/`. |
@@ -219,3 +219,5 @@ _(format: `YYYY-MM-DD HH:MM UTC | agent | task | note`)_
 - 2026-11-27 15:39 UTC | Codex | T13 | Completed the owner-requested review of all 350 entries and corrected 15. All 17 unit tests passed. The build contains 35 dictionary-reviewed lesson pages with the corrected words in both the visible list and structured data. See [the correction record](docs/VOCABULARY-REVIEW.md).
 - 2026-11-27 15:45 UTC | Codex | T13 | Integrated the reviewed vocabulary with the Today, Course and Progress redesign from 59d2821. All 25 unit tests passed, including progress migration for both earlier releases. Verified the corrected lesson HTML and all 140 practice routes for Days 16–50.
 - 2026-11-27 | Claude | merge + deploy | Reviewed Codex's PR #2 on main (e6c79d6): 35 cover-topic lessons, 15 vocabulary corrections, progress migration, still-hero fallback. 25 tests pass, build clean, smoke-tested Day 16, Course and Day 50 quiz. Live site was on Codex's earlier deploy (2a99c9e); redeployed main.
+- 2026-11-27 20:58 UTC | Codex | T12 | Started CI and Pages branch publishing.
+- 2026-11-27 20:58 UTC | Codex | T12 | Added read-only PR checks and a main-only publish job that requests a Pages build for the tested artifact. Ready for review.
