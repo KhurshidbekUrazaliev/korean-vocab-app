@@ -583,6 +583,15 @@ button {
 .footer__links a:hover {
   color: var(--ink);
 }
+@media (max-width: 560px) {
+  .footer__links {
+    gap: 0 var(--s-4);
+  }
+  .footer__links a {
+    display: inline-block;
+    padding-block: var(--s-2); /* 32px+ touch target */
+  }
+}
 .footer__legal {
   display: flex;
   justify-content: space-between;
