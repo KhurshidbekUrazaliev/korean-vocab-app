@@ -1,5 +1,5 @@
 const KEY = 'kv.progress.v1';
-export const emptyProgress = () => ({ version: 1, words: {}, days: {}, activity: [] });
+export const emptyProgress = () => ({ version: 1, words: {}, days: {}, activity: [], daily: {} });
 
 export function loadProgress(storage = globalThis.localStorage) {
   try {

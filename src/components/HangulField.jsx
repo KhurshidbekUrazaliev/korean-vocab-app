@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import { reducedMotion } from '../lib/motion.js';
 
 const COUNT = 3400;
-const FONT = '"Pretendard Variable", Pretendard, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif';
+const FONT = '"Noto Serif KR", "Nanum Myeongjo", AppleMyungjo, serif';
 
 const vertex = /* glsl */ `
   attribute float aScale;

@@ -2,7 +2,7 @@ import { useSyncExternalStore } from 'react';
 import { loadProgress, saveProgress, localDateKey } from '../lib/progress.js';
 import { schedule } from '../lib/srs.js';
 
-let state = typeof window === 'undefined' ? { version: 1, words: {}, days: {}, activity: [] } : loadProgress();
+let state = typeof window === 'undefined' ? { version: 1, words: {}, days: {}, activity: [], daily: {} } : loadProgress();
 const listeners = new Set();
 
 function set(next) {
@@ -23,6 +23,7 @@ export const progressStore = {
       ...state,
       words: { ...state.words, [wordId]: schedule(state.words[wordId], correct) },
       activity: state.activity.includes(today) ? state.activity : [...state.activity, today],
+      daily: { ...state.daily, [today]: (state.daily?.[today] ?? 0) + 1 },
     });
   },
   recordSession(dayId, mode, score, total) {

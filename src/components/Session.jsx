@@ -1,32 +1,43 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { TLink } from './Motion.jsx';
 import { SpeakButton } from './SpeakButton.jsx';
-import { ArrowRight, Check, Close, Speaker } from './Icons.jsx';
+import { ArrowRight, Check, Close, Speaker, SoundOn, SoundOff } from './Icons.jsx';
 import { buildMultipleChoice, checkTyped } from '../lib/quiz.js';
 import { shuffle } from '../lib/shuffle.js';
 import { speak, canSpeak } from '../lib/speech.js';
+import { feedback, soundOn, setSound } from '../lib/sound.js';
 import { progressStore } from '../hooks/useProgress.js';
+import { MODE_TITLES } from '../lib/stats.js';
 import { gsap, useGSAP, reducedMotion } from '../lib/motion.js';
 import '../styles/practice.css';
 
-export const MODE_TITLES = { flashcards: 'Flashcards', choice: 'Multiple choice', typing: 'Typing', listening: 'Listening' };
+export { MODE_TITLES };
 
 /**
  * One practice run over `words`. `pool` supplies wrong options for quiz modes.
  * Every answer is written to the spaced-review schedule.
+ * `next` ({ to, label, ko }) is the suggested step after the round.
  */
-export function Session({ words, pool = words, mode, dayId, exitTo, exitLabel, otherModes = [] }) {
-  const [round, setRound] = useState(() => ({ queue: shuffle(words), id: 0 }));
+export function Session({ words, pool = words, mode, dayId, title, exitTo, exitLabel, next }) {
+  const [round, setRound] = useState(() => ({ queue: shuffle(words), id: 0, startedAt: Date.now() }));
   const [index, setIndex] = useState(0);
   const [results, setResults] = useState([]);
   const [direction, setDirection] = useState('ko-en');
+  const [run, setRun] = useState({ now: 0, best: 0 });
+  const [sound, setSoundState] = useState(soundOn);
   const done = index >= round.queue.length;
   const word = round.queue[index];
+  const before = useRef({});
 
   const answer = useCallback(
     (correct) => {
+      before.current[word.id] ??= progressStore.get().words[word.id]?.box ?? 0;
       progressStore.recordAnswer(word.id, correct);
       setResults((r) => [...r, { word, correct }]);
+      setRun((r) => {
+        const now = correct ? r.now + 1 : 0;
+        return { now, best: Math.max(r.best, now) };
+      });
       setIndex((i) => i + 1);
     },
     [word],
@@ -36,43 +47,72 @@ export function Session({ words, pool = words, mode, dayId, exitTo, exitLabel, o
     if (done && results.length) {
       const score = results.filter((r) => r.correct).length;
       progressStore.recordSession(dayId, mode, score, results.length);
+      feedback('done');
     }
     // Only when a round finishes.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [done]);
 
   const restart = (list) => {
-    setRound((r) => ({ queue: shuffle(list), id: r.id + 1 }));
+    setRound((r) => ({ queue: shuffle(list), id: r.id + 1, startedAt: Date.now() }));
     setIndex(0);
     setResults([]);
+    setRun({ now: 0, best: 0 });
+    before.current = {};
   };
+
+  const toggleSound = () => {
+    setSound(!sound);
+    setSoundState(!sound);
+  };
+
+  const pct = (Math.min(index, round.queue.length) / round.queue.length) * 100;
 
   return (
     <div className="session">
-      <div className="session__top wrap">
-        <TLink to={exitTo} className="icon-btn" aria-label={exitLabel}>
-          <Close />
-        </TLink>
-        <div className="session__progress" aria-hidden="true">
-          {round.queue.map((w, k) => (
-            <span key={`${round.id}-${k}`} data-state={k < results.length ? (results[k].correct ? 'good' : 'bad') : k === index ? 'now' : ''} />
-          ))}
+      <div className="session__top">
+        <div className="wrap session__bar">
+          <TLink to={exitTo} className="icon-btn" aria-label={exitLabel}>
+            <Close />
+          </TLink>
+          <div className="session__title">
+            <b>{title}</b>
+            <span>{MODE_TITLES[mode]}</span>
+          </div>
+          <div className="session__end">
+            {run.now >= 3 && !done && (
+              <span className="combo" key={run.now} aria-live="polite">
+                <b className="num">{run.now}</b> in a row
+              </span>
+            )}
+            <span className="session__count num" aria-live="polite">{done ? 'Done' : `${index + 1}/${round.queue.length}`}</span>
+            <button type="button" className="icon-btn icon-btn--plain" onClick={toggleSound} aria-pressed={sound} aria-label={sound ? 'Turn sound effects off' : 'Turn sound effects on'}>
+              {sound ? <SoundOn width={18} height={18} /> : <SoundOff width={18} height={18} />}
+            </button>
+          </div>
         </div>
-        <p className="session__count" aria-live="polite">
-          {done ? 'Finished' : `${index + 1} / ${round.queue.length}`}
-          <span>{MODE_TITLES[mode]}</span>
-        </p>
+        <div className="session__progress" aria-hidden="true">
+          <span style={{ width: `${pct}%` }} />
+        </div>
       </div>
 
       <div className="session__stage wrap">
         {done ? (
-          <Results results={results} onRetry={restart} exitTo={exitTo} exitLabel={exitLabel} otherModes={otherModes} all={words} />
+          <Results
+            results={results}
+            before={before.current}
+            seconds={Math.round((Date.now() - round.startedAt) / 1000)}
+            bestRun={run.best}
+            onRetry={restart}
+            exitTo={exitTo}
+            exitLabel={exitLabel}
+            next={next}
+            all={words}
+          />
         ) : (
           <WordFrame key={`${round.id}-${index}`}>
-            {mode === 'flashcards' && <Flashcard word={word} onAnswer={answer} />}
-            {mode === 'choice' && (
-              <Choice word={word} pool={pool} direction={direction} onAnswer={answer} onDirection={index === 0 ? setDirection : null} />
-            )}
+            {mode === 'flashcards' && <Flashcard word={word} onAnswer={answer} left={round.queue.length - index - 1} />}
+            {mode === 'choice' && <Choice word={word} pool={pool} direction={direction} onAnswer={answer} onDirection={index === 0 ? setDirection : null} />}
             {mode === 'typing' && <Typing word={word} onAnswer={answer} />}
             {mode === 'listening' && <Listening word={word} pool={pool} onAnswer={answer} />}
           </WordFrame>
@@ -87,7 +127,7 @@ function WordFrame({ children }) {
   useGSAP(
     () => {
       if (reducedMotion()) return;
-      gsap.from(ref.current, { y: 48, opacity: 0, scale: 0.98, duration: 0.8 });
+      gsap.from(ref.current, { y: 36, opacity: 0, duration: 0.7 });
     },
     { scope: ref },
   );
@@ -98,7 +138,7 @@ function WordFrame({ children }) {
   );
 }
 
-/** Keyboard shortcuts, ignored while typing in a field (except the ones we allow). */
+/** Keyboard shortcuts, ignored while typing in a field (except Enter). */
 function useKeys(map, deps) {
   useEffect(() => {
     const onKey = (e) => {
@@ -116,31 +156,32 @@ function useKeys(map, deps) {
   }, deps);
 }
 
-const shake = (el) => !reducedMotion() && gsap.fromTo(el, { x: 0 }, { x: 0, keyframes: { x: [-10, 10, -6, 6, 0] }, duration: 0.45, ease: 'power1.out' });
-const pop = (el) => !reducedMotion() && gsap.fromTo(el, { scale: 0.96 }, { scale: 1, duration: 0.6, ease: 'elastic.out(1, 0.5)' });
+const shake = (el) => el && !reducedMotion() && gsap.fromTo(el, { x: 0 }, { x: 0, keyframes: { x: [-9, 9, -5, 5, 0] }, duration: 0.45, ease: 'power1.out' });
+const pop = (el) => el && !reducedMotion() && gsap.fromTo(el, { scale: 0.97 }, { scale: 1, duration: 0.6, ease: 'elastic.out(1, 0.5)' });
 
 /* ---------------- Flashcards ---------------- */
 
-function Flashcard({ word, onAnswer }) {
+function Flashcard({ word, onAnswer, left }) {
   const [flipped, setFlipped] = useState(false);
-  const card = useRef(null);
+  const scene = useRef(null);
   const leaving = useRef(false);
 
   const flip = () => {
-    const next = !flipped;
-    setFlipped(next);
-    if (next) speak(word.korean);
+    const nextFlip = !flipped;
+    setFlipped(nextFlip);
+    if (nextFlip) speak(word.korean);
   };
 
   const decide = (knew) => {
     if (!flipped || leaving.current) return;
     leaving.current = true;
+    feedback(knew ? 'right' : 'wrong');
     if (reducedMotion()) return onAnswer(knew);
-    gsap.to(card.current.parentElement, {
-      x: knew ? 160 : -160,
-      rotate: knew ? 6 : -6,
+    gsap.to(scene.current.querySelector('.flash__card'), {
+      x: knew ? 180 : -180,
+      rotate: knew ? 8 : -8,
       opacity: 0,
-      duration: 0.4,
+      duration: 0.38,
       ease: 'power2.in',
       onComplete: () => onAnswer(knew),
     });
@@ -150,11 +191,10 @@ function Flashcard({ word, onAnswer }) {
 
   return (
     <div className="flash">
-      <div className="flash__scene">
+      <div className="flash__scene" ref={scene} data-left={Math.min(left, 2)}>
         <button
           type="button"
           className="flash__card"
-          ref={card}
           data-flipped={flipped}
           onClick={flip}
           aria-label={flipped ? `${word.korean}: ${word.english}. Press to flip back.` : `${word.korean}. Press to see the meaning.`}
@@ -165,7 +205,7 @@ function Flashcard({ word, onAnswer }) {
           </span>
           <span className="flash__face flash__face--back">
             <span className="flash__en">{word.english}</span>
-            <span className="flash__rom">{word.korean} · {word.romanization}</span>
+            <span className="flash__rom"><span className="ko" lang="ko">{word.korean}</span> · {word.romanization}</span>
           </span>
         </button>
       </div>
@@ -173,14 +213,13 @@ function Flashcard({ word, onAnswer }) {
         <SpeakButton text={word.korean} />
         {flipped ? (
           <>
-            <button type="button" className="btn btn--ghost" onClick={() => decide(false)}>Not yet <kbd>1</kbd></button>
-            <button type="button" className="btn" onClick={() => decide(true)}>I knew it <span className="btn__icon"><Check /></span></button>
+            <button type="button" className="btn btn--lg btn--ghost" onClick={() => decide(false)}>Not yet <kbd>1</kbd></button>
+            <button type="button" className="btn btn--lg" onClick={() => decide(true)}>I knew it <kbd>2</kbd></button>
           </>
         ) : (
-          <button type="button" className="btn" onClick={flip}>Show meaning <span className="btn__icon"><ArrowRight /></span></button>
+          <button type="button" className="btn btn--lg" onClick={flip}>Show meaning <kbd>Space</kbd></button>
         )}
       </div>
-      <p className="session__keys">Space flips · ← not yet · → knew it</p>
     </div>
   );
 }
@@ -192,17 +231,12 @@ function Options({ q, picked, onPick }) {
     <ul className="options">
       {q.options.map((o, k) => {
         const state = picked == null ? '' : o.id === q.answerId ? 'right' : o.id === picked ? 'wrong' : 'dim';
+        const ko = /[가-힣]/.test(o.label);
         return (
           <li key={o.id}>
-            <button
-              type="button"
-              className="option"
-              data-state={state}
-              disabled={picked != null}
-              onClick={(e) => onPick(o.id, e.currentTarget)}
-            >
+            <button type="button" className="option" data-state={state} disabled={picked != null} onClick={(e) => onPick(o.id, e.currentTarget)}>
               <kbd>{k + 1}</kbd>
-              <span lang={/[가-힣]/.test(o.label) ? 'ko' : undefined} className={/[가-힣]/.test(o.label) ? 'ko' : ''}>{o.label}</span>
+              <span lang={ko ? 'ko' : undefined} className={ko ? 'ko option__ko' : ''}>{o.label}</span>
               {state === 'right' && <Check className="option__mark" />}
               {state === 'wrong' && <Close className="option__mark" />}
             </button>
@@ -220,6 +254,7 @@ function useChoice(word, pool, direction, onAnswer) {
     if (picked != null) return;
     setPicked(id);
     const right = id === q.answerId;
+    feedback(right ? 'right' : 'wrong');
     const btn = el ?? document.querySelectorAll('.option')[q.options.findIndex((o) => o.id === id)];
     right ? pop(btn) : shake(btn);
   };
@@ -232,14 +267,18 @@ function useChoice(word, pool, direction, onAnswer) {
 
 function Feedback({ word, correct, onNext }) {
   const ref = useRef(null);
-  useEffect(() => ref.current?.focus(), []);
+  useEffect(() => ref.current?.focus({ preventScroll: true }), []);
   return (
     <div className="feedback" data-correct={correct} role="status">
+      <span className="feedback__icon">{correct ? <Check /> : <Close />}</span>
       <p>
-        <b>{correct ? 'Correct.' : 'Not quite.'}</b> <span className="ko" lang="ko">{word.korean}</span> ({word.romanization}) means “{word.english}”.
+        <b>{correct ? 'Correct' : 'Not quite'}</b>
+        <span>
+          <span className="ko" lang="ko">{word.korean}</span> · {word.romanization} · {word.english}
+        </span>
       </p>
       <button type="button" className="btn" onClick={onNext} ref={ref}>
-        Next word <span className="btn__icon"><ArrowRight /></span>
+        Next <kbd>Enter</kbd>
       </button>
     </div>
   );
@@ -247,19 +286,19 @@ function Feedback({ word, correct, onNext }) {
 
 function Choice({ word, pool, direction, onAnswer, onDirection }) {
   const { q, picked, pick, next } = useChoice(word, pool, direction, onAnswer);
+  const koPrompt = direction === 'ko-en';
   return (
     <div className="quiz">
       {onDirection && (
-        <div className="quiz__dir" role="group" aria-label="Question direction">
-          <button type="button" aria-pressed={direction === 'ko-en'} onClick={() => onDirection('ko-en')}>Korean → English</button>
-          <button type="button" aria-pressed={direction === 'en-ko'} onClick={() => onDirection('en-ko')}>English → Korean</button>
+        <div className="seg" role="group" aria-label="Question direction">
+          <button type="button" aria-pressed={direction === 'ko-en'} onClick={() => onDirection('ko-en')}>한국어 → English</button>
+          <button type="button" aria-pressed={direction === 'en-ko'} onClick={() => onDirection('en-ko')}>English → 한국어</button>
         </div>
       )}
-      <p className="quiz__label">{direction === 'ko-en' ? 'What does this mean?' : 'Which word means this?'}</p>
-      <h1 className={`quiz__prompt ${direction === 'ko-en' ? 'ko' : ''}`} lang={direction === 'ko-en' ? 'ko' : undefined}>{q.prompt}</h1>
+      <p className="quiz__label">{koPrompt ? 'What does this mean?' : 'Which word means this?'}</p>
+      <h1 className={`quiz__prompt ${koPrompt ? 'ko' : ''}`} lang={koPrompt ? 'ko' : undefined}>{q.prompt}</h1>
       <Options q={q} picked={picked} onPick={pick} />
       {picked != null && <Feedback word={word} correct={picked === q.answerId} onNext={next} />}
-      {picked == null && <p className="session__keys">Press 1–4 to answer · Enter for next</p>}
     </div>
   );
 }
@@ -272,7 +311,7 @@ function Typing({ word, onAnswer }) {
   const [hint, setHint] = useState(false);
   const field = useRef(null);
 
-  useEffect(() => field.current?.focus(), []);
+  useEffect(() => field.current?.focus({ preventScroll: true }), []);
 
   const submit = (e) => {
     e.preventDefault();
@@ -281,6 +320,7 @@ function Typing({ word, onAnswer }) {
     const r = checkTyped(value, word, { direction: 'ko-en' });
     const accepted = r.correct || r.closeness >= 0.8;
     setResult({ ...r, accepted });
+    feedback(accepted ? 'right' : 'wrong');
     if (!accepted) shake(field.current.parentElement);
     else pop(field.current.parentElement);
   };
@@ -300,15 +340,17 @@ function Typing({ word, onAnswer }) {
           autoComplete="off"
           autoCapitalize="off"
           spellCheck="false"
+          enterKeyHint={result ? 'next' : 'done'}
           placeholder={hint ? `Starts with “${word.english[0]}”` : 'Your answer'}
         />
-        <button type="submit" className="btn btn--sm">{result ? 'Next word' : 'Check'}</button>
+        <button type="submit" className="btn">{result ? 'Next' : 'Check'}</button>
       </div>
       {result ? (
         <div className="feedback" data-correct={result.accepted} role="status">
+          <span className="feedback__icon">{result.accepted ? <Check /> : <Close />}</span>
           <p>
-            <b>{result.correct ? 'Correct.' : result.accepted ? 'Close enough, check the spelling.' : 'Not quite.'}</b>{' '}
-            <span className="ko" lang="ko">{word.korean}</span> means “{word.english}”.
+            <b>{result.correct ? 'Correct' : result.accepted ? 'Close enough, check the spelling' : 'Not quite'}</b>
+            <span><span className="ko" lang="ko">{word.korean}</span> means “{word.english}”</span>
           </p>
         </div>
       ) : (
@@ -317,7 +359,6 @@ function Typing({ word, onAnswer }) {
           <SpeakButton text={word.korean} />
         </div>
       )}
-      <p className="session__keys">Enter to check, Enter again for the next word</p>
     </form>
   );
 }
@@ -327,7 +368,13 @@ function Typing({ word, onAnswer }) {
 function Listening({ word, pool, onAnswer }) {
   const { q, picked, pick, next } = useChoice(word, pool, 'ko-en', onAnswer);
   const supported = canSpeak();
-  const play = useCallback(() => speak(word.korean), [word]);
+  const [playing, setPlaying] = useState(false);
+  const play = useCallback(() => {
+    if (speak(word.korean)) {
+      setPlaying(true);
+      setTimeout(() => setPlaying(false), 1100);
+    }
+  }, [word]);
   useEffect(() => {
     const t = setTimeout(play, 350);
     return () => clearTimeout(t);
@@ -338,39 +385,43 @@ function Listening({ word, pool, onAnswer }) {
     <div className="quiz">
       <p className="quiz__label">{supported ? 'Listen and pick the meaning' : 'Audio is not available in this browser, so here is the romanization'}</p>
       {supported ? (
-        <button type="button" className="listen-btn" onClick={play} aria-label="Play the word again">
-          <Speaker width={44} height={44} />
+        <button type="button" className="listen-btn" data-playing={playing} onClick={play} aria-label="Play the word again">
+          <Speaker width={40} height={40} />
           <span className="listen-btn__ring" />
+          <span className="listen-btn__key">R</span>
         </button>
       ) : (
         <h1 className="quiz__prompt">{word.romanization}</h1>
       )}
-      {picked != null && <p className="quiz__reveal ko" lang="ko">{word.korean}</p>}
+      <p className="quiz__reveal ko" lang="ko" data-shown={picked != null}>{picked != null ? word.korean : ' '}</p>
       <Options q={q} picked={picked} onPick={pick} />
       {picked != null && <Feedback word={word} correct={picked === q.answerId} onNext={next} />}
-      {picked == null && <p className="session__keys">R to replay · 1–4 to answer</p>}
     </div>
   );
 }
 
 /* ---------------- Results ---------------- */
 
-function Results({ results, onRetry, exitTo, exitLabel, otherModes, all }) {
+function Results({ results, before, seconds, bestRun, onRetry, exitTo, exitLabel, next, all }) {
   const ref = useRef(null);
   const score = results.filter((r) => r.correct).length;
   const total = results.length;
   const pct = Math.round((score / total) * 100);
   const missed = results.filter((r) => !r.correct).map((r) => r.word);
+  const after = progressStore.get().words;
+  const movedUp = Object.keys(before).filter((id) => (after[id]?.box ?? 0) > before[id]).length;
   const C = 2 * Math.PI * 54;
-  const verdict = pct === 100 ? 'Perfect round.' : pct >= 80 ? 'Strong round.' : pct >= 50 ? 'Getting there.' : 'A tough one. Run it again.';
+  const verdict = pct === 100 ? ['완벽해요!', 'Perfect round.'] : pct >= 80 ? ['잘했어요!', 'Strong round.'] : pct >= 50 ? ['좋아요.', 'Getting there.'] : ['다시 해 봐요.', 'A tough one. Run it again.'];
+  const time = seconds < 60 ? `${seconds}s` : `${Math.floor(seconds / 60)}m ${seconds % 60}s`;
 
   useGSAP(
     () => {
       if (reducedMotion()) return;
-      gsap.timeline()
+      gsap
+        .timeline()
         .from('.results__ring circle:last-child', { strokeDashoffset: C, duration: 1.6 })
         .from('.results__pct', { textContent: 0, snap: { textContent: 1 }, duration: 1.6 }, 0)
-        .from('.results > *:not(.results__score)', { y: 24, opacity: 0, stagger: 0.08 }, 0.3);
+        .from('.results > *:not(.results__score)', { y: 20, opacity: 0, stagger: 0.07 }, 0.25);
     },
     { scope: ref },
   );
@@ -382,35 +433,46 @@ function Results({ results, onRetry, exitTo, exitLabel, otherModes, all }) {
           <circle cx="60" cy="60" r="54" />
           <circle cx="60" cy="60" r="54" strokeDasharray={C} strokeDashoffset={C * (1 - score / total)} />
         </svg>
-        <p><span className="results__pct">{pct}</span>%</p>
+        <p><span className="results__pct num">{pct}</span><small>%</small></p>
       </div>
-      <h1 className="h2">{verdict}</h1>
-      <p className="lede">{score} of {total} right. {missed.length ? 'Missed words are scheduled for review tomorrow.' : 'Every word moves up a review box.'}</p>
+      <h1 className="results__title">
+        <span className="ko" lang="ko">{verdict[0]}</span>
+        <span>{verdict[1]}</span>
+      </h1>
+      <ul className="results__stats">
+        <li><b className="num">{score}/{total}</b><span>correct</span></li>
+        <li><b className="num">{time}</b><span>time</span></li>
+        <li><b className="num">{bestRun}</b><span>best run</span></li>
+        <li><b className="num">{movedUp}</b><span>moved up a box</span></li>
+      </ul>
       {missed.length > 0 && (
-        <ul className="results__missed">
-          {missed.map((w) => (
-            <li key={w.id}>
-              <span className="ko" lang="ko">{w.korean}</span>
-              <span>{w.english}</span>
-              <SpeakButton text={w.korean} />
-            </li>
-          ))}
-        </ul>
+        <div className="results__missed card">
+          <p className="results__missed-head">To review tomorrow</p>
+          <ul>
+            {missed.map((w) => (
+              <li key={w.id}>
+                <span className="ko" lang="ko">{w.korean}</span>
+                <span className="muted">{w.english}</span>
+                <SpeakButton text={w.korean} />
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
       <div className="results__actions">
+        {next && (
+          <TLink className="btn btn--lg btn--accent" to={next.to} ko={next.ko} en={next.label}>
+            {next.label} <ArrowRight />
+          </TLink>
+        )}
         {missed.length > 0 ? (
-          <button type="button" className="btn" onClick={() => onRetry(missed)}>
-            Practice the {missed.length} missed {missed.length === 1 ? 'word' : 'words'}<span className="btn__icon"><ArrowRight /></span>
+          <button type="button" className={`btn btn--lg ${next ? 'btn--ghost' : ''}`} onClick={() => onRetry(missed)}>
+            Retry {missed.length} missed
           </button>
         ) : (
-          <button type="button" className="btn" onClick={() => onRetry(all)}>
-            Run it again<span className="btn__icon"><ArrowRight /></span>
-          </button>
+          <button type="button" className="btn btn--lg btn--ghost" onClick={() => onRetry(all)}>Run it again</button>
         )}
-        {otherModes.map((m) => (
-          <TLink key={m.to} className="btn btn--ghost" to={m.to}>{m.label}</TLink>
-        ))}
-        <TLink className="btn btn--ghost" to={exitTo}>{exitLabel}</TLink>
+        <TLink className="link" to={exitTo}>{exitLabel}</TLink>
       </div>
     </div>
   );
