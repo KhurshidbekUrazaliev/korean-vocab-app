@@ -1,0 +1,9 @@
+const modules = import.meta.glob('./days/day*.json', { eager: true, import: 'default' });
+
+export const days = Object.values(modules).sort((a, b) => a.number - b.number);
+export const PLANNED_DAYS = 50;
+export const allWords = days.flatMap((day) => day.words.map((w) => ({ ...w, dayId: day.id, dayNumber: day.number })));
+
+const byNumber = new Map(days.map((d) => [d.number, d]));
+export const getDay = (number) => byNumber.get(Number(number));
+export const pad = (n) => String(n).padStart(2, '0');

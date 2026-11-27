@@ -1,0 +1,72 @@
+{
+  "id": "day18",
+  "number": 18,
+  "slug": "shopping",
+  "title": "Shopping",
+  "titleKo": "쇼핑",
+  "status": "draft",
+  "source": "generated",
+  "cover": null,
+  "words": [
+    {
+      "id": "day18-01",
+      "korean": "할인",
+      "romanization": "harin",
+      "english": "discount"
+    },
+    {
+      "id": "day18-02",
+      "korean": "영수증",
+      "romanization": "yeongsujeung",
+      "english": "receipt"
+    },
+    {
+      "id": "day18-03",
+      "korean": "교환하다",
+      "romanization": "gyohwanhada",
+      "english": "to exchange"
+    },
+    {
+      "id": "day18-04",
+      "korean": "환불",
+      "romanization": "hwanbul",
+      "english": "refund"
+    },
+    {
+      "id": "day18-05",
+      "korean": "품절",
+      "romanization": "pumjeol",
+      "english": "sold out"
+    },
+    {
+      "id": "day18-06",
+      "korean": "계산대",
+      "romanization": "gyesandae",
+      "english": "checkout counter"
+    },
+    {
+      "id": "day18-07",
+      "korean": "장바구니",
+      "romanization": "jangbaguni",
+      "english": "shopping basket, cart"
+    },
+    {
+      "id": "day18-08",
+      "korean": "비교하다",
+      "romanization": "bigyohada",
+      "english": "to compare"
+    },
+    {
+      "id": "day18-09",
+      "korean": "흥정하다",
+      "romanization": "heungjeonghada",
+      "english": "to haggle"
+    },
+    {
+      "id": "day18-10",
+      "korean": "배송",
+      "romanization": "baesong",
+      "english": "delivery, shipping"
+    }
+  ]
+}

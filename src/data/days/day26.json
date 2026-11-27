@@ -1,0 +1,72 @@
+{
+  "id": "day26",
+  "number": 26,
+  "slug": "office-life",
+  "title": "Office Life",
+  "titleKo": "직장 생활",
+  "status": "draft",
+  "source": "generated",
+  "cover": null,
+  "words": [
+    {
+      "id": "day26-01",
+      "korean": "회의",
+      "romanization": "hoeui",
+      "english": "meeting"
+    },
+    {
+      "id": "day26-02",
+      "korean": "출장",
+      "romanization": "chuljang",
+      "english": "business trip"
+    },
+    {
+      "id": "day26-03",
+      "korean": "야근",
+      "romanization": "yageun",
+      "english": "overtime, night work"
+    },
+    {
+      "id": "day26-04",
+      "korean": "휴가",
+      "romanization": "hyuga",
+      "english": "vacation, leave"
+    },
+    {
+      "id": "day26-05",
+      "korean": "승진",
+      "romanization": "seungjin",
+      "english": "promotion"
+    },
+    {
+      "id": "day26-06",
+      "korean": "동료",
+      "romanization": "dongnyo",
+      "english": "colleague"
+    },
+    {
+      "id": "day26-07",
+      "korean": "상사",
+      "romanization": "sangsa",
+      "english": "boss, superior"
+    },
+    {
+      "id": "day26-08",
+      "korean": "업무",
+      "romanization": "eommu",
+      "english": "work, duties"
+    },
+    {
+      "id": "day26-09",
+      "korean": "퇴근하다",
+      "romanization": "toegeunhada",
+      "english": "to leave work"
+    },
+    {
+      "id": "day26-10",
+      "korean": "마감",
+      "romanization": "magam",
+      "english": "deadline"
+    }
+  ]
+}

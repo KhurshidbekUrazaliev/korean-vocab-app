@@ -1,0 +1,72 @@
+{
+  "id": "day33",
+  "number": 33,
+  "slug": "body",
+  "title": "The Body",
+  "titleKo": "몸",
+  "status": "draft",
+  "source": "generated",
+  "cover": null,
+  "words": [
+    {
+      "id": "day33-01",
+      "korean": "어깨",
+      "romanization": "eokkae",
+      "english": "shoulder"
+    },
+    {
+      "id": "day33-02",
+      "korean": "허리",
+      "romanization": "heori",
+      "english": "waist, lower back"
+    },
+    {
+      "id": "day33-03",
+      "korean": "무릎",
+      "romanization": "mureup",
+      "english": "knee"
+    },
+    {
+      "id": "day33-04",
+      "korean": "발목",
+      "romanization": "balmok",
+      "english": "ankle"
+    },
+    {
+      "id": "day33-05",
+      "korean": "손목",
+      "romanization": "sonmok",
+      "english": "wrist"
+    },
+    {
+      "id": "day33-06",
+      "korean": "팔꿈치",
+      "romanization": "palkkumchi",
+      "english": "elbow"
+    },
+    {
+      "id": "day33-07",
+      "korean": "목",
+      "romanization": "mok",
+      "english": "neck, throat"
+    },
+    {
+      "id": "day33-08",
+      "korean": "이마",
+      "romanization": "ima",
+      "english": "forehead"
+    },
+    {
+      "id": "day33-09",
+      "korean": "턱",
+      "romanization": "teok",
+      "english": "chin, jaw"
+    },
+    {
+      "id": "day33-10",
+      "korean": "손톱",
+      "romanization": "sontop",
+      "english": "fingernail"
+    }
+  ]
+}

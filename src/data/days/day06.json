@@ -1,0 +1,72 @@
+{
+  "id": "day06",
+  "number": 6,
+  "slug": "family",
+  "title": "Family & Home",
+  "titleKo": "가족과 가정",
+  "status": "verified",
+  "source": "owner-notes",
+  "cover": null,
+  "words": [
+    {
+      "id": "day06-01",
+      "korean": "일기",
+      "romanization": "ilgi",
+      "english": "diary"
+    },
+    {
+      "id": "day06-02",
+      "korean": "외롭다",
+      "romanization": "oeropta",
+      "english": "to be lonely"
+    },
+    {
+      "id": "day06-03",
+      "korean": "사실",
+      "romanization": "sasil",
+      "english": "fact, truth"
+    },
+    {
+      "id": "day06-04",
+      "korean": "가정",
+      "romanization": "gajeong",
+      "english": "home, household"
+    },
+    {
+      "id": "day06-05",
+      "korean": "부모",
+      "romanization": "bumo",
+      "english": "parents"
+    },
+    {
+      "id": "day06-06",
+      "korean": "역할",
+      "romanization": "yeokhal",
+      "english": "role"
+    },
+    {
+      "id": "day06-07",
+      "korean": "직장",
+      "romanization": "jikjang",
+      "english": "workplace, job"
+    },
+    {
+      "id": "day06-08",
+      "korean": "키우다",
+      "romanization": "kiuda",
+      "english": "to raise, to grow"
+    },
+    {
+      "id": "day06-09",
+      "korean": "추억",
+      "romanization": "chueok",
+      "english": "memory"
+    },
+    {
+      "id": "day06-10",
+      "korean": "노력하다",
+      "romanization": "noryeokhada",
+      "english": "to make an effort"
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "id": "day32",
+  "number": 32,
+  "slug": "sports",
+  "title": "Sports & Exercise",
+  "titleKo": "운동",
+  "status": "draft",
+  "source": "generated",
+  "cover": null,
+  "words": [
+    {
+      "id": "day32-01",
+      "korean": "운동하다",
+      "romanization": "undonghada",
+      "english": "to exercise"
+    },
+    {
+      "id": "day32-02",
+      "korean": "경기",
+      "romanization": "gyeonggi",
+      "english": "match, game"
+    },
+    {
+      "id": "day32-03",
+      "korean": "선수",
+      "romanization": "seonsu",
+      "english": "athlete, player"
+    },
+    {
+      "id": "day32-04",
+      "korean": "응원하다",
+      "romanization": "eungwonhada",
+      "english": "to cheer for"
+    },
+    {
+      "id": "day32-05",
+      "korean": "이기다",
+      "romanization": "igida",
+      "english": "to win"
+    },
+    {
+      "id": "day32-06",
+      "korean": "지다",
+      "romanization": "jida",
+      "english": "to lose (a game)"
+    },
+    {
+      "id": "day32-07",
+      "korean": "땀",
+      "romanization": "ttam",
+      "english": "sweat"
+    },
+    {
+      "id": "day32-08",
+      "korean": "스트레칭",
+      "romanization": "seuteureching",
+      "english": "stretching"
+    },
+    {
+      "id": "day32-09",
+      "korean": "근육",
+      "romanization": "geunyuk",
+      "english": "muscle"
+    },
+    {
+      "id": "day32-10",
+      "korean": "체력",
+      "romanization": "cheryeok",
+      "english": "stamina, fitness"
+    }
+  ]
+}

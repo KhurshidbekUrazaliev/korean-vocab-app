@@ -1,0 +1,72 @@
+{
+  "id": "day47",
+  "number": 47,
+  "slug": "communication",
+  "title": "Communication",
+  "titleKo": "의사소통",
+  "status": "draft",
+  "source": "generated",
+  "cover": null,
+  "words": [
+    {
+      "id": "day47-01",
+      "korean": "대화",
+      "romanization": "daehwa",
+      "english": "conversation"
+    },
+    {
+      "id": "day47-02",
+      "korean": "설명하다",
+      "romanization": "seolmyeonghada",
+      "english": "to explain"
+    },
+    {
+      "id": "day47-03",
+      "korean": "표현하다",
+      "romanization": "pyohyeonhada",
+      "english": "to express"
+    },
+    {
+      "id": "day47-04",
+      "korean": "전하다",
+      "romanization": "jeonhada",
+      "english": "to pass on, convey"
+    },
+    {
+      "id": "day47-05",
+      "korean": "부탁하다",
+      "romanization": "butakada",
+      "english": "to ask a favor"
+    },
+    {
+      "id": "day47-06",
+      "korean": "대답하다",
+      "romanization": "daedapada",
+      "english": "to answer"
+    },
+    {
+      "id": "day47-07",
+      "korean": "질문",
+      "romanization": "jilmun",
+      "english": "question"
+    },
+    {
+      "id": "day47-08",
+      "korean": "솔직하다",
+      "romanization": "soljikada",
+      "english": "to be honest, frank"
+    },
+    {
+      "id": "day47-09",
+      "korean": "농담",
+      "romanization": "nongdam",
+      "english": "joke"
+    },
+    {
+      "id": "day47-10",
+      "korean": "존댓말",
+      "romanization": "jondaenmal",
+      "english": "polite speech"
+    }
+  ]
+}

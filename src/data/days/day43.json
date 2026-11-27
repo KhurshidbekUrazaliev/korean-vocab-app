@@ -1,0 +1,72 @@
+{
+  "id": "day43",
+  "number": 43,
+  "slug": "economy",
+  "title": "Economy",
+  "titleKo": "경제",
+  "status": "draft",
+  "source": "generated",
+  "cover": null,
+  "words": [
+    {
+      "id": "day43-01",
+      "korean": "경제",
+      "romanization": "gyeongje",
+      "english": "economy"
+    },
+    {
+      "id": "day43-02",
+      "korean": "물가",
+      "romanization": "mulga",
+      "english": "cost of living, prices"
+    },
+    {
+      "id": "day43-03",
+      "korean": "오르다",
+      "romanization": "oreuda",
+      "english": "to rise, go up"
+    },
+    {
+      "id": "day43-04",
+      "korean": "내리다",
+      "romanization": "naerida",
+      "english": "to fall, go down"
+    },
+    {
+      "id": "day43-05",
+      "korean": "소비",
+      "romanization": "sobi",
+      "english": "consumption"
+    },
+    {
+      "id": "day43-06",
+      "korean": "생산",
+      "romanization": "saengsan",
+      "english": "production"
+    },
+    {
+      "id": "day43-07",
+      "korean": "수입",
+      "romanization": "suip",
+      "english": "income; import"
+    },
+    {
+      "id": "day43-08",
+      "korean": "수출",
+      "romanization": "suchul",
+      "english": "export"
+    },
+    {
+      "id": "day43-09",
+      "korean": "창업",
+      "romanization": "changeop",
+      "english": "starting a business"
+    },
+    {
+      "id": "day43-10",
+      "korean": "경쟁",
+      "romanization": "gyeongjaeng",
+      "english": "competition"
+    }
+  ]
+}

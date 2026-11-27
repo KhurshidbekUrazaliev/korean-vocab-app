@@ -1,0 +1,72 @@
+{
+  "id": "day42",
+  "number": 42,
+  "slug": "science",
+  "title": "Science",
+  "titleKo": "과학",
+  "status": "draft",
+  "source": "generated",
+  "cover": null,
+  "words": [
+    {
+      "id": "day42-01",
+      "korean": "과학",
+      "romanization": "gwahak",
+      "english": "science"
+    },
+    {
+      "id": "day42-02",
+      "korean": "실험",
+      "romanization": "silheom",
+      "english": "experiment"
+    },
+    {
+      "id": "day42-03",
+      "korean": "연구하다",
+      "romanization": "yeonguhada",
+      "english": "to research"
+    },
+    {
+      "id": "day42-04",
+      "korean": "발견하다",
+      "romanization": "balgyeonhada",
+      "english": "to discover"
+    },
+    {
+      "id": "day42-05",
+      "korean": "발명",
+      "romanization": "balmyeong",
+      "english": "invention"
+    },
+    {
+      "id": "day42-06",
+      "korean": "우주",
+      "romanization": "uju",
+      "english": "space, universe"
+    },
+    {
+      "id": "day42-07",
+      "korean": "행성",
+      "romanization": "haengseong",
+      "english": "planet"
+    },
+    {
+      "id": "day42-08",
+      "korean": "원인",
+      "romanization": "wonin",
+      "english": "cause"
+    },
+    {
+      "id": "day42-09",
+      "korean": "결과",
+      "romanization": "gyeolgwa",
+      "english": "result"
+    },
+    {
+      "id": "day42-10",
+      "korean": "증명하다",
+      "romanization": "jeungmyeonghada",
+      "english": "to prove"
+    }
+  ]
+}

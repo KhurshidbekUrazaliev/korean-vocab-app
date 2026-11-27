@@ -1,0 +1,72 @@
+{
+  "id": "day49",
+  "number": 49,
+  "slug": "neighborhood",
+  "title": "Neighborhood",
+  "titleKo": "동네",
+  "status": "draft",
+  "source": "generated",
+  "cover": null,
+  "words": [
+    {
+      "id": "day49-01",
+      "korean": "동네",
+      "romanization": "dongne",
+      "english": "neighborhood"
+    },
+    {
+      "id": "day49-02",
+      "korean": "이웃",
+      "romanization": "iut",
+      "english": "neighbor"
+    },
+    {
+      "id": "day49-03",
+      "korean": "편의점",
+      "romanization": "pyeonuijeom",
+      "english": "convenience store"
+    },
+    {
+      "id": "day49-04",
+      "korean": "세탁소",
+      "romanization": "setakso",
+      "english": "dry cleaner"
+    },
+    {
+      "id": "day49-05",
+      "korean": "약국",
+      "romanization": "yakguk",
+      "english": "pharmacy"
+    },
+    {
+      "id": "day49-06",
+      "korean": "골목",
+      "romanization": "golmok",
+      "english": "alley, side street"
+    },
+    {
+      "id": "day49-07",
+      "korean": "공원",
+      "romanization": "gongwon",
+      "english": "park"
+    },
+    {
+      "id": "day49-08",
+      "korean": "산책하다",
+      "romanization": "sanchaekada",
+      "english": "to take a walk"
+    },
+    {
+      "id": "day49-09",
+      "korean": "가깝다",
+      "romanization": "gakkapda",
+      "english": "to be close, near"
+    },
+    {
+      "id": "day49-10",
+      "korean": "조용하다",
+      "romanization": "joyonghada",
+      "english": "to be quiet"
+    }
+  ]
+}

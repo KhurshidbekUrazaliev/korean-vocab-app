@@ -1,0 +1,72 @@
+{
+  "id": "day39",
+  "number": 39,
+  "slug": "holidays-and-traditions",
+  "title": "Holidays & Traditions",
+  "titleKo": "명절과 전통",
+  "status": "draft",
+  "source": "generated",
+  "cover": null,
+  "words": [
+    {
+      "id": "day39-01",
+      "korean": "명절",
+      "romanization": "myeongjeol",
+      "english": "traditional holiday"
+    },
+    {
+      "id": "day39-02",
+      "korean": "설날",
+      "romanization": "seollal",
+      "english": "Lunar New Year"
+    },
+    {
+      "id": "day39-03",
+      "korean": "추석",
+      "romanization": "chuseok",
+      "english": "Chuseok (harvest festival)"
+    },
+    {
+      "id": "day39-04",
+      "korean": "세배",
+      "romanization": "sebae",
+      "english": "New Year's bow"
+    },
+    {
+      "id": "day39-05",
+      "korean": "떡국",
+      "romanization": "tteokguk",
+      "english": "rice cake soup"
+    },
+    {
+      "id": "day39-06",
+      "korean": "송편",
+      "romanization": "songpyeon",
+      "english": "half-moon rice cake"
+    },
+    {
+      "id": "day39-07",
+      "korean": "성묘",
+      "romanization": "seongmyo",
+      "english": "visiting family graves"
+    },
+    {
+      "id": "day39-08",
+      "korean": "한복",
+      "romanization": "hanbok",
+      "english": "traditional Korean clothing"
+    },
+    {
+      "id": "day39-09",
+      "korean": "고향",
+      "romanization": "gohyang",
+      "english": "hometown"
+    },
+    {
+      "id": "day39-10",
+      "korean": "차례",
+      "romanization": "charye",
+      "english": "ancestral memorial rite"
+    }
+  ]
+}

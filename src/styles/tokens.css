@@ -1,0 +1,78 @@
+/* Design tokens. Contrast ratios are recorded in AGENTS.md (T02). */
+:root {
+  /* Color: one brand accent (lime) plus a deep pine for dark sections, on warm neutrals */
+  --paper: #f3f2ec;
+  --surface: #ffffff;
+  --surface-2: #e9e8e0;
+  --ink: #141511;
+  --ink-2: #55564e;
+  --line: #d9d7cc;
+  --accent: #d4ea6b;
+  --accent-ink: #141511;
+  --pine: #1f3a28;
+  --pine-ink: #eef3e4;
+  --pine-2: #b9c8ae;
+  --good: #2f6b3d;
+  --bad: #a3321f;
+  --focus: #2f6bff;
+
+  /* Type */
+  --font: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', system-ui, sans-serif;
+  --fs-12: 0.75rem;
+  --fs-14: 0.875rem;
+  --fs-16: 1rem;
+  --fs-18: 1.125rem;
+  --fs-24: 1.5rem;
+  --fs-32: 2rem;
+  --fs-display: clamp(3rem, 7.4vw, 7.5rem);
+  --fs-huge: clamp(4rem, 17vw, 17rem);
+  --tracking-tight: -0.045em;
+
+  /* Spacing scale: 4 8 12 16 24 32 48 64 (+ 96/128 for section rhythm) */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 96px;
+  --s-10: 128px;
+
+  --r-sm: 8px;
+  --r-md: 16px;
+  --r-lg: 28px;
+  --r-pill: 999px;
+
+  --shadow-1: 0 1px 2px rgb(20 21 17 / 0.06), 0 8px 24px rgb(20 21 17 / 0.06);
+  --shadow-2: 0 2px 4px rgb(20 21 17 / 0.06), 0 24px 64px rgb(20 21 17 / 0.12);
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --t-fast: 160ms;
+  --t-med: 320ms;
+
+  --gutter: clamp(16px, 4vw, 48px);
+  --maxw: 1440px;
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --paper: #10110e;
+  --surface: #1a1c17;
+  --surface-2: #23251f;
+  --ink: #eeede6;
+  --ink-2: #a9aaa0;
+  --line: #34362f;
+  --accent: #d4ea6b;
+  --accent-ink: #141511;
+  --pine: #18291d;
+  --pine-ink: #eef3e4;
+  --pine-2: #a9bb9d;
+  --good: #8fd19e;
+  --bad: #ff8a73;
+  --focus: #8fb0ff;
+  --shadow-1: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px rgb(0 0 0 / 0.3);
+  --shadow-2: 0 2px 4px rgb(0 0 0 / 0.4), 0 24px 64px rgb(0 0 0 / 0.5);
+  color-scheme: dark;
+}

@@ -1,0 +1,72 @@
+{
+  "id": "day37",
+  "number": 37,
+  "slug": "society",
+  "title": "Society",
+  "titleKo": "사회",
+  "status": "draft",
+  "source": "generated",
+  "cover": null,
+  "words": [
+    {
+      "id": "day37-01",
+      "korean": "사회",
+      "romanization": "sahoe",
+      "english": "society"
+    },
+    {
+      "id": "day37-02",
+      "korean": "문제",
+      "romanization": "munje",
+      "english": "problem, issue"
+    },
+    {
+      "id": "day37-03",
+      "korean": "고령화",
+      "romanization": "goryeonghwa",
+      "english": "population aging"
+    },
+    {
+      "id": "day37-04",
+      "korean": "저출산",
+      "romanization": "jeochulsan",
+      "english": "low birth rate"
+    },
+    {
+      "id": "day37-05",
+      "korean": "세대",
+      "romanization": "sedae",
+      "english": "generation"
+    },
+    {
+      "id": "day37-06",
+      "korean": "차별",
+      "romanization": "chabyeol",
+      "english": "discrimination"
+    },
+    {
+      "id": "day37-07",
+      "korean": "평등",
+      "romanization": "pyeongdeung",
+      "english": "equality"
+    },
+    {
+      "id": "day37-08",
+      "korean": "봉사",
+      "romanization": "bongsa",
+      "english": "volunteer work"
+    },
+    {
+      "id": "day37-09",
+      "korean": "시민",
+      "romanization": "simin",
+      "english": "citizen"
+    },
+    {
+      "id": "day37-10",
+      "korean": "갈등",
+      "romanization": "galdeung",
+      "english": "conflict"
+    }
+  ]
+}

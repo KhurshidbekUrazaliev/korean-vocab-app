@@ -1,0 +1,72 @@
+{
+  "id": "day48",
+  "number": 48,
+  "slug": "travel-trouble",
+  "title": "Trouble on a Trip",
+  "titleKo": "여행 중 문제",
+  "status": "draft",
+  "source": "generated",
+  "cover": null,
+  "words": [
+    {
+      "id": "day48-01",
+      "korean": "잃어버리다",
+      "romanization": "ireobeorida",
+      "english": "to lose (something)"
+    },
+    {
+      "id": "day48-02",
+      "korean": "분실물",
+      "romanization": "bunsilmul",
+      "english": "lost item"
+    },
+    {
+      "id": "day48-03",
+      "korean": "지갑",
+      "romanization": "jigap",
+      "english": "wallet"
+    },
+    {
+      "id": "day48-04",
+      "korean": "길을 잃다",
+      "romanization": "gireul ilda",
+      "english": "to get lost"
+    },
+    {
+      "id": "day48-05",
+      "korean": "놓치다",
+      "romanization": "notchida",
+      "english": "to miss (a bus, a chance)"
+    },
+    {
+      "id": "day48-06",
+      "korean": "연착",
+      "romanization": "yeonchak",
+      "english": "late arrival, delay"
+    },
+    {
+      "id": "day48-07",
+      "korean": "도움",
+      "romanization": "doum",
+      "english": "help"
+    },
+    {
+      "id": "day48-08",
+      "korean": "대사관",
+      "romanization": "daesagwan",
+      "english": "embassy"
+    },
+    {
+      "id": "day48-09",
+      "korean": "여권",
+      "romanization": "yeogwon",
+      "english": "passport"
+    },
+    {
+      "id": "day48-10",
+      "korean": "보험",
+      "romanization": "boheom",
+      "english": "insurance"
+    }
+  ]
+}

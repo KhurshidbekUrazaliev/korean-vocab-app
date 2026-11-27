@@ -1,0 +1,72 @@
+{
+  "id": "day24",
+  "number": 24,
+  "slug": "relationships",
+  "title": "Relationships",
+  "titleKo": "인간관계",
+  "status": "draft",
+  "source": "generated",
+  "cover": null,
+  "words": [
+    {
+      "id": "day24-01",
+      "korean": "친하다",
+      "romanization": "chinhada",
+      "english": "to be close (friends)"
+    },
+    {
+      "id": "day24-02",
+      "korean": "사이",
+      "romanization": "sai",
+      "english": "relationship, between"
+    },
+    {
+      "id": "day24-03",
+      "korean": "오해",
+      "romanization": "ohae",
+      "english": "misunderstanding"
+    },
+    {
+      "id": "day24-04",
+      "korean": "사과하다",
+      "romanization": "sagwahada",
+      "english": "to apologize"
+    },
+    {
+      "id": "day24-05",
+      "korean": "화해하다",
+      "romanization": "hwahaehada",
+      "english": "to make up, reconcile"
+    },
+    {
+      "id": "day24-06",
+      "korean": "연락",
+      "romanization": "yeollak",
+      "english": "contact, getting in touch"
+    },
+    {
+      "id": "day24-07",
+      "korean": "소개하다",
+      "romanization": "sogaehada",
+      "english": "to introduce"
+    },
+    {
+      "id": "day24-08",
+      "korean": "배려",
+      "romanization": "baeryeo",
+      "english": "consideration, care"
+    },
+    {
+      "id": "day24-09",
+      "korean": "선배",
+      "romanization": "seonbae",
+      "english": "senior (at school or work)"
+    },
+    {
+      "id": "day24-10",
+      "korean": "후배",
+      "romanization": "hubae",
+      "english": "junior (at school or work)"
+    }
+  ]
+}

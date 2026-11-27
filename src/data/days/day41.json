@@ -1,0 +1,72 @@
+{
+  "id": "day41",
+  "number": 41,
+  "slug": "arts",
+  "title": "The Arts",
+  "titleKo": "예술",
+  "status": "draft",
+  "source": "generated",
+  "cover": null,
+  "words": [
+    {
+      "id": "day41-01",
+      "korean": "예술",
+      "romanization": "yesul",
+      "english": "art"
+    },
+    {
+      "id": "day41-02",
+      "korean": "작품",
+      "romanization": "jakpum",
+      "english": "work (of art)"
+    },
+    {
+      "id": "day41-03",
+      "korean": "전시회",
+      "romanization": "jeonsihoe",
+      "english": "exhibition"
+    },
+    {
+      "id": "day41-04",
+      "korean": "화가",
+      "romanization": "hwaga",
+      "english": "painter"
+    },
+    {
+      "id": "day41-05",
+      "korean": "조각",
+      "romanization": "jogak",
+      "english": "sculpture"
+    },
+    {
+      "id": "day41-06",
+      "korean": "감독",
+      "romanization": "gamdok",
+      "english": "director"
+    },
+    {
+      "id": "day41-07",
+      "korean": "배우",
+      "romanization": "baeu",
+      "english": "actor"
+    },
+    {
+      "id": "day41-08",
+      "korean": "무대",
+      "romanization": "mudae",
+      "english": "stage"
+    },
+    {
+      "id": "day41-09",
+      "korean": "작가",
+      "romanization": "jakga",
+      "english": "writer, artist"
+    },
+    {
+      "id": "day41-10",
+      "korean": "영감",
+      "romanization": "yeonggam",
+      "english": "inspiration"
+    }
+  ]
+}

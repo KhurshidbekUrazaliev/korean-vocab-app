@@ -36,175 +36,121 @@ and be findable by search engines and AI assistants.
 
 Live site: https://khurshidbekurazaliev.github.io/korean-vocab-app/
 
-## 2. Current state (audit summary, 2026-11-27)
+## 2. Current state (2026-11-27, after Claude's redesign)
 
-- Create React App + React 19, Tailwind loaded from the CDN script, Lucide icons,
-  deployed to GitHub Pages with `gh-pages`.
-- 15 days x 10 words, each day a copy-pasted ~360-line component
-  (`src/Day01.js` ... `src/Day15.js`). Only the word list and colors differ.
-- One URL for the whole app; day selection is React state. Empty
-  `<div id="root">` for crawlers. Placeholder meta description.
-- Purple/pink gradients, glass blur buttons, pulsing/bouncing icons, emoji
-  in copy. Flashcards are not keyboard-accessible.
-- Dead files: `src/tempCodeRunnerFile.js`, `src/App.css`, `src/logo.svg`,
-  `src/reportWebVitals.js`, `src/App.test.js`.
-- Known data error: `src/Day15.js` has 영덩이, should be 엉덩이.
-- No backend, no auth, no payments, so most server-side security items do
-  not apply yet.
+- Vite + React 19 + React Router 7. GSAP (ScrollTrigger, SplitText, CustomEase), Lenis smooth
+  scroll, three.js hero (lazy chunk). Plain CSS with tokens. Vitest. Deployed to GitHub Pages
+  from the `gh-pages` branch with `npm run deploy`.
+- **50 days / 500 words.** Days 01-15 = owner's notes (`status: verified`), with 4 typos fixed
+  (동특증→동아리 활동, 짐장히→굉장히, 마지다→마치다, 영덩이→엉덩이; each has a `note`).
+  Days 16-50 = Claude's draft lists (`status: draft`, `source: generated`), shown with a Draft badge.
+- Every public route gets static HTML from `scripts/postbuild.js`: own title, description,
+  canonical, OG/Twitter tags, per-day 1200x630 preview image, JSON-LD, and the word list as
+  plain HTML inside `#root`. Sitemap, robots.txt (AI bots allowed), llms.txt, 404.html.
+- Design follows the owner's reference set (Dayora/Optivolt style): warm paper neutrals, one lime
+  accent, deep pine band, light-weight display type, Pretendard, rounded cards with chips.
+- Motion: hero particle field that forms real Korean words (cursor pushes particles), line-mask
+  text reveals, scroll-velocity word ticker, pinned "four ways to practice" scene, staggered day
+  index with sticky block numbers, ink curtain page transitions showing the destination's Korean
+  title, 3D flashcard flip, answer pop/shake, animated score ring. All off under
+  `prefers-reduced-motion` (Lenis disabled, hero rendered still, transitions instant).
 
-## 3. Target architecture
+## 3. Architecture
 
 ```
 src/
-  data/days/day01.json ... day50.json   one file per day (schema below)
-  data/index.js                         loads all days, exports list + lookup
-  lib/                                  pure logic, no React, unit-tested
-    shuffle.js        Fisher-Yates shuffle (replaces sort(() => random))
-    quiz.js           buildMultipleChoice(word, pool, n=4), checkTyped(answer, word)
-    srs.js            Leitner boxes: schedule(wordState, correct) -> next due date
-    progress.js       read/write progress in localStorage (versioned key)
-    streak.js         daily streak from progress history
-    speech.js         Korean TTS wrapper (speechSynthesis, voice loading)
-  components/                           shared UI building blocks
-  pages/
-    Home.jsx          day index + "continue where you left off" + review due
-    Day.jsx           one day: cover, word list, choose a practice mode
-    Practice/         Flashcards, MultipleChoice, Typing, Listening, Results
-    Review.jsx        spaced-repetition review across all learned words
-    NotFound.jsx      real 404 page
-    Privacy.jsx, Terms.jsx
-  styles/tokens.css                     design tokens (colors, type, spacing, radius)
-public/
-  images/days/dayNN.webp                day covers (from Gemini, see docs/ASSETS.md)
-  og/                                   generated 1200x630 link-preview images
-  robots.txt, sitemap.xml, llms.txt
+  data/days/dayNN.json      one file per day (schema below)
+  data/index.js             days, allWords, getDay, pad, PLANNED_DAYS
+  lib/                      pure logic, unit-tested in lib/__tests__
+    shuffle.js quiz.js srs.js progress.js streak.js speech.js
+    motion.js               GSAP plugin registration + reducedMotion()
+  hooks/                    useProgress (store over localStorage), useTheme
+  components/               Header, Footer, Motion (Lenis + curtain + TLink), Reveal,
+                            HangulField (three.js), Session (all practice modes + results),
+                            SpeakButton, Icons
+  pages/                    Home, Day, Practice, Review, Legal (Privacy, Terms), NotFound
+  styles/                   tokens.css, base.css, home.css, day.css, practice.css
+scripts/postbuild.js        per-route HTML + SEO files (runs in `npm run build`)
+scripts/make-images.cjs     OG images + icons (dev-only, Playwright)
 ```
 
-**Routes**: `/` · `/day/:n` (01-50) · `/day/:n/practice/:mode` · `/review` ·
-`/privacy` · `/terms` · everything else → 404.
-Every route is pre-rendered to static HTML at build time so "View source"
-shows real content, with its own `<title>`, description, canonical, Open
-Graph and Twitter tags. Title pattern: `Day 07: Travel Experience | <Site name>`.
+**Routes**: `/` · `/day/:n` · `/day/:n/practice/:mode` (flashcards|choice|typing|listening,
+noindex) · `/review` · `/privacy` · `/terms` · anything else → app 404 (served via 404.html).
+Title pattern: `Day 07: Travel | Essential Korean Vocabulary`.
 
-**Progress** is stored in localStorage. This is fine because it is the
-learner's own study data. Nothing paid or permission-related is ever
-decided on the client. If paid plans are added later, that requires a
-backend and gets its own section here first.
+Links between pages use `TLink` (a real `<a href>` that plays the curtain). Page `<title>`/meta
+are rendered by React 19 inside each page; postbuild bakes the same values into static HTML.
 
 ### Data schema (`src/data/days/dayNN.json`)
 
 ```json
 {
-  "id": "day07",
-  "number": 7,
-  "slug": "travel-experience",
-  "title": "Travel Experience",
-  "titleKo": "여행 경험",
-  "status": "verified",
-  "source": "owner-notes",
-  "cover": "/images/days/day07.webp",
-  "words": [
-    {
-      "id": "day07-01",
-      "korean": "여행",
-      "romanization": "yeohaeng",
-      "english": "trip, travel",
-      "pos": "noun",
-      "example": { "ko": "", "en": "" }
-    }
-  ]
+  "id": "day07", "number": 7, "slug": "travel", "title": "Travel", "titleKo": "여행",
+  "status": "verified", "source": "owner-notes", "cover": null,
+  "words": [{ "id": "day07-01", "korean": "기대하다", "romanization": "gidaehada", "english": "to expect", "note": "optional" }]
 }
 ```
-`status` is `"verified"` (checked against owner's notes) or `"draft"`.
-`source` is `"owner-notes"`, `"topik-list"`, or `"generated"`.
-`pos` and `example` are optional. Examples written by an AI stay
-`"draft"` until checked.
+`status`: `verified` | `draft`. `source`: `owner-notes` | `generated`. Tests enforce 10 words
+per day, sequential numbers, unique ids and unique Korean words across all days.
 
-### Practice engine contract (`src/lib`, owned by Codex)
+### Practice engine (`src/lib`)
 
 ```js
-shuffle(array) -> new array
-buildMultipleChoice(word, pool, { count = 4, direction = 'ko-en' }) -> { prompt, options: [{ id, label }], answerId }
-checkTyped(input, word, { direction }) -> { correct: boolean, closeness: 0..1 }
-// srs: boxes 1-5, intervals in days [0, 1, 3, 7, 16]
-schedule(state | undefined, correct, now = new Date()) -> { box, dueAt, seen, correctCount }
+shuffle(array) -> new array                       // Fisher-Yates
+buildMultipleChoice(word, pool, { count = 4, direction = 'ko-en' }) -> { prompt, options, answerId }
+checkTyped(input, word, { direction }) -> { correct, closeness }   // UI accepts closeness >= 0.8
+schedule(state, correct, now) -> { box, dueAt, seen, correctCount } // boxes 1-5, [0,1,3,7,16] days
 getDueWords(progress, allWords, now) -> word[]
-loadProgress() / saveProgress(progress)   // key: "kv.progress.v1"
+loadProgress() / saveProgress(p)                  // key "kv.progress.v1"
 getStreak(progress, now) -> { current, best, practicedToday }
-speak(text, { rate = 0.9 })               // ko-KR
+speak(text, { rate })                             // ko-KR speechSynthesis
 ```
-UI code (Claude) imports only these functions; it never touches localStorage directly.
 
-## 4. Design direction (proposal: waiting for owner OK, see Open questions)
+## 4. Design system
 
-- **One brand color plus neutrals.** No gradients, glass blur, glowing orbs,
-  sparkles, cursor effects, or emoji headings.
-- Proposed palette: paper `#F7F5F0`, ink `#1A1A1A`, muted ink `#5A5A55`,
-  line `#E3DFD6`, accent `#B3261E` (Korean seal red), success `#1E6B3A`,
-  error `#B3261E` + icon. Dark mode: bg `#141413`, text `#EDEBE6`, muted `#A8A6A0`.
-  Every text/background pair must pass WCAG AA (4.5:1 body, 3:1 large). Check it, don't assume.
-- Type: **Pretendard** (Korean + Latin, open license) for UI; Korean words
-  shown large (48-72px) because the Korean word is the hero of every screen.
-- Spacing scale: 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 only. Radius: 8 (controls), 16 (cards).
-- Images: one cover illustration per day (topic-specific, same style for all days),
-  used on the day page and in link previews. No looping background video
-  (hurts focus, data use and battery). Decision pending with owner.
-- Motion: short (150-200ms) state transitions only (card flip, answer
-  feedback). Everything off under `prefers-reduced-motion`.
-- Buttons say what happens: "Start flashcards", "Check answer", "Next word",
-  "Review 12 due words".
-- Keyboard: Space flips card, 1-4 picks an option, Enter checks or advances,
-  visible focus rings everywhere.
+- Tokens in `src/styles/tokens.css`. Light: paper `#f3f2ec`, surface `#fff`, ink `#141511`,
+  ink-2 `#55564e`, line `#d9d7cc`, accent `#d4ea6b`, pine `#1f3a28`. Dark theme via
+  `html[data-theme=dark]` (toggle in header, defaults to system).
+- Contrast (WCAG AA, checked 2026-11-27): ink/paper 16.35, ink-2/paper 6.62, ink-2/surface-2 6.04,
+  accent-ink/accent 13.78, pine-ink/pine 10.96, pine-2/pine 7.05, bad/surface 6.92;
+  dark: ink/paper 16.14, ink-2/surface-2 6.60, bad/surface 7.47.
+- Type: Pretendard Variable (jsDelivr). Display weight 200-300, tracking -0.045em. Korean words 600.
+- Spacing 4/8/12/16/24/32/48/64 (+96/128 for sections). Radius 8/16/28/pill.
+- No gradients, glass blur, glow, emoji, or stock icons beyond the few in `Icons.jsx`.
+- Buttons say what happens ("Start flashcards", "Practice the 3 missed words").
 
 ## 5. Task board
 
 Status: `todo` · `doing` · `review` · `done` · `blocked`
 
-### Phase 0: foundation (run in parallel, no file overlap)
-
-| ID | Task | Owner | Status | Depends on |
-|----|------|-------|--------|------------|
-| T01 | Extract all 15 days into `src/data/days/dayNN.json` per schema; fix 영덩이→엉덩이; proofread every word, romanization and English gloss; write `src/data/index.js` | Claude | todo | - |
-| T02 | Write design tokens `src/styles/tokens.css` + Tailwind theme mapping; verify contrast of every pair and record ratios in this file | Claude | todo | owner OK on palette |
-| T03 | Migrate CRA → Vite + React Router; install Tailwind as a real build dependency (remove CDN script); delete dead files (`tempCodeRunnerFile.js`, `App.css`, `logo.svg`, `reportWebVitals.js`, `App.test.js`, `setupTests.js` if unused); add Vitest; keep `npm run deploy` to GitHub Pages working with correct `base` | Codex | todo | - |
-| T04 | Practice engine `src/lib/*` per contract above, with unit tests (shuffle uniformity, SRS intervals, streak across midnight/timezones, progress versioning) | Codex | todo | - |
-
-### Phase 1: product (parallel, starts when T01+T03 are merged)
-
-| ID | Task | Owner | Status | Depends on |
-|----|------|-------|--------|------------|
-| T05 | App shell: layout, header, footer (links to /privacy, /terms), skip link, theme toggle (respects system setting), route table, NotFound page | Claude | todo | T02, T03 |
-| T06 | Home page: day index (50 days, grouped in blocks of 10, shows progress per day), "Continue Day N", "Review X due words", streak | Claude | todo | T04, T05 |
-| T07 | Day page: cover image, title, word list with audio buttons, practice mode picker | Claude | todo | T05 |
-| T08 | Practice modes: Flashcards (keyboard flip), Multiple choice (ko→en and en→ko), Typing, Listening; Results screen with missed words and "Practice missed words" | Claude | todo | T04, T07 |
-| T09 | Review page (SRS across all days) | Claude | todo | T04, T08 |
-| T10 | Static prerender of every route (vite-react-ssg or custom renderToString script; document the choice under Decisions); per-route head tags (title, description, canonical, OG, Twitter, JSON-LD `WebSite` + `Course`/`LearningResource`) | Codex | todo | T03, T01 |
-| T11 | Build scripts: `sitemap.xml`, `robots.txt` (allow all + GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, Claude-SearchBot, PerplexityBot, Google-Extended, link to sitemap), `llms.txt`, real 404 for GitHub Pages; generate 1200x630 OG images per day from cover + title (satori/resvg or canvas) | Codex | todo | T10, assets |
-| T12 | GitHub Actions: build + test on PR, deploy to Pages on `main` | Codex | todo | T03 |
-
-### Phase 2: content to 50 days
-
-| ID | Task | Owner | Status | Depends on |
-|----|------|-------|--------|------------|
-| T13 | Days 16-50 word lists: from owner's notes if provided, otherwise a draft from a TOPIK-level frequency source, topic-grouped, 10 words each, no duplicates with days 1-15 | Claude (owner supplies source) | blocked | Owner question Q1 |
-| T14 | Day cover images 01-50 + site hero, per `docs/ASSETS.md` | Owner via Gemini | todo | Owner OK on style |
-| T15 | Example sentences for every word (draft, then Claude verification) | Claude | todo | T13 |
-
-### Phase 3: finish
-
-| ID | Task | Owner | Status | Depends on |
-|----|------|-------|--------|------------|
-| T16 | Privacy and Terms pages (localStorage only, no tracking unless added); owner details as TODO until provided | Claude | todo | Q6 |
-| T17 | Accessibility pass: keyboard-only run of every mode, screen reader labels, contrast, reduced motion, 200% zoom (Codex adds automated axe + Playwright checks to CI; Claude fixes findings) | Claude + Codex | todo | T05-T09 |
-| T18 | Copy pass: no buzzwords, no vague buttons, few em dashes, no unbacked claims | Claude | todo | T05-T09 |
-| T19 | Final review, Lighthouse (perf/a11y/SEO ≥ 95), README rewrite, proprietary LICENSE if owner wants it, Search Console steps | Claude | todo | all |
+| ID | Task | Owner | Status |
+|----|------|-------|--------|
+| T01 | Days 01-15 to JSON, proofread, fixes | Claude | done |
+| T02 | Design tokens + contrast | Claude | done |
+| T03 | CRA → Vite + Router, remove CDN Tailwind and dead files, Vitest, deploy script | Claude | done (taken over to unblock the design) |
+| T04 | Practice engine `src/lib` + tests | Claude | done. Codex: see T23 |
+| T05-T09 | App shell, Home, Day, Practice modes, Review, 404 | Claude | done |
+| T10 | Static HTML per route with meta + JSON-LD + plain content | Claude | done (string-template prerender). Full React prerender optional, see T22 |
+| T11 | sitemap, robots (AI bots), llms.txt, 404.html, OG images per day | Claude | done |
+| T12 | GitHub Actions: `npm ci && npm test && npm run build` on PRs; deploy `dist` to Pages on push to `main` (actions/deploy-pages or keep gh-pages branch, document which) | **Codex** | todo |
+| T13 | Days 16-50 | Claude | done as drafts. Owner to verify or send real lists |
+| T14 | Day cover images via Gemini (`docs/ASSETS.md`), then show on Day page hero + OG | Owner → Claude | optional |
+| T15 | Example sentences per word | Claude | todo |
+| T16 | Privacy + Terms | Claude | done, owner contact TODOs remain |
+| T17 | Accessibility: Codex adds Playwright + axe-core checks for `/`, `/day/1`, every practice mode, `/review`, 404 (both themes, reduced motion) to CI; Claude fixes findings | **Codex** + Claude | todo |
+| T18 | Copy pass | Claude | done |
+| T19 | Final review, Lighthouse, Search Console steps | Claude | doing |
+| T20 | Performance: split GSAP/Lenis from the main chunk where possible, convert `public/og/*.png` to optimized PNG/JPEG under 60 KB, add `<link rel=preload>` for the font, report Lighthouse scores | **Codex** | todo |
+| T21 | Component tests (Vitest + Testing Library): Session flows for each mode with keyboard (Space, 1-4, Enter, R), results + "practice missed words", progress written to store | **Codex** | todo |
+| T22 | Optional: replace string-template prerender with real React SSR prerender (renderToString per route with StaticRouter, hydrateRoot) if it can be done without breaking GSAP/three.js; otherwise document why not | **Codex** | todo |
+| T23 | Engine hardening: typed-answer normalization for Korean input (allow typing Hangul in en→ko later), SRS edge cases, tests | **Codex** | todo |
 
 ## 6. File ownership (to avoid merge conflicts)
 
 | Owner | Owns |
 |-------|------|
-| Claude | `AGENTS.md` task board structure, `src/data/**`, `src/styles/tokens.css`, `docs/**`, `README.md`, `src/main.jsx`, `src/App.jsx`, `src/components/**`, `src/pages/**`, `src/index.css` |
-| Codex | `package.json`, lockfile, `vite.config.*`, `index.html`, `scripts/**`, `src/lib/**`, `src/seo/**`, `.github/**`, `public/robots.txt`, `public/llms.txt`, `public/sitemap.xml`, `public/og/**` |
+| Claude | `AGENTS.md` structure, `src/data/**`, `src/styles/**`, `src/components/**`, `src/pages/**`, `src/hooks/**`, `src/main.jsx`, `src/App.jsx`, `index.html`, `docs/**`, `README.md`, `scripts/postbuild.js` |
+| Codex | `.github/**`, `src/lib/**` (engine changes must keep the contract in section 3), `**/__tests__/**`, `e2e/**`, `vite.config.*`, `scripts/make-images.cjs`, `public/og/**`, `package.json` + lockfile (adding deps is fine, tell Claude in section 9) |
 | Owner / Gemini | `public/images/**` |
 
 Everyone may edit their own task rows and append to the status log.
@@ -217,13 +163,16 @@ Everyone may edit their own task rows and append to the status log.
 | 2026-11-27 | Move off Create React App (deprecated) to Vite; pre-render every route | Claude |
 | 2026-11-27 | Progress kept in localStorage; no paid/permission state on the client | Claude |
 | 2026-11-27 | Cursor removed from the project (owner). Claude takes all UI tasks; Codex keeps tooling, engine, SEO, CI | Owner |
+| 2026-11-27 | Plain CSS + tokens instead of Tailwind (fewer deps, design needs custom motion styles) | Claude |
+| 2026-11-27 | Days 16-50 drafted by Claude so the course is complete; marked draft until checked | Claude (owner asked to finish without questions) |
+| 2026-11-27 | No background video. Motion and the WebGL hero carry the visual weight; photos only if real images arrive (T14) | Claude |
 
 ## 8. Open questions for the owner
 
-- **Q1** Source for days 16-50: your notes (send them), or a TOPIK frequency list as draft?
+- **Q1** Days 16-50 are drafts. Send your real lists, or confirm the drafts after checking.
 - **Q2** "Conversion" means what: sign-ups, paid plan, or daily return? (Paid plan = backend + payment provider = new plan section.)
 - **Q3** Stay on GitHub Pages, or move to Vercel/Netlify (needed if we add accounts/payments)?
-- **Q4** OK with the palette/type in section 4, and day cover illustrations instead of background video?
+- **Q4** Want Gemini cover images per day (T14)? Prompts are in docs/ASSETS.md.
 - **Q5** Site name and domain. Current candidates: "한국어 공부", "Essential Korean Vocabulary".
 - **Q6** Name/contact for footer, Privacy, Terms, and structured data.
 
@@ -237,3 +186,4 @@ _(format: `YYYY-MM-DD HH:MM UTC | agent | task | note`)_
 
 - 2026-11-27 | Claude | setup | Audit done, AGENTS.md created, tasks assigned. Waiting on owner for Q1, Q4, Q7.
 - 2026-11-27 | Claude | setup | Push access working. Cursor removed per owner; T05-T09 reassigned to Claude, T17 shared with Codex.
+- 2026-11-27 | Claude | T01-T11,T13,T16,T18 | Full redesign built and tested (14 unit tests). 50 days live. Deployed to GitHub Pages. Codex: start with T12, then T21, T17, T20.
