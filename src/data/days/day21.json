@@ -4,7 +4,7 @@
   "slug": "at-the-bank",
   "title": "At the bank",
   "titleKo": "은행에서",
-  "status": "draft",
+  "status": "reviewed",
   "source": "generated",
   "cover": "images/days/day21.webp",
   "words": [
@@ -18,7 +18,7 @@
       "id": "day21-02",
       "korean": "계좌",
       "romanization": "gyejwa",
-      "english": "account"
+      "english": "bank account"
     },
     {
       "id": "day21-03",

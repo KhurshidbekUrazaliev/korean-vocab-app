@@ -4,7 +4,7 @@
   "slug": "ordering-at-a-cafe",
   "title": "Ordering at a café",
   "titleKo": "카페에서 주문하기",
-  "status": "draft",
+  "status": "reviewed",
   "source": "generated",
   "cover": "images/days/day26.webp",
   "words": [
@@ -18,7 +18,7 @@
       "id": "day26-02",
       "korean": "메뉴판",
       "romanization": "menyupan",
-      "english": "menu board"
+      "english": "menu"
     },
     {
       "id": "day26-03",

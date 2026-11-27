@@ -4,7 +4,7 @@
   "slug": "at-the-laundromat",
   "title": "At the laundromat",
   "titleKo": "빨래방에서",
-  "status": "draft",
+  "status": "reviewed",
   "source": "generated",
   "cover": "images/days/day42.webp",
   "words": [
@@ -42,7 +42,7 @@
       "id": "day42-06",
       "korean": "탈수",
       "romanization": "talsu",
-      "english": "spin cycle"
+      "english": "spin-drying (laundry)"
     },
     {
       "id": "day42-07",
