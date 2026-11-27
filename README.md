@@ -1,6 +1,6 @@
 # Essential Korean Vocabulary (한국어 공부)
 
-A Korean vocabulary course in daily sets of ten words. Each word has Hangul, romanization, an English meaning and audio. Learners practice with flashcards, multiple choice (both directions), typing and listening, and every answer feeds a spaced-review schedule so missed words come back the next day.
+A Korean vocabulary app in daily sets of ten words. Each word has Hangul, romanization, an English meaning and audio. Each day is a four-step lesson (flashcards, multiple choice in both directions, typing, listening), and every answer feeds a spaced-review schedule. Returning learners land on a Today dashboard with their next step, due reviews, streak and daily goal.
 
 Live: https://khurshidbekurazaliev.github.io/korean-vocab-app/
 
@@ -12,7 +12,7 @@ Live: https://khurshidbekurazaliev.github.io/korean-vocab-app/
 - React 19 + React Router 7, built with Vite
 - GSAP (ScrollTrigger, SplitText) and Lenis for motion and smooth scrolling
 - three.js for the hero particle field (loaded in its own chunk)
-- Plain CSS with design tokens in `src/styles/tokens.css`
+- Plain CSS with design tokens in `src/styles/tokens.css` (see `docs/DESIGN-CRITIQUE.md`); Noto Serif KR for Hangul, Pretendard for UI
 - Vitest for unit tests
 - GitHub Pages hosting
 

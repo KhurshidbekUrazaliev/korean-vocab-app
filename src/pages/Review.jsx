@@ -1,8 +1,9 @@
 import { useMemo, useState } from 'react';
 import { Session } from '../components/Session.jsx';
+import '../styles/practice.css';
 import { TLink } from '../components/Motion.jsx';
 import { ArrowRight } from '../components/Icons.jsx';
-import { allWords, days } from '../data/index.js';
+import { allWords } from '../data/index.js';
 import { useProgress } from '../hooks/useProgress.js';
 import { getDueWords } from '../lib/srs.js';
 
@@ -30,7 +31,7 @@ export default function Review() {
     return (
       <div className="review-session">
         {head}
-        <Session words={due} pool={allWords} mode={mode} exitTo="/" exitLabel="Back to home" />
+        <Session words={due} pool={allWords} mode={mode} title="Review" exitTo="/" exitLabel="Back to Today" next={{ to: '/progress', label: 'See your progress', ko: '기록' }} />
       </div>
     );
   }
@@ -49,8 +50,8 @@ export default function Review() {
             ))}
           </ul>
           <div className="hero__ctas">
-            <button type="button" className="btn" onClick={() => setMode('choice')}>Review with multiple choice<span className="btn__icon"><ArrowRight /></span></button>
-            <button type="button" className="btn btn--ghost" onClick={() => setMode('flashcards')}>Review with flashcards</button>
+            <button type="button" className="btn btn--lg btn--accent" onClick={() => setMode('choice')}>Review with multiple choice <ArrowRight /></button>
+            <button type="button" className="btn btn--lg btn--ghost" onClick={() => setMode('flashcards')}>Review with flashcards</button>
           </div>
         </>
       ) : (
@@ -61,8 +62,8 @@ export default function Review() {
               : 'Practice any day first. Words you answer show up here on a schedule: missed words tomorrow, known words a few days later.'}
           </p>
           <div className="hero__ctas">
-            <TLink className="btn" to={`/day/${days[0].number}`} ko={days[0].titleKo} en="Day 01">Go to Day 01<span className="btn__icon"><ArrowRight /></span></TLink>
-            <TLink className="btn btn--ghost" to="/#days">See all days</TLink>
+            <TLink className="btn btn--lg btn--accent" to="/course">Open the course <ArrowRight /></TLink>
+            <TLink className="btn btn--lg btn--ghost" to="/progress">See progress</TLink>
           </div>
         </>
       )}

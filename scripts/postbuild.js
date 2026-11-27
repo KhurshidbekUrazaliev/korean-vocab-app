@@ -54,7 +54,7 @@ function write(path, html) {
 }
 
 const website = { '@context': 'https://schema.org', '@type': 'WebSite', name: NAME, url: `${SITE}/`, inLanguage: 'en' };
-const nav = `<nav><a href="${SITE}/">Home</a> <a href="${SITE}/review">Review</a> <a href="${SITE}/privacy">Privacy</a> <a href="${SITE}/terms">Terms</a></nav>`;
+const nav = `<nav><a href="${SITE}/">Home</a> <a href="${SITE}/course">Course</a> <a href="${SITE}/review">Review</a> <a href="${SITE}/privacy">Privacy</a> <a href="${SITE}/terms">Terms</a></nav>`;
 
 // Home
 const homeDesc = `${wordCount} Korean words in ${days.length} daily sets of 10, with audio, flashcards, multiple choice, typing and listening practice, and spaced review of the words you miss.`;
@@ -117,6 +117,19 @@ for (const d of days) {
   );
 }
 
+// Course index
+write(
+  'course',
+  page({
+    path: '/course',
+    title: `Course: all ${days.length} days | ${NAME}`,
+    description: `All ${days.length} days of the course, ${wordCount} Korean words in themed sets of ten.`,
+    body: `${nav}<main><h1>Course: ${days.length} days, ${wordCount} words</h1><ol>${days
+      .map((d) => `<li><a href="${SITE}/day/${d.number}">Day ${pad(d.number)}: ${esc(d.title)} (${esc(d.titleKo)})</a></li>`)
+      .join('')}</ol></main>`,
+  }),
+);
+
 // Other pages
 const simple = [
   ['review', `Review due words | ${NAME}`, 'Spaced review of the Korean words you have practiced, scheduled so each one comes back just before you forget it.'],
@@ -126,6 +139,7 @@ const simple = [
 for (const [path, title, description] of simple) {
   write(path, page({ path: `/${path}`, title, description, body: `${nav}<main><h1>${esc(title.split(' |')[0])}</h1><p>${esc(description)}</p></main>` }));
 }
+write('progress', page({ path: '/progress', title: `Progress | ${NAME}`, description: 'Your learning progress, stored in this browser.', noindex: true }));
 
 // Practice sessions: app shell only, not indexed.
 for (const d of days) {
@@ -145,7 +159,7 @@ writeFileSync(
 
 // sitemap.xml
 const today = new Date().toISOString().slice(0, 10);
-const urls = ['/', ...days.map((d) => `/day/${d.number}`), '/review', '/privacy', '/terms'];
+const urls = ['/', '/course', ...days.map((d) => `/day/${d.number}`), '/review', '/privacy', '/terms'];
 writeFileSync(
   join(DIST, 'sitemap.xml'),
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls
@@ -174,6 +188,7 @@ Days ${days.filter((d) => d.status === 'draft').map((d) => d.number).join(', ') 
 ${days.map((d) => `- [Day ${pad(d.number)}: ${d.title} (${d.titleKo})](${SITE}/day/${d.number})`).join('\n')}
 
 ## Other pages
+- [Course index](${SITE}/course)
 - [Review due words](${SITE}/review)
 - [Privacy](${SITE}/privacy)
 - [Terms](${SITE}/terms)
