@@ -1,7 +1,9 @@
-# AGENTS.md: shared plan for Claude, Codex, Cursor and Gemini
+# AGENTS.md: shared plan for Claude, Codex and Gemini
 
 This file is the single source of truth for everyone working on this repo:
-Claude Code, Codex, Cursor, Gemini, and the owner. `CLAUDE.md` and
+Claude Code, Codex, Gemini (images, run by the owner), and the owner.
+Two coding agents only: **Claude** (lead, content, all UI) and **Codex**
+(tooling, practice engine, SEO, build, CI). `CLAUDE.md` and
 `GEMINI.md` only point here.
 
 **Rules for every agent**
@@ -131,7 +133,7 @@ loadProgress() / saveProgress(progress)   // key: "kv.progress.v1"
 getStreak(progress, now) -> { current, best, practicedToday }
 speak(text, { rate = 0.9 })               // ko-KR
 ```
-UI code (Cursor) imports only these functions; it never touches localStorage directly.
+UI code (Claude) imports only these functions; it never touches localStorage directly.
 
 ## 4. Design direction (proposal: waiting for owner OK, see Open questions)
 
@@ -171,11 +173,11 @@ Status: `todo` · `doing` · `review` · `done` · `blocked`
 
 | ID | Task | Owner | Status | Depends on |
 |----|------|-------|--------|------------|
-| T05 | App shell: layout, header, footer (links to /privacy, /terms), skip link, theme toggle (respects system setting), route table, NotFound page | Cursor | todo | T02, T03 |
-| T06 | Home page: day index (50 days, grouped in blocks of 10, shows progress per day), "Continue Day N", "Review X due words", streak | Cursor | todo | T04, T05 |
-| T07 | Day page: cover image, title, word list with audio buttons, practice mode picker | Cursor | todo | T05 |
-| T08 | Practice modes: Flashcards (keyboard flip), Multiple choice (ko→en and en→ko), Typing, Listening; Results screen with missed words and "Practice missed words" | Cursor | todo | T04, T07 |
-| T09 | Review page (SRS across all days) | Cursor | todo | T04, T08 |
+| T05 | App shell: layout, header, footer (links to /privacy, /terms), skip link, theme toggle (respects system setting), route table, NotFound page | Claude | todo | T02, T03 |
+| T06 | Home page: day index (50 days, grouped in blocks of 10, shows progress per day), "Continue Day N", "Review X due words", streak | Claude | todo | T04, T05 |
+| T07 | Day page: cover image, title, word list with audio buttons, practice mode picker | Claude | todo | T05 |
+| T08 | Practice modes: Flashcards (keyboard flip), Multiple choice (ko→en and en→ko), Typing, Listening; Results screen with missed words and "Practice missed words" | Claude | todo | T04, T07 |
+| T09 | Review page (SRS across all days) | Claude | todo | T04, T08 |
 | T10 | Static prerender of every route (vite-react-ssg or custom renderToString script; document the choice under Decisions); per-route head tags (title, description, canonical, OG, Twitter, JSON-LD `WebSite` + `Course`/`LearningResource`) | Codex | todo | T03, T01 |
 | T11 | Build scripts: `sitemap.xml`, `robots.txt` (allow all + GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, Claude-SearchBot, PerplexityBot, Google-Extended, link to sitemap), `llms.txt`, real 404 for GitHub Pages; generate 1200x630 OG images per day from cover + title (satori/resvg or canvas) | Codex | todo | T10, assets |
 | T12 | GitHub Actions: build + test on PR, deploy to Pages on `main` | Codex | todo | T03 |
@@ -193,7 +195,7 @@ Status: `todo` · `doing` · `review` · `done` · `blocked`
 | ID | Task | Owner | Status | Depends on |
 |----|------|-------|--------|------------|
 | T16 | Privacy and Terms pages (localStorage only, no tracking unless added); owner details as TODO until provided | Claude | todo | Q6 |
-| T17 | Accessibility pass: keyboard-only run of every mode, screen reader labels, contrast, reduced motion, 200% zoom | Cursor | todo | T05-T09 |
+| T17 | Accessibility pass: keyboard-only run of every mode, screen reader labels, contrast, reduced motion, 200% zoom (Codex adds automated axe + Playwright checks to CI; Claude fixes findings) | Claude + Codex | todo | T05-T09 |
 | T18 | Copy pass: no buzzwords, no vague buttons, few em dashes, no unbacked claims | Claude | todo | T05-T09 |
 | T19 | Final review, Lighthouse (perf/a11y/SEO ≥ 95), README rewrite, proprietary LICENSE if owner wants it, Search Console steps | Claude | todo | all |
 
@@ -201,9 +203,8 @@ Status: `todo` · `doing` · `review` · `done` · `blocked`
 
 | Owner | Owns |
 |-------|------|
-| Claude | `AGENTS.md` task board structure, `src/data/**`, `src/styles/tokens.css`, `docs/**`, `README.md`, `src/pages/Privacy.jsx`, `src/pages/Terms.jsx` |
+| Claude | `AGENTS.md` task board structure, `src/data/**`, `src/styles/tokens.css`, `docs/**`, `README.md`, `src/main.jsx`, `src/App.jsx`, `src/components/**`, `src/pages/**`, `src/index.css` |
 | Codex | `package.json`, lockfile, `vite.config.*`, `index.html`, `scripts/**`, `src/lib/**`, `src/seo/**`, `.github/**`, `public/robots.txt`, `public/llms.txt`, `public/sitemap.xml`, `public/og/**` |
-| Cursor | `src/main.jsx`, `src/App.jsx`, `src/components/**`, `src/pages/**` (except Privacy/Terms), `src/index.css` |
 | Owner / Gemini | `public/images/**` |
 
 Everyone may edit their own task rows and append to the status log.
@@ -215,6 +216,7 @@ Everyone may edit their own task rows and append to the status log.
 | 2026-11-27 | One data file per day + one shared lesson UI instead of per-day components | Claude |
 | 2026-11-27 | Move off Create React App (deprecated) to Vite; pre-render every route | Claude |
 | 2026-11-27 | Progress kept in localStorage; no paid/permission state on the client | Claude |
+| 2026-11-27 | Cursor removed from the project (owner). Claude takes all UI tasks; Codex keeps tooling, engine, SEO, CI | Owner |
 
 ## 8. Open questions for the owner
 
@@ -224,7 +226,6 @@ Everyone may edit their own task rows and append to the status log.
 - **Q4** OK with the palette/type in section 4, and day cover illustrations instead of background video?
 - **Q5** Site name and domain. Current candidates: "한국어 공부", "Essential Korean Vocabulary".
 - **Q6** Name/contact for footer, Privacy, Terms, and structured data.
-- **Q7** Push access for Claude's session (connect GitHub in claude.ai settings), or the owner pushes Claude's branches.
 
 ## 9. Requests between agents
 
@@ -235,3 +236,4 @@ _(format: `- [from → to] request (status)`)_
 _(format: `YYYY-MM-DD HH:MM UTC | agent | task | note`)_
 
 - 2026-11-27 | Claude | setup | Audit done, AGENTS.md created, tasks assigned. Waiting on owner for Q1, Q4, Q7.
+- 2026-11-27 | Claude | setup | Push access working. Cursor removed per owner; T05-T09 reassigned to Claude, T17 shared with Codex.
