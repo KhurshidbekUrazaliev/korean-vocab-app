@@ -1,72 +1,72 @@
 {
   "id": "day35",
   "number": 35,
-  "slug": "education",
-  "title": "Education",
-  "titleKo": "교육",
+  "slug": "playing-music",
+  "title": "Playing music",
+  "titleKo": "악기 연주",
   "status": "draft",
   "source": "generated",
   "cover": "images/days/day35.webp",
   "words": [
     {
       "id": "day35-01",
-      "korean": "교육",
-      "romanization": "gyoyuk",
-      "english": "education"
+      "korean": "악기",
+      "romanization": "akgi",
+      "english": "musical instrument"
     },
     {
       "id": "day35-02",
-      "korean": "수업",
-      "romanization": "sueop",
-      "english": "class, lesson"
+      "korean": "연주하다",
+      "romanization": "yeonjuhada",
+      "english": "to play an instrument"
     },
     {
       "id": "day35-03",
-      "korean": "과제",
-      "romanization": "gwaje",
-      "english": "assignment"
+      "korean": "기타",
+      "romanization": "gita",
+      "english": "guitar"
     },
     {
       "id": "day35-04",
-      "korean": "시험",
-      "romanization": "siheom",
-      "english": "exam, test"
+      "korean": "장구",
+      "romanization": "janggu",
+      "english": "Korean hourglass drum"
     },
     {
       "id": "day35-05",
-      "korean": "성적",
-      "romanization": "seongjeok",
-      "english": "grades"
+      "korean": "피아노",
+      "romanization": "piano",
+      "english": "piano"
     },
     {
       "id": "day35-06",
-      "korean": "장학금",
-      "romanization": "janghakgeum",
-      "english": "scholarship"
+      "korean": "악보",
+      "romanization": "akbo",
+      "english": "sheet music"
     },
     {
       "id": "day35-07",
-      "korean": "전공",
-      "romanization": "jeongong",
-      "english": "major (subject)"
+      "korean": "박자",
+      "romanization": "bakja",
+      "english": "beat or meter"
     },
     {
       "id": "day35-08",
-      "korean": "졸업하다",
-      "romanization": "joreopada",
-      "english": "to graduate"
+      "korean": "음정",
+      "romanization": "eumjeong",
+      "english": "interval between notes"
     },
     {
       "id": "day35-09",
-      "korean": "입학하다",
-      "romanization": "ipakada",
-      "english": "to enter a school"
+      "korean": "합주",
+      "romanization": "hapju",
+      "english": "ensemble performance"
     },
     {
       "id": "day35-10",
-      "korean": "복습하다",
-      "romanization": "bokseupada",
-      "english": "to review (a lesson)"
+      "korean": "조율하다",
+      "romanization": "joyulhada",
+      "english": "to tune an instrument"
     }
   ]
 }

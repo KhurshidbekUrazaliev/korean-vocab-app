@@ -43,7 +43,9 @@ Live site: https://khurshidbekurazaliev.github.io/korean-vocab-app/
   from the `gh-pages` branch with `npm run deploy`.
 - **50 days / 500 words.** Days 01-15 = owner's notes (`status: verified`), with 4 typos fixed
   (동특증→동아리 활동, 짐장히→굉장히, 마지다→마치다, 영덩이→엉덩이; each has a `note`).
-  Days 16-50 = Claude's draft lists (`status: draft`, `source: generated`), shown with a Draft badge.
+  Days 16–50 contain 350 generated entries matched to the illustrated topics. All 35 lists carry
+  `status: draft` and `source: generated` pending language review. Each day offers direct links to
+  flashcards and multiple choice, plus typing and listening under Other modes.
 - Every public route gets static HTML from `scripts/postbuild.js`: own title, description,
   canonical, OG/Twitter tags, per-day 1200x630 preview image, JSON-LD, and the word list as
   plain HTML inside `#root`. Sitemap, robots.txt (AI bots allowed), llms.txt, 404.html.
@@ -86,7 +88,7 @@ are rendered by React 19 inside each page; postbuild bakes the same values into 
 ```json
 {
   "id": "day07", "number": 7, "slug": "travel", "title": "Travel", "titleKo": "여행",
-  "status": "verified", "source": "owner-notes", "cover": null,
+  "status": "verified", "source": "owner-notes", "cover": "images/days/day07.webp",
   "words": [{ "id": "day07-01", "korean": "기대하다", "romanization": "gidaehada", "english": "to expect", "note": "optional" }]
 }
 ```
@@ -101,7 +103,7 @@ buildMultipleChoice(word, pool, { count = 4, direction = 'ko-en' }) -> { prompt,
 checkTyped(input, word, { direction }) -> { correct, closeness }   // UI accepts closeness >= 0.8
 schedule(state, correct, now) -> { box, dueAt, seen, correctCount } // boxes 1-5, [0,1,3,7,16] days
 getDueWords(progress, allWords, now) -> word[]
-loadProgress() / saveProgress(p)                  // key "kv.progress.v1"
+loadProgress() / saveProgress(p)                  // key "kv.progress.v2", imports compatible v1 progress
 getStreak(progress, now) -> { current, best, practicedToday }
 speak(text, { rate })                             // ko-KR speechSynthesis
 ```
@@ -133,15 +135,15 @@ Status: `todo` · `doing` · `review` · `done` · `blocked`
 | T10 | Static HTML per route with meta + JSON-LD + plain content | Claude | done (string-template prerender). Full React prerender optional, see T22 |
 | T11 | sitemap, robots (AI bots), llms.txt, 404.html, OG images per day | Claude | done |
 | T12 | GitHub Actions: `npm ci && npm test && npm run build` on PRs; deploy `dist` to Pages on push to `main` (actions/deploy-pages or keep gh-pages branch, document which) | **Codex** | todo |
-| T13 | Days 16-50 | Claude | done as drafts. Owner to verify or send real lists |
-| T14 | Day cover images (`docs/ASSETS.md`) | Codex, integrated by Claude | done: 41/50 days have covers, shown on Day hero, card hover, OG images; hero image on Home |
-| T24 | Covers for the 9 days without one (list + prompts in `docs/ASSETS.md`), same style, then set `cover` in the day JSON and rerun `scripts/make-images.cjs` | **Codex** | todo |
+| T13 | Vocabulary for Days 16–50 | Codex / Claude | done as drafts. Each of the 35 illustrated topics has ten generated entries. Owner or language reviewer to verify. |
+| T14 | Day covers and Seoul street hero | Codex, integrated by Claude | done. All 50 lessons use their corresponding illustrations in the day index, lesson hero and sharing card. The Seoul scene appears on Home. |
+| T24 | Fill nine gaps in the illustrated course | Codex | done. Realigning the lessons to the original artwork restored coverage for all 50 days. The nine archived images have matching files in `public/images/days/`. |
 | T15 | Example sentences per word | Claude | todo |
 | T16 | Privacy + Terms | Claude | done, owner contact TODOs remain |
 | T17 | Accessibility: Codex adds Playwright + axe-core checks for `/`, `/day/1`, every practice mode, `/review`, 404 (both themes, reduced motion) to CI; Claude fixes findings | **Codex** + Claude | todo |
 | T18 | Copy pass | Claude | done |
 | T19 | Final review, Lighthouse, Search Console steps | Claude | doing |
-| T20 | Performance: split GSAP/Lenis from the main chunk where possible, convert `public/og/*.png` to optimized PNG/JPEG under 60 KB, add `<link rel=preload>` for the font, report Lighthouse scores | **Codex** | todo |
+| T20 | Performance: split GSAP/Lenis where possible, preload the font and report Lighthouse results | Codex | todo for bundle, font and Lighthouse work. All 51 sharing cards are already JPEGs under 60 KB. |
 | T21 | Component tests (Vitest + Testing Library): Session flows for each mode with keyboard (Space, 1-4, Enter, R), results + "practice missed words", progress written to store | **Codex** | todo |
 | T22 | Optional: replace string-template prerender with real React SSR prerender (renderToString per route with StaticRouter, hydrateRoot) if it can be done without breaking GSAP/three.js; otherwise document why not | **Codex** | todo |
 | T23 | Engine hardening: typed-answer normalization for Korean input (allow typing Hangul in en→ko later), SRS edge cases, tests | **Codex** | todo |
@@ -167,6 +169,7 @@ Everyone may edit their own task rows and append to the status log.
 | 2026-11-27 | Plain CSS + tokens instead of Tailwind (fewer deps, design needs custom motion styles) | Claude |
 | 2026-11-27 | Days 16-50 drafted by Claude so the course is complete; marked draft until checked | Claude (owner asked to finish without questions) |
 | 2026-11-27 | No background video. Motion, the WebGL hero and Codex's illustrations carry the visual weight | Claude |
+| 2026-11-28 | Use the original Day 16–50 illustration topics for the replacement lessons and keep their generated vocabulary marked as draft. | Owner / Codex |
 
 ## 8. Open questions for the owner
 
@@ -195,3 +198,5 @@ _(format: `YYYY-MM-DD HH:MM UTC | agent | task | note`)_
 - 2026-11-27 15:07 UTC | Codex | T14 | Deployed to GitHub Pages (gh-pages a747e19). Verified the public homepage, JavaScript, CSS and all 51 image hashes against the tested production build. Checked the lesson menu, dark mode and Day 01 navigation on desktop and mobile.
 - 2026-11-27 | Claude | T01-T11,T13,T16,T18 | Full redesign built and tested (14 unit tests). 50 days live. Deployed to GitHub Pages. Codex: start with T12, then T21, T17, T20.
 - 2026-11-27 | Claude | T14 merge | Merged codex/T14-vocabulary-artwork. Dropped its edits to the old CRA files. Matched covers 16-50 to the draft days by content (mapping in docs/ASSETS.md), 9 spare covers moved to docs/artwork-unassigned/. Covers shown on Day hero, card hover, OG images (now JPEG); street hero used in a scroll section on Home. Redeployed.
+- 2026-11-27 15:15 UTC | Codex | T13/T14 | Preparing a single release of the cover-topic word lists and existing practice modes on top of the current Vite app.
+- 2026-11-27 15:24 UTC | Codex | T13/T14/T24 | Integrated the illustrated lessons with the redesign on a727f1d. All 17 unit tests passed. The production build generated 54 public routes and 200 practice routes. All 51 sharing JPEGs are below 60 KB. Chrome completed 350 flashcard prompts, 350 four-option quiz questions and four missed-word retries on the integrated build, including Day 50 at mobile width.

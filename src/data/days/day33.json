@@ -1,72 +1,72 @@
 {
   "id": "day33",
   "number": 33,
-  "slug": "body",
-  "title": "The Body",
-  "titleKo": "몸",
+  "slug": "at-the-library",
+  "title": "At the library",
+  "titleKo": "도서관에서",
   "status": "draft",
   "source": "generated",
   "cover": "images/days/day33.webp",
   "words": [
     {
       "id": "day33-01",
-      "korean": "어깨",
-      "romanization": "eokkae",
-      "english": "shoulder"
+      "korean": "도서관",
+      "romanization": "doseogwan",
+      "english": "library"
     },
     {
       "id": "day33-02",
-      "korean": "허리",
-      "romanization": "heori",
-      "english": "waist, lower back"
+      "korean": "사서",
+      "romanization": "saseo",
+      "english": "librarian"
     },
     {
       "id": "day33-03",
-      "korean": "무릎",
-      "romanization": "mureup",
-      "english": "knee"
+      "korean": "서가",
+      "romanization": "seoga",
+      "english": "bookshelf"
     },
     {
       "id": "day33-04",
-      "korean": "발목",
-      "romanization": "balmok",
-      "english": "ankle"
+      "korean": "열람실",
+      "romanization": "yeollamsil",
+      "english": "reading room"
     },
     {
       "id": "day33-05",
-      "korean": "손목",
-      "romanization": "sonmok",
-      "english": "wrist"
+      "korean": "소설",
+      "romanization": "soseol",
+      "english": "novel"
     },
     {
       "id": "day33-06",
-      "korean": "팔꿈치",
-      "romanization": "palkkumchi",
-      "english": "elbow"
+      "korean": "사전",
+      "romanization": "sajeon",
+      "english": "dictionary"
     },
     {
       "id": "day33-07",
-      "korean": "목",
-      "romanization": "mok",
-      "english": "neck, throat"
+      "korean": "대출하다",
+      "romanization": "daechulhada",
+      "english": "to check out a book"
     },
     {
       "id": "day33-08",
-      "korean": "이마",
-      "romanization": "ima",
-      "english": "forehead"
+      "korean": "반납하다",
+      "romanization": "bannapada",
+      "english": "to return a borrowed item"
     },
     {
       "id": "day33-09",
-      "korean": "턱",
-      "romanization": "teok",
-      "english": "chin, jaw"
+      "korean": "연체",
+      "romanization": "yeonche",
+      "english": "overdue status"
     },
     {
       "id": "day33-10",
-      "korean": "손톱",
-      "romanization": "sontop",
-      "english": "fingernail"
+      "korean": "회원증",
+      "romanization": "hoewonjeung",
+      "english": "membership card"
     }
   ]
 }

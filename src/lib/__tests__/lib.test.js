@@ -3,7 +3,7 @@ import { shuffle } from '../shuffle.js';
 import { buildMultipleChoice, checkTyped } from '../quiz.js';
 import { schedule, getDueWords, INTERVAL_DAYS } from '../srs.js';
 import { getStreak } from '../streak.js';
-import { loadProgress, saveProgress, emptyProgress } from '../progress.js';
+import { loadProgress, saveProgress, emptyProgress, PROGRESS_KEY } from '../progress.js';
 
 const words = [
   { id: 'a', korean: '외식', english: 'dining out' },
@@ -95,9 +95,38 @@ describe('progress storage', () => {
     const p = { ...emptyProgress(), activity: ['2026-01-01'] };
     saveProgress(p, s);
     expect(loadProgress(s).activity).toEqual(['2026-01-01']);
-    s.setItem('kv.progress.v1', JSON.stringify({ version: 99 }));
+    s.setItem(PROGRESS_KEY, JSON.stringify({ version: 99 }));
     expect(loadProgress(s)).toEqual(emptyProgress());
-    s.setItem('kv.progress.v1', '{broken');
+    s.setItem(PROGRESS_KEY, '{broken');
     expect(loadProgress(s)).toEqual(emptyProgress());
+  });
+  it('preserves activity, unchanged lessons and same-sense words without reusing replaced positions', () => {
+    const storage = mem();
+    const state = { seen: 4, correctCount: 3, box: 2, dueAt: '2026-12-01T00:00:00.000Z' };
+    const score = { best: 80, modes: ['typing'], lastAt: '2026-11-21T10:00:00.000Z' };
+    const activity = ['2026-11-20', '2026-11-21'];
+    const legacy = JSON.stringify({
+      version: 1, activity, days: { day15: score, day17: score },
+      words: { 'day15-10': state, 'day17-03': state, 'day21-03': state, 'day16-01': state },
+    });
+    storage.setItem('kv.progress.v1', legacy);
+    const migrated = loadProgress(storage);
+    expect(migrated).toEqual({
+      version: 2, activity, days: { day15: score },
+      words: { 'day15-10': state, 'day27-07': state }, // 증상 moved from Day 17 to Day 27
+    });
+    expect(storage.getItem('kv.progress.v1')).toBe(legacy);
+    expect(JSON.parse(storage.getItem(PROGRESS_KEY))).toEqual(migrated);
+    migrated.words['day16-01'] = { ...state, seen: 1 };
+    saveProgress(migrated, storage);
+    expect(loadProgress(storage)).toEqual(migrated);
+  });
+  it('keeps migrated progress available when the browser refuses to write it', () => {
+    const legacy = JSON.stringify({ version: 1, activity: ['2026-11-21'] });
+    const storage = {
+      getItem: (key) => key === 'kv.progress.v1' ? legacy : null,
+      setItem: () => { throw new Error('Storage full'); },
+    };
+    expect(loadProgress(storage)).toEqual({ ...emptyProgress(), activity: ['2026-11-21'] });
   });
 });

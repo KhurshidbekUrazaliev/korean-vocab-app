@@ -1,72 +1,72 @@
 {
   "id": "day27",
   "number": 27,
-  "slug": "money-and-banking",
-  "title": "Money & Banking",
-  "titleKo": "돈과 은행",
+  "slug": "visiting-a-clinic",
+  "title": "Visiting a clinic",
+  "titleKo": "의원에서 진료받기",
   "status": "draft",
   "source": "generated",
   "cover": "images/days/day27.webp",
   "words": [
     {
       "id": "day27-01",
-      "korean": "통장",
-      "romanization": "tongjang",
-      "english": "bankbook"
+      "korean": "의원",
+      "romanization": "uiwon",
+      "english": "local medical clinic"
     },
     {
       "id": "day27-02",
-      "korean": "계좌",
-      "romanization": "gyejwa",
-      "english": "bank account"
+      "korean": "의사",
+      "romanization": "uisa",
+      "english": "doctor"
     },
     {
       "id": "day27-03",
-      "korean": "송금하다",
-      "romanization": "songgeumhada",
-      "english": "to send money"
+      "korean": "간호사",
+      "romanization": "ganhosa",
+      "english": "nurse"
     },
     {
       "id": "day27-04",
-      "korean": "이자",
-      "romanization": "ija",
-      "english": "interest"
+      "korean": "환자",
+      "romanization": "hwanja",
+      "english": "patient"
     },
     {
       "id": "day27-05",
-      "korean": "대출",
-      "romanization": "daechul",
-      "english": "loan"
+      "korean": "진료실",
+      "romanization": "jillyosil",
+      "english": "consultation room"
     },
     {
       "id": "day27-06",
-      "korean": "저축하다",
-      "romanization": "jeochukada",
-      "english": "to save money"
+      "korean": "대기실",
+      "romanization": "daegisil",
+      "english": "waiting room"
     },
     {
       "id": "day27-07",
-      "korean": "환전",
-      "romanization": "hwanjeon",
-      "english": "currency exchange"
+      "korean": "증상",
+      "romanization": "jeungsang",
+      "english": "symptom"
     },
     {
       "id": "day27-08",
-      "korean": "잔돈",
-      "romanization": "jandon",
-      "english": "small change"
+      "korean": "기침",
+      "romanization": "gichim",
+      "english": "cough"
     },
     {
       "id": "day27-09",
-      "korean": "지출",
-      "romanization": "jichul",
-      "english": "spending, expenses"
+      "korean": "체온",
+      "romanization": "che-on",
+      "english": "body temperature"
     },
     {
       "id": "day27-10",
-      "korean": "수수료",
-      "romanization": "susuryo",
-      "english": "fee, commission"
+      "korean": "청진기",
+      "romanization": "cheongjingi",
+      "english": "stethoscope"
     }
   ]
 }

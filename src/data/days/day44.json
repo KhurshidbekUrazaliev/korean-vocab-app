@@ -1,72 +1,72 @@
 {
   "id": "day44",
   "number": 44,
-  "slug": "public-life",
-  "title": "Public Life",
-  "titleKo": "정치와 선거",
+  "slug": "caring-for-a-pet",
+  "title": "Caring for a pet",
+  "titleKo": "반려동물 돌보기",
   "status": "draft",
   "source": "generated",
-  "cover": null,
+  "cover": "images/days/day44.webp",
   "words": [
     {
       "id": "day44-01",
-      "korean": "정치",
-      "romanization": "jeongchi",
-      "english": "politics"
+      "korean": "반려동물",
+      "romanization": "ballyeodongmul",
+      "english": "companion animal"
     },
     {
       "id": "day44-02",
-      "korean": "선거",
-      "romanization": "seongeo",
-      "english": "election"
+      "korean": "강아지",
+      "romanization": "gangaji",
+      "english": "puppy"
     },
     {
       "id": "day44-03",
-      "korean": "투표하다",
-      "romanization": "tupyohada",
-      "english": "to vote"
+      "korean": "고양이",
+      "romanization": "goyangi",
+      "english": "cat"
     },
     {
       "id": "day44-04",
-      "korean": "정부",
-      "romanization": "jeongbu",
-      "english": "government"
+      "korean": "사료",
+      "romanization": "saryo",
+      "english": "pet food"
     },
     {
       "id": "day44-05",
-      "korean": "대통령",
-      "romanization": "daetongnyeong",
-      "english": "president"
+      "korean": "간식",
+      "romanization": "gansik",
+      "english": "snack or treat"
     },
     {
       "id": "day44-06",
-      "korean": "국민",
-      "romanization": "gungmin",
-      "english": "the people, citizens"
+      "korean": "목줄",
+      "romanization": "mokjul",
+      "english": "dog leash"
     },
     {
       "id": "day44-07",
-      "korean": "정책",
-      "romanization": "jeongchaek",
-      "english": "policy"
+      "korean": "꼬리",
+      "romanization": "kkori",
+      "english": "tail"
     },
     {
       "id": "day44-08",
-      "korean": "지지하다",
-      "romanization": "jijihada",
-      "english": "to support (a person, idea)"
+      "korean": "발바닥",
+      "romanization": "balbadak",
+      "english": "sole or paw pad"
     },
     {
       "id": "day44-09",
-      "korean": "비판하다",
-      "romanization": "bipanhada",
-      "english": "to criticize"
+      "korean": "쓰다듬다",
+      "romanization": "sseudadeumda",
+      "english": "to stroke or pet"
     },
     {
       "id": "day44-10",
-      "korean": "토론",
-      "romanization": "toron",
-      "english": "debate, discussion"
+      "korean": "짖다",
+      "romanization": "jitda",
+      "english": "to bark"
     }
   ]
 }

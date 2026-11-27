@@ -76,7 +76,10 @@ export default function Day() {
             <TLink className="btn" to={`/day/${day.number}/practice/flashcards`} ko={day.titleKo} en="Flashcards">
               Start flashcards<span className="btn__icon"><ArrowRight /></span>
             </TLink>
-            <a className="btn btn--ghost" href="#modes">Other practice modes</a>
+            <TLink className="btn btn--ghost" to={`/day/${day.number}/practice/choice`} ko={day.titleKo} en="Multiple choice">
+              Start quiz
+            </TLink>
+            <a className="btn btn--ghost" href="#modes">Other modes</a>
           </div>
         </div>
         {day.cover && (
