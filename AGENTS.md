@@ -185,7 +185,7 @@ Status: `todo` · `doing` · `review` · `done` · `blocked`
 | ID | Task | Owner | Status | Depends on |
 |----|------|-------|--------|------------|
 | T13 | Days 16-50 word lists: from owner's notes if provided, otherwise a draft from a TOPIK-level frequency source, topic-grouped, 10 words each, no duplicates with days 1-15 | Claude (owner supplies source) | blocked | Owner question Q1 |
-| T14 | Day cover images 01-50 + site hero, per `docs/ASSETS.md` | Owner via Gemini | todo | Owner OK on style |
+| T14 | Day cover images 01-50 + site hero, per `docs/ASSETS.md` | Owner / Codex | blocked | Days 01-15 and hero ready. Days 16-50 await T13 topics and briefs. |
 | T15 | Example sentences for every word (draft, then Claude verification) | Claude | todo | T13 |
 
 ### Phase 3: finish
@@ -235,3 +235,8 @@ _(format: `- [from → to] request (status)`)_
 _(format: `YYYY-MM-DD HH:MM UTC | agent | task | note`)_
 
 - 2026-11-27 | Claude | setup | Audit done, AGENTS.md created, tasks assigned. Waiting on owner for Q1, Q4, Q7.
+
+- 2026-11-27 14:45 UTC | Codex | T14 | Owner requested work on docs/ASSETS.md. Preparing the required Day 01 style sample using built-in image generation; remaining covers await sample approval.
+- 2026-11-27 14:48 UTC | Codex | T14 | Day 01 sample prepared at public/images/days/day01.webp (1600x1000, 74,914 bytes). Verified image-only 1200x630 crop and no visible text. Built-in image_gen used instead of Gemini. Remaining covers await owner style review required by docs/ASSETS.md; days 16-50 also await T13. No production publication or PR yet.
+- 2026-11-27 14:52 UTC | Codex | T14 | Following the Day 01 review, owner requested the next task. Using the sample as the reference for Days 02-15 and the site hero.
+- 2026-11-27 14:53 UTC | Codex | T14 | Added 15 day covers and the site hero. All WebPs are 1600 × 1000 and under 131 KB each. Reviewed the centered 1200 × 630 crops. The remaining 35 covers depend on T13 topics and image briefs.
