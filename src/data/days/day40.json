@@ -1,72 +1,72 @@
 {
   "id": "day40",
   "number": 40,
-  "slug": "food-culture",
-  "title": "Food Culture",
-  "titleKo": "음식 문화",
-  "status": "draft",
+  "slug": "chuseok-traditions",
+  "title": "Chuseok traditions",
+  "titleKo": "추석 풍습",
+  "status": "reviewed",
   "source": "generated",
   "cover": "images/days/day40.webp",
   "words": [
     {
       "id": "day40-01",
-      "korean": "반찬",
-      "romanization": "banchan",
-      "english": "side dish"
+      "korean": "추석",
+      "romanization": "chuseok",
+      "english": "Chuseok, the Korean harvest festival"
     },
     {
       "id": "day40-02",
-      "korean": "김치",
-      "romanization": "gimchi",
-      "english": "kimchi"
+      "korean": "송편",
+      "romanization": "songpyeon",
+      "english": "half-moon rice cake"
     },
     {
       "id": "day40-03",
-      "korean": "매콤하다",
-      "romanization": "maekomhada",
-      "english": "to be a little spicy"
+      "korean": "명절",
+      "romanization": "myeongjeol",
+      "english": "traditional holiday"
     },
     {
       "id": "day40-04",
-      "korean": "싱겁다",
-      "romanization": "singgeopda",
-      "english": "to be bland"
+      "korean": "보름달",
+      "romanization": "boreumdal",
+      "english": "full moon"
     },
     {
       "id": "day40-05",
-      "korean": "짜다",
-      "romanization": "jjada",
-      "english": "to be salty"
+      "korean": "차례",
+      "romanization": "charye",
+      "english": "ancestral rite held on a major holiday"
     },
     {
       "id": "day40-06",
-      "korean": "고소하다",
-      "romanization": "gosohada",
-      "english": "to be nutty, savory"
+      "korean": "성묘",
+      "romanization": "seongmyo",
+      "english": "visit to an ancestor's grave"
     },
     {
       "id": "day40-07",
-      "korean": "배달",
-      "romanization": "baedal",
-      "english": "delivery (food)"
+      "korean": "고향",
+      "romanization": "gohyang",
+      "english": "hometown"
     },
     {
       "id": "day40-08",
-      "korean": "맛집",
-      "romanization": "matjip",
-      "english": "popular restaurant"
+      "korean": "친척",
+      "romanization": "chincheok",
+      "english": "relative"
     },
     {
       "id": "day40-09",
-      "korean": "배부르다",
-      "romanization": "baebureuda",
-      "english": "to be full"
+      "korean": "한복",
+      "romanization": "hanbok",
+      "english": "traditional Korean clothing"
     },
     {
       "id": "day40-10",
-      "korean": "나눠 먹다",
-      "romanization": "nanwo meokda",
-      "english": "to share food"
+      "korean": "보자기",
+      "romanization": "bojagi",
+      "english": "wrapping cloth"
     }
   ]
 }

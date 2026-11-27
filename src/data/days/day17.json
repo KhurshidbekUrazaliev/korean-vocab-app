@@ -1,72 +1,72 @@
 {
   "id": "day17",
   "number": 17,
-  "slug": "health-and-hospital",
-  "title": "Health & Hospital",
-  "titleKo": "건강과 병원",
-  "status": "draft",
+  "slug": "asking-for-directions",
+  "title": "Asking for directions",
+  "titleKo": "길 묻기",
+  "status": "reviewed",
   "source": "generated",
   "cover": "images/days/day17.webp",
   "words": [
     {
       "id": "day17-01",
-      "korean": "진찰",
-      "romanization": "jinchal",
-      "english": "medical examination"
+      "korean": "길",
+      "romanization": "gil",
+      "english": "road or way"
     },
     {
       "id": "day17-02",
-      "korean": "처방전",
-      "romanization": "cheobangjeon",
-      "english": "prescription"
+      "korean": "지도",
+      "romanization": "jido",
+      "english": "map"
     },
     {
       "id": "day17-03",
-      "korean": "증상",
-      "romanization": "jeungsang",
-      "english": "symptom"
+      "korean": "골목",
+      "romanization": "golmok",
+      "english": "alley"
     },
     {
       "id": "day17-04",
-      "korean": "열이 나다",
-      "romanization": "yeori nada",
-      "english": "to have a fever"
+      "korean": "사거리",
+      "romanization": "sageori",
+      "english": "four-way intersection"
     },
     {
       "id": "day17-05",
-      "korean": "기침",
-      "romanization": "gichim",
-      "english": "cough"
+      "korean": "왼쪽",
+      "romanization": "oenjjok",
+      "english": "left side"
     },
     {
       "id": "day17-06",
-      "korean": "콧물",
-      "romanization": "konmul",
-      "english": "runny nose"
+      "korean": "오른쪽",
+      "romanization": "oreunjjok",
+      "english": "right side"
     },
     {
       "id": "day17-07",
-      "korean": "소화",
-      "romanization": "sohwa",
-      "english": "digestion"
+      "korean": "건너편",
+      "romanization": "geonneopyeon",
+      "english": "opposite side"
     },
     {
       "id": "day17-08",
-      "korean": "붓다",
-      "romanization": "butda",
-      "english": "to swell"
+      "korean": "직진하다",
+      "romanization": "jikjinhada",
+      "english": "to go straight ahead"
     },
     {
       "id": "day17-09",
-      "korean": "낫다",
-      "romanization": "natda",
-      "english": "to get better, recover"
+      "korean": "건너다",
+      "romanization": "geonneoda",
+      "english": "to cross"
     },
     {
       "id": "day17-10",
-      "korean": "입원하다",
-      "romanization": "ibwonhada",
-      "english": "to be hospitalized"
+      "korean": "돌다",
+      "romanization": "dolda",
+      "english": "to turn"
     }
   ]
 }

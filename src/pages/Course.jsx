@@ -34,8 +34,8 @@ export default function Course() {
 
   return (
     <div className="wrap course" ref={ref}>
-      <title>Course: all 50 days | Essential Korean Vocabulary</title>
-      <meta name="description" content={`All ${days.length} days of the course, ${allWords.length} Korean words in themed sets of ten, from dining out to dreams and the future.`} />
+      <title>{`Course: all ${days.length} days | Essential Korean Vocabulary`}</title>
+      <meta name="description" content={`All ${days.length} days of the course, ${allWords.length} Korean words in themed sets of ten.`} />
       <link rel="canonical" href={`${SITE}/course`} />
 
       <header className="page-head">

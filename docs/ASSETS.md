@@ -1,75 +1,22 @@
-# Day cover illustrations
+# Vocabulary cover illustrations
 
-The series (T14): 50 covers plus the Seoul street hero, in one consistent style
-(warm paper, ink line work, one muted red accent). Day 01 is the style reference.
-
-Days 16-50 were drawn before their word lists existed, so after the lists landed we matched
-each illustration to the draft day whose words it shows. 41 of 50 days now have a cover. The 9
-illustrations that fit no current day are kept in `docs/artwork-unassigned/` (not deployed) for
-future days. Days without a cover use the typographic layout.
+The Day 01 dining cover is the style reference for the series. Days 01–15 follow the original lesson topics. Days 16–50 use the topics below for both the artwork and the playable lessons. Each lesson has ten dictionary-reviewed entries in `src/data/days/dayNN.json`, with Hangul, romanization and English meanings. [Vocabulary review](VOCABULARY-REVIEW.md)
 
 ## Where covers appear
 
-- Day page hero (with a "Start with" word chip), parallax on scroll
-- Home day index: revealed on hover/focus
+- Day page hero beside the lesson title and progress
+- Course index and landing-page lesson previews
 - Home "Every day is a scene" section: `public/images/hero.webp`
 - Link previews: `scripts/make-images.cjs` composes `public/og/dayNN.jpg` from the cover
 
-## Covers still needed (task T24)
+Each lesson's `cover` field is relative to the site's base URL, for example `images/days/day16.webp`. Store the image in `public/images/days/` so the same JSON works on GitHub Pages and local builds.
 
-Same style and specs as below. Save as `public/images/days/dayNN.webp`, set `"cover"` in
-`src/data/days/dayNN.json`, then run `node scripts/make-images.cjs`.
-
-| Day | Topic | Prompt (after the shared style) |
-|-----|-------|---------------------------------|
-| 23 | Emotions (감정) | Two ceramic mugs on a low table by a window, one tipped over with a small spill, a crumpled letter and a single red maple leaf on the sill. Quiet, emotional still life. |
-| 25 | Job Hunting (취업) | A tidy desk prepared for a job application: a closed laptop, a blank résumé sheet clipped to a board, a pen, a muted red folder and a small potted plant. |
-| 26 | Office Life (직장 생활) | A Korean open-plan office corner after hours: one desk lamp on, a monitor with a blank screen, a lanyard ID card without text, a coffee cup and a stack of plain folders. |
-| 29 | Phones & Internet (휴대폰과 인터넷) | A smartphone with a blank screen lying on a wooden table, a coiled charging cable with a muted red plug, wireless earbuds in an open case and a small potted succulent. |
-| 37 | Society (사회) | A small Seoul neighborhood plaza: a bench, a few planters, a bus shelter without signs and three small figures from behind of different ages walking together. |
-| 38 | Law & Rules (법과 규칙) | A courthouse-inspired vignette without text: a balance scale on a wooden desk, a closed book with a plain cover, a muted red ribbon bookmark and a small gavel. |
-| 42 | Science (과학) | A school science bench: a microscope, two glass flasks (one with muted red liquid), a test tube rack and a small model of a planet on a stand. |
-| 43 | Economy (경제) | A neighborhood market street from a high angle with small shop awnings, one muted red, delivery boxes stacked beside a scooter, and a few coins on a counter in the foreground. No signs. |
-| 44 | Public Life (정치와 선거) | A ballot box with a plain slot on a table, a folded paper ballot beside it, a small muted red stamp and a simple wooden partition booth behind. No text or symbols. |
-
-## Assigned covers for days 16-50
-
-| Day | Topic | File |
-|-----|-------|------|
-| 16 | Weather & Seasons | `images/days/day16.webp` |
-| 17 | Health & Hospital | `images/days/day17.webp` |
-| 18 | Shopping | `images/days/day18.webp` |
-| 19 | Transportation | `images/days/day19.webp` |
-| 20 | Finding a Home | `images/days/day20.webp` |
-| 21 | Cooking | `images/days/day21.webp` |
-| 22 | Hobbies | `images/days/day22.webp` |
-| 24 | Relationships | `images/days/day24.webp` |
-| 27 | Money & Banking | `images/days/day27.webp` |
-| 28 | Technology | `images/days/day28.webp` |
-| 30 | Environment | `images/days/day30.webp` |
-| 31 | Nature | `images/days/day31.webp` |
-| 32 | Sports & Exercise | `images/days/day32.webp` |
-| 33 | The Body | `images/days/day33.webp` |
-| 34 | Appearance & Clothes | `images/days/day34.webp` |
-| 35 | Education | `images/days/day35.webp` |
-| 36 | News & Media | `images/days/day36.webp` |
-| 39 | Holidays & Traditions | `images/days/day39.webp` |
-| 40 | Food Culture | `images/days/day40.webp` |
-| 41 | The Arts | `images/days/day41.webp` |
-| 45 | Worries & Advice | `images/days/day45.webp` |
-| 46 | Time & Plans | `images/days/day46.webp` |
-| 47 | Communication | `images/days/day47.webp` |
-| 48 | Trouble on a Trip | `images/days/day48.webp` |
-| 49 | Neighborhood | `images/days/day49.webp` |
-| 50 | Dreams & Future | `images/days/day50.webp` |
+The nine WebPs in `docs/artwork-unassigned/` are historical copies from the earlier topic assignment. Their images now appear on Days 20 (post office), 23 (moving), 25 (bakery), 28 (pharmacy), 37 (pottery), 38 (cinema), 44 (pet care), 46 (hotel) and 47 (cycling).
 
 ## Specs
 
-- Size: generate at **1600 x 1000** (16:10) or larger. Crop the
-  1200 x 630 link-preview versions from these automatically, so keep the main
-  subject in the center 70%.
-- Save as: `public/images/days/day01.webp` ... `day50.webp` (PNG is fine too,
-  converted during optimization). Site hero: `public/images/hero.webp`.
+- Covers are 1600 × 1000 WebPs at `public/images/days/day01.webp` through `day50.webp`. The Seoul street illustration is at `public/images/hero.webp`.
+- The sharing cards are 1200 × 630 JPEGs under 60 KB. Run `node scripts/make-images.cjs --previews-only` after changing covers or lesson titles.
 - **No text, letters, Hangul or logos inside the image.** Titles are added in code,
   and AI-drawn Hangul is usually wrong.
 - No people's faces up close, no brand names, no flags.
@@ -81,10 +28,6 @@ Same style and specs as below. Save as `public/images/days/dayNN.webp`, set `"co
 > accent of muted seal red (#B3261E). Soft paper grain texture, subtle shadows,
 > no gradients, no glow, no neon, no text or letters anywhere. Wide 16:10
 > composition, generous empty space on the left third.
-
-## Original prompts (T14)
-
-Days 16-50 below describe the original illustration topics, not the current day titles.
 
 ## Prompts per day
 

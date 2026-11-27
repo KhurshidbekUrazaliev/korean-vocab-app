@@ -1,4 +1,4 @@
-// Runs after `vite build`. For every public route it writes dist/<route>/index.html
+// Runs after `vite build`. For every public route it writes dist/<route>.html
 // with its own title, description, canonical URL, Open Graph/Twitter tags, JSON-LD,
 // and a plain-HTML version of the content inside #root, so crawlers and link
 // previews get real content and a 200 status. React replaces that markup on load.
@@ -110,9 +110,9 @@ for (const d of days) {
           hasDefinedTerm: d.words.map((w) => ({ '@type': 'DefinedTerm', name: w.korean, alternateName: w.romanization, description: w.english, inLanguage: 'ko' })),
         },
       ],
-      body: `${nav}<main><h1>Day ${pad(d.number)}: ${esc(d.title)} <span lang="ko">${esc(d.titleKo)}</span></h1><p>${esc(description)}</p><ol>${d.words
+      body: `${nav}<main><h1>Day ${pad(d.number)}: ${esc(d.title)} <span lang="ko">${esc(d.titleKo)}</span></h1>${d.status === 'reviewed' ? '<p>Dictionary-reviewed</p>' : ''}<p>${esc(description)}</p><ol>${d.words
         .map((w) => `<li><span lang="ko">${esc(w.korean)}</span> (${esc(w.romanization)}): ${esc(w.english)}</li>`)
-        .join('')}</ol></main>`,
+        .join('')}</ol><p><a href="${SITE}/day/${d.number}/practice/flashcards">Start flashcards</a> · <a href="${SITE}/day/${d.number}/practice/choice">Start quiz</a></p></main>`,
     }),
   );
 }
@@ -176,15 +176,14 @@ writeFileSync(
 );
 
 // llms.txt
+const draftDays = days.filter((day) => day.status === 'draft').map((day) => day.number);
 writeFileSync(
   join(DIST, 'llms.txt'),
   `# ${NAME}
 
 > A free website for learning Korean vocabulary in daily sets of 10 words. ${days.length} days, ${wordCount} words. Each word has Hangul, romanization, an English meaning and audio from the device's Korean voice. Learners practice with flashcards, multiple choice (both directions), typing and listening, and missed words come back through spaced review (Leitner boxes: 1, 3, 7 and 16 days). No account is needed; progress stays in the browser.
 
-Days ${days.filter((d) => d.status === 'draft').map((d) => d.number).join(', ') || 'none'} are draft lists that are still being checked.
-
-## Days
+${draftDays.length ? `Days ${draftDays.join(', ')} are draft lists under review.\n\n` : ''}## Days
 ${days.map((d) => `- [Day ${pad(d.number)}: ${d.title} (${d.titleKo})](${SITE}/day/${d.number})`).join('\n')}
 
 ## Other pages

@@ -1,72 +1,72 @@
 {
   "id": "day42",
   "number": 42,
-  "slug": "science",
-  "title": "Science",
-  "titleKo": "과학",
-  "status": "draft",
+  "slug": "at-the-laundromat",
+  "title": "At the laundromat",
+  "titleKo": "빨래방에서",
+  "status": "reviewed",
   "source": "generated",
-  "cover": null,
+  "cover": "images/days/day42.webp",
   "words": [
     {
       "id": "day42-01",
-      "korean": "과학",
-      "romanization": "gwahak",
-      "english": "science"
+      "korean": "빨래방",
+      "romanization": "ppallaebang",
+      "english": "laundromat"
     },
     {
       "id": "day42-02",
-      "korean": "실험",
-      "romanization": "silheom",
-      "english": "experiment"
+      "korean": "세탁기",
+      "romanization": "setakgi",
+      "english": "washing machine"
     },
     {
       "id": "day42-03",
-      "korean": "연구하다",
-      "romanization": "yeonguhada",
-      "english": "to research"
+      "korean": "건조기",
+      "romanization": "geonjogi",
+      "english": "clothes dryer"
     },
     {
       "id": "day42-04",
-      "korean": "발견하다",
-      "romanization": "balgyeonhada",
-      "english": "to discover"
+      "korean": "세제",
+      "romanization": "seje",
+      "english": "laundry detergent"
     },
     {
       "id": "day42-05",
-      "korean": "발명",
-      "romanization": "balmyeong",
-      "english": "invention"
+      "korean": "섬유 유연제",
+      "romanization": "seomyu yuyeonje",
+      "english": "fabric softener"
     },
     {
       "id": "day42-06",
-      "korean": "우주",
-      "romanization": "uju",
-      "english": "space, universe"
+      "korean": "탈수",
+      "romanization": "talsu",
+      "english": "spin-drying (laundry)"
     },
     {
       "id": "day42-07",
-      "korean": "행성",
-      "romanization": "haengseong",
-      "english": "planet"
+      "korean": "헹구다",
+      "romanization": "hengguda",
+      "english": "to rinse"
     },
     {
       "id": "day42-08",
-      "korean": "원인",
-      "romanization": "wonin",
-      "english": "cause"
+      "korean": "널다",
+      "romanization": "neolda",
+      "english": "to hang laundry out to dry"
     },
     {
       "id": "day42-09",
-      "korean": "결과",
-      "romanization": "gyeolgwa",
-      "english": "result"
+      "korean": "개다",
+      "romanization": "gaeda",
+      "english": "to fold clothes"
     },
     {
       "id": "day42-10",
-      "korean": "증명하다",
-      "romanization": "jeungmyeonghada",
-      "english": "to prove"
+      "korean": "얼룩",
+      "romanization": "eolluk",
+      "english": "stain"
     }
   ]
 }

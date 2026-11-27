@@ -1,72 +1,72 @@
 {
   "id": "day19",
   "number": 19,
-  "slug": "transportation",
-  "title": "Transportation",
-  "titleKo": "교통",
-  "status": "draft",
+  "slug": "clothes-shopping",
+  "title": "Clothes shopping",
+  "titleKo": "옷 사기",
+  "status": "reviewed",
   "source": "generated",
   "cover": "images/days/day19.webp",
   "words": [
     {
       "id": "day19-01",
-      "korean": "환승",
-      "romanization": "hwanseung",
-      "english": "transfer (between lines)"
+      "korean": "옷",
+      "romanization": "ot",
+      "english": "clothes"
     },
     {
       "id": "day19-02",
-      "korean": "정류장",
-      "romanization": "jeongnyujang",
-      "english": "bus stop"
+      "korean": "바지",
+      "romanization": "baji",
+      "english": "trousers"
     },
     {
       "id": "day19-03",
-      "korean": "막차",
-      "romanization": "makcha",
-      "english": "last bus or train"
+      "korean": "치마",
+      "romanization": "chima",
+      "english": "skirt"
     },
     {
       "id": "day19-04",
-      "korean": "요금",
-      "romanization": "yogeum",
-      "english": "fare, fee"
+      "korean": "셔츠",
+      "romanization": "syeocheu",
+      "english": "shirt"
     },
     {
       "id": "day19-05",
-      "korean": "교통카드",
-      "romanization": "gyotongkadeu",
-      "english": "transit card"
+      "korean": "외투",
+      "romanization": "oetu",
+      "english": "overcoat"
     },
     {
       "id": "day19-06",
-      "korean": "갈아타다",
-      "romanization": "garatada",
-      "english": "to change (buses, trains)"
+      "korean": "소매",
+      "romanization": "somae",
+      "english": "sleeve"
     },
     {
       "id": "day19-07",
-      "korean": "출퇴근",
-      "romanization": "chultoegeun",
-      "english": "commute"
+      "korean": "탈의실",
+      "romanization": "taruisil",
+      "english": "changing room"
     },
     {
       "id": "day19-08",
-      "korean": "붐비다",
-      "romanization": "bumbida",
-      "english": "to be crowded"
+      "korean": "거울",
+      "romanization": "geoul",
+      "english": "mirror"
     },
     {
       "id": "day19-09",
-      "korean": "막히다",
-      "romanization": "makida",
-      "english": "to be blocked, jammed"
+      "korean": "크기",
+      "romanization": "keugi",
+      "english": "size"
     },
     {
       "id": "day19-10",
-      "korean": "면허증",
-      "romanization": "myeonheojeung",
-      "english": "license"
+      "korean": "입어 보다",
+      "romanization": "ibeo boda",
+      "english": "to try on clothing"
     }
   ]
 }

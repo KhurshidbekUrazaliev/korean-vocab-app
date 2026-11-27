@@ -73,6 +73,7 @@ export default function Day() {
             <span aria-hidden="true">/</span>
             <span>Day {pad(day.number)} of {PLANNED_DAYS}</span>
             {day.status === 'draft' && <span className="badge">Draft list</span>}
+            {day.status === 'reviewed' && <span className="badge">Dictionary-reviewed</span>}
           </p>
           <h1 className="day-hero__title">
             <span className="day-hero__ko ko" lang="ko" data-long={day.titleKo.replace(/ /g, '').length > 4}>{day.titleKo}</span>

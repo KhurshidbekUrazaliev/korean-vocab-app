@@ -1,8 +1,8 @@
 import { useSyncExternalStore } from 'react';
-import { loadProgress, saveProgress, localDateKey } from '../lib/progress.js';
+import { emptyProgress, loadProgress, saveProgress, localDateKey, PROGRESS_KEY, LEGACY_KEY } from '../lib/progress.js';
 import { schedule } from '../lib/srs.js';
 
-let state = typeof window === 'undefined' ? { version: 1, words: {}, days: {}, activity: [], daily: {} } : loadProgress();
+let state = typeof window === 'undefined' ? emptyProgress() : loadProgress();
 const listeners = new Set();
 
 function set(next) {
@@ -45,7 +45,7 @@ export const progressStore = {
 
 if (typeof window !== 'undefined') {
   window.addEventListener('storage', (e) => {
-    if (e.key === 'kv.progress.v1') {
+    if (e.key === PROGRESS_KEY || e.key === LEGACY_KEY || e.key === null) {
       state = loadProgress();
       listeners.forEach((l) => l());
     }

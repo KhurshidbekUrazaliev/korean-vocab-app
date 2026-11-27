@@ -1,72 +1,72 @@
 {
   "id": "day31",
   "number": 31,
-  "slug": "nature",
-  "title": "Nature",
-  "titleKo": "자연",
-  "status": "draft",
+  "slug": "at-the-beach",
+  "title": "At the beach",
+  "titleKo": "해변에서",
+  "status": "reviewed",
   "source": "generated",
   "cover": "images/days/day31.webp",
   "words": [
     {
       "id": "day31-01",
-      "korean": "자연",
-      "romanization": "jayeon",
-      "english": "nature"
+      "korean": "해변",
+      "romanization": "haebyeon",
+      "english": "beach"
     },
     {
       "id": "day31-02",
-      "korean": "바위",
-      "romanization": "bawi",
-      "english": "rock"
+      "korean": "모래",
+      "romanization": "morae",
+      "english": "sand"
     },
     {
       "id": "day31-03",
-      "korean": "숲",
-      "romanization": "sup",
-      "english": "forest"
-    },
-    {
-      "id": "day31-04",
-      "korean": "폭포",
-      "romanization": "pokpo",
-      "english": "waterfall"
-    },
-    {
-      "id": "day31-05",
-      "korean": "들판",
-      "romanization": "deulpan",
-      "english": "field, plain"
-    },
-    {
-      "id": "day31-06",
-      "korean": "동굴",
-      "romanization": "donggul",
-      "english": "cave"
-    },
-    {
-      "id": "day31-07",
-      "korean": "섬",
-      "romanization": "seom",
-      "english": "island"
-    },
-    {
-      "id": "day31-08",
       "korean": "파도",
       "romanization": "pado",
       "english": "wave"
     },
     {
+      "id": "day31-04",
+      "korean": "바닷물",
+      "romanization": "badanmul",
+      "english": "seawater"
+    },
+    {
+      "id": "day31-05",
+      "korean": "조개껍데기",
+      "romanization": "jogaekkeopdegi",
+      "english": "seashell"
+    },
+    {
+      "id": "day31-06",
+      "korean": "수영복",
+      "romanization": "suyeongbok",
+      "english": "swimsuit"
+    },
+    {
+      "id": "day31-07",
+      "korean": "파라솔",
+      "romanization": "parasol",
+      "english": "beach umbrella"
+    },
+    {
+      "id": "day31-08",
+      "korean": "밀물",
+      "romanization": "milmul",
+      "english": "incoming tide"
+    },
+    {
       "id": "day31-09",
-      "korean": "노을",
-      "romanization": "noeul",
-      "english": "sunset glow"
+      "korean": "썰물",
+      "romanization": "sseolmul",
+      "english": "outgoing tide"
     },
     {
       "id": "day31-10",
-      "korean": "경치",
-      "romanization": "gyeongchi",
-      "english": "view, scenery"
+      "korean": "물놀이",
+      "romanization": "mullori",
+      "english": "playing in the water"
     }
   ]
 }

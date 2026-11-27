@@ -1,4 +1,4 @@
-import { lazy, Suspense, useMemo, useRef, useState } from 'react';
+import { lazy, Suspense, useCallback, useMemo, useRef, useState } from 'react';
 import { TLink } from '../components/Motion.jsx';
 import { RevealText, RevealGroup } from '../components/Reveal.jsx';
 import { SpeakButton } from '../components/SpeakButton.jsx';
@@ -41,6 +41,8 @@ function Hero() {
   const showcaseKo = useMemo(() => showcase.map((w) => w.korean), [showcase]);
   const [i, setI] = useState(0);
   const word = showcase[i];
+  const [useStillHero, setUseStillHero] = useState(reducedMotion);
+  const showStillHero = useCallback(() => setUseStillHero(true), []);
 
   useGSAP(
     () => {
@@ -87,9 +89,13 @@ function Hero() {
       </div>
 
       <div className="hero__stage">
-        <Suspense fallback={<div className="hero__field" />}>
-          <HangulField className="hero__field" words={showcaseKo} onWordChange={setI} />
-        </Suspense>
+        {useStillHero ? (
+          <div className="hero__still ko" lang="ko" aria-hidden="true">{word.korean}</div>
+        ) : (
+          <Suspense fallback={<div className="hero__field" />}>
+            <HangulField className="hero__field" words={showcaseKo} onWordChange={setI} onUnavailable={showStillHero} />
+          </Suspense>
+        )}
         <div className="hero__caption" aria-live="polite">
           <span className="ko" lang="ko">{word.korean}</span>
           <span className="hero__rom">{word.romanization}</span>
@@ -103,7 +109,7 @@ function Hero() {
           <span className="badge badge--accent">Day {pad(word.dayNumber)}</span>
           <span>{days[word.dayNumber - 1].title}</span>
         </div>
-        <p className="hero__hint" aria-hidden="true">Move through the word</p>
+        {!useStillHero && <p className="hero__hint" aria-hidden="true">Move through the word</p>}
       </div>
     </section>
   );

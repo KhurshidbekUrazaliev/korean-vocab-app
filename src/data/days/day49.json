@@ -1,72 +1,72 @@
 {
   "id": "day49",
   "number": 49,
-  "slug": "neighborhood",
-  "title": "Neighborhood",
-  "titleKo": "동네",
-  "status": "draft",
+  "slug": "household-repairs",
+  "title": "Household repairs",
+  "titleKo": "집수리",
+  "status": "reviewed",
   "source": "generated",
   "cover": "images/days/day49.webp",
   "words": [
     {
       "id": "day49-01",
-      "korean": "동네",
-      "romanization": "dongne",
-      "english": "neighborhood"
+      "korean": "집수리",
+      "romanization": "jipsuri",
+      "english": "home repairs"
     },
     {
       "id": "day49-02",
-      "korean": "이웃",
-      "romanization": "iut",
-      "english": "neighbor"
+      "korean": "공구함",
+      "romanization": "gongguham",
+      "english": "toolbox"
     },
     {
       "id": "day49-03",
-      "korean": "편의점",
-      "romanization": "pyeonuijeom",
-      "english": "convenience store"
+      "korean": "망치",
+      "romanization": "mangchi",
+      "english": "hammer"
     },
     {
       "id": "day49-04",
-      "korean": "세탁소",
-      "romanization": "setakso",
-      "english": "dry cleaner"
+      "korean": "드라이버",
+      "romanization": "deuraibeo",
+      "english": "screwdriver"
     },
     {
       "id": "day49-05",
-      "korean": "약국",
-      "romanization": "yakguk",
-      "english": "pharmacy"
+      "korean": "나사",
+      "romanization": "nasa",
+      "english": "screw"
     },
     {
       "id": "day49-06",
-      "korean": "골목",
-      "romanization": "golmok",
-      "english": "alley, side street"
+      "korean": "못",
+      "romanization": "mot",
+      "english": "nail"
     },
     {
       "id": "day49-07",
-      "korean": "공원",
-      "romanization": "gongwon",
-      "english": "park"
+      "korean": "경첩",
+      "romanization": "gyeongcheop",
+      "english": "hinge"
     },
     {
       "id": "day49-08",
-      "korean": "산책하다",
-      "romanization": "sanchaekada",
-      "english": "to take a walk"
+      "korean": "문고리",
+      "romanization": "mungori",
+      "english": "door handle"
     },
     {
       "id": "day49-09",
-      "korean": "가깝다",
-      "romanization": "gakkapda",
-      "english": "to be close, near"
+      "korean": "조이다",
+      "romanization": "joida",
+      "english": "to tighten"
     },
     {
       "id": "day49-10",
-      "korean": "조용하다",
-      "romanization": "joyonghada",
-      "english": "to be quiet"
+      "korean": "고치다",
+      "romanization": "gochida",
+      "english": "to repair"
     }
   ]
 }

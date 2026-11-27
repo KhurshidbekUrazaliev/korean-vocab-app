@@ -1,72 +1,72 @@
 {
   "id": "day36",
   "number": 36,
-  "slug": "news-and-media",
-  "title": "News & Media",
-  "titleKo": "뉴스와 언론",
-  "status": "draft",
+  "slug": "photography",
+  "title": "Photography",
+  "titleKo": "사진 촬영",
+  "status": "reviewed",
   "source": "generated",
   "cover": "images/days/day36.webp",
   "words": [
     {
       "id": "day36-01",
-      "korean": "기사",
-      "romanization": "gisa",
-      "english": "article"
+      "korean": "사진기",
+      "romanization": "sajingi",
+      "english": "camera"
     },
     {
       "id": "day36-02",
-      "korean": "기자",
-      "romanization": "gija",
-      "english": "reporter, journalist"
+      "korean": "렌즈",
+      "romanization": "renjeu",
+      "english": "lens"
     },
     {
       "id": "day36-03",
-      "korean": "방송",
-      "romanization": "bangsong",
-      "english": "broadcast"
+      "korean": "필름",
+      "romanization": "pilleum",
+      "english": "film for a camera"
     },
     {
       "id": "day36-04",
-      "korean": "보도하다",
-      "romanization": "bodohada",
-      "english": "to report (news)"
+      "korean": "삼각대",
+      "romanization": "samgakdae",
+      "english": "tripod"
     },
     {
       "id": "day36-05",
-      "korean": "신문",
-      "romanization": "sinmun",
-      "english": "newspaper"
+      "korean": "셔터",
+      "romanization": "syeoteo",
+      "english": "shutter"
     },
     {
       "id": "day36-06",
-      "korean": "사건",
-      "romanization": "sageon",
-      "english": "incident, case"
+      "korean": "초점",
+      "romanization": "chojeom",
+      "english": "focus"
     },
     {
       "id": "day36-07",
-      "korean": "사고",
-      "romanization": "sago",
-      "english": "accident"
+      "korean": "구도",
+      "romanization": "gudo",
+      "english": "composition of a picture"
     },
     {
       "id": "day36-08",
-      "korean": "인터뷰",
-      "romanization": "inteobyu",
-      "english": "interview (media)"
+      "korean": "배경",
+      "romanization": "baegyeong",
+      "english": "background"
     },
     {
       "id": "day36-09",
-      "korean": "광고",
-      "romanization": "gwanggo",
-      "english": "advertisement"
+      "korean": "촬영하다",
+      "romanization": "chwaryeonghada",
+      "english": "to shoot a photo or video"
     },
     {
       "id": "day36-10",
-      "korean": "정보",
-      "romanization": "jeongbo",
-      "english": "information"
+      "korean": "인화하다",
+      "romanization": "inhwahada",
+      "english": "to print a photograph"
     }
   ]
 }

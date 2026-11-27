@@ -1,72 +1,72 @@
 {
   "id": "day28",
   "number": 28,
-  "slug": "technology",
-  "title": "Technology",
-  "titleKo": "기술",
-  "status": "draft",
+  "slug": "at-the-pharmacy",
+  "title": "At the pharmacy",
+  "titleKo": "약국에서",
+  "status": "reviewed",
   "source": "generated",
   "cover": "images/days/day28.webp",
   "words": [
     {
       "id": "day28-01",
-      "korean": "기술",
-      "romanization": "gisul",
-      "english": "technology, skill"
+      "korean": "약국",
+      "romanization": "yakguk",
+      "english": "pharmacy"
     },
     {
       "id": "day28-02",
-      "korean": "발전하다",
-      "romanization": "baljeonhada",
-      "english": "to develop, advance"
+      "korean": "약사",
+      "romanization": "yaksa",
+      "english": "pharmacist"
     },
     {
       "id": "day28-03",
-      "korean": "개발",
-      "romanization": "gaebal",
-      "english": "development"
+      "korean": "알약",
+      "romanization": "allyak",
+      "english": "pill"
     },
     {
       "id": "day28-04",
-      "korean": "편리하다",
-      "romanization": "pyeollihada",
-      "english": "to be convenient"
+      "korean": "연고",
+      "romanization": "yeongo",
+      "english": "ointment"
     },
     {
       "id": "day28-05",
-      "korean": "기능",
-      "romanization": "gineung",
-      "english": "function, feature"
+      "korean": "진통제",
+      "romanization": "jintongje",
+      "english": "pain reliever"
     },
     {
       "id": "day28-06",
-      "korean": "설치하다",
-      "romanization": "seolchihada",
-      "english": "to install"
+      "korean": "소화제",
+      "romanization": "sohwaje",
+      "english": "digestive medicine"
     },
     {
       "id": "day28-07",
-      "korean": "고장 나다",
-      "romanization": "gojang nada",
-      "english": "to break down"
+      "korean": "기침약",
+      "romanization": "gichimnyak",
+      "english": "cough medicine"
     },
     {
       "id": "day28-08",
-      "korean": "수리하다",
-      "romanization": "surihada",
-      "english": "to repair"
+      "korean": "복용하다",
+      "romanization": "bogyonghada",
+      "english": "to take medicine"
     },
     {
       "id": "day28-09",
-      "korean": "인공지능",
-      "romanization": "ingongjineung",
-      "english": "artificial intelligence"
+      "korean": "식전",
+      "romanization": "sikjeon",
+      "english": "before a meal"
     },
     {
       "id": "day28-10",
-      "korean": "로봇",
-      "romanization": "robot",
-      "english": "robot"
+      "korean": "식후",
+      "romanization": "sikhu",
+      "english": "after a meal"
     }
   ]
 }
