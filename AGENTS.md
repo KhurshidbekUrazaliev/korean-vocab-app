@@ -134,7 +134,8 @@ Status: `todo` · `doing` · `review` · `done` · `blocked`
 | T11 | sitemap, robots (AI bots), llms.txt, 404.html, OG images per day | Claude | done |
 | T12 | GitHub Actions: `npm ci && npm test && npm run build` on PRs; deploy `dist` to Pages on push to `main` (actions/deploy-pages or keep gh-pages branch, document which) | **Codex** | todo |
 | T13 | Days 16-50 | Claude | done as drafts. Owner to verify or send real lists |
-| T14 | Day cover images via Gemini (`docs/ASSETS.md`), then show on Day page hero + OG | Owner → Claude | optional |
+| T14 | Day cover images (`docs/ASSETS.md`) | Codex, integrated by Claude | done: 41/50 days have covers, shown on Day hero, card hover, OG images; hero image on Home |
+| T24 | Covers for the 9 days without one (list + prompts in `docs/ASSETS.md`), same style, then set `cover` in the day JSON and rerun `scripts/make-images.cjs` | **Codex** | todo |
 | T15 | Example sentences per word | Claude | todo |
 | T16 | Privacy + Terms | Claude | done, owner contact TODOs remain |
 | T17 | Accessibility: Codex adds Playwright + axe-core checks for `/`, `/day/1`, every practice mode, `/review`, 404 (both themes, reduced motion) to CI; Claude fixes findings | **Codex** + Claude | todo |
@@ -151,7 +152,7 @@ Status: `todo` · `doing` · `review` · `done` · `blocked`
 |-------|------|
 | Claude | `AGENTS.md` structure, `src/data/**`, `src/styles/**`, `src/components/**`, `src/pages/**`, `src/hooks/**`, `src/main.jsx`, `src/App.jsx`, `index.html`, `docs/**`, `README.md`, `scripts/postbuild.js` |
 | Codex | `.github/**`, `src/lib/**` (engine changes must keep the contract in section 3), `**/__tests__/**`, `e2e/**`, `vite.config.*`, `scripts/make-images.cjs`, `public/og/**`, `package.json` + lockfile (adding deps is fine, tell Claude in section 9) |
-| Owner / Gemini | `public/images/**` |
+| Codex | `public/images/**`, `docs/artwork-unassigned/**` |
 
 Everyone may edit their own task rows and append to the status log.
 
@@ -165,14 +166,13 @@ Everyone may edit their own task rows and append to the status log.
 | 2026-11-27 | Cursor removed from the project (owner). Claude takes all UI tasks; Codex keeps tooling, engine, SEO, CI | Owner |
 | 2026-11-27 | Plain CSS + tokens instead of Tailwind (fewer deps, design needs custom motion styles) | Claude |
 | 2026-11-27 | Days 16-50 drafted by Claude so the course is complete; marked draft until checked | Claude (owner asked to finish without questions) |
-| 2026-11-27 | No background video. Motion and the WebGL hero carry the visual weight; photos only if real images arrive (T14) | Claude |
+| 2026-11-27 | No background video. Motion, the WebGL hero and Codex's illustrations carry the visual weight | Claude |
 
 ## 8. Open questions for the owner
 
 - **Q1** Days 16-50 are drafts. Send your real lists, or confirm the drafts after checking.
 - **Q2** "Conversion" means what: sign-ups, paid plan, or daily return? (Paid plan = backend + payment provider = new plan section.)
 - **Q3** Stay on GitHub Pages, or move to Vercel/Netlify (needed if we add accounts/payments)?
-- **Q4** Want Gemini cover images per day (T14)? Prompts are in docs/ASSETS.md.
 - **Q5** Site name and domain. Current candidates: "한국어 공부", "Essential Korean Vocabulary".
 - **Q6** Name/contact for footer, Privacy, Terms, and structured data.
 
@@ -194,3 +194,4 @@ _(format: `YYYY-MM-DD HH:MM UTC | agent | task | note`)_
 - 2026-11-27 15:03 UTC | Codex | T14 | Completed 50 covers and the site hero. Added the hero and the 15 available lesson covers to the home page. Days 16-50 have asset paths and provisional art topics in docs/ASSETS.md pending T13.
 - 2026-11-27 15:07 UTC | Codex | T14 | Deployed to GitHub Pages (gh-pages a747e19). Verified the public homepage, JavaScript, CSS and all 51 image hashes against the tested production build. Checked the lesson menu, dark mode and Day 01 navigation on desktop and mobile.
 - 2026-11-27 | Claude | T01-T11,T13,T16,T18 | Full redesign built and tested (14 unit tests). 50 days live. Deployed to GitHub Pages. Codex: start with T12, then T21, T17, T20.
+- 2026-11-27 | Claude | T14 merge | Merged codex/T14-vocabulary-artwork. Dropped its edits to the old CRA files. Matched covers 16-50 to the draft days by content (mapping in docs/ASSETS.md), 9 spare covers moved to docs/artwork-unassigned/. Covers shown on Day hero, card hover, OG images (now JPEG); street hero used in a scroll section on Home. Redeployed.

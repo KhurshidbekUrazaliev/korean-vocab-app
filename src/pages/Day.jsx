@@ -32,7 +32,11 @@ export default function Day() {
       gsap
         .timeline({ delay: 0.15 })
         .from(split.chars, { yPercent: 100, opacity: 0, stagger: 0.08, duration: 1.4 })
-        .from('.day-hero__meta > *', { y: 24, opacity: 0, stagger: 0.06 }, 0.3);
+        .from('.day-hero__meta > *', { y: 24, opacity: 0, stagger: 0.06 }, 0.3)
+        .from('.day-hero__cover', { clipPath: 'inset(100% 0% 0% 0% round 28px)', duration: 1.4 }, 0.2)
+        .from('.day-hero__cover img', { scale: 1.25, duration: 1.8 }, 0.2)
+        .from('.day-hero__chip', { y: 20, opacity: 0, duration: 0.8 }, 1);
+      gsap.to('.day-hero__cover img', { yPercent: 8, ease: 'none', scrollTrigger: { trigger: '.day-hero', start: 'top top', end: 'bottom top', scrub: true } });
       gsap.to('.day-hero__num', { yPercent: 18, ease: 'none', scrollTrigger: { trigger: '.day-hero', start: 'top top', end: 'bottom top', scrub: true } });
       return () => split.revert();
     },
@@ -56,7 +60,7 @@ export default function Day() {
       <meta name="description" content={description} />
       <link rel="canonical" href={`${SITE}/day/${day.number}`} />
 
-      <section className="day-hero wrap">
+      <section className={`day-hero wrap ${day.cover ? 'day-hero--cover' : ''}`}>
         <p className="day-hero__num" aria-hidden="true">{pad(day.number)}</p>
         <div className="day-hero__meta">
           <p className="eyebrow">Day {pad(day.number)} of {PLANNED_DAYS}{day.status === 'draft' && ' · Draft list'}</p>
@@ -75,6 +79,15 @@ export default function Day() {
             <a className="btn btn--ghost" href="#modes">Other practice modes</a>
           </div>
         </div>
+        {day.cover && (
+          <figure className="day-hero__cover">
+            <img src={`${import.meta.env.BASE_URL}${day.cover}`} alt="" width="1600" height="1000" fetchPriority="high" />
+            <figcaption className="day-hero__chip chip">
+              <SpeakButton text={day.words[0].korean} size={16} />
+              <span>Start with <b className="ko" lang="ko">{day.words[0].korean}</b> · {day.words[0].english.split(',')[0]}</span>
+            </figcaption>
+          </figure>
+        )}
       </section>
 
       <section className="words wrap" aria-labelledby="words-title">

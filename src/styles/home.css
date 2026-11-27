@@ -198,6 +198,56 @@
   box-shadow: 0 0 0 1px var(--ink) inset;
 }
 
+/* ---------- Scene ---------- */
+.scene {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  align-items: center;
+  overflow: hidden;
+  background: #f6efe6;
+  color: #141511;
+}
+.scene__frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.scene__frame img {
+  width: 100%;
+  height: 112%;
+  object-fit: cover;
+  object-position: 72% 50%;
+}
+.scene__copy {
+  position: relative;
+  display: grid;
+  gap: var(--s-5);
+  justify-items: start;
+}
+.scene__copy .h2 {
+  max-width: 11ch;
+}
+.scene__copy .lede {
+  max-width: 34ch;
+  color: #55564e;
+}
+.scene .eyebrow {
+  color: #55564e;
+}
+.scene .eyebrow::before {
+  background: #141511;
+}
+@media (max-width: 760px) {
+  .scene {
+    align-items: start;
+    padding-top: var(--s-9);
+  }
+  .scene__frame img {
+    object-position: 85% 100%;
+  }
+}
+
 /* ---------- Modes ---------- */
 .modes {
   min-height: 100svh;
@@ -533,7 +583,31 @@ a.day-card:hover::before,
 a.day-card:focus-visible::before {
   clip-path: circle(150% at 100% 100%);
 }
+.day-card__img {
+  position: absolute;
+  inset: var(--s-2) var(--s-2) auto;
+  width: calc(100% - var(--s-4));
+  height: 50%;
+  object-fit: cover;
+  object-position: 78% 50%;
+  border-radius: 10px;
+  background: #f6efe6;
+  opacity: 0;
+  transform: scale(1.08) translateY(6px);
+  transition: opacity var(--t-med) var(--ease-out), transform 600ms var(--ease-out);
+  pointer-events: none;
+}
+a.day-card--img:hover .day-card__img,
+a.day-card--img:focus-visible .day-card__img {
+  opacity: 1;
+  transform: none;
+}
+a.day-card--img:hover .day-card__top,
+a.day-card--img:focus-visible .day-card__top {
+  opacity: 0;
+}
 .day-card__top {
+  transition: opacity var(--t-fast);
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
