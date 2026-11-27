@@ -7,6 +7,8 @@ import Home from './pages/Home.jsx';
 import Day from './pages/Day.jsx';
 import Practice from './pages/Practice.jsx';
 import Review from './pages/Review.jsx';
+import Course from './pages/Course.jsx';
+import Progress from './pages/Progress.jsx';
 import { Privacy, Terms } from './pages/Legal.jsx';
 import NotFound from './pages/NotFound.jsx';
 
@@ -17,7 +19,9 @@ const router = createBrowserRouter(
       children: [
         { path: '/', element: <Home /> },
         { path: '/day/:n', element: <Day /> },
+        { path: '/course', element: <Course /> },
         { path: '/review', element: <Review /> },
+        { path: '/progress', element: <Progress /> },
         { path: '/privacy', element: <Privacy /> },
         { path: '/terms', element: <Terms /> },
         { path: '*', element: <NotFound /> },

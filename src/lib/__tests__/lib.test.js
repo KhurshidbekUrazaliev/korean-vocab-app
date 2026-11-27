@@ -1,9 +1,9 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { shuffle } from '../shuffle.js';
 import { buildMultipleChoice, checkTyped } from '../quiz.js';
 import { schedule, getDueWords, INTERVAL_DAYS } from '../srs.js';
 import { getStreak } from '../streak.js';
-import { loadProgress, saveProgress, emptyProgress, PROGRESS_KEY } from '../progress.js';
+import { loadProgress, saveProgress, emptyProgress, localDateKey, PROGRESS_KEY } from '../progress.js';
 
 const words = [
   { id: 'a', korean: '외식', english: 'dining out' },
@@ -112,7 +112,7 @@ describe('progress storage', () => {
     storage.setItem('kv.progress.v1', legacy);
     const migrated = loadProgress(storage);
     expect(migrated).toEqual({
-      version: 2, activity, days: { day15: score },
+      version: 2, activity, daily: {}, days: { day15: score },
       words: { 'day15-10': state, 'day27-07': state }, // 증상 moved from Day 17 to Day 27
     });
     expect(storage.getItem('kv.progress.v1')).toBe(legacy);
@@ -128,5 +128,69 @@ describe('progress storage', () => {
       setItem: () => { throw new Error('Storage full'); },
     };
     expect(loadProgress(storage)).toEqual({ ...emptyProgress(), activity: ['2026-11-21'] });
+  });
+  it('combines both live curricula, including daily goals, without double-counting shared history', () => {
+    const storage = mem();
+    const first = '2026-11-26';
+    const second = '2026-11-27';
+    const earlier = { box: 5, dueAt: '2026-12-12T12:00:00Z', seen: 6, correctCount: 5 };
+    const latest = { box: 1, dueAt: '2026-11-27T12:00:00Z', seen: 5, correctCount: 3 };
+    const prDay = { best: 80, modes: ['flashcards'], lastAt: first + 'T12:00:00Z' };
+    const mainDay = { best: 60, modes: ['choice'], lastAt: second + 'T12:00:00Z' };
+    const main = JSON.stringify({
+      version: 1, activity: [first, second], daily: { [second]: 12 },
+      days: { day01: mainDay, day16: mainDay }, words: { 'day17-03': latest, 'day16-01': latest },
+    });
+    storage.setItem('kv.progress.v1', main);
+    // The previous PR deployment saved the revised word positions before daily counts existed.
+    storage.setItem(PROGRESS_KEY, JSON.stringify({
+      version: 2, activity: [first], days: { day01: prDay, day16: prDay },
+      words: { 'day27-07': earlier, 'day16-01': earlier }, marker: 'existing metadata',
+    }));
+    const combined = loadProgress(storage);
+    expect(combined).toEqual({
+      version: 2, activity: [first, second], daily: { [second]: 12 }, marker: 'existing metadata',
+      days: {
+        day01: { best: 80, modes: ['flashcards', 'choice'], lastAt: mainDay.lastAt },
+        day16: prDay,
+      },
+      words: { 'day27-07': { ...latest, seen: 6, correctCount: 5 }, 'day16-01': earlier },
+    });
+    expect(loadProgress(storage)).toEqual(combined);
+    expect(storage.getItem('kv.progress.v1')).toBe(main);
+  });
+  it('keeps revised progress when archived data is malformed and still imports intact daily counts', () => {
+    const storage = mem();
+    const word = { seen: 3, correctCount: 2, box: 1, dueAt: '2026-11-26T12:00:00Z' };
+    const day = { best: 90, modes: ['typing'] };
+    const current = { ...emptyProgress(), words: { 'day01-01': word }, days: { day01: day } };
+    saveProgress(current, storage);
+    storage.setItem('kv.progress.v1', '{broken');
+    expect(loadProgress(storage)).toEqual(current);
+    storage.setItem('kv.progress.v1', JSON.stringify({
+      version: 1, activity: {}, daily: { '2026-11-27': 4, '2026-11-28': 'oops' },
+      days: { day01: { best: 80, modes: false } }, words: { 'day01-01': { ...word, seen: 'oops' } },
+    }));
+    expect(loadProgress(storage)).toEqual({ ...current, daily: { '2026-11-27': 4 } });
+  });
+  it('continues recording answers, daily goals and modes on the revised word IDs', async () => {
+    const storage = mem();
+    const today = localDateKey();
+    storage.setItem('kv.progress.v1', JSON.stringify({ version: 1, daily: { [today]: 7 } }));
+    vi.stubGlobal('window', new EventTarget());
+    vi.stubGlobal('localStorage', storage);
+    try {
+      const { progressStore } = await import('../../hooks/useProgress.js');
+      progressStore.recordAnswer('day16-01', true);
+      progressStore.recordSession('day16', 'flashcards', 8, 10);
+      expect(loadProgress(storage)).toEqual(progressStore.get());
+      expect(progressStore.get()).toMatchObject({
+        version: 2, words: { 'day16-01': { seen: 1, correctCount: 1 } },
+        activity: [today], daily: { [today]: 8 },
+        days: { day16: { best: 80, modes: ['flashcards'] } },
+      });
+    } finally {
+      vi.unstubAllGlobals();
+    }
   });
 });

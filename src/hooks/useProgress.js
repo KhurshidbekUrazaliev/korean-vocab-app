@@ -1,5 +1,5 @@
 import { useSyncExternalStore } from 'react';
-import { emptyProgress, loadProgress, saveProgress, localDateKey, PROGRESS_KEY } from '../lib/progress.js';
+import { emptyProgress, loadProgress, saveProgress, localDateKey, PROGRESS_KEY, LEGACY_KEY } from '../lib/progress.js';
 import { schedule } from '../lib/srs.js';
 
 let state = typeof window === 'undefined' ? emptyProgress() : loadProgress();
@@ -23,6 +23,7 @@ export const progressStore = {
       ...state,
       words: { ...state.words, [wordId]: schedule(state.words[wordId], correct) },
       activity: state.activity.includes(today) ? state.activity : [...state.activity, today],
+      daily: { ...state.daily, [today]: (state.daily?.[today] ?? 0) + 1 },
     });
   },
   recordSession(dayId, mode, score, total) {
@@ -44,7 +45,7 @@ export const progressStore = {
 
 if (typeof window !== 'undefined') {
   window.addEventListener('storage', (e) => {
-    if (e.key === PROGRESS_KEY || e.key === null) {
+    if (e.key === PROGRESS_KEY || e.key === LEGACY_KEY || e.key === null) {
       state = loadProgress();
       listeners.forEach((l) => l());
     }
