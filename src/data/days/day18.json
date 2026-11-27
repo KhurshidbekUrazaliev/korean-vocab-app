@@ -1,72 +1,72 @@
 {
   "id": "day18",
   "number": 18,
-  "slug": "shopping",
-  "title": "Shopping",
-  "titleKo": "쇼핑",
+  "slug": "at-the-traditional-market",
+  "title": "At the traditional market",
+  "titleKo": "전통 시장에서",
   "status": "draft",
   "source": "generated",
   "cover": "images/days/day18.webp",
   "words": [
     {
       "id": "day18-01",
-      "korean": "할인",
-      "romanization": "harin",
-      "english": "discount"
+      "korean": "시장",
+      "romanization": "sijang",
+      "english": "market"
     },
     {
       "id": "day18-02",
-      "korean": "영수증",
-      "romanization": "yeongsujeung",
-      "english": "receipt"
+      "korean": "상인",
+      "romanization": "sangin",
+      "english": "merchant"
     },
     {
       "id": "day18-03",
-      "korean": "교환하다",
-      "romanization": "gyohwanhada",
-      "english": "to exchange"
+      "korean": "가게",
+      "romanization": "gage",
+      "english": "shop"
     },
     {
       "id": "day18-04",
-      "korean": "환불",
-      "romanization": "hwanbul",
-      "english": "refund"
+      "korean": "가격",
+      "romanization": "gagyeok",
+      "english": "price"
     },
     {
       "id": "day18-05",
-      "korean": "품절",
-      "romanization": "pumjeol",
-      "english": "sold out"
+      "korean": "거스름돈",
+      "romanization": "geoseureumdon",
+      "english": "change given back"
     },
     {
       "id": "day18-06",
-      "korean": "계산대",
-      "romanization": "gyesandae",
-      "english": "checkout counter"
+      "korean": "저울",
+      "romanization": "jeoul",
+      "english": "weighing scale"
     },
     {
       "id": "day18-07",
-      "korean": "장바구니",
-      "romanization": "jangbaguni",
-      "english": "shopping basket, cart"
+      "korean": "무",
+      "romanization": "mu",
+      "english": "radish"
     },
     {
       "id": "day18-08",
-      "korean": "비교하다",
-      "romanization": "bigyohada",
-      "english": "to compare"
+      "korean": "배추",
+      "romanization": "baechu",
+      "english": "napa cabbage"
     },
     {
       "id": "day18-09",
-      "korean": "흥정하다",
-      "romanization": "heungjeonghada",
-      "english": "to haggle"
+      "korean": "고추",
+      "romanization": "gochu",
+      "english": "chili pepper"
     },
     {
       "id": "day18-10",
-      "korean": "배송",
-      "romanization": "baesong",
-      "english": "delivery, shipping"
+      "korean": "깎다",
+      "romanization": "kkakda",
+      "english": "to lower a price"
     }
   ]
 }

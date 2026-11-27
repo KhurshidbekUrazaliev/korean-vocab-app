@@ -1,72 +1,72 @@
 {
   "id": "day39",
   "number": 39,
-  "slug": "holidays-and-traditions",
-  "title": "Holidays & Traditions",
-  "titleKo": "명절과 전통",
+  "slug": "a-birthday-celebration",
+  "title": "A birthday celebration",
+  "titleKo": "생일 축하",
   "status": "draft",
   "source": "generated",
   "cover": "images/days/day39.webp",
   "words": [
     {
       "id": "day39-01",
-      "korean": "명절",
-      "romanization": "myeongjeol",
-      "english": "traditional holiday"
+      "korean": "생일",
+      "romanization": "saengil",
+      "english": "birthday"
     },
     {
       "id": "day39-02",
-      "korean": "설날",
-      "romanization": "seollal",
-      "english": "Lunar New Year"
+      "korean": "생신",
+      "romanization": "saengsin",
+      "english": "birthday (honorific)"
     },
     {
       "id": "day39-03",
-      "korean": "추석",
-      "romanization": "chuseok",
-      "english": "Chuseok (harvest festival)"
+      "korean": "미역국",
+      "romanization": "miyeokguk",
+      "english": "seaweed soup"
     },
     {
       "id": "day39-04",
-      "korean": "세배",
-      "romanization": "sebae",
-      "english": "New Year's bow"
+      "korean": "케이크",
+      "romanization": "keikeu",
+      "english": "cake"
     },
     {
       "id": "day39-05",
-      "korean": "떡국",
-      "romanization": "tteokguk",
-      "english": "rice cake soup"
+      "korean": "촛불",
+      "romanization": "chotbul",
+      "english": "candle flame"
     },
     {
       "id": "day39-06",
-      "korean": "송편",
-      "romanization": "songpyeon",
-      "english": "half-moon rice cake"
+      "korean": "선물",
+      "romanization": "seonmul",
+      "english": "gift"
     },
     {
       "id": "day39-07",
-      "korean": "성묘",
-      "romanization": "seongmyo",
-      "english": "visiting family graves"
+      "korean": "소원",
+      "romanization": "sowon",
+      "english": "wish"
     },
     {
       "id": "day39-08",
-      "korean": "한복",
-      "romanization": "hanbok",
-      "english": "traditional Korean clothing"
+      "korean": "초대하다",
+      "romanization": "chodaehada",
+      "english": "to invite"
     },
     {
       "id": "day39-09",
-      "korean": "고향",
-      "romanization": "gohyang",
-      "english": "hometown"
+      "korean": "축하하다",
+      "romanization": "chukhahada",
+      "english": "to congratulate or celebrate"
     },
     {
       "id": "day39-10",
-      "korean": "차례",
-      "romanization": "charye",
-      "english": "ancestral memorial rite"
+      "korean": "생일상",
+      "romanization": "saengilsang",
+      "english": "meal laid out for a birthday"
     }
   ]
 }

@@ -1,4 +1,4 @@
-// Runs after `vite build`. For every public route it writes dist/<route>/index.html
+// Runs after `vite build`. For every public route it writes dist/<route>.html
 // with its own title, description, canonical URL, Open Graph/Twitter tags, JSON-LD,
 // and a plain-HTML version of the content inside #root, so crawlers and link
 // previews get real content and a 200 status. React replaces that markup on load.
@@ -112,7 +112,7 @@ for (const d of days) {
       ],
       body: `${nav}<main><h1>Day ${pad(d.number)}: ${esc(d.title)} <span lang="ko">${esc(d.titleKo)}</span></h1><p>${esc(description)}</p><ol>${d.words
         .map((w) => `<li><span lang="ko">${esc(w.korean)}</span> (${esc(w.romanization)}): ${esc(w.english)}</li>`)
-        .join('')}</ol></main>`,
+        .join('')}</ol><p><a href="${SITE}/day/${d.number}/practice/flashcards">Start flashcards</a> · <a href="${SITE}/day/${d.number}/practice/choice">Start quiz</a></p></main>`,
     }),
   );
 }

@@ -1,72 +1,72 @@
 {
   "id": "day34",
   "number": 34,
-  "slug": "appearance-and-clothes",
-  "title": "Appearance & Clothes",
-  "titleKo": "외모와 옷",
+  "slug": "art-and-museums",
+  "title": "Art and museums",
+  "titleKo": "미술과 박물관",
   "status": "draft",
   "source": "generated",
   "cover": "images/days/day34.webp",
   "words": [
     {
       "id": "day34-01",
-      "korean": "외모",
-      "romanization": "oemo",
-      "english": "appearance, looks"
+      "korean": "미술관",
+      "romanization": "misulgwan",
+      "english": "art museum"
     },
     {
       "id": "day34-02",
-      "korean": "날씬하다",
-      "romanization": "nalssinhada",
-      "english": "to be slim"
+      "korean": "박물관",
+      "romanization": "bangmulgwan",
+      "english": "museum"
     },
     {
       "id": "day34-03",
-      "korean": "통통하다",
-      "romanization": "tongtonghada",
-      "english": "to be chubby"
+      "korean": "전시회",
+      "romanization": "jeonsihoe",
+      "english": "exhibition"
     },
     {
       "id": "day34-04",
-      "korean": "곱슬머리",
-      "romanization": "gopseulmeori",
-      "english": "curly hair"
+      "korean": "작품",
+      "romanization": "jakpum",
+      "english": "work of art"
     },
     {
       "id": "day34-05",
-      "korean": "어울리다",
-      "romanization": "eoullida",
-      "english": "to suit, look good on"
+      "korean": "화가",
+      "romanization": "hwaga",
+      "english": "painter"
     },
     {
       "id": "day34-06",
-      "korean": "유행",
-      "romanization": "yuhaeng",
-      "english": "trend, fashion"
+      "korean": "초상화",
+      "romanization": "chosanghwa",
+      "english": "portrait painting"
     },
     {
       "id": "day34-07",
-      "korean": "입어 보다",
-      "romanization": "ibeo boda",
-      "english": "to try on"
+      "korean": "풍경화",
+      "romanization": "punggyeonghwa",
+      "english": "landscape painting"
     },
     {
       "id": "day34-08",
-      "korean": "헐렁하다",
-      "romanization": "heolleonghada",
-      "english": "to be loose, baggy"
+      "korean": "조각상",
+      "romanization": "jogaksang",
+      "english": "statue"
     },
     {
       "id": "day34-09",
-      "korean": "꽉 끼다",
-      "romanization": "kkwak kkida",
-      "english": "to be tight"
+      "korean": "액자",
+      "romanization": "aekja",
+      "english": "picture frame"
     },
     {
       "id": "day34-10",
-      "korean": "단정하다",
-      "romanization": "danjeonghada",
-      "english": "to be neat, tidy"
+      "korean": "관람하다",
+      "romanization": "gwallamhada",
+      "english": "to view an exhibition or performance"
     }
   ]
 }

@@ -2,10 +2,16 @@
 
 A Korean vocabulary course in daily sets of ten words. Each word has Hangul, romanization, an English meaning and audio. Learners practice with flashcards, multiple choice (both directions), typing and listening, and every answer feeds a spaced-review schedule so missed words come back the next day.
 
-Live: https://khurshidbekurazaliev.github.io/korean-vocab-app/
+[Open the course on GitHub Pages](https://khurshidbekurazaliev.github.io/korean-vocab-app/)
 
-- 50 days, 500 words. Days 01-15 come from the owner's class notes. Days 16-50 are **draft** lists (marked in the data and the UI) until they are checked.
+- 50 days, 500 words. Days 01-15 come from the owner's class notes. Days 16–50 contain 350 **draft** entries written for their illustrated topics, with Hangul, romanization and an English meaning. The lesson pages identify the lists as drafts pending language review.
 - No accounts. Progress is stored in the browser (`localStorage`).
+
+## Practice the illustrated lessons
+
+Choose a day from the course index, then select **Start flashcards** or **Start quiz**. A flashcard reveals the meaning and romanization. A multiple-choice round covers all ten words, supports both translation directions, and lets learners retry missed words. For example, try [Day 16 · Riding the subway](https://khurshidbekurazaliev.github.io/korean-vocab-app/day/16) or [Day 50 · Graduation day](https://khurshidbekurazaliev.github.io/korean-vocab-app/day/50). All 50 days have a cover in the index, on the lesson page and on the sharing card. The [asset brief](docs/ASSETS.md) lists the full series and the Seoul street hero.
+
+Returning learners keep their study dates, Days 01–15 scores, and spaced-review history for words retained with the same meaning. Scores for the replaced sets start fresh. The previous progress record stays in the browser.
 
 ## Stack
 
@@ -31,13 +37,13 @@ npm run dev
 | `npm run build` | Production build into `dist/`, then `scripts/postbuild.js` writes per-route HTML (titles, descriptions, Open Graph, JSON-LD, plain-HTML content), `404.html`, `sitemap.xml`, `robots.txt` and `llms.txt` |
 | `npm test` | Unit tests for the practice logic and the word data |
 | `npm run deploy` | Builds and publishes `dist/` to the `gh-pages` branch |
-| `node scripts/make-images.cjs` | Regenerates link-preview images (`public/og/`) and icons. Needs Playwright. Run after adding or renaming days. |
+| `node scripts/make-images.cjs` | Regenerates sharing images and icons using Playwright, Chromium and a Korean font. Use `--previews-only` after a lesson or cover changes. Set `CHROMIUM_CHANNEL=chrome` to use local Chrome. |
 
 ## Adding a day
 
-1. Add `src/data/days/dayNN.json` following the schema in `AGENTS.md` (10 words, unique Korean words across all days).
+1. Add `src/data/days/dayNN.json` following the schema in `AGENTS.md` (10 words, unique Korean words across all days). Save the cover as `public/images/days/dayNN.webp` and use `images/days/dayNN.webp` in the JSON.
 2. Run `npm test` (checks numbering, word count, duplicates).
-3. Run `node scripts/make-images.cjs` for the preview image.
+3. Run `node scripts/make-images.cjs --previews-only` to regenerate sharing images.
 
 ## Project structure
 

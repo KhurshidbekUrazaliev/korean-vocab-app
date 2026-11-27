@@ -68,6 +68,14 @@
   opacity: 0.5;
   mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
 }
+.hero__still {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: clamp(3rem, 10vw, 8rem);
+  font-weight: 600;
+}
 .hero__field {
   position: absolute;
   inset: 0;

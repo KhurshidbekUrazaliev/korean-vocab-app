@@ -13,6 +13,17 @@ describe('vocabulary data', () => {
     expect(new Set(allWords.map((w) => w.id)).size).toBe(allWords.length);
     expect(new Set(allWords.map((w) => w.korean)).size).toBe(allWords.length);
   });
+  it('provides distinct answer labels for every illustrated lesson quiz', () => {
+    const illustratedLessons = days.filter((day) => day.number >= 16 && day.number <= 50);
+    expect(illustratedLessons).toHaveLength(35);
+    for (const day of illustratedLessons) {
+      expect(day.cover).toBe(`images/days/${day.id}.webp`);
+      for (const field of ['english', 'korean']) {
+        const labels = day.words.map((word) => word[field].trim().toLowerCase());
+        expect(new Set(labels).size).toBe(day.words.length);
+      }
+    }
+  });
   it('fills every field', () => {
     allWords.forEach((w) => {
       expect(w.korean).toMatch(/[가-힣]/);

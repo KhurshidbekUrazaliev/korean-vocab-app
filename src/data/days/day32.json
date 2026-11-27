@@ -1,72 +1,72 @@
 {
   "id": "day32",
   "number": 32,
-  "slug": "sports",
-  "title": "Sports & Exercise",
-  "titleKo": "운동",
+  "slug": "winter-sports",
+  "title": "Winter sports",
+  "titleKo": "겨울 스포츠",
   "status": "draft",
   "source": "generated",
   "cover": "images/days/day32.webp",
   "words": [
     {
       "id": "day32-01",
-      "korean": "운동하다",
-      "romanization": "undonghada",
-      "english": "to exercise"
+      "korean": "스키",
+      "romanization": "seuki",
+      "english": "skis"
     },
     {
       "id": "day32-02",
-      "korean": "경기",
-      "romanization": "gyeonggi",
-      "english": "match, game"
+      "korean": "스키장",
+      "romanization": "seukijang",
+      "english": "ski resort"
     },
     {
       "id": "day32-03",
-      "korean": "선수",
-      "romanization": "seonsu",
-      "english": "athlete, player"
+      "korean": "스노보드",
+      "romanization": "seunobodeu",
+      "english": "snowboard"
     },
     {
       "id": "day32-04",
-      "korean": "응원하다",
-      "romanization": "eungwonhada",
-      "english": "to cheer for"
+      "korean": "리프트",
+      "romanization": "ripeuteu",
+      "english": "ski lift"
     },
     {
       "id": "day32-05",
-      "korean": "이기다",
-      "romanization": "igida",
-      "english": "to win"
+      "korean": "고글",
+      "romanization": "gogeul",
+      "english": "goggles"
     },
     {
       "id": "day32-06",
-      "korean": "지다",
-      "romanization": "jida",
-      "english": "to lose (a game)"
+      "korean": "스케이트",
+      "romanization": "seukeiteu",
+      "english": "ice skates"
     },
     {
       "id": "day32-07",
-      "korean": "땀",
-      "romanization": "ttam",
-      "english": "sweat"
+      "korean": "빙판",
+      "romanization": "bingpan",
+      "english": "icy surface"
     },
     {
       "id": "day32-08",
-      "korean": "스트레칭",
-      "romanization": "seuteureching",
-      "english": "stretching"
+      "korean": "썰매",
+      "romanization": "sseolmae",
+      "english": "sled"
     },
     {
       "id": "day32-09",
-      "korean": "근육",
-      "romanization": "geunyuk",
-      "english": "muscle"
+      "korean": "넘어지다",
+      "romanization": "neomeojida",
+      "english": "to fall over"
     },
     {
       "id": "day32-10",
-      "korean": "체력",
-      "romanization": "cheryeok",
-      "english": "stamina, fitness"
+      "korean": "미끄럽다",
+      "romanization": "mikkeureopda",
+      "english": "to be slippery"
     }
   ]
 }

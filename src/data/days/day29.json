@@ -1,72 +1,72 @@
 {
   "id": "day29",
   "number": 29,
-  "slug": "phones-and-internet",
-  "title": "Phones & Internet",
-  "titleKo": "휴대폰과 인터넷",
+  "slug": "exercise-and-fitness",
+  "title": "Exercise and fitness",
+  "titleKo": "운동과 체력",
   "status": "draft",
   "source": "generated",
-  "cover": null,
+  "cover": "images/days/day29.webp",
   "words": [
     {
       "id": "day29-01",
-      "korean": "충전하다",
-      "romanization": "chungjeonhada",
-      "english": "to charge"
+      "korean": "운동하다",
+      "romanization": "undonghada",
+      "english": "to exercise"
     },
     {
       "id": "day29-02",
-      "korean": "배터리",
-      "romanization": "baeteori",
-      "english": "battery"
+      "korean": "체력",
+      "romanization": "cheryeok",
+      "english": "physical stamina"
     },
     {
       "id": "day29-03",
-      "korean": "문자",
-      "romanization": "munja",
-      "english": "text message"
+      "korean": "근육",
+      "romanization": "geunyuk",
+      "english": "muscle"
     },
     {
       "id": "day29-04",
-      "korean": "검색하다",
-      "romanization": "geomsaekada",
-      "english": "to search"
+      "korean": "아령",
+      "romanization": "aryeong",
+      "english": "dumbbell"
     },
     {
       "id": "day29-05",
-      "korean": "저장하다",
-      "romanization": "jeojanghada",
-      "english": "to save (a file)"
+      "korean": "줄넘기",
+      "romanization": "julleomgi",
+      "english": "jumping rope"
     },
     {
       "id": "day29-06",
-      "korean": "다운로드",
-      "romanization": "daunnodeu",
-      "english": "download"
+      "korean": "스트레칭",
+      "romanization": "seuteureching",
+      "english": "stretching"
     },
     {
       "id": "day29-07",
-      "korean": "비밀번호",
-      "romanization": "bimilbeonho",
-      "english": "password"
+      "korean": "달리기",
+      "romanization": "dalligi",
+      "english": "running"
     },
     {
       "id": "day29-08",
-      "korean": "화면",
-      "romanization": "hwamyeon",
-      "english": "screen"
+      "korean": "팔굽혀펴기",
+      "romanization": "palgupyeopyeogi",
+      "english": "push-ups"
     },
     {
       "id": "day29-09",
-      "korean": "댓글",
-      "romanization": "daetgeul",
-      "english": "comment (online)"
+      "korean": "땀",
+      "romanization": "ttam",
+      "english": "sweat"
     },
     {
       "id": "day29-10",
-      "korean": "올리다",
-      "romanization": "ollida",
-      "english": "to post, upload"
+      "korean": "숨이 차다",
+      "romanization": "sumi chada",
+      "english": "to be out of breath"
     }
   ]
 }

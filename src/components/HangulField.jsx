@@ -66,7 +66,7 @@ function sampleWord(word, width, height, count) {
 
 const cssColor = (name) => new THREE.Color(getComputedStyle(document.documentElement).getPropertyValue(name).trim() || '#141511');
 
-export function HangulField({ words, onWordChange, interval = 3800, className }) {
+export function HangulField({ words, onWordChange, onUnavailable, interval = 3800, className }) {
   const ref = useRef(null);
   const onChange = useRef(onWordChange);
   onChange.current = onWordChange;
@@ -77,7 +77,13 @@ export function HangulField({ words, onWordChange, interval = 3800, className })
     let width = host.clientWidth;
     let height = host.clientHeight;
 
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false, powerPreference: 'low-power' });
+    let renderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false, powerPreference: 'low-power' });
+    } catch {
+      onUnavailable();
+      return;
+    }
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     renderer.setPixelRatio(dpr);
     renderer.setSize(width, height);
@@ -263,9 +269,10 @@ export function HangulField({ words, onWordChange, interval = 3800, className })
       geometry.dispose();
       material.dispose();
       renderer.dispose();
+      renderer.forceContextLoss();
       renderer.domElement.remove();
     };
-  }, [words, interval]);
+  }, [words, interval, onUnavailable]);
 
   return <div ref={ref} className={className} />;
 }

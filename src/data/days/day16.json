@@ -1,72 +1,72 @@
 {
   "id": "day16",
   "number": 16,
-  "slug": "weather-and-seasons",
-  "title": "Weather & Seasons",
-  "titleKo": "날씨와 계절",
+  "slug": "riding-the-subway",
+  "title": "Riding the subway",
+  "titleKo": "지하철 타기",
   "status": "draft",
   "source": "generated",
   "cover": "images/days/day16.webp",
   "words": [
     {
       "id": "day16-01",
-      "korean": "맑다",
-      "romanization": "makda",
-      "english": "to be clear, sunny"
+      "korean": "지하철",
+      "romanization": "jihacheol",
+      "english": "subway"
     },
     {
       "id": "day16-02",
-      "korean": "흐리다",
-      "romanization": "heurida",
-      "english": "to be cloudy"
+      "korean": "노선도",
+      "romanization": "noseondo",
+      "english": "route map"
     },
     {
       "id": "day16-03",
-      "korean": "소나기",
-      "romanization": "sonagi",
-      "english": "rain shower"
+      "korean": "환승",
+      "romanization": "hwanseung",
+      "english": "transfer between lines"
     },
     {
       "id": "day16-04",
-      "korean": "천둥",
-      "romanization": "cheondung",
-      "english": "thunder"
+      "korean": "승강장",
+      "romanization": "seunggangjang",
+      "english": "platform"
     },
     {
       "id": "day16-05",
-      "korean": "번개",
-      "romanization": "beongae",
-      "english": "lightning"
+      "korean": "개찰구",
+      "romanization": "gaechalgu",
+      "english": "ticket gate"
     },
     {
       "id": "day16-06",
-      "korean": "습하다",
-      "romanization": "seupada",
-      "english": "to be humid"
+      "korean": "교통 카드",
+      "romanization": "gyotong kadeu",
+      "english": "transit card"
     },
     {
       "id": "day16-07",
-      "korean": "쌀쌀하다",
-      "romanization": "ssalssalhada",
-      "english": "to be chilly"
+      "korean": "손잡이",
+      "romanization": "sonjabi",
+      "english": "handgrip"
     },
     {
       "id": "day16-08",
-      "korean": "일교차",
-      "romanization": "ilgyocha",
-      "english": "daily temperature range"
+      "korean": "첫차",
+      "romanization": "cheotcha",
+      "english": "first service of the day"
     },
     {
       "id": "day16-09",
-      "korean": "황사",
-      "romanization": "hwangsa",
-      "english": "yellow dust"
+      "korean": "막차",
+      "romanization": "makcha",
+      "english": "last service of the day"
     },
     {
       "id": "day16-10",
-      "korean": "단풍",
-      "romanization": "danpung",
-      "english": "autumn leaves"
+      "korean": "내리다",
+      "romanization": "naerida",
+      "english": "to get off"
     }
   ]
 }
