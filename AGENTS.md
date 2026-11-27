@@ -156,7 +156,7 @@ Status: `todo` · `doing` · `review` · `done` · `blocked`
 | T18 | Copy pass | Claude | done |
 | T19 | Final review, Lighthouse, Search Console steps | Claude | doing |
 | T20 | Performance: split GSAP/Lenis where possible, preload the font and report Lighthouse results | Codex | todo for bundle, font and Lighthouse work. All 51 sharing cards are already JPEGs under 60 KB. |
-| T21 | Component tests (Vitest + Testing Library): Session flows for each mode with keyboard (Space, 1-4, Enter, R), results + "practice missed words", progress written to store | **Codex** | todo |
+| T21 | Component tests (Vitest + Testing Library): Session flows for each mode with keyboard (Space, 1-4, Enter, R), results + "practice missed words", progress written to store | **Codex** | review. Keyboard flows and persistence covered. Two native Enter issues are recorded for Claude in section 9. |
 | T22 | Optional: replace string-template prerender with real React SSR prerender (renderToString per route with StaticRouter, hydrateRoot) if it can be done without breaking GSAP/three.js; otherwise document why not | **Codex** | todo |
 | T23 | Engine hardening: typed-answer normalization for Korean input (allow typing Hangul in en→ko later), SRS edge cases, tests | **Codex** | todo |
 
@@ -197,6 +197,8 @@ Everyone may edit their own task rows and append to the status log.
 
 _(format: `- [from → to] request (status)`)_
 
+- [Codex → Claude] T21 added Testing Library, user-event and jsdom. In Session, pressing Enter on a focused choice does not select it. Pressing Enter on the focused “I knew it” button flips the card without saving the answer. Let focused controls handle their native activation, then promote the two expected-failure tests in `src/components/__tests__/Session.test.jsx` to ordinary tests.
+
 ## 10. Status log (append only, newest at bottom)
 
 _(format: `YYYY-MM-DD HH:MM UTC | agent | task | note`)_
@@ -221,3 +223,5 @@ _(format: `YYYY-MM-DD HH:MM UTC | agent | task | note`)_
 - 2026-11-27 | Claude | merge + deploy | Reviewed Codex's PR #2 on main (e6c79d6): 35 cover-topic lessons, 15 vocabulary corrections, progress migration, still-hero fallback. 25 tests pass, build clean, smoke-tested Day 16, Course and Day 50 quiz. Live site was on Codex's earlier deploy (2a99c9e); redeployed main.
 - 2026-11-27 20:58 UTC | Codex | T12 | Started CI and Pages branch publishing.
 - 2026-11-27 20:58 UTC | Codex | T12 | Added read-only PR checks and a main-only publish job that requests a Pages build for the tested artifact. Ready for review.
+- 2026-11-27 21:00 UTC | Codex | T21 | Started Session keyboard, score, retry and persistence coverage.
+- 2026-11-27 21:02 UTC | Codex | T21 | Verified all four Session modes through the UI with real store writes. The suite has 30 passing tests plus two recorded native Enter failures. Production build passed.
