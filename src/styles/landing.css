@@ -234,12 +234,23 @@
   color: #5f584d;
 }
 @media (max-width: 760px) {
+  /* Stack the copy above the picture so the text never sits on the drawing. */
   .scene {
+    min-height: 0;
     align-items: start;
+    gap: var(--s-6);
     padding-top: var(--s-8);
   }
+  .scene__copy {
+    order: -1;
+  }
+  .scene__frame {
+    position: relative;
+    inset: auto;
+    aspect-ratio: 1;
+  }
   .scene__frame img {
-    object-position: 85% 100%;
+    object-position: 92% 100%;
   }
 }
 
