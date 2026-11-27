@@ -82,7 +82,7 @@ def encode(audio, sr, path):
 # Whisper writes some correctly spoken words with a different spelling of the same sound
 # (final-consonant neutralization, ㅐ/ㅔ merger, linking, tensing, weak ㅎ). These count as heard.
 SOUNDS_LIKE = {
-    '볶다': ['복다'], '깎다': ['깍다'], '짖다': ['짓다'], '쟤': ['제', '재'], '헹구다': ['행구다'],
+    '볶다': ['복다'], '깎다': ['깍다'], '짖다': ['짓다', '짙다'], '쟤': ['제', '재'], '헹구다': ['행구다'],
     '머그잔': ['먹으잔'], '꾸미다': ['꿈이다'], '문고리': ['문꼬리'], '공구함': ['공구암'],
     '알약': ['알략'], '산기슭': ['산기슥'],
 }
