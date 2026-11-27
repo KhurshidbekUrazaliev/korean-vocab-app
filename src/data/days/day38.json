@@ -1,72 +1,72 @@
 {
   "id": "day38",
   "number": 38,
-  "slug": "law-and-rules",
-  "title": "Law & Rules",
-  "titleKo": "법과 규칙",
-  "status": "draft",
+  "slug": "at-the-cinema",
+  "title": "At the cinema",
+  "titleKo": "영화관에서",
+  "status": "reviewed",
   "source": "generated",
-  "cover": null,
+  "cover": "images/days/day38.webp",
   "words": [
     {
       "id": "day38-01",
-      "korean": "법",
-      "romanization": "beop",
-      "english": "law"
+      "korean": "영화관",
+      "romanization": "yeonghwagwan",
+      "english": "movie theater"
     },
     {
       "id": "day38-02",
-      "korean": "규칙",
-      "romanization": "gyuchik",
-      "english": "rule"
+      "korean": "상영관",
+      "romanization": "sangyeonggwan",
+      "english": "screening room"
     },
     {
       "id": "day38-03",
-      "korean": "지키다",
-      "romanization": "jikida",
-      "english": "to keep, follow (a rule)"
+      "korean": "영화표",
+      "romanization": "yeonghwapyo",
+      "english": "movie ticket"
     },
     {
       "id": "day38-04",
-      "korean": "어기다",
-      "romanization": "eogida",
-      "english": "to break (a rule)"
+      "korean": "매표소",
+      "romanization": "maepyoso",
+      "english": "ticket booth"
     },
     {
       "id": "day38-05",
-      "korean": "벌금",
-      "romanization": "beolgeum",
-      "english": "fine (penalty)"
+      "korean": "예고편",
+      "romanization": "yegopyeon",
+      "english": "trailer for a film"
     },
     {
       "id": "day38-06",
-      "korean": "금지",
-      "romanization": "geumji",
-      "english": "ban, prohibition"
+      "korean": "자막",
+      "romanization": "jamak",
+      "english": "subtitles"
     },
     {
       "id": "day38-07",
-      "korean": "허락",
-      "romanization": "heorak",
-      "english": "permission"
+      "korean": "감독",
+      "romanization": "gamdok",
+      "english": "director"
     },
     {
       "id": "day38-08",
-      "korean": "신고하다",
-      "romanization": "singohada",
-      "english": "to report (to the authorities)"
+      "korean": "배우",
+      "romanization": "baeu",
+      "english": "actor"
     },
     {
       "id": "day38-09",
-      "korean": "경찰",
-      "romanization": "gyeongchal",
-      "english": "police"
+      "korean": "줄거리",
+      "romanization": "julgeori",
+      "english": "plot, storyline"
     },
     {
       "id": "day38-10",
-      "korean": "범죄",
-      "romanization": "beomjoe",
-      "english": "crime"
+      "korean": "개봉하다",
+      "romanization": "gaebonghada",
+      "english": "to release a film"
     }
   ]
 }

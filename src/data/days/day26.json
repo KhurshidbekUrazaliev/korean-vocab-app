@@ -1,72 +1,72 @@
 {
   "id": "day26",
   "number": 26,
-  "slug": "office-life",
-  "title": "Office Life",
-  "titleKo": "직장 생활",
-  "status": "draft",
+  "slug": "ordering-at-a-cafe",
+  "title": "Ordering at a café",
+  "titleKo": "카페에서 주문하기",
+  "status": "reviewed",
   "source": "generated",
-  "cover": null,
+  "cover": "images/days/day26.webp",
   "words": [
     {
       "id": "day26-01",
-      "korean": "회의",
-      "romanization": "hoeui",
-      "english": "meeting"
+      "korean": "카페",
+      "romanization": "kape",
+      "english": "café"
     },
     {
       "id": "day26-02",
-      "korean": "출장",
-      "romanization": "chuljang",
-      "english": "business trip"
+      "korean": "메뉴판",
+      "romanization": "menyupan",
+      "english": "menu"
     },
     {
       "id": "day26-03",
-      "korean": "야근",
-      "romanization": "yageun",
-      "english": "overtime, night work"
+      "korean": "주문하다",
+      "romanization": "jumunhada",
+      "english": "to order"
     },
     {
       "id": "day26-04",
-      "korean": "휴가",
-      "romanization": "hyuga",
-      "english": "vacation, leave"
+      "korean": "커피",
+      "romanization": "keopi",
+      "english": "coffee"
     },
     {
       "id": "day26-05",
-      "korean": "승진",
-      "romanization": "seungjin",
-      "english": "promotion"
+      "korean": "라테",
+      "romanization": "rate",
+      "english": "latte"
     },
     {
       "id": "day26-06",
-      "korean": "동료",
-      "romanization": "dongnyo",
-      "english": "colleague"
+      "korean": "우유",
+      "romanization": "uyu",
+      "english": "milk"
     },
     {
       "id": "day26-07",
-      "korean": "상사",
-      "romanization": "sangsa",
-      "english": "boss, superior"
+      "korean": "얼음",
+      "romanization": "eoreum",
+      "english": "ice"
     },
     {
       "id": "day26-08",
-      "korean": "업무",
-      "romanization": "eommu",
-      "english": "work, duties"
+      "korean": "빨대",
+      "romanization": "ppaldae",
+      "english": "drinking straw"
     },
     {
       "id": "day26-09",
-      "korean": "퇴근하다",
-      "romanization": "toegeunhada",
-      "english": "to leave work"
+      "korean": "머그잔",
+      "romanization": "meugeujan",
+      "english": "mug"
     },
     {
       "id": "day26-10",
-      "korean": "마감",
-      "romanization": "magam",
-      "english": "deadline"
+      "korean": "시럽",
+      "romanization": "sireop",
+      "english": "syrup"
     }
   ]
 }

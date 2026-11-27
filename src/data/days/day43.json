@@ -1,72 +1,72 @@
 {
   "id": "day43",
   "number": 43,
-  "slug": "economy",
-  "title": "Economy",
-  "titleKo": "경제",
-  "status": "draft",
+  "slug": "recycling-at-home",
+  "title": "Recycling at home",
+  "titleKo": "집에서 재활용하기",
+  "status": "reviewed",
   "source": "generated",
-  "cover": null,
+  "cover": "images/days/day43.webp",
   "words": [
     {
       "id": "day43-01",
-      "korean": "경제",
-      "romanization": "gyeongje",
-      "english": "economy"
+      "korean": "재활용",
+      "romanization": "jaehwaryong",
+      "english": "recycling"
     },
     {
       "id": "day43-02",
-      "korean": "물가",
-      "romanization": "mulga",
-      "english": "cost of living, prices"
+      "korean": "분리배출",
+      "romanization": "bullibaechul",
+      "english": "separating waste for collection"
     },
     {
       "id": "day43-03",
-      "korean": "오르다",
-      "romanization": "oreuda",
-      "english": "to rise, go up"
+      "korean": "폐지",
+      "romanization": "pyeji",
+      "english": "waste paper"
     },
     {
       "id": "day43-04",
-      "korean": "내리다",
-      "romanization": "naerida",
-      "english": "to fall, go down"
+      "korean": "유리병",
+      "romanization": "yuribyeong",
+      "english": "glass bottle"
     },
     {
       "id": "day43-05",
-      "korean": "소비",
-      "romanization": "sobi",
-      "english": "consumption"
+      "korean": "플라스틱",
+      "romanization": "peullaseutik",
+      "english": "plastic"
     },
     {
       "id": "day43-06",
-      "korean": "생산",
-      "romanization": "saengsan",
-      "english": "production"
+      "korean": "캔",
+      "romanization": "kaen",
+      "english": "metal can"
     },
     {
       "id": "day43-07",
-      "korean": "수입",
-      "romanization": "suip",
-      "english": "income; import"
+      "korean": "헌 옷",
+      "romanization": "heon ot",
+      "english": "old clothes, worn clothing"
     },
     {
       "id": "day43-08",
-      "korean": "수출",
-      "romanization": "suchul",
-      "english": "export"
+      "korean": "뚜껑",
+      "romanization": "ttukkeong",
+      "english": "lid"
     },
     {
       "id": "day43-09",
-      "korean": "창업",
-      "romanization": "changeop",
-      "english": "starting a business"
+      "korean": "비우다",
+      "romanization": "biuda",
+      "english": "to empty"
     },
     {
       "id": "day43-10",
-      "korean": "경쟁",
-      "romanization": "gyeongjaeng",
-      "english": "competition"
+      "korean": "라벨",
+      "romanization": "rabel",
+      "english": "label"
     }
   ]
 }

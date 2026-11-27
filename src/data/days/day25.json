@@ -1,72 +1,72 @@
 {
   "id": "day25",
   "number": 25,
-  "slug": "job-hunting",
-  "title": "Job Hunting",
-  "titleKo": "취업",
-  "status": "draft",
+  "slug": "at-the-bakery",
+  "title": "At the bakery",
+  "titleKo": "빵집에서",
+  "status": "reviewed",
   "source": "generated",
-  "cover": null,
+  "cover": "images/days/day25.webp",
   "words": [
     {
       "id": "day25-01",
-      "korean": "취업",
-      "romanization": "chwieop",
-      "english": "getting a job"
+      "korean": "빵집",
+      "romanization": "ppangjip",
+      "english": "bakery"
     },
     {
       "id": "day25-02",
-      "korean": "이력서",
-      "romanization": "iryeokseo",
-      "english": "résumé"
+      "korean": "식빵",
+      "romanization": "sikppang",
+      "english": "sandwich loaf"
     },
     {
       "id": "day25-03",
-      "korean": "자기소개서",
-      "romanization": "jagisogaeseo",
-      "english": "cover letter"
+      "korean": "단팥빵",
+      "romanization": "danpatppang",
+      "english": "sweet red bean bun"
     },
     {
       "id": "day25-04",
-      "korean": "경력",
-      "romanization": "gyeongnyeok",
-      "english": "work experience"
+      "korean": "바게트",
+      "romanization": "bageteu",
+      "english": "baguette"
     },
     {
       "id": "day25-05",
-      "korean": "채용",
-      "romanization": "chaeyong",
-      "english": "hiring, recruitment"
+      "korean": "밀가루",
+      "romanization": "milgaru",
+      "english": "wheat flour"
     },
     {
       "id": "day25-06",
-      "korean": "합격하다",
-      "romanization": "hapgyeokada",
-      "english": "to pass (an exam, interview)"
+      "korean": "버터",
+      "romanization": "beoteo",
+      "english": "butter"
     },
     {
       "id": "day25-07",
-      "korean": "불합격",
-      "romanization": "bulhapgyeok",
-      "english": "failing, rejection"
+      "korean": "반죽",
+      "romanization": "banjuk",
+      "english": "dough"
     },
     {
       "id": "day25-08",
-      "korean": "자격증",
-      "romanization": "jagyeokjeung",
-      "english": "certificate, qualification"
+      "korean": "오븐",
+      "romanization": "obeun",
+      "english": "oven"
     },
     {
       "id": "day25-09",
-      "korean": "연봉",
-      "romanization": "yeonbong",
-      "english": "annual salary"
+      "korean": "집게",
+      "romanization": "jipge",
+      "english": "tongs"
     },
     {
       "id": "day25-10",
-      "korean": "신입",
-      "romanization": "sinip",
-      "english": "newcomer, entry-level"
+      "korean": "쟁반",
+      "romanization": "jaengban",
+      "english": "serving tray"
     }
   ]
 }

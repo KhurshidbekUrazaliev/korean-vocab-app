@@ -1,72 +1,72 @@
 {
   "id": "day20",
   "number": 20,
-  "slug": "housing",
-  "title": "Finding a Home",
-  "titleKo": "집 구하기",
-  "status": "draft",
+  "slug": "at-the-post-office",
+  "title": "At the post office",
+  "titleKo": "우체국에서",
+  "status": "reviewed",
   "source": "generated",
   "cover": "images/days/day20.webp",
   "words": [
     {
       "id": "day20-01",
-      "korean": "월세",
-      "romanization": "wolse",
-      "english": "monthly rent"
+      "korean": "우체국",
+      "romanization": "ucheguk",
+      "english": "post office"
     },
     {
       "id": "day20-02",
-      "korean": "전세",
-      "romanization": "jeonse",
-      "english": "lump-sum deposit lease"
+      "korean": "우표",
+      "romanization": "upyo",
+      "english": "postage stamp"
     },
     {
       "id": "day20-03",
-      "korean": "보증금",
-      "romanization": "bojeunggeum",
-      "english": "deposit"
+      "korean": "봉투",
+      "romanization": "bongtu",
+      "english": "envelope"
     },
     {
       "id": "day20-04",
-      "korean": "집주인",
-      "romanization": "jipjuin",
-      "english": "landlord"
+      "korean": "편지",
+      "romanization": "pyeonji",
+      "english": "letter"
     },
     {
       "id": "day20-05",
-      "korean": "이사하다",
-      "romanization": "isahada",
-      "english": "to move house"
+      "korean": "소포",
+      "romanization": "sopo",
+      "english": "parcel"
     },
     {
       "id": "day20-06",
-      "korean": "계약",
-      "romanization": "gyeyak",
-      "english": "contract"
+      "korean": "주소",
+      "romanization": "juso",
+      "english": "address"
     },
     {
       "id": "day20-07",
-      "korean": "관리비",
-      "romanization": "gwallibi",
-      "english": "maintenance fee"
+      "korean": "우편 번호",
+      "romanization": "upyeon beonho",
+      "english": "postal code"
     },
     {
       "id": "day20-08",
-      "korean": "원룸",
-      "romanization": "wollum",
-      "english": "studio apartment"
+      "korean": "우체통",
+      "romanization": "uchetong",
+      "english": "mailbox for outgoing mail"
     },
     {
       "id": "day20-09",
-      "korean": "층간 소음",
-      "romanization": "cheunggan soeum",
-      "english": "noise between floors"
+      "korean": "보내다",
+      "romanization": "bonaeda",
+      "english": "to send"
     },
     {
       "id": "day20-10",
-      "korean": "세입자",
-      "romanization": "seipja",
-      "english": "tenant"
+      "korean": "받는 사람",
+      "romanization": "banneun saram",
+      "english": "recipient"
     }
   ]
 }

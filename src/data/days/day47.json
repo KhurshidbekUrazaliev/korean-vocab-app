@@ -1,72 +1,72 @@
 {
   "id": "day47",
   "number": 47,
-  "slug": "communication",
-  "title": "Communication",
-  "titleKo": "의사소통",
-  "status": "draft",
+  "slug": "cycling-by-the-river",
+  "title": "Cycling by the river",
+  "titleKo": "강변에서 자전거 타기",
+  "status": "reviewed",
   "source": "generated",
   "cover": "images/days/day47.webp",
   "words": [
     {
       "id": "day47-01",
-      "korean": "대화",
-      "romanization": "daehwa",
-      "english": "conversation"
+      "korean": "자전거",
+      "romanization": "jajeongeo",
+      "english": "bicycle"
     },
     {
       "id": "day47-02",
-      "korean": "설명하다",
-      "romanization": "seolmyeonghada",
-      "english": "to explain"
+      "korean": "강변",
+      "romanization": "gangbyeon",
+      "english": "riverside"
     },
     {
       "id": "day47-03",
-      "korean": "표현하다",
-      "romanization": "pyohyeonhada",
-      "english": "to express"
+      "korean": "페달",
+      "romanization": "pedal",
+      "english": "pedal"
     },
     {
       "id": "day47-04",
-      "korean": "전하다",
-      "romanization": "jeonhada",
-      "english": "to pass on, convey"
+      "korean": "체인",
+      "romanization": "chein",
+      "english": "chain"
     },
     {
       "id": "day47-05",
-      "korean": "부탁하다",
-      "romanization": "butakada",
-      "english": "to ask a favor"
+      "korean": "안장",
+      "romanization": "anjang",
+      "english": "saddle"
     },
     {
       "id": "day47-06",
-      "korean": "대답하다",
-      "romanization": "daedapada",
-      "english": "to answer"
+      "korean": "브레이크",
+      "romanization": "beureikeu",
+      "english": "brake"
     },
     {
       "id": "day47-07",
-      "korean": "질문",
-      "romanization": "jilmun",
-      "english": "question"
+      "korean": "헬멧",
+      "romanization": "helmet",
+      "english": "helmet"
     },
     {
       "id": "day47-08",
-      "korean": "솔직하다",
-      "romanization": "soljikada",
-      "english": "to be honest, frank"
+      "korean": "자전거 도로",
+      "romanization": "jajeongeo doro",
+      "english": "bicycle path"
     },
     {
       "id": "day47-09",
-      "korean": "농담",
-      "romanization": "nongdam",
-      "english": "joke"
+      "korean": "바퀴",
+      "romanization": "bakwi",
+      "english": "wheel"
     },
     {
       "id": "day47-10",
-      "korean": "존댓말",
-      "romanization": "jondaenmal",
-      "english": "polite speech"
+      "korean": "강바람",
+      "romanization": "gangbaram",
+      "english": "river breeze"
     }
   ]
 }

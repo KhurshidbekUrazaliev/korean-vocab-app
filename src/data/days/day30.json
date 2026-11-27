@@ -1,72 +1,72 @@
 {
   "id": "day30",
   "number": 30,
-  "slug": "environment",
-  "title": "Environment",
-  "titleKo": "환경",
-  "status": "draft",
+  "slug": "hiking-in-the-mountains",
+  "title": "Hiking in the mountains",
+  "titleKo": "산에서 등산하기",
+  "status": "reviewed",
   "source": "generated",
   "cover": "images/days/day30.webp",
   "words": [
     {
       "id": "day30-01",
-      "korean": "환경",
-      "romanization": "hwangyeong",
-      "english": "environment"
+      "korean": "등산",
+      "romanization": "deungsan",
+      "english": "mountain hiking"
     },
     {
       "id": "day30-02",
-      "korean": "오염",
-      "romanization": "oyeom",
-      "english": "pollution"
+      "korean": "등산화",
+      "romanization": "deungsanhwa",
+      "english": "hiking boots"
     },
     {
       "id": "day30-03",
-      "korean": "쓰레기",
-      "romanization": "sseuregi",
-      "english": "trash"
+      "korean": "등산로",
+      "romanization": "deungsanno",
+      "english": "hiking trail"
     },
     {
       "id": "day30-04",
-      "korean": "재활용",
-      "romanization": "jaehwaryong",
-      "english": "recycling"
+      "korean": "정상",
+      "romanization": "jeongsang",
+      "english": "summit"
     },
     {
       "id": "day30-05",
-      "korean": "분리수거",
-      "romanization": "bullisugeo",
-      "english": "sorting trash for recycling"
+      "korean": "계곡",
+      "romanization": "gyegok",
+      "english": "mountain valley"
     },
     {
       "id": "day30-06",
-      "korean": "일회용품",
-      "romanization": "ilhoeyongpum",
-      "english": "disposable products"
+      "korean": "능선",
+      "romanization": "neungseon",
+      "english": "ridgeline"
     },
     {
       "id": "day30-07",
-      "korean": "절약하다",
-      "romanization": "jeoryakada",
-      "english": "to save, conserve"
+      "korean": "바위",
+      "romanization": "bawi",
+      "english": "boulder"
     },
     {
       "id": "day30-08",
-      "korean": "미세먼지",
-      "romanization": "misemeonji",
-      "english": "fine dust"
+      "korean": "오르막길",
+      "romanization": "oreumakgil",
+      "english": "uphill path"
     },
     {
       "id": "day30-09",
-      "korean": "지구 온난화",
-      "romanization": "jigu onnanhwa",
-      "english": "global warming"
+      "korean": "산기슭",
+      "romanization": "sangiseuk",
+      "english": "foot of a mountain"
     },
     {
       "id": "day30-10",
-      "korean": "보호하다",
-      "romanization": "bohohada",
-      "english": "to protect"
+      "korean": "하산하다",
+      "romanization": "hasanhada",
+      "english": "to descend a mountain"
     }
   ]
 }

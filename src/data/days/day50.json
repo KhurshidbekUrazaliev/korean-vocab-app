@@ -1,72 +1,72 @@
 {
   "id": "day50",
   "number": 50,
-  "slug": "dreams-and-future",
-  "title": "Dreams & Future",
-  "titleKo": "꿈과 미래",
-  "status": "draft",
+  "slug": "graduation-day",
+  "title": "Graduation day",
+  "titleKo": "졸업하는 날",
+  "status": "reviewed",
   "source": "generated",
   "cover": "images/days/day50.webp",
   "words": [
     {
       "id": "day50-01",
-      "korean": "꿈",
-      "romanization": "kkum",
-      "english": "dream"
+      "korean": "졸업",
+      "romanization": "joreop",
+      "english": "graduation"
     },
     {
       "id": "day50-02",
-      "korean": "목표",
-      "romanization": "mokpyo",
-      "english": "goal"
+      "korean": "졸업식",
+      "romanization": "joreopsik",
+      "english": "graduation ceremony"
     },
     {
       "id": "day50-03",
-      "korean": "이루다",
-      "romanization": "iruda",
-      "english": "to achieve"
+      "korean": "졸업장",
+      "romanization": "joreopjang",
+      "english": "diploma"
     },
     {
       "id": "day50-04",
-      "korean": "도전하다",
-      "romanization": "dojeonhada",
-      "english": "to take on a challenge"
+      "korean": "학사모",
+      "romanization": "haksamo",
+      "english": "graduation cap"
     },
     {
       "id": "day50-05",
-      "korean": "포기하다",
-      "romanization": "pogihada",
-      "english": "to give up"
+      "korean": "학위",
+      "romanization": "hagwi",
+      "english": "academic degree"
     },
     {
       "id": "day50-06",
-      "korean": "미래",
-      "romanization": "mirae",
-      "english": "future"
+      "korean": "졸업생",
+      "romanization": "joreopsaeng",
+      "english": "graduate"
     },
     {
       "id": "day50-07",
-      "korean": "희망",
-      "romanization": "huimang",
-      "english": "hope"
+      "korean": "동창",
+      "romanization": "dongchang",
+      "english": "former schoolmate"
     },
     {
       "id": "day50-08",
-      "korean": "성공",
-      "romanization": "seonggong",
-      "english": "success"
+      "korean": "후배",
+      "romanization": "hubae",
+      "english": "junior schoolmate or colleague"
     },
     {
       "id": "day50-09",
-      "korean": "실패",
-      "romanization": "silpae",
-      "english": "failure"
+      "korean": "교가",
+      "romanization": "gyoga",
+      "english": "school song"
     },
     {
       "id": "day50-10",
-      "korean": "성장하다",
-      "romanization": "seongjanghada",
-      "english": "to grow (as a person)"
+      "korean": "꽃다발",
+      "romanization": "kkotdabal",
+      "english": "bouquet"
     }
   ]
 }

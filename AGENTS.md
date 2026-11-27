@@ -19,8 +19,7 @@ Two coding agents only: **Claude** (lead, content, all UI) and **Codex**
 5. Never invent facts: no made-up testimonials, prices, user counts, names,
    addresses or claims. Put `TODO(owner): ...` instead and list it under
    "Open questions for the owner".
-6. Vocabulary must be correct Korean. Any word list not taken from the
-   owner's own notes is marked `"status": "draft"` until Claude has checked it.
+6. Mark new generated lists `draft` pending Claude’s language review. For the owner-requested review of Days 16–50, Codex recorded `reviewed` after checking spelling, romanization and meanings. The word lists keep their `generated` source.
 7. No secrets in the repo. No API keys in frontend code or `.env` files that
    get committed.
 8. Keep `npm run build` and `npm test` passing on every PR.
@@ -36,19 +35,20 @@ and be findable by search engines and AI assistants.
 
 Live site: https://khurshidbekurazaliev.github.io/korean-vocab-app/
 
-## 2. Current state (2026-11-27, after Claude's redesign)
+## 2. Current state (2026-11-28)
 
 - Vite + React 19 + React Router 7. GSAP (ScrollTrigger, SplitText, CustomEase), Lenis smooth
   scroll, three.js hero (lazy chunk). Plain CSS with tokens. Vitest. Deployed to GitHub Pages
   from the `gh-pages` branch with `npm run deploy`.
 - **50 days / 500 words.** Days 01-15 = owner's notes (`status: verified`), with 4 typos fixed
   (동특증→동아리 활동, 짐장히→굉장히, 마지다→마치다, 영덩이→엉덩이; each has a `note`).
-  Days 16-50 = Claude's draft lists (`status: draft`, `source: generated`), shown with a Draft badge.
+  Days 16–50 contain 350 generated entries matched to the illustrated topics. All 35 lists carry
+  `status: reviewed` and `source: generated`. See [the vocabulary review](docs/VOCABULARY-REVIEW.md). Each day offers direct links to
+  flashcards, multiple choice, typing and listening in its lesson steps.
 - Every public route gets static HTML from `scripts/postbuild.js`: own title, description,
   canonical, OG/Twitter tags, per-day 1200x630 preview image, JSON-LD, and the word list as
   plain HTML inside `#root`. Sitemap, robots.txt (AI bots allowed), llms.txt, 404.html.
-- Design follows the owner's reference set (Dayora/Optivolt style): warm paper neutrals, one lime
-  accent, deep pine band, light-weight display type, Pretendard, rounded cards with chips.
+- The app uses hanji paper tones, seal red and Noto Serif KR for Hangul, with Pretendard for UI text. See the v2 design system below.
 - Motion: hero particle field that forms real Korean words (cursor pushes particles), line-mask
   text reveals, scroll-velocity word ticker, pinned "four ways to practice" scene, staggered day
   index with sticky block numbers, ink curtain page transitions showing the destination's Korean
@@ -72,7 +72,7 @@ src/
                             SpeakButton, Icons
   pages/                    Home (Landing for new visitors, Today for returning), Course, Day,
                             Practice, Review, Progress, Legal (Privacy, Terms), NotFound
-  styles/                   tokens.css, base.css, home.css, day.css, practice.css
+  styles/                   tokens.css, base.css, landing.css, app.css, day.css, practice.css
 scripts/postbuild.js        per-route HTML + SEO files (runs in `npm run build`)
 scripts/make-images.cjs     OG images + icons (dev-only, Playwright)
 ```
@@ -89,11 +89,11 @@ are rendered by React 19 inside each page; postbuild bakes the same values into 
 ```json
 {
   "id": "day07", "number": 7, "slug": "travel", "title": "Travel", "titleKo": "여행",
-  "status": "verified", "source": "owner-notes", "cover": null,
+  "status": "verified", "source": "owner-notes", "cover": "images/days/day07.webp",
   "words": [{ "id": "day07-01", "korean": "기대하다", "romanization": "gidaehada", "english": "to expect", "note": "optional" }]
 }
 ```
-`status`: `verified` | `draft`. `source`: `owner-notes` | `generated`. Tests enforce 10 words
+`status`: `verified` (class notes) | `reviewed` (dictionary review) | `draft`. `source`: `owner-notes` | `generated`. Tests enforce 10 words
 per day, sequential numbers, unique ids and unique Korean words across all days.
 
 ### Practice engine (`src/lib`)
@@ -104,7 +104,7 @@ buildMultipleChoice(word, pool, { count = 4, direction = 'ko-en' }) -> { prompt,
 checkTyped(input, word, { direction }) -> { correct, closeness }   // UI accepts closeness >= 0.8
 schedule(state, correct, now) -> { box, dueAt, seen, correctCount } // boxes 1-5, [0,1,3,7,16] days
 getDueWords(progress, allWords, now) -> word[]
-loadProgress() / saveProgress(p)                  // key "kv.progress.v1"
+loadProgress() / saveProgress(p)                  // key "kv.progress.v2", imports compatible v1 progress
 getStreak(progress, now) -> { current, best, practicedToday }
 speak(text, { rate })                             // ko-KR speechSynthesis
 ```
@@ -147,15 +147,15 @@ Status: `todo` · `doing` · `review` · `done` · `blocked`
 | T10 | Static HTML per route with meta + JSON-LD + plain content | Claude | done (string-template prerender). Full React prerender optional, see T22 |
 | T11 | sitemap, robots (AI bots), llms.txt, 404.html, OG images per day | Claude | done |
 | T12 | GitHub Actions: `npm ci && npm test && npm run build` on PRs; deploy `dist` to Pages on push to `main` (actions/deploy-pages or keep gh-pages branch, document which) | **Codex** | todo |
-| T13 | Days 16-50 | Claude | done as drafts. Owner to verify or send real lists |
-| T14 | Day cover images (`docs/ASSETS.md`) | Codex, integrated by Claude | done: 41/50 days have covers, shown on Day hero, card hover, OG images; hero image on Home |
-| T24 | Covers for the 9 days without one (list + prompts in `docs/ASSETS.md`), same style, then set `cover` in the day JSON and rerun `scripts/make-images.cjs` | **Codex** | todo |
+| T13 | Vocabulary for Days 16–50 | Codex / Claude | done. All 350 entries were reviewed for spelling, romanization and meaning. Corrections are recorded in the vocabulary review. |
+| T14 | Day covers and Seoul street hero | Codex, integrated by Claude | done. All 50 lessons use their corresponding illustrations in the day index, lesson hero and sharing card. The Seoul scene appears on Home. |
+| T24 | Fill nine gaps in the illustrated course | Codex | done. Realigning the lessons to the original artwork restored coverage for all 50 days. The nine archived images have matching files in `public/images/days/`. |
 | T15 | Example sentences per word | Claude | todo |
 | T16 | Privacy + Terms | Claude | done, owner contact TODOs remain |
 | T17 | Accessibility: Codex adds Playwright + axe-core checks for `/`, `/day/1`, every practice mode, `/review`, 404 (both themes, reduced motion) to CI; Claude fixes findings | **Codex** + Claude | todo |
 | T18 | Copy pass | Claude | done |
 | T19 | Final review, Lighthouse, Search Console steps | Claude | doing |
-| T20 | Performance: split GSAP/Lenis from the main chunk where possible, convert `public/og/*.png` to optimized PNG/JPEG under 60 KB, add `<link rel=preload>` for the font, report Lighthouse scores | **Codex** | todo |
+| T20 | Performance: split GSAP/Lenis where possible, preload the font and report Lighthouse results | Codex | todo for bundle, font and Lighthouse work. All 51 sharing cards are already JPEGs under 60 KB. |
 | T21 | Component tests (Vitest + Testing Library): Session flows for each mode with keyboard (Space, 1-4, Enter, R), results + "practice missed words", progress written to store | **Codex** | todo |
 | T22 | Optional: replace string-template prerender with real React SSR prerender (renderToString per route with StaticRouter, hydrateRoot) if it can be done without breaking GSAP/three.js; otherwise document why not | **Codex** | todo |
 | T23 | Engine hardening: typed-answer normalization for Korean input (allow typing Hangul in en→ko later), SRS edge cases, tests | **Codex** | todo |
@@ -182,10 +182,12 @@ Everyone may edit their own task rows and append to the status log.
 | 2026-11-27 | Days 16-50 drafted by Claude so the course is complete; marked draft until checked | Claude (owner asked to finish without questions) |
 | 2026-11-27 | No background video. Motion, the WebGL hero and Codex's illustrations carry the visual weight | Claude |
 | 2026-11-27 | v2 design: app structure (Today/Course/Review/Progress), hanji + seal red palette from the art, Noto Serif KR for Hangul. Replaces v1's lime/pine landing-page look | Owner asked for a premium, non-generic app feel |
+| 2026-11-28 | Use the original Day 16–50 illustration topics for the replacement lessons and keep their generated vocabulary marked as draft. | Owner / Codex |
+| 2026-11-28 | Complete the dictionary review of Days 16–50, record the corrections and merge PR #2 into the v2 design. | Owner / Codex |
 
 ## 8. Open questions for the owner
 
-- **Q1** Days 16-50 are drafts. Send your real lists, or confirm the drafts after checking.
+- **Q1 resolved** The owner requested a language review of the generated entries. The review and corrections are recorded in [the vocabulary review](docs/VOCABULARY-REVIEW.md).
 - **Q2** "Conversion" means what: sign-ups, paid plan, or daily return? (Paid plan = backend + payment provider = new plan section.)
 - **Q3** Stay on GitHub Pages, or move to Vercel/Netlify (needed if we add accounts/payments)?
 - **Q5** Site name and domain. Current candidates: "한국어 공부", "Essential Korean Vocabulary".
@@ -211,3 +213,8 @@ _(format: `YYYY-MM-DD HH:MM UTC | agent | task | note`)_
 - 2026-11-27 | Claude | T01-T11,T13,T16,T18 | Full redesign built and tested (14 unit tests). 50 days live. Deployed to GitHub Pages. Codex: start with T12, then T21, T17, T20.
 - 2026-11-27 | Claude | T14 merge | Merged codex/T14-vocabulary-artwork. Dropped its edits to the old CRA files. Matched covers 16-50 to the draft days by content (mapping in docs/ASSETS.md), 9 spare covers moved to docs/artwork-unassigned/. Covers shown on Day hero, card hover, OG images (now JPEG); street hero used in a scroll section on Home. Redeployed.
 - 2026-11-27 | Claude | design v2 | Critique in docs/DESIGN-CRITIQUE.md. New palette and type, app bar + mobile tabs, Today dashboard, Course map, Progress page, lesson path on Day pages, practice polish (card stack, combo, sounds, richer results). 19 tests. Deployed. Codex tasks unchanged: T12, T21, T17, T20, T22-T24.
+- 2026-11-27 15:15 UTC | Codex | T13/T14 | Preparing a single release of the cover-topic word lists and existing practice modes on top of the current Vite app.
+- 2026-11-27 15:24 UTC | Codex | T13/T14/T24 | Integrated the illustrated lessons with the redesign on a727f1d. All 17 unit tests passed. The production build generated 54 public routes and 200 practice routes. All 51 sharing JPEGs are below 60 KB. Chrome completed 350 flashcard prompts, 350 four-option quiz questions and four missed-word retries on the integrated build, including Day 50 at mobile width.
+- 2026-11-27 15:27 UTC | Codex | T13/T14/T24 | Published source 2a99c9e to GitHub Pages (gh-pages f8f117e). All 105 public lesson, flashcard and quiz URLs for Days 16–50 returned HTTP 200 with matching build hashes. The homepage, three JavaScript/CSS assets, 51 illustrations and 51 sharing cards also matched. On the live site Chrome completed both practice modes and missed-word retries for Day 16 on desktop and Day 50 on mobile. Source review: [PR #2](https://github.com/KhurshidbekUrazaliev/korean-vocab-app/pull/2).
+- 2026-11-27 15:39 UTC | Codex | T13 | Completed the owner-requested review of all 350 entries and corrected 15. All 17 unit tests passed. The build contains 35 dictionary-reviewed lesson pages with the corrected words in both the visible list and structured data. See [the correction record](docs/VOCABULARY-REVIEW.md).
+- 2026-11-27 15:45 UTC | Codex | T13 | Integrated the reviewed vocabulary with the Today, Course and Progress redesign from 59d2821. All 25 unit tests passed, including progress migration for both earlier releases. Verified the corrected lesson HTML and all 140 practice routes for Days 16–50.
