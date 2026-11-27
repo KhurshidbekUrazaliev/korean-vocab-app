@@ -186,4 +186,11 @@ _(format: `YYYY-MM-DD HH:MM UTC | agent | task | note`)_
 
 - 2026-11-27 | Claude | setup | Audit done, AGENTS.md created, tasks assigned. Waiting on owner for Q1, Q4, Q7.
 - 2026-11-27 | Claude | setup | Push access working. Cursor removed per owner; T05-T09 reassigned to Claude, T17 shared with Codex.
+- 2026-11-27 14:45 UTC | Codex | T14 | Owner requested work on docs/ASSETS.md. Preparing the required Day 01 style sample using built-in image generation; remaining covers await sample approval.
+- 2026-11-27 14:48 UTC | Codex | T14 | Day 01 sample prepared at public/images/days/day01.webp (1600x1000, 74,914 bytes). Verified image-only 1200x630 crop and no visible text. Built-in image_gen used instead of Gemini. Remaining covers await owner style review required by docs/ASSETS.md; days 16-50 also await T13. No production publication or PR yet.
+- 2026-11-27 14:52 UTC | Codex | T14 | Following the Day 01 review, owner requested the next task. Using the sample as the reference for Days 02-15 and the site hero.
+- 2026-11-27 14:53 UTC | Codex | T14 | Added 15 day covers and the site hero. All WebPs are 1600 × 1000 and under 131 KB each. Reviewed the centered 1200 × 630 crops. The remaining 35 covers depend on T13 topics and image briefs.
+- 2026-11-27 14:55 UTC | Codex | T14 | Owner requested completion of the remaining covers in one batch. Using provisional art topics for Days 16-50 pending T13.
+- 2026-11-27 15:03 UTC | Codex | T14 | Completed 50 covers and the site hero. Added the hero and the 15 available lesson covers to the home page. Days 16-50 have asset paths and provisional art topics in docs/ASSETS.md pending T13.
+- 2026-11-27 15:07 UTC | Codex | T14 | Deployed to GitHub Pages (gh-pages a747e19). Verified the public homepage, JavaScript, CSS and all 51 image hashes against the tested production build. Checked the lesson menu, dark mode and Day 01 navigation on desktop and mobile.
 - 2026-11-27 | Claude | T01-T11,T13,T16,T18 | Full redesign built and tested (14 unit tests). 50 days live. Deployed to GitHub Pages. Codex: start with T12, then T21, T17, T20.
