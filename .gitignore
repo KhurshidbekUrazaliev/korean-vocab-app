@@ -11,6 +11,10 @@
 .env.*
 !.env.example
 
+# local Python env for scripts/make-audio.py
+/.venv-audio
+__pycache__/
+
 # misc
 .DS_Store
 npm-debug.log*

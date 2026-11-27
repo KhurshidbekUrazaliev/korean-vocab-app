@@ -67,10 +67,10 @@ export function masteryBreakdown(progress, allWords) {
 export function weakWords(progress, allWords, limit = 6) {
   return allWords
     .map((w) => ({ w, s: progress.words[w.id] }))
-    .filter(({ s }) => s && s.seen > 0)
+    // Only words that were missed at least once and are still in the first two boxes.
+    .filter(({ s }) => s && s.seen > 0 && s.box <= 2 && s.correctCount < s.seen)
     .sort((a, b) => a.s.box - b.s.box || a.s.correctCount / a.s.seen - b.s.correctCount / b.s.seen)
     .slice(0, limit)
-    .filter(({ s }) => s.box <= 2)
     .map(({ w }) => w);
 }
 
