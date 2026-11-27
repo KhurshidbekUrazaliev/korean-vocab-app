@@ -1,5 +1,6 @@
+import { existsSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { days, allWords } from './index.js';
+import { days, allWords, clipFor } from './index.js';
 
 describe('vocabulary data', () => {
   it('has days 1..N in order with 10 words each', () => {
@@ -8,6 +9,12 @@ describe('vocabulary data', () => {
       expect(d.words).toHaveLength(10);
       expect(['verified', 'reviewed', 'draft']).toContain(d.status);
     });
+  });
+  it('has a recorded clip for every word (scripts/make-audio.py)', () => {
+    const missing = allWords.filter((w) => !existsSync(new URL(`../../public/audio/${w.id}.mp3`, import.meta.url)));
+    expect(missing.map((w) => w.id)).toEqual([]);
+    expect(clipFor(allWords[0].korean)).toBe(`/audio/${allWords[0].id}.mp3`);
+    expect(clipFor('없는 단어')).toBeNull();
   });
   it('has unique word ids and no repeated Korean words', () => {
     expect(new Set(allWords.map((w) => w.id)).size).toBe(allWords.length);
