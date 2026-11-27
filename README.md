@@ -1,29 +1,45 @@
 # Korean Vocabulary Practice App
 
-A fun and interactive web app I built to help me (and anyone else!) practice Korean vocabulary. Features flashcards and quizzes with 80 essential Korean words across 8 days of my learning journey.
+A fun and interactive web app I built to help me (and anyone else!) practice Korean vocabulary. Practice with 150 vocabulary entries across 15 daily lessons using flashcards and quizzes.
 
 ## What It Does
 
-This app includes **8 complete vocabulary days** with a beautiful main menu to choose which day to practice!
+Choose a lesson from the main menu to study its 10 words and take a quiz.
 
 ### Main Features:
 - 🌙 **Dark Mode Toggle** - Switch between light and dark themes
-- 📚 **8 Vocabulary Days** - 80 essential Korean words organized by topic
+- 📚 **15 Vocabulary Days** - 10 vocabulary entries per day
 - 🎴 **Flashcard Mode** - Click cards to flip them and see English translations
 - 🎯 **Quiz Mode** - Multiple choice questions with shuffled word order
 - 📊 **Score Tracking** - Real-time scoring and percentage results
 - 🎨 **Beautiful UI** - Each day has its own unique color theme
 - 📱 **Fully Responsive** - Works perfectly on mobile, tablet, and desktop
 
-### Current Vocabulary Sets:
-- **Day 02** - Travel Preparation (10 words)
-- **Day 03** - Student Life (10 words)
-- **Day 04** - Entertainment (10 words)
-- **Day 05** - Decision & Opinion (10 words)
-- **Day 06** - Family & Life (10 words)
-- **Day 07** - Travel Experience (10 words)
-- **Day 08** - Culture & Freedom (10 words)
-- **Day 09** - Daily Life & Habits (10 words)
+### Current Vocabulary Sets
+
+| Day | Topic in the lesson menu |
+| --- | --- |
+| 01 | Dining Out |
+| 02 | Travel Prep |
+| 03 | Student Life |
+| 04 | Entertainment |
+| 05 | Decision |
+| 06 | Family |
+| 07 | Travel |
+| 08 | Culture |
+| 09 | Daily Life |
+| 10 | Imagination |
+| 11 | Personality |
+| 12 | Fatigue & Change |
+| 13 | Gardening & Weather |
+| 14 | Work & Time |
+| 15 | Actions & Objects |
+
+## Illustrations
+
+The artwork collection includes a Seoul street scene for the site hero and 50 daily covers. Days 01–15 accompany the existing lessons. Days 16–50 have provisional illustration topics while their vocabulary lists are in development.
+
+All 51 images are 1600 × 1000 WebPs. The covers are in `public/images/days/` (`day01.webp` through `day50.webp`), and the hero is in `public/images/hero.webp`. The [illustration brief](docs/ASSETS.md) lists the topics and prompts.
 
 ## Why I Built This
 
@@ -31,7 +47,7 @@ I'm learning Korean and wanted a more engaging way to practice vocabulary instea
 
 ## Tech Stack
 
-- React 18
+- React 19 with Create React App (react-scripts 5)
 - Tailwind CSS (via CDN)
 - Lucide React (for beautiful icons)
 - Component-based architecture (separate files for each day)
@@ -57,11 +73,15 @@ npm install
 npm start
 ```
 
-The app should open automatically at `http://localhost:3000`
+The app should open automatically at `http://localhost:3000`.
+
+## Building and Deploying
+
+Run `npm run build` to create the production site in `build/`. To publish to GitHub Pages, run `npm run deploy` with push access to the repository. Its `predeploy` script builds the app, then `gh-pages` publishes the contents of `build/` to the `gh-pages` branch.
 
 ## Live Demo
 
-Check it out here: [https://khurshidbekurazaliev.github.io/korean-vocab-app/](https://khurshidbekurazaliev.github.io/korean-vocab-app/)
+[Open Korean Vocabulary Practice on GitHub Pages](https://khurshidbekurazaliev.github.io/korean-vocab-app/)
 
 ## What I Learned
 
@@ -80,21 +100,15 @@ Check it out here: [https://khurshidbekurazaliev.github.io/korean-vocab-app/](ht
 korean-vocab-app/
 ├── src/
 │   ├── App.js       # Main menu for day selection
-│   ├── Day02.js     # Day 02 vocabulary component
-│   ├── Day03.js     # Day 03 vocabulary component
-│   ├── Day04.js     # Day 04 vocabulary component
-│   ├── Day05.js     # Day 05 vocabulary component
-│   ├── Day06.js     # Day 06 vocabulary component
-│   ├── Day07.js     # Day 07 vocabulary component
-│   ├── Day08.js     # Day 08 vocabulary component
-│   ├── Day09.js     # Day 09 vocabulary component
+│   ├── Day01.js … Day15.js  # Lesson vocabulary and practice components
 │   └── index.js     # Entry point
 ├── public/
+│   ├── images/      # Site hero and all 50 day covers
 │   └── index.html   # HTML template with Tailwind CDN
 └── package.json     # Project dependencies
 ```
 
-## The Vocabulary
+## Vocabulary from Days 02–09
 
 ### Day 02 - Travel Preparation
 - 비자 (bija) - visa
@@ -209,7 +223,7 @@ Optimized for all screen sizes with Tailwind's responsive grid system. Practice 
 ## Future Ideas
 
 Some things I might add:
-- Days 01 and to Day 50 (complete all 50 days!)
+- Add vocabulary and practice for Days 16–50
 - Audio pronunciation for each word
 - Spaced repetition algorithm for optimal learning (like Anki)
 - Progress tracking across sessions

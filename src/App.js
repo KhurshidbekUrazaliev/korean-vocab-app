@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BookOpen, Calendar, ArrowLeft, Moon, Sun, Menu, X, ChevronDown, ChevronRight } from 'lucide-react';
+import { ArrowLeft, Moon, Sun, Menu, X, ChevronDown, ChevronRight } from 'lucide-react';
 import Day01 from './Day01';
 import Day02 from './Day02';
 import Day03 from './Day03';
@@ -15,6 +15,9 @@ import Day12 from './Day12';
 import Day13 from './Day13';
 import Day14 from './Day14';
 import Day15 from './Day15';
+import './Home.css';
+
+const imageDirectory = `${process.env.PUBLIC_URL}/images`;
 
 function App() {
   const [selectedDay, setSelectedDay] = useState(null);
@@ -32,26 +35,22 @@ function App() {
     }
   }, [darkMode]);
 
-  const bgClass = darkMode
-    ? "min-h-screen bg-gradient-to-br from-gray-900 via-indigo-900 to-purple-900"
-    : "min-h-screen bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500";
-
   const regularDays = [
-    { id: 'day01', name: 'Day 01', description: 'Dining Out', color: 'violet' },
-    { id: 'day02', name: 'Day 02', description: 'Travel Prep', color: 'sky' },
-    { id: 'day03', name: 'Day 03', description: 'Student Life', color: 'emerald' },
-    { id: 'day04', name: 'Day 04', description: 'Entertainment', color: 'pink' },
-    { id: 'day05', name: 'Day 05', description: 'Decision', color: 'purple' },
-    { id: 'day06', name: 'Day 06', description: 'Family', color: 'teal' },
-    { id: 'day07', name: 'Day 07', description: 'Travel', color: 'blue' },
-    { id: 'day08', name: 'Day 08', description: 'Culture', color: 'amber' },
-    { id: 'day09', name: 'Day 09', description: 'Daily Life', color: 'red' },
-    { id: 'day10', name: 'Day 10', description: 'Imagination', color: 'lime' },
-    { id: 'day11', name: 'Day 11', description: 'Personality', color: 'rose' },
-    { id: 'day12', name: 'Day 12', description: 'Fatigue & Change', color: 'amber' },
-    { id: 'day13', name: 'Day 13', description: 'Gardening&Weather', color: 'emerald' },
-    { id: 'day14', name: 'Day 14', description: 'Work & Time', color: 'cyan' },
-    { id: 'day15', name: 'Day 15', description: 'Actions & Objects', color: 'orange' },
+    { id: 'day01', name: 'Day 01', description: 'Dining Out' },
+    { id: 'day02', name: 'Day 02', description: 'Travel Prep' },
+    { id: 'day03', name: 'Day 03', description: 'Student Life' },
+    { id: 'day04', name: 'Day 04', description: 'Entertainment' },
+    { id: 'day05', name: 'Day 05', description: 'Decision' },
+    { id: 'day06', name: 'Day 06', description: 'Family' },
+    { id: 'day07', name: 'Day 07', description: 'Travel' },
+    { id: 'day08', name: 'Day 08', description: 'Culture' },
+    { id: 'day09', name: 'Day 09', description: 'Daily Life' },
+    { id: 'day10', name: 'Day 10', description: 'Imagination' },
+    { id: 'day11', name: 'Day 11', description: 'Personality' },
+    { id: 'day12', name: 'Day 12', description: 'Fatigue & Change' },
+    { id: 'day13', name: 'Day 13', description: 'Gardening&Weather' },
+    { id: 'day14', name: 'Day 14', description: 'Work & Time' },
+    { id: 'day15', name: 'Day 15', description: 'Actions & Objects' },
   ];
 
   const extraDays = [
@@ -230,128 +229,56 @@ function App() {
     );
   }
 
-  // Main Menu (Grid View)
   return (
-    <div className={`${bgClass} p-8 flex items-center justify-center min-h-screen`}>
-      <div className="max-w-6xl w-full mx-auto py-12">
-        {/* Top Bar with Dark Mode */}
-        <div className="flex justify-end mb-8">
-          <button
-            onClick={() => setDarkMode(!darkMode)}
-            className="bg-white/20 hover:bg-white/30 text-white font-bold py-3 px-6 rounded-full backdrop-blur-sm flex items-center gap-2"
-          >
-            {darkMode ? (
-              <>
-                <Sun className="w-5 h-5" />
-                Light Mode
-              </>
-            ) : (
-              <>
-                <Moon className="w-5 h-5" />
-                Dark Mode
-              </>
-            )}
+    <main className={darkMode ? 'vocab-home vocab-home--dark' : 'vocab-home'}>
+      <div className="vocab-home__content">
+        <div className="vocab-home__toolbar">
+          <button type="button" className="vocab-home__theme" onClick={() => setDarkMode(!darkMode)}>
+            {darkMode ? <Sun size={18} /> : <Moon size={18} />}
+            {darkMode ? 'Light Mode' : 'Dark Mode'}
           </button>
         </div>
 
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="flex justify-center mb-6">
-            <BookOpen className="w-24 h-24 text-yellow-300 animate-pulse" />
+        <header className="vocab-home__hero">
+          <img src={`${imageDirectory}/hero.webp`} alt="" width="1600" height="1000" />
+          <div className="vocab-home__intro">
+            <h1 lang="ko">한국어 공부</h1>
+            <p>Essential Korean Vocabulary</p>
           </div>
-          <h1 className="text-7xl font-bold text-white mb-4 drop-shadow-lg">한국어 공부</h1>
-          <p className="text-3xl text-white/90 mb-2">Essential Korean Vocabulary</p>
-          <p className="text-xl text-white/80">Choose Your Day</p>
-        </div>
+        </header>
 
-        {/* Regular Days Grid */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold text-white mb-6 text-center">Regular Days (1-15)</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
-            {regularDays.map((day) => (
-              <DayCard
-                key={day.id}
-                day={day.name}
-                color={day.color}
-                description={day.description}
-                onClick={() => selectDay(day.id)}
-                darkMode={darkMode}
-              />
-            ))}
-          </div>
-        </div>
+        <h2 className="vocab-home__heading">Choose Your Day</h2>
+        <DayGrid heading="Regular Days (1-15)" days={regularDays} selectDay={selectDay} />
+        {extraDays.length > 0 && <DayGrid heading="Extra Days" days={extraDays} selectDay={selectDay} />}
 
-        {/* Extra Days Section */}
-        {extraDays.length > 0 && (
-          <div className="mb-12">
-            <h2 className="text-3xl font-bold text-white mb-6 text-center">Extra Days</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
-              {extraDays.map((day) => (
-                <DayCard
-                  key={day.id}
-                  day={day.name}
-                  color={day.color}
-                  description={day.description}
-                  onClick={() => selectDay(day.id)}
-                  darkMode={darkMode}
-                />
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Stats */}
-        <div className="mt-12 text-center">
-          <p className="text-white/80 text-lg">
-            📚 {regularDays.length * 10} Essential Words! 화이팅! 💪
-          </p>
-        </div>
+        <p className="vocab-home__stats">📚 {regularDays.length * 10} Essential Words! 화이팅! 💪</p>
       </div>
-    </div>
+    </main>
   );
 }
 
-function DayCard({ day, color, description, onClick, darkMode }) {
-  const cardBg = darkMode ? "bg-gray-800" : "bg-white";
-  const textColor = darkMode ? "text-gray-400" : "text-gray-600";
-  
-  // Helper function to safely map color strings to Tailwind classes (avoids JIT issues)
-  const getDynamicClass = (color, prefix) => {
-  const map = {
-      violet: `${prefix}-violet-600`,
-      sky: `${prefix}-sky-600`,
-      emerald: `${prefix}-emerald-600`,
-      pink: `${prefix}-pink-600`,
-      purple: `${prefix}-purple-600`,
-      teal: `${prefix}-teal-600`,
-      blue: `${prefix}-blue-600`,
-      amber: `${prefix}-amber-600`,
-      red: `${prefix}-red-600`,
-      lime: `${prefix}-lime-600`,
-      rose: `${prefix}-rose-600`,
-      cyan: `${prefix}-cyan-600`,
-      orange: `${prefix}-orange-600`,  // ← ADD THIS LINE
-  };
-  return map[color] || `${prefix}-gray-600`;
-};
-
-  const iconColorClass = getDynamicClass(color, 'text');
-  const hoverShadowClass = getDynamicClass(color, 'hover:shadow');
-
+function DayGrid({ heading, days, selectDay }) {
   return (
-    <button
-      onClick={onClick}
-      className={`${cardBg} rounded-3xl shadow-2xl p-6 transform hover:scale-105 transition-all duration-200 ${hoverShadowClass}/50 text-left`}
-    >
-      <div className="flex flex-col items-center text-center gap-3">
-        <Calendar className={`w-12 h-12 ${iconColorClass}`} /> 
-        <div>
-          <h2 className={`text-2xl font-bold ${iconColorClass}`}>{day}</h2>
-          <p className={`${textColor} text-sm mt-1`}>{description}</p>
-        </div>
-        <div className={`${iconColorClass} font-semibold text-sm`}>10 Words →</div>
+    <section>
+      <h3 className="vocab-home__section-heading">{heading}</h3>
+      <div className="vocab-home__grid">
+        {days.map((day) => (
+          <button
+            key={day.id}
+            type="button"
+            className="vocab-home__day"
+            onClick={() => selectDay(day.id)}
+          >
+            <img src={`${imageDirectory}/days/${day.id}.webp`} alt="" width="1600" height="1000" loading="lazy" decoding="async" />
+            <span className="vocab-home__day-copy">
+              <span className="vocab-home__day-number">{day.name}</span>
+              <strong>{day.description}</strong>
+              <span className="vocab-home__day-action">10 Words →</span>
+            </span>
+          </button>
+        ))}
       </div>
-    </button>
+    </section>
   );
 }
 
