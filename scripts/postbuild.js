@@ -46,8 +46,9 @@ function page({ path, title, description, image = 'og/home.png', jsonLd, body, n
     .replace('<div id="root"></div>', `<div id="root">${body ? `<div class="prerender">${body}</div>` : ''}</div>`);
 }
 
+// GitHub Pages serves /day/7 from day/7.html with a 200 (a day/7/index.html would 301 to /day/7/).
 function write(path, html) {
-  const file = join(DIST, path, 'index.html');
+  const file = join(DIST, `${path}.html`);
   mkdirSync(dirname(file), { recursive: true });
   writeFileSync(file, html);
 }
@@ -126,8 +127,17 @@ for (const [path, title, description] of simple) {
   write(path, page({ path: `/${path}`, title, description, body: `${nav}<main><h1>${esc(title.split(' |')[0])}</h1><p>${esc(description)}</p></main>` }));
 }
 
-// Practice routes have no static file: GitHub Pages serves 404.html, which boots the app
-// and renders the requested practice session (or the app's own 404 page).
+// Practice sessions: app shell only, not indexed.
+for (const d of days) {
+  for (const mode of ['flashcards', 'choice', 'typing', 'listening']) {
+    write(
+      `day/${d.number}/practice/${mode}`,
+      page({ path: `/day/${d.number}/practice/${mode}`, title: `Practice Day ${pad(d.number)}: ${d.title} | ${NAME}`, description: `Practice the ${d.title} words.`, image: `og/day${pad(d.number)}.png`, noindex: true }),
+    );
+  }
+}
+
+// Unknown paths: GitHub Pages serves 404.html (status 404), which boots the app's own 404 page.
 writeFileSync(
   join(DIST, '404.html'),
   page({ path: '/404', title: `Page not found | ${NAME}`, description: 'This page does not exist.', noindex: true }),
@@ -170,4 +180,4 @@ ${days.map((d) => `- [Day ${pad(d.number)}: ${d.title} (${d.titleKo})](${SITE}/d
 `,
 );
 
-console.log(`postbuild: ${urls.length} routes, sitemap, robots.txt, llms.txt, 404.html`);
+console.log(`postbuild: ${urls.length} public routes + ${days.length * 4} practice routes, sitemap, robots.txt, llms.txt, 404.html`);
