@@ -1,53 +1,26 @@
-import { useRef } from 'react';
 import { TLink } from './Motion.jsx';
-import { days } from '../data/index.js';
-import { gsap, useGSAP, reducedMotion } from '../lib/motion.js';
+import { days, allWords } from '../data/index.js';
 
 export function Footer() {
-  const ref = useRef(null);
-  useGSAP(
-    () => {
-      if (reducedMotion()) return;
-      gsap.from('.footer__wordmark span', {
-        yPercent: 100,
-        stagger: 0.06,
-        ease: 'none',
-        scrollTrigger: { trigger: ref.current, start: 'top bottom', end: 'bottom bottom', scrub: 0.6 },
-      });
-    },
-    { scope: ref },
-  );
-
   return (
-    <footer className="site-footer" ref={ref}>
+    <footer className="footer">
       <div className="wrap">
-        <div className="footer__grid">
-          <h2>Ten words a day. Real practice, not just reading.</h2>
-          <div>
-            <h3>Practice</h3>
-            <ul>
-              <li><TLink to="/#days">All {days.length} days</TLink></li>
-              <li><TLink to="/review" ko="복습" en="Review">Review due words</TLink></li>
-              <li><TLink to="/day/1" ko={days[0].titleKo} en="Day 01">Start Day 01</TLink></li>
-            </ul>
-          </div>
-          <div>
-            <h3>About</h3>
-            <ul>
-              <li><TLink to="/privacy">Privacy</TLink></li>
-              <li><TLink to="/terms">Terms</TLink></li>
-              <li><a href="https://github.com/KhurshidbekUrazaliev/korean-vocab-app">Source on GitHub</a></li>
-            </ul>
-          </div>
+        <div className="footer__top">
+          <p className="footer__motto" lang="ko">
+            하루에 열 단어.
+            <span>Ten words a day, {days.length} days, {allWords.length} words.</span>
+          </p>
+          <ul className="footer__links">
+            <li><TLink to="/course">Course</TLink></li>
+            <li><TLink to="/review" ko="복습" en="Review">Review</TLink></li>
+            <li><TLink to="/progress">Progress</TLink></li>
+            <li><TLink to="/privacy">Privacy</TLink></li>
+            <li><TLink to="/terms">Terms</TLink></li>
+          </ul>
         </div>
-        <p className="footer__wordmark" aria-hidden="true">
-          {'한국어 공부'.split('').map((c, i) => (
-            <span key={i}>{c === ' ' ? ' ' : c}</span>
-          ))}
-        </p>
         <div className="footer__legal">
           <span>© {new Date().getFullYear()} Essential Korean Vocabulary</span>
-          <span>Progress is saved in this browser only.</span>
+          <span>No account needed. Progress is saved in this browser.</span>
         </div>
       </div>
     </footer>

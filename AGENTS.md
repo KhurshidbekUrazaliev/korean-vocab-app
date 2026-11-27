@@ -35,7 +35,7 @@ and be findable by search engines and AI assistants.
 
 Live site: https://khurshidbekurazaliev.github.io/korean-vocab-app/
 
-## 2. Current state (2026-11-27, after Claude's redesign)
+## 2. Current state (2026-11-28)
 
 - Vite + React 19 + React Router 7. GSAP (ScrollTrigger, SplitText, CustomEase), Lenis smooth
   scroll, three.js hero (lazy chunk). Plain CSS with tokens. Vitest. Deployed to GitHub Pages
@@ -44,12 +44,11 @@ Live site: https://khurshidbekurazaliev.github.io/korean-vocab-app/
   (동특증→동아리 활동, 짐장히→굉장히, 마지다→마치다, 영덩이→엉덩이; each has a `note`).
   Days 16–50 contain 350 generated entries matched to the illustrated topics. All 35 lists carry
   `status: reviewed` and `source: generated`. See [the vocabulary review](docs/VOCABULARY-REVIEW.md). Each day offers direct links to
-  flashcards and multiple choice, plus typing and listening under Other modes.
+  flashcards, multiple choice, typing and listening in its lesson steps.
 - Every public route gets static HTML from `scripts/postbuild.js`: own title, description,
   canonical, OG/Twitter tags, per-day 1200x630 preview image, JSON-LD, and the word list as
   plain HTML inside `#root`. Sitemap, robots.txt (AI bots allowed), llms.txt, 404.html.
-- Design follows the owner's reference set (Dayora/Optivolt style): warm paper neutrals, one lime
-  accent, deep pine band, light-weight display type, Pretendard, rounded cards with chips.
+- The app uses hanji paper tones, seal red and Noto Serif KR for Hangul, with Pretendard for UI text. See the v2 design system below.
 - Motion: hero particle field that forms real Korean words (cursor pushes particles), line-mask
   text reveals, scroll-velocity word ticker, pinned "four ways to practice" scene, staggered day
   index with sticky block numbers, ink curtain page transitions showing the destination's Korean
@@ -64,18 +63,21 @@ src/
   data/index.js             days, allWords, getDay, pad, PLANNED_DAYS
   lib/                      pure logic, unit-tested in lib/__tests__
     shuffle.js quiz.js srs.js progress.js streak.js speech.js
+    stats.js                dayStatus, currentDay, weakWords, activity, mastery breakdown
+    sound.js                feedback tones (Web Audio) + vibration
     motion.js               GSAP plugin registration + reducedMotion()
   hooks/                    useProgress (store over localStorage), useTheme
   components/               Header, Footer, Motion (Lenis + curtain + TLink), Reveal,
                             HangulField (three.js), Session (all practice modes + results),
                             SpeakButton, Icons
-  pages/                    Home, Day, Practice, Review, Legal (Privacy, Terms), NotFound
-  styles/                   tokens.css, base.css, home.css, day.css, practice.css
+  pages/                    Home (Landing for new visitors, Today for returning), Course, Day,
+                            Practice, Review, Progress, Legal (Privacy, Terms), NotFound
+  styles/                   tokens.css, base.css, landing.css, app.css, day.css, practice.css
 scripts/postbuild.js        per-route HTML + SEO files (runs in `npm run build`)
 scripts/make-images.cjs     OG images + icons (dev-only, Playwright)
 ```
 
-**Routes**: `/` · `/day/:n` · `/day/:n/practice/:mode` (flashcards|choice|typing|listening,
+**Routes**: `/` (Landing or Today) · `/course` · `/progress` (noindex) · `/day/:n` · `/day/:n/practice/:mode` (flashcards|choice|typing|listening,
 noindex) · `/review` · `/privacy` · `/terms` · anything else → app 404 (served via 404.html).
 Title pattern: `Day 07: Travel | Essential Korean Vocabulary`.
 
@@ -107,18 +109,29 @@ getStreak(progress, now) -> { current, best, practicedToday }
 speak(text, { rate })                             // ko-KR speechSynthesis
 ```
 
-## 4. Design system
+## 4. Design system (v2, 2026-11-27)
 
-- Tokens in `src/styles/tokens.css`. Light: paper `#f3f2ec`, surface `#fff`, ink `#141511`,
-  ink-2 `#55564e`, line `#d9d7cc`, accent `#d4ea6b`, pine `#1f3a28`. Dark theme via
-  `html[data-theme=dark]` (toggle in header, defaults to system).
-- Contrast (WCAG AA, checked 2026-11-27): ink/paper 16.35, ink-2/paper 6.62, ink-2/surface-2 6.04,
-  accent-ink/accent 13.78, pine-ink/pine 10.96, pine-2/pine 7.05, bad/surface 6.92;
-  dark: ink/paper 16.14, ink-2/surface-2 6.60, bad/surface 7.47.
-- Type: Pretendard Variable (jsDelivr). Display weight 200-300, tracking -0.045em. Korean words 600.
-- Spacing 4/8/12/16/24/32/48/64 (+96/128 for sections). Radius 8/16/28/pill.
-- No gradients, glass blur, glow, emoji, or stock icons beyond the few in `Icons.jsx`.
-- Buttons say what happens ("Start flashcards", "Practice the 3 missed words").
+Read `docs/DESIGN-CRITIQUE.md` first: it explains why v1 looked like a template and what v2 changes.
+
+- **Identity**: hanji paper that matches the illustrations' ground (#F6ECDF), warm ink, and one
+  seal-red accent (인주) taken from the art. No lime, no gradients, no glass, no emoji.
+- **Type**: Hangul display in **Noto Serif KR** (Myeongjo, Google Fonts) via `.ko`; UI in
+  Pretendard. Use `.ko-ui` for small Hangul inside UI text. Tabular numbers via `.num`.
+- **Tokens** (`src/styles/tokens.css`): paper `#f6ede2`, surface `#fffaf3`, surface-2 `#ece2d3`,
+  ink `#1c1a16`, ink-2 `#5f584d`, ink-3 `#8a8172` (large/decorative only), line `#e0d5c4`,
+  accent `#a8322a` + soft `#f2ddd2`, good `#2e6440` + soft `#dde9d7`, dark band `#24201b`.
+- **Contrast** (WCAG AA, checked 2026-11-27): ink/paper 15.00, ink-2/paper 6.06,
+  ink-2/surface-2 5.48, accent/paper 5.75, white-on-accent 6.41, good/paper 6.02;
+  dark: ink/paper 15.11, ink-2/surface 6.56, accent/paper 5.86, accent/surface 5.37, good 8.61.
+  ink-3 is 3.32 and is only for large or decorative text.
+- **App structure**: top app bar (brand seal, Today / Course / Review / Progress, streak, theme)
+  and a bottom tab bar under 820px. Practice runs full-screen without them.
+- **Components**: `.btn` (ink), `.btn--accent` (the one primary action per screen), `.btn--ghost`,
+  `.card`, `.badge(--accent|--good|--ink)`, `Ring`, `Mastery` (5 bars = review box).
+- Spacing 4/8/12/16/24/32/48/64 (+96/128). Radius 8/14/24/pill.
+- Motion: GSAP for entrances, scroll scenes and the curtain; CSS for hover. All off for reduced motion.
+- Practice feedback: soft Web Audio tones + vibration on mobile, toggle in the session bar
+  (`kv.sound` in localStorage).
 
 ## 5. Task board
 
@@ -168,7 +181,9 @@ Everyone may edit their own task rows and append to the status log.
 | 2026-11-27 | Plain CSS + tokens instead of Tailwind (fewer deps, design needs custom motion styles) | Claude |
 | 2026-11-27 | Days 16-50 drafted by Claude so the course is complete; marked draft until checked | Claude (owner asked to finish without questions) |
 | 2026-11-27 | No background video. Motion, the WebGL hero and Codex's illustrations carry the visual weight | Claude |
+| 2026-11-27 | v2 design: app structure (Today/Course/Review/Progress), hanji + seal red palette from the art, Noto Serif KR for Hangul. Replaces v1's lime/pine landing-page look | Owner asked for a premium, non-generic app feel |
 | 2026-11-28 | Use the original Day 16–50 illustration topics for the replacement lessons and keep their generated vocabulary marked as draft. | Owner / Codex |
+| 2026-11-28 | Complete the dictionary review of Days 16–50, record the corrections and merge PR #2 into the v2 design. | Owner / Codex |
 
 ## 8. Open questions for the owner
 
@@ -197,7 +212,9 @@ _(format: `YYYY-MM-DD HH:MM UTC | agent | task | note`)_
 - 2026-11-27 15:07 UTC | Codex | T14 | Deployed to GitHub Pages (gh-pages a747e19). Verified the public homepage, JavaScript, CSS and all 51 image hashes against the tested production build. Checked the lesson menu, dark mode and Day 01 navigation on desktop and mobile.
 - 2026-11-27 | Claude | T01-T11,T13,T16,T18 | Full redesign built and tested (14 unit tests). 50 days live. Deployed to GitHub Pages. Codex: start with T12, then T21, T17, T20.
 - 2026-11-27 | Claude | T14 merge | Merged codex/T14-vocabulary-artwork. Dropped its edits to the old CRA files. Matched covers 16-50 to the draft days by content (mapping in docs/ASSETS.md), 9 spare covers moved to docs/artwork-unassigned/. Covers shown on Day hero, card hover, OG images (now JPEG); street hero used in a scroll section on Home. Redeployed.
+- 2026-11-27 | Claude | design v2 | Critique in docs/DESIGN-CRITIQUE.md. New palette and type, app bar + mobile tabs, Today dashboard, Course map, Progress page, lesson path on Day pages, practice polish (card stack, combo, sounds, richer results). 19 tests. Deployed. Codex tasks unchanged: T12, T21, T17, T20, T22-T24.
 - 2026-11-27 15:15 UTC | Codex | T13/T14 | Preparing a single release of the cover-topic word lists and existing practice modes on top of the current Vite app.
 - 2026-11-27 15:24 UTC | Codex | T13/T14/T24 | Integrated the illustrated lessons with the redesign on a727f1d. All 17 unit tests passed. The production build generated 54 public routes and 200 practice routes. All 51 sharing JPEGs are below 60 KB. Chrome completed 350 flashcard prompts, 350 four-option quiz questions and four missed-word retries on the integrated build, including Day 50 at mobile width.
 - 2026-11-27 15:27 UTC | Codex | T13/T14/T24 | Published source 2a99c9e to GitHub Pages (gh-pages f8f117e). All 105 public lesson, flashcard and quiz URLs for Days 16–50 returned HTTP 200 with matching build hashes. The homepage, three JavaScript/CSS assets, 51 illustrations and 51 sharing cards also matched. On the live site Chrome completed both practice modes and missed-word retries for Day 16 on desktop and Day 50 on mobile. Source review: [PR #2](https://github.com/KhurshidbekUrazaliev/korean-vocab-app/pull/2).
 - 2026-11-27 15:39 UTC | Codex | T13 | Completed the owner-requested review of all 350 entries and corrected 15. All 17 unit tests passed. The build contains 35 dictionary-reviewed lesson pages with the corrected words in both the visible list and structured data. See [the correction record](docs/VOCABULARY-REVIEW.md).
+- 2026-11-27 15:45 UTC | Codex | T13 | Integrated the reviewed vocabulary with the Today, Course and Progress redesign from 59d2821. All 25 unit tests passed, including progress migration for both earlier releases. Verified the corrected lesson HTML and all 140 practice routes for Days 16–50.

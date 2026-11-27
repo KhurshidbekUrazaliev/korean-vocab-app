@@ -1,37 +1,84 @@
 import { legacyWordIds } from './legacyWordIds.js';
+import { INTERVAL_DAYS } from './srs.js';
 
 export const PROGRESS_KEY = 'kv.progress.v2';
-const LEGACY_KEY = 'kv.progress.v1';
-export const emptyProgress = () => ({ version: 2, words: {}, days: {}, activity: [] });
+export const LEGACY_KEY = 'kv.progress.v1';
+export const emptyProgress = () => ({ version: 2, words: {}, days: {}, activity: [], daily: {} });
 
 const isRecord = (value) => value !== null && typeof value === 'object' && !Array.isArray(value);
+const isCount = (value) => Number.isSafeInteger(value) && value >= 0;
+const isDayKey = (value) => typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value);
+const isTimestamp = (value) => typeof value === 'string' && Number.isFinite(Date.parse(value));
+const validWord = (word) => isRecord(word) && Number.isInteger(word.box) && word.box >= 1
+  && word.box <= INTERVAL_DAYS.length && isTimestamp(word.dueAt)
+  && isCount(word.seen) && isCount(word.correctCount) && word.correctCount <= word.seen;
+const validDay = (day) => isRecord(day) && isCount(day.best) && day.best <= 100
+  && Array.isArray(day.modes) && day.modes.every((mode) => typeof mode === 'string')
+  && (day.lastAt === undefined || isTimestamp(day.lastAt));
 
-function migrate(legacy) {
-  const next = emptyProgress();
-  if (Array.isArray(legacy.activity)) next.activity = legacy.activity;
-  for (const [id, score] of Object.entries(legacy.days ?? {})) {
-    if (/^day(?:0[1-9]|1[0-5])$/.test(id) && isRecord(score)) next.days[id] = score;
-  }
+// Both deployments may include the same answers. Keep the newest schedule and
+// take the higher counters without counting a shared history twice.
+function mergeWord(legacy, current) {
+  if (!validWord(current)) return legacy;
+  const lastAnswer = (word) => Date.parse(word.dueAt) - INTERVAL_DAYS[word.box - 1] * 86_400_000;
+  const latest = lastAnswer(legacy) > lastAnswer(current) ? legacy : current;
+  return {
+    ...legacy, ...current, ...latest,
+    seen: Math.max(legacy.seen, current.seen),
+    correctCount: Math.max(legacy.correctCount, current.correctCount),
+  };
+}
+
+function mergeDay(legacy, current) {
+  if (!validDay(current)) return legacy;
+  return {
+    ...legacy, ...current,
+    best: Math.max(legacy.best, current.best),
+    modes: [...new Set([...current.modes, ...legacy.modes])],
+    lastAt: [current.lastAt, legacy.lastAt].filter(Boolean).sort().at(-1),
+  };
+}
+
+function importLegacy(legacy, current) {
+  const words = { ...current.words };
   for (const [oldId, word] of Object.entries(legacy.words ?? {})) {
     const unchanged = /^day(?:0[1-9]|1[0-5])-(?:0[1-9]|10)$/.test(oldId);
     const id = unchanged ? oldId : legacyWordIds[oldId];
-    if (typeof id === 'string' && isRecord(word)) next.words[id] = word;
+    if (typeof id === 'string' && validWord(word)) words[id] = mergeWord(word, words[id]);
   }
-  return next;
+
+  const days = { ...current.days };
+  for (const [id, score] of Object.entries(legacy.days ?? {})) {
+    if (/^day(?:0[1-9]|1[0-5])$/.test(id) && validDay(score)) days[id] = mergeDay(score, days[id]);
+  }
+
+  const activeDates = Array.isArray(legacy.activity) ? legacy.activity.filter(isDayKey) : [];
+  const activity = [...new Set([...current.activity, ...activeDates])].sort();
+  const daily = { ...current.daily };
+  for (const [date, count] of Object.entries(legacy.daily ?? {})) {
+    if (isDayKey(date) && isCount(count)) daily[date] = Math.max(daily[date] ?? 0, count);
+  }
+  return { ...current, words, days, activity, daily };
+}
+
+function read(storage, key) {
+  try {
+    return JSON.parse(storage?.getItem(key) ?? 'null');
+  } catch {
+    return null;
+  }
 }
 
 export function loadProgress(storage) {
   try {
     storage ??= globalThis.localStorage;
-    const saved = storage?.getItem(PROGRESS_KEY);
-    if (saved != null) {
-      const current = JSON.parse(saved);
-      return current?.version === 2 ? { ...emptyProgress(), ...current } : emptyProgress();
-    }
-    const legacy = JSON.parse(storage?.getItem(LEGACY_KEY) ?? 'null');
-    if (legacy?.version !== 1) return emptyProgress();
-    const next = migrate(legacy);
-    saveProgress(next, storage);
+    const saved = read(storage, PROGRESS_KEY);
+    if (saved && saved.version !== 2) return emptyProgress();
+    const current = { ...emptyProgress(), ...saved };
+    const legacy = read(storage, LEGACY_KEY);
+    if (legacy?.version !== 1) return current;
+    const next = importLegacy(legacy, current);
+    if (JSON.stringify(next) !== JSON.stringify(saved)) saveProgress(next, storage);
     return next;
   } catch {
     return emptyProgress();

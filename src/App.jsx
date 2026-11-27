@@ -10,10 +10,10 @@ export function Layout({ bare = false }) {
     <MotionProvider>
       <a className="skip-link" href="#main">Skip to content</a>
       {!bare && <Header theme={theme} onToggleTheme={toggleTheme} />}
-      <main id="main">
+      <main id="main" className={bare ? '' : 'app-main'}>
         <Outlet />
+        {!bare && <Footer />}
       </main>
-      {!bare && <Footer />}
     </MotionProvider>
   );
 }

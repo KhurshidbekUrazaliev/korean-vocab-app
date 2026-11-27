@@ -4,8 +4,8 @@ The Day 01 dining cover is the style reference for the series. Days 01–15 foll
 
 ## Where covers appear
 
-- Day page hero (with a "Start with" word chip), parallax on scroll
-- Home day index: revealed on hover/focus
+- Day page hero beside the lesson title and progress
+- Course index and landing-page lesson previews
 - Home "Every day is a scene" section: `public/images/hero.webp`
 - Link previews: `scripts/make-images.cjs` composes `public/og/dayNN.jpg` from the cover
 

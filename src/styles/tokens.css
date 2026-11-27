@@ -1,32 +1,43 @@
-/* Design tokens. Contrast ratios are recorded in AGENTS.md (T02). */
+/* Design tokens v2. The paper matches the illustrations' hanji ground (#F6ECDF) and the
+   accent is the seal red (인주) used in them. Contrast ratios are recorded in AGENTS.md. */
 :root {
-  /* Color: one brand accent (lime) plus a deep pine for dark sections, on warm neutrals */
-  --paper: #f3f2ec;
-  --surface: #ffffff;
-  --surface-2: #e9e8e0;
-  --ink: #141511;
-  --ink-2: #55564e;
-  --line: #d9d7cc;
-  --accent: #d4ea6b;
-  --accent-ink: #141511;
-  --pine: #1f3a28;
-  --pine-ink: #eef3e4;
-  --pine-2: #b9c8ae;
-  --good: #2f6b3d;
-  --bad: #a3321f;
-  --focus: #2f6bff;
+  --paper: #f6ede2;
+  --surface: #fffaf3;
+  --surface-2: #ece2d3;
+  --ink: #1c1a16;
+  --ink-2: #5f584d;
+  --ink-3: #8a8172; /* large or decorative text only (3.3:1) */
+  --line: #e0d5c4;
+  --line-strong: #cbbfac;
 
-  /* Type */
+  --accent: #a8322a; /* seal red */
+  --accent-ink: #fffaf3;
+  --accent-soft: #f2ddd2;
+  --good: #2e6440;
+  --good-soft: #dde9d7;
+  --bad: #a8322a;
+  --bad-soft: #f4dcd4;
+  --focus: #2f5fd0;
+
+  /* Dark band (used in light theme too) */
+  --pine: #24201b;
+  --pine-ink: #efe7da;
+  --pine-2: #b5ab9b;
+
+  --art-bg: #f6ecdf; /* background colour baked into the illustrations */
+
+  /* Type: Pretendard for UI, Noto Serif KR (Myeongjo) for Hangul display */
   --font: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', system-ui, sans-serif;
+  --font-ko: 'Noto Serif KR', 'Nanum Myeongjo', 'AppleMyungjo', 'Batang', serif;
   --fs-12: 0.75rem;
   --fs-14: 0.875rem;
   --fs-16: 1rem;
   --fs-18: 1.125rem;
+  --fs-20: 1.25rem;
   --fs-24: 1.5rem;
   --fs-32: 2rem;
-  --fs-display: clamp(3rem, 7.4vw, 7.5rem);
-  --fs-huge: clamp(4rem, 17vw, 17rem);
-  --tracking-tight: -0.045em;
+  --fs-display: clamp(2.75rem, 6vw, 5.5rem);
+  --tracking-tight: -0.035em;
 
   /* Spacing scale: 4 8 12 16 24 32 48 64 (+ 96/128 for section rhythm) */
   --s-1: 4px;
@@ -41,38 +52,45 @@
   --s-10: 128px;
 
   --r-sm: 8px;
-  --r-md: 16px;
-  --r-lg: 28px;
+  --r-md: 14px;
+  --r-lg: 24px;
   --r-pill: 999px;
 
-  --shadow-1: 0 1px 2px rgb(20 21 17 / 0.06), 0 8px 24px rgb(20 21 17 / 0.06);
-  --shadow-2: 0 2px 4px rgb(20 21 17 / 0.06), 0 24px 64px rgb(20 21 17 / 0.12);
+  --shadow-1: 0 1px 0 rgb(28 26 22 / 0.04), 0 1px 3px rgb(28 26 22 / 0.06);
+  --shadow-2: 0 1px 2px rgb(28 26 22 / 0.05), 0 12px 32px -8px rgb(28 26 22 / 0.14);
+  --shadow-3: 0 2px 6px rgb(28 26 22 / 0.06), 0 32px 64px -16px rgb(28 26 22 / 0.22);
 
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --t-fast: 160ms;
   --t-med: 320ms;
 
   --gutter: clamp(16px, 4vw, 48px);
-  --maxw: 1440px;
+  --maxw: 1320px;
+  --bar-h: 64px;
+  --tab-h: 64px;
   color-scheme: light;
 }
 
 :root[data-theme='dark'] {
-  --paper: #10110e;
-  --surface: #1a1c17;
-  --surface-2: #23251f;
-  --ink: #eeede6;
-  --ink-2: #a9aaa0;
-  --line: #34362f;
-  --accent: #d4ea6b;
-  --accent-ink: #141511;
-  --pine: #18291d;
-  --pine-ink: #eef3e4;
-  --pine-2: #a9bb9d;
-  --good: #8fd19e;
-  --bad: #ff8a73;
+  --paper: #151310;
+  --surface: #1f1c18;
+  --surface-2: #2a2621;
+  --ink: #efe7da;
+  --ink-2: #a9a091;
+  --ink-3: #7d7466;
+  --line: #322d27;
+  --line-strong: #4a443b;
+  --accent: #e0705c;
+  --accent-ink: #151310;
+  --accent-soft: #3a231d;
+  --good: #86c79a;
+  --good-soft: #1f2e23;
+  --bad: #e0705c;
+  --bad-soft: #3a231d;
   --focus: #8fb0ff;
-  --shadow-1: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px rgb(0 0 0 / 0.3);
-  --shadow-2: 0 2px 4px rgb(0 0 0 / 0.4), 0 24px 64px rgb(0 0 0 / 0.5);
+  --pine: #0e0d0b;
+  --shadow-1: 0 1px 0 rgb(0 0 0 / 0.3);
+  --shadow-2: 0 12px 32px -8px rgb(0 0 0 / 0.6);
+  --shadow-3: 0 32px 64px -16px rgb(0 0 0 / 0.7);
   color-scheme: dark;
 }

@@ -1,6 +1,6 @@
 # Essential Korean Vocabulary (한국어 공부)
 
-A Korean vocabulary course in daily sets of ten words. Each word has Hangul, romanization, an English meaning and audio. Learners practice with flashcards, multiple choice (both directions), typing and listening, and every answer feeds a spaced-review schedule so missed words come back the next day.
+A Korean vocabulary app in daily sets of ten words. Each word has Hangul, romanization, an English meaning and audio. Each day is a four-step lesson (flashcards, multiple choice in both directions, typing, listening), and every answer feeds a spaced-review schedule. Returning learners land on a Today dashboard with their next step, due reviews, streak and daily goal.
 
 [Open the course on GitHub Pages](https://khurshidbekurazaliev.github.io/korean-vocab-app/)
 
@@ -9,7 +9,7 @@ A Korean vocabulary course in daily sets of ten words. Each word has Hangul, rom
 
 ## Practice the illustrated lessons
 
-Choose a day from the course index, then select **Start flashcards** or **Start quiz**. A flashcard reveals the meaning and romanization. A multiple-choice round covers all ten words, supports both translation directions, and lets learners retry missed words. For example, try [Day 16 · Riding the subway](https://khurshidbekurazaliev.github.io/korean-vocab-app/day/16) or [Day 50 · Graduation day](https://khurshidbekurazaliev.github.io/korean-vocab-app/day/50). All 50 days have a cover in the index, on the lesson page and on the sharing card. The [asset brief](docs/ASSETS.md) lists the full series and the Seoul street hero.
+Choose a day from **Course**. In its lesson steps, select **Flashcards** to study or **Multiple choice** to take the quiz. A flashcard reveals the meaning and romanization. A multiple-choice round covers all ten words, supports both translation directions, and lets learners retry missed words. For example, try [Day 16 · Riding the subway](https://khurshidbekurazaliev.github.io/korean-vocab-app/day/16) or [Day 50 · Graduation day](https://khurshidbekurazaliev.github.io/korean-vocab-app/day/50). All 50 days have a cover in the index, on the lesson page and on the sharing card. The [asset brief](docs/ASSETS.md) lists the full series and the Seoul street hero.
 
 Returning learners keep their study dates, Days 01–15 scores, and spaced-review history for words retained with the same meaning. Scores for the replaced sets start fresh. The previous progress record stays in the browser.
 
@@ -18,7 +18,7 @@ Returning learners keep their study dates, Days 01–15 scores, and spaced-revie
 - React 19 + React Router 7, built with Vite
 - GSAP (ScrollTrigger, SplitText) and Lenis for motion and smooth scrolling
 - three.js for the hero particle field (loaded in its own chunk)
-- Plain CSS with design tokens in `src/styles/tokens.css`
+- Plain CSS with design tokens in `src/styles/tokens.css` (see `docs/DESIGN-CRITIQUE.md`); Noto Serif KR for Hangul, Pretendard for UI
 - Vitest for unit tests
 - GitHub Pages hosting
 

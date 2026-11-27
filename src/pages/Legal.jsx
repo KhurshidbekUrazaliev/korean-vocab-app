@@ -14,7 +14,7 @@ export function Privacy() {
         <h2>No accounts, no tracking</h2>
         <p>The site has no sign-up, no analytics, no advertising and no tracking cookies.</p>
         <h2>Third parties</h2>
-        <p>The site is hosted on GitHub Pages, which may log basic request data such as IP addresses as described in GitHub’s privacy statement. The font is loaded from the jsDelivr CDN. Pronunciation uses your device’s built-in speech voice; the audio is generated on your device.</p>
+        <p>The site is hosted on GitHub Pages, which may log basic request data such as IP addresses as described in GitHub’s privacy statement. Fonts are loaded from the jsDelivr CDN (Pretendard) and Google Fonts (Noto Serif KR), which receive your IP address when the fonts download. Pronunciation uses your device’s built-in speech voice; the audio is generated on your device.</p>
         <h2>Deleting your data</h2>
         <p>Clear this site’s data in your browser settings to remove all saved progress.</p>
         <h2>Contact</h2>
