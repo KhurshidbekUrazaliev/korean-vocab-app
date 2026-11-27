@@ -23,6 +23,44 @@
 :root[data-theme='dark'] .day-hero__num {
   color: var(--surface);
 }
+.day-hero--cover {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  align-items: end;
+  column-gap: var(--s-7);
+}
+.day-hero__cover {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: #f6efe6;
+  box-shadow: var(--shadow-2);
+}
+.day-hero__cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 75% 50%;
+  transform-origin: 50% 40%;
+}
+.day-hero__chip {
+  position: absolute;
+  left: var(--s-4);
+  bottom: var(--s-4);
+  padding-left: var(--s-1);
+  color: var(--ink);
+}
+.day-hero__chip .icon-btn {
+  width: 32px;
+  height: 32px;
+  box-shadow: none;
+  background: var(--accent-ink);
+  color: var(--paper);
+}
+:root[data-theme='dark'] .day-hero__chip .icon-btn {
+  color: var(--ink);
+}
 .day-hero__meta {
   display: grid;
   gap: var(--s-5);
@@ -242,6 +280,15 @@
   color: var(--ink-2);
 }
 
+@media (max-width: 960px) {
+  .day-hero--cover {
+    grid-template-columns: 1fr;
+    row-gap: var(--s-6);
+  }
+  .day-hero__cover {
+    order: -1;
+  }
+}
 @media (max-width: 760px) {
   .day-hero {
     min-height: 80svh;

@@ -32,6 +32,7 @@ export default function Home() {
       <link rel="canonical" href={SITE} />
       <Hero nextDay={nextDay} started={started} />
       <Marquee />
+      <Scene />
       <Modes />
       <DaysGallery progress={progress} />
       <ReviewBand progress={progress} />
@@ -167,6 +168,41 @@ function Marquee() {
           </div>
         </div>
       ))}
+    </section>
+  );
+}
+
+/* ---------------- Scene: illustration that opens up as you scroll ---------------- */
+
+function Scene() {
+  const ref = useRef(null);
+  const withCovers = days.filter((d) => d.cover).length;
+  useGSAP(
+    () => {
+      if (reducedMotion()) return;
+      const tl = gsap.timeline({ scrollTrigger: { trigger: ref.current, start: 'top 85%', end: 'top 10%', scrub: 0.8 } });
+      tl.fromTo('.scene__frame', { clipPath: 'inset(10% 8% 10% 8% round 28px)' }, { clipPath: 'inset(0% 0% 0% 0% round 0px)', ease: 'none' }, 0)
+        .fromTo('.scene__frame img', { scale: 1.18 }, { scale: 1, ease: 'none' }, 0);
+      gsap.to('.scene__frame img', { yPercent: -6, ease: 'none', scrollTrigger: { trigger: ref.current, start: 'top top', end: 'bottom top', scrub: true } });
+    },
+    { scope: ref },
+  );
+  return (
+    <section className="scene" ref={ref} aria-labelledby="scene-title">
+      <div className="scene__frame">
+        <img
+          src={`${import.meta.env.BASE_URL}images/hero.webp`}
+          alt="Illustration of a quiet Seoul side street with a corner shop, a bicycle and N Seoul Tower in the distance"
+          loading="lazy"
+          width="1600"
+          height="1000"
+        />
+      </div>
+      <div className="scene__copy wrap">
+        <p className="eyebrow">Every day is a scene</p>
+        <RevealText as="h2" className="h2" id="scene-title">Words for the street you will actually walk down.</RevealText>
+        <p className="lede">Each day has its own illustration of the place its words come from: a dinner table, a subway car, a market stall. {withCovers} days are illustrated so far.</p>
+      </div>
     </section>
   );
 }
@@ -335,7 +371,8 @@ function DaysGallery({ progress }) {
                 const best = progress.days[d.id]?.best;
                 return (
                   <li key={d.id}>
-                    <TLink className="day-card" to={`/day/${d.number}`} ko={d.titleKo} en={`Day ${pad(d.number)}`}>
+                    <TLink className={`day-card ${d.cover ? 'day-card--img' : ''}`} to={`/day/${d.number}`} ko={d.titleKo} en={`Day ${pad(d.number)}`}>
+                      {d.cover && <img className="day-card__img" src={`${import.meta.env.BASE_URL}${d.cover}`} alt="" loading="lazy" width="1600" height="1000" />}
                       <span className="day-card__top">
                         <span className="day-card__num">{pad(d.number)}</span>
                         {d.status === 'draft' && <span className="badge">Draft</span>}

@@ -19,7 +19,7 @@ const days = readdirSync('src/data/days')
 const wordCount = days.reduce((n, d) => n + d.words.length, 0);
 const shell = readFileSync(join(DIST, 'index.html'), 'utf8');
 
-function page({ path, title, description, image = 'og/home.png', jsonLd, body, noindex = false }) {
+function page({ path, title, description, image = 'og/home.jpg', jsonLd, body, noindex = false }) {
   const url = `${SITE}${path}`;
   const head = [
     `<title>${esc(title)}</title>`,
@@ -98,7 +98,7 @@ for (const d of days) {
       path: `/day/${d.number}`,
       title,
       description,
-      image: `og/day${pad(d.number)}.png`,
+      image: `og/day${pad(d.number)}.jpg`,
       jsonLd: [
         website,
         {
@@ -132,7 +132,7 @@ for (const d of days) {
   for (const mode of ['flashcards', 'choice', 'typing', 'listening']) {
     write(
       `day/${d.number}/practice/${mode}`,
-      page({ path: `/day/${d.number}/practice/${mode}`, title: `Practice Day ${pad(d.number)}: ${d.title} | ${NAME}`, description: `Practice the ${d.title} words.`, image: `og/day${pad(d.number)}.png`, noindex: true }),
+      page({ path: `/day/${d.number}/practice/${mode}`, title: `Practice Day ${pad(d.number)}: ${d.title} | ${NAME}`, description: `Practice the ${d.title} words.`, image: `og/day${pad(d.number)}.jpg`, noindex: true }),
     );
   }
 }
