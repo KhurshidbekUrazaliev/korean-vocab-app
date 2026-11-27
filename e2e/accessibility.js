@@ -77,7 +77,7 @@ await mkdir(reports, { recursive: true });
 const server = await servePages();
 let browser;
 try {
-  browser = await chromium.launch();
+  browser = await chromium.launch(process.env.CHROME_PATH ? { executablePath: process.env.CHROME_PATH } : {});
   // Run two contexts at a time so a hosted runner has headroom for contrast checks.
   for (const profile of Object.keys(profiles)) {
     await Promise.all(['light', 'dark'].map(theme => runProfile(browser, server.url, profile, theme)));
