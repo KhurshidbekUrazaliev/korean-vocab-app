@@ -19,8 +19,7 @@ Two coding agents only: **Claude** (lead, content, all UI) and **Codex**
 5. Never invent facts: no made-up testimonials, prices, user counts, names,
    addresses or claims. Put `TODO(owner): ...` instead and list it under
    "Open questions for the owner".
-6. Vocabulary must be correct Korean. Any word list not taken from the
-   owner's own notes is marked `"status": "draft"` until Claude has checked it.
+6. Mark new generated lists `draft` pending Claude’s language review. For the owner-requested review of Days 16–50, Codex recorded `reviewed` after checking spelling, romanization and meanings. The word lists keep their `generated` source.
 7. No secrets in the repo. No API keys in frontend code or `.env` files that
    get committed.
 8. Keep `npm run build` and `npm test` passing on every PR.
@@ -44,7 +43,7 @@ Live site: https://khurshidbekurazaliev.github.io/korean-vocab-app/
 - **50 days / 500 words.** Days 01-15 = owner's notes (`status: verified`), with 4 typos fixed
   (동특증→동아리 활동, 짐장히→굉장히, 마지다→마치다, 영덩이→엉덩이; each has a `note`).
   Days 16–50 contain 350 generated entries matched to the illustrated topics. All 35 lists carry
-  `status: draft` and `source: generated` pending language review. Each day offers direct links to
+  `status: reviewed` and `source: generated`. See [the vocabulary review](docs/VOCABULARY-REVIEW.md). Each day offers direct links to
   flashcards and multiple choice, plus typing and listening under Other modes.
 - Every public route gets static HTML from `scripts/postbuild.js`: own title, description,
   canonical, OG/Twitter tags, per-day 1200x630 preview image, JSON-LD, and the word list as
@@ -92,7 +91,7 @@ are rendered by React 19 inside each page; postbuild bakes the same values into 
   "words": [{ "id": "day07-01", "korean": "기대하다", "romanization": "gidaehada", "english": "to expect", "note": "optional" }]
 }
 ```
-`status`: `verified` | `draft`. `source`: `owner-notes` | `generated`. Tests enforce 10 words
+`status`: `verified` (class notes) | `reviewed` (dictionary review) | `draft`. `source`: `owner-notes` | `generated`. Tests enforce 10 words
 per day, sequential numbers, unique ids and unique Korean words across all days.
 
 ### Practice engine (`src/lib`)
@@ -135,7 +134,7 @@ Status: `todo` · `doing` · `review` · `done` · `blocked`
 | T10 | Static HTML per route with meta + JSON-LD + plain content | Claude | done (string-template prerender). Full React prerender optional, see T22 |
 | T11 | sitemap, robots (AI bots), llms.txt, 404.html, OG images per day | Claude | done |
 | T12 | GitHub Actions: `npm ci && npm test && npm run build` on PRs; deploy `dist` to Pages on push to `main` (actions/deploy-pages or keep gh-pages branch, document which) | **Codex** | todo |
-| T13 | Vocabulary for Days 16–50 | Codex / Claude | done as drafts. Each of the 35 illustrated topics has ten generated entries. Owner or language reviewer to verify. |
+| T13 | Vocabulary for Days 16–50 | Codex / Claude | done. All 350 entries were reviewed for spelling, romanization and meaning. Corrections are recorded in the vocabulary review. |
 | T14 | Day covers and Seoul street hero | Codex, integrated by Claude | done. All 50 lessons use their corresponding illustrations in the day index, lesson hero and sharing card. The Seoul scene appears on Home. |
 | T24 | Fill nine gaps in the illustrated course | Codex | done. Realigning the lessons to the original artwork restored coverage for all 50 days. The nine archived images have matching files in `public/images/days/`. |
 | T15 | Example sentences per word | Claude | todo |
@@ -173,7 +172,7 @@ Everyone may edit their own task rows and append to the status log.
 
 ## 8. Open questions for the owner
 
-- **Q1** Days 16-50 are drafts. Send your real lists, or confirm the drafts after checking.
+- **Q1 resolved** The owner requested a language review of the generated entries. The review and corrections are recorded in [the vocabulary review](docs/VOCABULARY-REVIEW.md).
 - **Q2** "Conversion" means what: sign-ups, paid plan, or daily return? (Paid plan = backend + payment provider = new plan section.)
 - **Q3** Stay on GitHub Pages, or move to Vercel/Netlify (needed if we add accounts/payments)?
 - **Q5** Site name and domain. Current candidates: "한국어 공부", "Essential Korean Vocabulary".
@@ -201,3 +200,4 @@ _(format: `YYYY-MM-DD HH:MM UTC | agent | task | note`)_
 - 2026-11-27 15:15 UTC | Codex | T13/T14 | Preparing a single release of the cover-topic word lists and existing practice modes on top of the current Vite app.
 - 2026-11-27 15:24 UTC | Codex | T13/T14/T24 | Integrated the illustrated lessons with the redesign on a727f1d. All 17 unit tests passed. The production build generated 54 public routes and 200 practice routes. All 51 sharing JPEGs are below 60 KB. Chrome completed 350 flashcard prompts, 350 four-option quiz questions and four missed-word retries on the integrated build, including Day 50 at mobile width.
 - 2026-11-27 15:27 UTC | Codex | T13/T14/T24 | Published source 2a99c9e to GitHub Pages (gh-pages f8f117e). All 105 public lesson, flashcard and quiz URLs for Days 16–50 returned HTTP 200 with matching build hashes. The homepage, three JavaScript/CSS assets, 51 illustrations and 51 sharing cards also matched. On the live site Chrome completed both practice modes and missed-word retries for Day 16 on desktop and Day 50 on mobile. Source review: [PR #2](https://github.com/KhurshidbekUrazaliev/korean-vocab-app/pull/2).
+- 2026-11-27 15:39 UTC | Codex | T13 | Completed the owner-requested review of all 350 entries and corrected 15. All 17 unit tests passed. The build contains 35 dictionary-reviewed lesson pages with the corrected words in both the visible list and structured data. See [the correction record](docs/VOCABULARY-REVIEW.md).

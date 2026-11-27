@@ -4,7 +4,7 @@
   "slug": "riding-the-subway",
   "title": "Riding the subway",
   "titleKo": "지하철 타기",
-  "status": "draft",
+  "status": "reviewed",
   "source": "generated",
   "cover": "images/days/day16.webp",
   "words": [
@@ -54,13 +54,13 @@
       "id": "day16-08",
       "korean": "첫차",
       "romanization": "cheotcha",
-      "english": "first service of the day"
+      "english": "first train, first bus"
     },
     {
       "id": "day16-09",
       "korean": "막차",
       "romanization": "makcha",
-      "english": "last service of the day"
+      "english": "last train, last bus"
     },
     {
       "id": "day16-10",

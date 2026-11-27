@@ -4,7 +4,7 @@
   "slug": "playing-music",
   "title": "Playing music",
   "titleKo": "악기 연주",
-  "status": "draft",
+  "status": "reviewed",
   "source": "generated",
   "cover": "images/days/day35.webp",
   "words": [
@@ -30,7 +30,7 @@
       "id": "day35-04",
       "korean": "장구",
       "romanization": "janggu",
-      "english": "Korean hourglass drum"
+      "english": "Korean hourglass-shaped drum"
     },
     {
       "id": "day35-05",

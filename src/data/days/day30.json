@@ -4,7 +4,7 @@
   "slug": "hiking-in-the-mountains",
   "title": "Hiking in the mountains",
   "titleKo": "산에서 등산하기",
-  "status": "draft",
+  "status": "reviewed",
   "source": "generated",
   "cover": "images/days/day30.webp",
   "words": [
@@ -23,7 +23,7 @@
     {
       "id": "day30-03",
       "korean": "등산로",
-      "romanization": "deungsallo",
+      "romanization": "deungsanno",
       "english": "hiking trail"
     },
     {

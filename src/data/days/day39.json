@@ -4,7 +4,7 @@
   "slug": "a-birthday-celebration",
   "title": "A birthday celebration",
   "titleKo": "생일 축하",
-  "status": "draft",
+  "status": "reviewed",
   "source": "generated",
   "cover": "images/days/day39.webp",
   "words": [
@@ -59,7 +59,7 @@
     {
       "id": "day39-09",
       "korean": "축하하다",
-      "romanization": "chukhahada",
+      "romanization": "chukahada",
       "english": "to congratulate or celebrate"
     },
     {

@@ -6,7 +6,7 @@ describe('vocabulary data', () => {
     days.forEach((d, i) => {
       expect(d.number).toBe(i + 1);
       expect(d.words).toHaveLength(10);
-      expect(['verified', 'draft']).toContain(d.status);
+      expect(['verified', 'reviewed', 'draft']).toContain(d.status);
     });
   });
   it('has unique word ids and no repeated Korean words', () => {

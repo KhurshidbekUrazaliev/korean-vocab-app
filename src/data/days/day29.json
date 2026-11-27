@@ -4,7 +4,7 @@
   "slug": "exercise-and-fitness",
   "title": "Exercise and fitness",
   "titleKo": "운동과 체력",
-  "status": "draft",
+  "status": "reviewed",
   "source": "generated",
   "cover": "images/days/day29.webp",
   "words": [
@@ -18,7 +18,7 @@
       "id": "day29-02",
       "korean": "체력",
       "romanization": "cheryeok",
-      "english": "physical stamina"
+      "english": "physical strength"
     },
     {
       "id": "day29-03",
@@ -52,8 +52,8 @@
     },
     {
       "id": "day29-08",
-      "korean": "팔굽혀펴기",
-      "romanization": "palgupyeopyeogi",
+      "korean": "팔 굽혀 펴기",
+      "romanization": "pal gupyeo pyeogi",
       "english": "push-ups"
     },
     {

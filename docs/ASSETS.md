@@ -1,6 +1,6 @@
 # Vocabulary cover illustrations
 
-The Day 01 dining cover is the style reference for the series. Days 01–15 follow the original lesson topics. Days 16–50 use the topics below for both the artwork and the playable lessons. Each lesson has ten draft entries in `src/data/days/dayNN.json`, with Hangul, romanization and English meanings.
+The Day 01 dining cover is the style reference for the series. Days 01–15 follow the original lesson topics. Days 16–50 use the topics below for both the artwork and the playable lessons. Each lesson has ten dictionary-reviewed entries in `src/data/days/dayNN.json`, with Hangul, romanization and English meanings. [Vocabulary review](VOCABULARY-REVIEW.md)
 
 ## Where covers appear
 

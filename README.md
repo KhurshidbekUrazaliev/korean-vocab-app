@@ -4,7 +4,7 @@ A Korean vocabulary course in daily sets of ten words. Each word has Hangul, rom
 
 [Open the course on GitHub Pages](https://khurshidbekurazaliev.github.io/korean-vocab-app/)
 
-- 50 days, 500 words. Days 01-15 come from the owner's class notes. Days 16–50 contain 350 **draft** entries written for their illustrated topics, with Hangul, romanization and an English meaning. The lesson pages identify the lists as drafts pending language review.
+- 50 days, 500 words. Days 01-15 come from the owner's class notes. Days 16–50 contain 350 entries written for their illustrated topics. Each was checked for Hangul spelling and spacing, Revised Romanization, and the English meaning used in the lesson. [Vocabulary review and corrections](docs/VOCABULARY-REVIEW.md)
 - No accounts. Progress is stored in the browser (`localStorage`).
 
 ## Practice the illustrated lessons

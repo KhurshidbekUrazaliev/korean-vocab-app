@@ -63,7 +63,7 @@ export default function Day() {
       <section className={`day-hero wrap ${day.cover ? 'day-hero--cover' : ''}`}>
         <p className="day-hero__num" aria-hidden="true">{pad(day.number)}</p>
         <div className="day-hero__meta">
-          <p className="eyebrow">Day {pad(day.number)} of {PLANNED_DAYS}{day.status === 'draft' && ' · Draft list'}</p>
+          <p className="eyebrow">Day {pad(day.number)} of {PLANNED_DAYS}{day.status === 'draft' && ' · Draft list'}{day.status === 'reviewed' && ' · Dictionary-reviewed'}</p>
           <h1 className="display">
             {day.title} <span className="ko day-hero__ko">{day.titleKo}</span>
           </h1>

@@ -4,7 +4,7 @@
   "slug": "recycling-at-home",
   "title": "Recycling at home",
   "titleKo": "집에서 재활용하기",
-  "status": "draft",
+  "status": "reviewed",
   "source": "generated",
   "cover": "images/days/day43.webp",
   "words": [
@@ -48,7 +48,7 @@
       "id": "day43-07",
       "korean": "헌 옷",
       "romanization": "heon ot",
-      "english": "used clothing"
+      "english": "old clothes, worn clothing"
     },
     {
       "id": "day43-08",
