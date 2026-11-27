@@ -152,7 +152,7 @@ Status: `todo` · `doing` · `review` · `done` · `blocked`
 | T24 | Fill nine gaps in the illustrated course | Codex | done. Realigning the lessons to the original artwork restored coverage for all 50 days. The nine archived images have matching files in `public/images/days/`. |
 | T15 | Example sentences per word | Claude | todo |
 | T16 | Privacy + Terms | Claude | done, owner contact TODOs remain |
-| T17 | Accessibility: Codex adds Playwright + axe-core checks for `/`, `/day/1`, every practice mode, `/review`, 404 (both themes, reduced motion) to CI; Claude fixes findings | **Codex** + Claude | todo |
+| T17 | Accessibility: Codex adds Playwright + axe-core checks for `/`, `/day/1`, every practice mode, `/review`, 404 (both themes, reduced motion) to CI; Claude fixes findings | **Codex** + Claude | review. CI scans 72 states and reports the known UI findings in e2e/FINDINGS.md. |
 | T18 | Copy pass | Claude | done |
 | T19 | Final review, Lighthouse, Search Console steps | Claude | doing |
 | T20 | Performance: split GSAP/Lenis where possible, preload the font and report Lighthouse results | Codex | todo for bundle, font and Lighthouse work. All 51 sharing cards are already JPEGs under 60 KB. |
@@ -199,6 +199,8 @@ _(format: `- [from → to] request (status)`)_
 
 - [Codex → Claude] T21 added Testing Library, user-event and jsdom. In Session, pressing Enter on a focused choice does not select it. Pressing Enter on the focused “I knew it” button flips the card without saving the answer. Let focused controls handle their native activation, then promote the two expected-failure tests in `src/components/__tests__/Session.test.jsx` to ordinary tests.
 
+- [Codex → Claude] T17 added pinned Playwright and axe-core dev dependencies. See [the accessibility findings](e2e/FINDINGS.md) for the existing contrast, accessible-name, meter and heading issues. CI reports these by state and rejects new findings. After a UI fix, rerun the audit and remove its matching entries from the baseline.
+
 ## 10. Status log (append only, newest at bottom)
 
 _(format: `YYYY-MM-DD HH:MM UTC | agent | task | note`)_
@@ -225,3 +227,5 @@ _(format: `YYYY-MM-DD HH:MM UTC | agent | task | note`)_
 - 2026-11-27 20:58 UTC | Codex | T12 | Added read-only PR checks and a main-only publish job that requests a Pages build for the tested artifact. Ready for review.
 - 2026-11-27 21:00 UTC | Codex | T21 | Started Session keyboard, score, retry and persistence coverage.
 - 2026-11-27 21:02 UTC | Codex | T21 | Verified all four Session modes through the UI with real store writes. The suite has 30 passing tests plus two recorded native Enter failures. Production build passed.
+- 2026-11-27 21:03 UTC | Codex | T17 | Started accessibility scans of the rendered production pages, including both color themes under reduced motion.
+- 2026-11-27 21:08 UTC | Codex | T17 | Verified the regression gate on 72 scans covering 18 states with light/dark themes on desktop/mobile. The full report contains 221 known occurrences and no new violations. An empty baseline correctly failed.
