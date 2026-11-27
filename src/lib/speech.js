@@ -1,3 +1,6 @@
+import { clipFor } from '../data/index.js';
+
+// Recorded clips (natural voice) play first. The device voice is the fallback.
 // Browsers often list an old robotic Korean voice first and a neural one further down
 // (Edge "Online (Natural)", Chrome "Google 한국의", Apple "Premium"/"Enhanced"), so rank them.
 const QUALITY = [
@@ -40,10 +43,31 @@ if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
   window.speechSynthesis.addEventListener?.('voiceschanged', pickVoice);
 }
 
-export const canSpeak = () => typeof window !== 'undefined' && 'speechSynthesis' in window;
+const hasAudio = () => typeof window !== 'undefined' && typeof window.Audio === 'function';
+const hasTTS = () => typeof window !== 'undefined' && 'speechSynthesis' in window;
+export const canSpeak = () => hasAudio() || hasTTS();
 
-export function speak(text, { rate = 0.9 } = {}) {
-  if (!canSpeak()) return false;
+const clips = new Map();
+let playing = null;
+
+function clip(src) {
+  let a = clips.get(src);
+  if (!a) {
+    a = new window.Audio(src);
+    a.preload = 'auto';
+    clips.set(src, a);
+  }
+  return a;
+}
+
+/** Start loading a word's clip before it is needed (hover, next card). */
+export function warm(text) {
+  const src = hasAudio() && clipFor(text);
+  if (src) clip(src);
+}
+
+function speakTTS(text, rate) {
+  if (!hasTTS()) return false;
   if (!koreanVoice) pickVoice();
   window.speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(text);
@@ -51,5 +75,27 @@ export function speak(text, { rate = 0.9 } = {}) {
   u.rate = rate;
   if (koreanVoice) u.voice = koreanVoice;
   window.speechSynthesis.speak(u);
+  return true;
+}
+
+export function speak(text, { rate = 0.9 } = {}) {
+  const src = hasAudio() && clipFor(text);
+  if (!src) return speakTTS(text, rate);
+  if (hasTTS()) window.speechSynthesis.cancel();
+  playing?.pause();
+  const a = clip(src);
+  playing = a;
+  a.currentTime = 0;
+  let started;
+  try {
+    started = a.play();
+  } catch {
+    started = null;
+  }
+  if (!started?.catch) return speakTTS(text, rate) || true;
+  started.catch((err) => {
+    // A blocked autoplay would block the device voice too; anything else means the clip failed.
+    if (err?.name !== 'NotAllowedError') speakTTS(text, rate);
+  });
   return true;
 }

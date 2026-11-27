@@ -65,7 +65,7 @@ export default function Course() {
                 <h2 className="h3" id={`unit-${u}`}>Unit {u + 1}</h2>
                 <span className="muted">Days {pad(unit[0].number)}–{pad(unit[unit.length - 1].number)}</span>
               </div>
-              <div className="unit__meter" aria-label={`${unitLearned} of ${unitTotal} words learned`}>
+              <div className="unit__meter" role="progressbar" aria-valuemin={0} aria-valuemax={unitTotal} aria-valuenow={unitLearned} aria-label={`Unit words learned`}>
                 <span style={{ width: `${(unitLearned / unitTotal) * 100}%` }} />
               </div>
               <span className="muted num">{unitLearned}/{unitTotal}</span>

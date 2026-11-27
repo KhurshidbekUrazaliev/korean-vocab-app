@@ -7,3 +7,10 @@ export const allWords = days.flatMap((day) => day.words.map((w) => ({ ...w, dayI
 const byNumber = new Map(days.map((d) => [d.number, d]));
 export const getDay = (number) => byNumber.get(Number(number));
 export const pad = (n) => String(n).padStart(2, '0');
+
+// Every word has a recorded clip at public/audio/<word id>.mp3 (scripts/make-audio.py).
+const byKorean = new Map(allWords.map((w) => [w.korean, w.id]));
+export const clipFor = (korean) => {
+  const id = byKorean.get(korean);
+  return id ? `${import.meta.env.BASE_URL}audio/${id}.mp3` : null;
+};

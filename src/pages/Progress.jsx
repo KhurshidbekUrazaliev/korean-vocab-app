@@ -96,7 +96,7 @@ export default function Progress() {
             const s = dayStatus(progress, d);
             return (
               <li key={d.id} title={`Day ${pad(d.number)} ${d.title}: ${s.learned}/10 learned, ${s.mastered} mastered`}>
-                <TLink to={`/day/${d.number}`} aria-label={`Day ${pad(d.number)}, ${s.learned} of 10 learned`}>
+                <TLink to={`/day/${d.number}`} aria-label={`Day ${d.number}, ${s.learned} of 10 learned`}>
                   <span className="daybars__bar"><span style={{ height: `${s.learned * 10}%` }} /><span className="daybars__m" style={{ height: `${s.mastered * 10}%` }} /></span>
                   <span className="daybars__n num">{d.number % 5 === 0 || d.number === 1 ? d.number : ''}</span>
                 </TLink>

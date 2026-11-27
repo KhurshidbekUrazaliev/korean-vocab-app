@@ -29,10 +29,15 @@ export function Header({ theme, onToggleTheme }) {
 
   const links = (cls) =>
     TABS.map(({ to, label, Icon, end, due: showDue }) => (
-      <NavLink key={to} to={to} end={end} aria-label={showDue && due ? `${label}, ${due} due` : undefined}>
+      <NavLink key={to} to={to} end={end}>
         {cls === 'tab' && <Icon />}
         <span>{label}</span>
-        {showDue && due > 0 && <span className="count" aria-hidden="true">{due > 99 ? '99+' : due}</span>}
+        {showDue && due > 0 && (
+          <span className="count">
+            {due > 99 ? '99+' : due}
+            <span className="visually-hidden"> due</span>
+          </span>
+        )}
       </NavLink>
     ));
 
@@ -40,7 +45,7 @@ export function Header({ theme, onToggleTheme }) {
     <>
       <header className="appbar" data-scrolled={scrolled}>
         <div className="wrap appbar__inner">
-          <TLink to="/" ko="한국어 공부" en="Today" className="brand" aria-label="Essential Korean Vocabulary, home">
+          <TLink to="/" ko="한국어 공부" en="Today" className="brand">
             <span className="seal" aria-hidden="true">한</span>
             <span className="brand__name">
               한국어 공부

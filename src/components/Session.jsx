@@ -4,7 +4,7 @@ import { SpeakButton } from './SpeakButton.jsx';
 import { ArrowRight, Check, Close, Speaker, SoundOn, SoundOff } from './Icons.jsx';
 import { buildMultipleChoice, checkTyped } from '../lib/quiz.js';
 import { shuffle } from '../lib/shuffle.js';
-import { speak, canSpeak } from '../lib/speech.js';
+import { speak, canSpeak, warm } from '../lib/speech.js';
 import { feedback, soundOn, setSound } from '../lib/sound.js';
 import { progressStore } from '../hooks/useProgress.js';
 import { MODE_TITLES } from '../lib/stats.js';
@@ -146,7 +146,8 @@ function useKeys(map, deps) {
       const inField = e.target instanceof HTMLInputElement;
       const fn = map[e.key];
       if (!fn || (inField && e.key !== 'Enter')) return;
-      if (e.target instanceof HTMLButtonElement && (e.key === ' ' || e.key === 'Enter') && !map.__ownsEnter) return;
+      // A focused button or link activates itself; shortcuts only apply elsewhere.
+      if ((e.key === ' ' || e.key === 'Enter') && e.target instanceof Element && e.target.closest('button, a')) return;
       e.preventDefault();
       fn();
     };
@@ -165,6 +166,7 @@ function Flashcard({ word, onAnswer, left }) {
   const [flipped, setFlipped] = useState(false);
   const scene = useRef(null);
   const leaving = useRef(false);
+  useEffect(() => warm(word.korean), [word]);
 
   const flip = () => {
     const nextFlip = !flipped;
@@ -187,23 +189,24 @@ function Flashcard({ word, onAnswer, left }) {
     });
   };
 
-  useKeys({ ' ': flip, Enter: flip, ArrowLeft: () => decide(false), '1': () => decide(false), ArrowRight: () => decide(true), '2': () => decide(true), __ownsEnter: true }, [flipped]);
+  useKeys({ ' ': flip, Enter: flip, ArrowLeft: () => decide(false), '1': () => decide(false), ArrowRight: () => decide(true), '2': () => decide(true) }, [flipped]);
 
   return (
     <div className="flash">
+      <h1 className="visually-hidden">Flashcard: say the word, then flip to check</h1>
       <div className="flash__scene" ref={scene} data-left={Math.min(left, 2)}>
         <button
           type="button"
           className="flash__card"
           data-flipped={flipped}
           onClick={flip}
-          aria-label={flipped ? `${word.korean}: ${word.english}. Press to flip back.` : `${word.korean}. Press to see the meaning.`}
+          aria-pressed={flipped}
         >
-          <span className="flash__face">
+          <span className="flash__face" aria-hidden={flipped}>
             <span className="flash__ko ko" lang="ko">{word.korean}</span>
             <span className="flash__hint">Say it out loud, then flip</span>
           </span>
-          <span className="flash__face flash__face--back">
+          <span className="flash__face flash__face--back" aria-hidden={!flipped}>
             <span className="flash__en">{word.english}</span>
             <span className="flash__rom"><span className="ko" lang="ko">{word.korean}</span> · {word.romanization}</span>
           </span>
@@ -383,7 +386,11 @@ function Listening({ word, pool, onAnswer }) {
 
   return (
     <div className="quiz">
-      <p className="quiz__label">{supported ? 'Listen and pick the meaning' : 'Audio is not available in this browser, so here is the romanization'}</p>
+      {supported ? (
+        <h1 className="quiz__label">Listen and pick the meaning</h1>
+      ) : (
+        <p className="quiz__label">Audio is not available in this browser, so here is the romanization</p>
+      )}
       {supported ? (
         <button type="button" className="listen-btn" data-playing={playing} onClick={play} aria-label="Play the word again">
           <Speaker width={40} height={40} />

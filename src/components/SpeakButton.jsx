@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { speak, canSpeak } from '../lib/speech.js';
+import { speak, canSpeak, warm } from '../lib/speech.js';
 import { Speaker } from './Icons.jsx';
 
 export function SpeakButton({ text, label, className = 'icon-btn', size = 20 }) {
@@ -11,6 +11,8 @@ export function SpeakButton({ text, label, className = 'icon-btn', size = 20 }) 
       className={className}
       data-playing={playing}
       aria-label={label ?? `Play pronunciation of ${text}`}
+      onPointerEnter={() => warm(text)}
+      onFocus={() => warm(text)}
       onClick={(e) => {
         e.stopPropagation();
         speak(text);

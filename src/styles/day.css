@@ -191,7 +191,7 @@
 .word-row__i {
   font-size: var(--fs-12);
   font-weight: 700;
-  color: var(--ink-3);
+  color: var(--ink-2);
 }
 .word-row__ko {
   font-size: clamp(1.6rem, 2.8vw, 2.25rem);

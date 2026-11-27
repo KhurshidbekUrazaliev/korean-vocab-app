@@ -25,7 +25,7 @@ export function Ring({ value, size = 44, stroke = 4, label, children, tone = 'ac
 export function Mastery({ level, label = true }) {
   const names = ['New', 'Learning', 'Learning', 'Familiar', 'Strong', 'Mastered'];
   return (
-    <span className="mastery" data-level={level} title={names[level]} aria-label={`Mastery: ${names[level]}`}>
+    <span className="mastery" data-level={level} title={names[level]} role="img" aria-label={`Mastery: ${names[level]}`}>
       {[1, 2, 3, 4, 5].map((i) => (
         <i key={i} data-on={i <= level} />
       ))}

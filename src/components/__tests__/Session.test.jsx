@@ -63,8 +63,9 @@ describe('Session', () => {
   it('flips with Space, grades with 1 and 2, and retries just the missed flashcard', async () => {
     const words = day.words.slice(0, 2);
     const user = start('flashcards', words);
-    const firstCard = screen.getByRole('button', { name: /Press to see the meaning/ });
-    const missed = words.find((w) => firstCard.getAttribute('aria-label').startsWith(w.korean + '.'));
+    const front = (w) => new RegExp(`^${w.korean}\\s*Say it out loud`);
+    const firstCard = screen.getByRole('button', { name: /Say it out loud, then flip/ });
+    const missed = words.find((w) => firstCard.textContent.startsWith(w.korean));
     const known = words.find((w) => w !== missed);
 
     await user.keyboard('2'); // a hidden answer cannot be graded
@@ -72,7 +73,7 @@ describe('Session', () => {
     await user.keyboard('[Space]');
     screen.getByRole('button', { name: new RegExp(missed.english) });
     await user.keyboard('1');
-    screen.getByRole('button', { name: known.korean + '. Press to see the meaning.' });
+    screen.getByRole('button', { name: front(known) });
     await user.keyboard('[Space]2');
     expectResult(1, 2);
     expect(saved()).toMatchObject({
@@ -81,7 +82,7 @@ describe('Session', () => {
     });
 
     await user.click(screen.getByRole('button', { name: 'Retry 1 missed' }));
-    screen.getByRole('button', { name: missed.korean + '. Press to see the meaning.' });
+    screen.getByRole('button', { name: front(missed) });
     await user.keyboard('[Space]2');
     expectResult(1, 1);
     screen.getByRole('heading', { name: /Perfect round/ });
@@ -139,9 +140,7 @@ describe('Session', () => {
     expect(saved().days[day.id]).toMatchObject({ modes: ['typing'], best: 67 });
   });
 
-  // The global Enter shortcut currently swallows native button activation.
-  // Remove .fails when the UI preserves Enter on the focused answer.
-  it.fails.each([
+  it.each([
     ['choice', 'garlic'],
     ['flashcards', 'I knew it'],
   ])('activates a focused %s answer with Enter', async (mode, name) => {
@@ -188,6 +187,7 @@ describe('Session', () => {
   });
 
   it('offers the romanized listening prompt when speech is unavailable', async () => {
+    vi.stubGlobal('Audio', undefined);
     const word = day.words[0];
     const user = start('listening', [word]);
     screen.getByRole('heading', { name: word.romanization });

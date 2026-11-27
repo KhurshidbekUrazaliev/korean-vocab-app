@@ -218,6 +218,8 @@ function Path() {
         const panes = gsap.utils.toArray('.path__pane');
         const steps = gsap.utils.toArray('.path__step');
         gsap.set(panes.slice(1), { yPercent: 105, rotate: 3 });
+        steps.forEach((el, i) => (el.dataset.active = i === 0));
+        const unmark = () => steps.forEach((el) => delete el.dataset.active);
         const tl = gsap.timeline({
           defaults: { ease: 'power2.inOut', duration: 1 },
           scrollTrigger: { trigger: ref.current, start: 'top top', end: '+=280%', pin: true, scrub: 0.8 },
@@ -228,12 +230,13 @@ function Path() {
           const at = k + 0.7;
           tl.to(pane, { yPercent: 0, rotate: 0 }, at)
             .to(panes[k], { scale: 0.9, opacity: 0, yPercent: -5 }, at)
-            .to(steps[k], { opacity: 0.4 }, at)
-            .to(steps[k + 1], { opacity: 1 }, at);
+            .call(() => steps.forEach((el, i) => (el.dataset.active = i === k)), null, at - 0.01)
+            .call(() => steps.forEach((el, i) => (el.dataset.active = i === k + 1)), null, at + 0.01);
         });
         tl.to('.choice-demo__opt--right', { backgroundColor: 'var(--good-soft)', boxShadow: 'inset 0 0 0 2px var(--good)', duration: 0.3 }, 1.9);
         tl.fromTo('.typing-demo__typed', { width: '0ch' }, { width: '10ch', ease: 'steps(10)', duration: 0.6 }, 2.1);
         tl.from('.typing-demo__ok', { scale: 0, duration: 0.25 }, 2.7);
+        return unmark;
       });
     },
     { scope: ref },
@@ -249,7 +252,7 @@ function Path() {
             <div className="path__bar" aria-hidden="true"><span /></div>
             <ol>
               {STEPS.map((s, k) => (
-                <li className="path__step" key={s.title} style={{ opacity: k ? 0.4 : 1 }}>
+                <li className="path__step" key={s.title}>
                   <span className="path__num num">{pad(k + 1)}</span>
                   <div>
                     <h3 className="h3">{s.title} <span className="muted">· {s.mode}</span></h3>
