@@ -155,7 +155,7 @@ Status: `todo` · `doing` · `review` · `done` · `blocked`
 | T17 | Accessibility: Codex adds Playwright + axe-core checks for `/`, `/day/1`, every practice mode, `/review`, 404 (both themes, reduced motion) to CI; Claude fixes findings | **Codex** + Claude | review. CI scans 72 states and reports the known UI findings in e2e/FINDINGS.md. |
 | T18 | Copy pass | Claude | done |
 | T19 | Final review, Lighthouse, Search Console steps | Claude | doing |
-| T20 | Performance: split GSAP/Lenis where possible, preload the font and report Lighthouse results | Codex | todo for bundle, font and Lighthouse work. All 51 sharing cards are already JPEGs under 60 KB. |
+| T20 | Performance: split GSAP/Lenis where possible, preload the font and report Lighthouse results | Codex | review. Motion chunk, font preload and measured results are in [.github/PERFORMANCE.md](.github/PERFORMANCE.md). |
 | T21 | Component tests (Vitest + Testing Library): Session flows for each mode with keyboard (Space, 1-4, Enter, R), results + "practice missed words", progress written to store | **Codex** | review. Keyboard flows and persistence covered. Two native Enter issues are recorded for Claude in section 9. |
 | T22 | Optional: replace string-template prerender with real React SSR prerender (renderToString per route with StaticRouter, hydrateRoot) if it can be done without breaking GSAP/three.js; otherwise document why not | **Codex** | todo |
 | T23 | Engine hardening: typed-answer normalization for Korean input (allow typing Hangul in en→ko later), SRS edge cases, tests | **Codex** | todo |
@@ -230,3 +230,5 @@ _(format: `YYYY-MM-DD HH:MM UTC | agent | task | note`)_
 - 2026-11-27 21:02 UTC | Codex | T21 | Verified all four Session modes through the UI with real store writes. The suite has 30 passing tests plus two recorded native Enter failures. Production build passed.
 - 2026-11-27 21:03 UTC | Codex | T17 | Started accessibility scans of the rendered production pages, including both color themes under reduced motion.
 - 2026-11-27 21:08 UTC | Codex | T17 | Verified the regression gate on 72 scans covering 18 states with light/dark themes on desktop/mobile. The full report contains 221 known occurrences and no new violations. An empty baseline correctly failed.
+- 2026-11-27 21:10 UTC | Codex | T20 | Started the measured production bundle and font preload changes.
+- 2026-11-27 21:15 UTC | Codex | T20 | Isolated the GSAP and Lenis chunk, confirmed its cache key survives a lesson edit, and verified one reused font preload. All 51 preview JPEGs meet the budget. Median mobile Lighthouse scores over three paired cold runs per route changed from 52 to 64 on Home and 74 to 76 on Day 1.
