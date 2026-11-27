@@ -243,4 +243,5 @@ _(format: `YYYY-MM-DD HH:MM UTC | agent | task | note`)_
 - 2026-11-27 14:52 UTC | Codex | T14 | Following the Day 01 review, owner requested the next task. Using the sample as the reference for Days 02-15 and the site hero.
 - 2026-11-27 14:53 UTC | Codex | T14 | Added 15 day covers and the site hero. All WebPs are 1600 × 1000 and under 131 KB each. Reviewed the centered 1200 × 630 crops. The remaining 35 covers depend on T13 topics and image briefs.
 - 2026-11-27 14:55 UTC | Codex | T14 | Owner requested completion of the remaining covers in one batch. Using provisional art topics for Days 16-50 pending T13.
-- 2026-11-27 15:03 UTC | Codex | T14 | Completed 50 covers and the site hero. Added the hero and the 15 available lesson covers to the home page. Days 16-50 have published-asset paths and provisional art topics in docs/ASSETS.md pending T13.
+- 2026-11-27 15:03 UTC | Codex | T14 | Completed 50 covers and the site hero. Added the hero and the 15 available lesson covers to the home page. Days 16-50 have asset paths and provisional art topics in docs/ASSETS.md pending T13.
+- 2026-11-27 15:07 UTC | Codex | T14 | Deployed to GitHub Pages (gh-pages a747e19). Verified the public homepage, JavaScript, CSS and all 51 image hashes against the tested production build. Checked the lesson menu, dark mode and Day 01 navigation on desktop and mobile.
