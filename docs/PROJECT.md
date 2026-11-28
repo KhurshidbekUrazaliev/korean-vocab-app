@@ -16,61 +16,76 @@ Live site: https://khurshidbekurazaliev.github.io/korean-vocab-app/
 - Vite + React 19 + React Router 7. GSAP (ScrollTrigger, SplitText, CustomEase), Lenis smooth
   scroll, three.js hero (lazy chunk). Plain CSS with tokens. Vitest. Every push to `main` is tested and
   published to GitHub Pages (`gh-pages` branch) by GitHub Actions.
-- **50 days / 500 words.** Days 01-15 = owner's notes (`status: verified`), with 4 typos fixed
-  (동특증→동아리 활동, 짐장히→굉장히, 마지다→마치다, 영덩이→엉덩이; each has a `note`).
-  Days 16–50 contain 350 generated entries matched to the illustrated topics. All 35 lists carry
-  `status: reviewed` and `source: generated`. See [the vocabulary review](docs/VOCABULARY-REVIEW.md). Each day offers direct links to
-  flashcards, multiple choice, typing and listening in its lesson steps.
+- **Two courses, 50 days and 500 words each.**
+  - **Korean** (`/`): Days 01–15 come from the owner's notes (`status: verified`), with 4 typos fixed
+    (동특증→동아리 활동, 짐장히→굉장히, 마지다→마치다, 영덩이→엉덩이; each has a `note`). Days 16–50
+    are generated lists matched to the illustrations, reviewed against a dictionary (`status: reviewed`).
+    See [the Korean vocabulary review](VOCABULARY-REVIEW.md).
+  - **Arabic** (`/ar`): Modern Standard Arabic with full vowel marks, selected from *Collins Arabic: 3000
+    Words and Phrases* (`source: collins-3000`). See [the Arabic review](VOCABULARY-REVIEW-AR.md).
+- Sign-in is a device profile (name, course, daily goal) in `localStorage["kv.profile"]`. New visitors
+  see it at `/` and `/ar`. The app bar has a Korean | العربية switch that moves to the same page in the
+  other course.
+- Practice: flashcards, multiple choice (both directions), typing, listening, and a bonus Match game.
+  Every word has a recorded clip (see [docs/AUDIO.md](AUDIO.md)); tapping the speaker again plays it slowly.
+  A Letters page per course teaches Hangul or the Arabic alphabet, with audio.
 - Every public route gets static HTML from `scripts/postbuild.js`: own title, description,
   canonical, OG/Twitter tags, per-day 1200x630 preview image, JSON-LD, and the word list as
   plain HTML inside `#root`. Sitemap, robots.txt (AI bots allowed), llms.txt, 404.html.
-- The app uses hanji paper tones, seal red and Noto Serif KR for Hangul, with Pretendard for UI text. See the v2 design system below.
-- Motion: hero particle field that forms real Korean words (cursor pushes particles), line-mask
-  text reveals, scroll-velocity word ticker, pinned "four ways to practice" scene, staggered day
-  index with sticky block numbers, ink curtain page transitions showing the destination's Korean
-  title, 3D flashcard flip, answer pop/shake, animated score ring. All off under
-  `prefers-reduced-motion` (Lenis disabled, hero rendered still, transitions instant).
+- Hanji paper tones, seal red, Noto Serif KR for Hangul, Noto Naskh Arabic for Arabic, Pretendard for UI text.
+- Motion: hero particle field that forms real words in either script (cursor pushes particles), line-mask
+  text reveals, scroll-velocity word ticker, pinned "four ways to practice" scene, ink curtain page
+  transitions showing the destination's native title, 3D flashcard flip, answer pop/shake, animated score
+  ring. Arabic titles animate word by word, never letter by letter, so the joined script stays intact.
+  All off under `prefers-reduced-motion`.
 
 ## Architecture
 
 ```
 src/
-  data/days/dayNN.json      one file per day (schema below)
-  data/index.js             days, allWords, getDay, pad, PLANNED_DAYS
+  data/ko/dayNN.json        Korean day files (schema below), data/ko/letters.json
+  data/ar/dayNN.json        Arabic day files, data/ar/letters.json
+  data/index.js             COURSES.ko / COURSES.ar (days, allWords, getDay, path(), letters, labels),
+                            courseFromPath, switchPath, clipFor, clipUrl, pad, initialOf
   lib/                      pure logic, unit-tested in lib/__tests__
-    shuffle.js quiz.js srs.js progress.js streak.js speech.js
-    stats.js                dayStatus, currentDay, weakWords, activity, mastery breakdown
+    shuffle.js quiz.js srs.js progress.js progressJournal.js streak.js speech.js match.js
+    stats.js                dayStatus, currentDay, weakWords, activity, mastery breakdown, MODE_TITLES
+    pageMetadata.js         titles, descriptions, canonical URLs, sharing tags, JSON-LD for every route
     sound.js                feedback tones (Web Audio) + vibration
     motion.js               GSAP plugin registration + reducedMotion()
-  hooks/                    useProgress (store over localStorage), useTheme
-  components/               Header, Footer, Motion (Lenis + curtain + TLink), Reveal,
-                            HangulField (three.js), Session (all practice modes + results),
-                            SpeakButton, Icons
-  pages/                    Home (Landing for new visitors, Today for returning), Course, Day,
-                            Practice, Review, Progress, Legal (Privacy, Terms), NotFound
+  hooks/                    useProgress, useProfile (device sign-in), useCourse (from the URL), useTheme
+  components/               Header (with LanguageSwitch), Footer, Motion (Lenis + curtain + TLink), Reveal,
+                            WordField (three.js), Session (all practice modes, Match, results),
+                            SpeakButton, PageHead, Icons
+  pages/                    Home (Welcome or Today), Welcome (sign-in), Course, Day, Practice, Review,
+                            Progress, Letters, Legal (Privacy, Terms), NotFound
   styles/                   tokens.css, base.css, landing.css, app.css, day.css, practice.css
-scripts/postbuild.js        per-route HTML + SEO files (runs in `npm run build`)
+scripts/postbuild.js        per-route HTML + SEO files for both courses (runs in `npm run build`)
 scripts/make-images.cjs     OG images + icons (dev-only, Playwright)
-scripts/make-audio.py       word clips with Supertonic 3 (dev-only, Python; --check transcribes with Whisper)
+scripts/make-audio.py       word and letter clips with Supertonic 3 (dev-only; --course ko|ar, --check)
 ```
 
-**Routes**: `/` (Landing or Today) · `/course` · `/progress` (noindex) · `/day/:n` · `/day/:n/practice/:mode` (flashcards|choice|typing|listening,
-noindex) · `/review` · `/privacy` · `/terms` · anything else → app 404 (served via 404.html).
-Title pattern: `Day 07: Travel | Essential Korean Vocabulary`.
+**Routes** (Korean / Arabic): `/` · `/ar` (sign-in or Today), `/course` · `/ar/course`,
+`/day/:n` · `/ar/day/:n`, `/day/:n/practice/:mode` · `/ar/day/:n/practice/:mode`
+(flashcards|choice|typing|listening|match, noindex), `/review` · `/ar/review`, `/progress` · `/ar/progress`
+(noindex), `/letters` · `/ar/letters`, plus `/welcome` (noindex), `/privacy`, `/terms`. Anything else → 404.
+Title pattern: `Day 07: Travel · Korean | Essential Vocabulary`.
 
 Links between pages use `TLink` (a real `<a href>` that plays the curtain). The shared route metadata supplies the React document head and the static HTML, including indexing, sharing cards and structured data.
 
-### Data schema (`src/data/days/dayNN.json`)
+### Data schema (`src/data/<course>/dayNN.json`)
 
 ```json
 {
-  "id": "day07", "number": 7, "slug": "travel", "title": "Travel", "titleKo": "여행",
+  "id": "day07", "course": "ko", "number": 7, "slug": "travel", "title": "Travel", "titleNative": "여행",
   "status": "verified", "source": "owner-notes", "cover": "images/days/day07.webp",
-  "words": [{ "id": "day07-01", "korean": "기대하다", "romanization": "gidaehada", "english": "to expect", "note": "optional" }]
+  "words": [{ "id": "day07-01", "term": "기대하다", "romanization": "gidaehada", "english": "to expect", "note": "optional" }]
 }
 ```
-`status`: `verified` (class notes) | `reviewed` (dictionary review) | `draft`. `source`: `owner-notes` | `generated`. Tests enforce 10 words
-per day, sequential numbers, unique ids and unique Korean words across all days.
+Arabic ids are prefixed: `ar-day07`, `ar-day07-01`. `status`: `verified` (class notes) | `reviewed`
+(language review) | `draft`. `source`: `owner-notes` | `generated` | `collins-3000`. Tests enforce 50 days of
+10 words per course, sequential numbers, unique ids and terms, distinct quiz answers per day, the script of
+each term, and a recorded clip for every word and letter.
 
 ### Practice engine (`src/lib`)
 
@@ -132,3 +147,4 @@ See `docs/DESIGN-CRITIQUE.md`: it explains why v1 looked like a template and wha
 - **Q3** Stay on GitHub Pages, or move to Vercel/Netlify (needed if we add accounts/payments)?
 - **Q5** Site name and domain. Current candidates: "한국어 공부", "Essential Korean Vocabulary".
 - **Q6 resolved** Footer, Privacy and Terms name Khurshidbek with ummahfaris@gmail.com. Country not given.
+- **Q7 resolved** Sign-in is a device profile with no server (owner, 2026-11-28). Site name: Essential Vocabulary.
