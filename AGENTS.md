@@ -89,7 +89,7 @@ Status: `todo` · `doing` · `review` · `done` · `blocked`
 | B2 | **Arabic language review** of all 500 entries: spelling, vowel marks, transliteration (conventions above), meaning. Correct in place, record each change in `docs/VOCABULARY-REVIEW-AR.md`, then set every day's `status` to `reviewed` | Builder | L1 | done. Merged 2026-11-28 (15 corrections) |
 | B3 | **Sharing cards** for both courses in `scripts/make-images.cjs`: site name "Essential Vocabulary", Arabic titles in Noto Naskh Arabic rendered right to left, outputs listed under Assets, JPEG under 60 KB | Builder | B1, L2 | review |
 | B4 | **Match engine**: `src/lib/match.js` with `buildMatchRound(words, { pairs = 5, random })` returning `{ left: [{ id, text }], right: [{ id, text }] }` (Arabic or Korean term on the left, English on the right, each shuffled) and `isPair(leftId, rightId)`. Unit tests | Builder | | done. Merged 2026-11-28 |
-| B5 | **Tests and accessibility** for the new screens: Testing Library tests for sign-in, language switch and Match. Extend `e2e/` scans to `/welcome`, `/ar`, `/ar/day/1`, every Arabic practice mode, `/ar/letters`, both themes and viewports | Builder | L3, L5 | todo |
+| B5 | **Tests and accessibility** for the new screens: Testing Library tests for sign-in, language switch and Match. Extend `e2e/` scans to `/welcome`, `/ar`, `/ar/day/1`, every Arabic practice mode, `/ar/letters`, both themes and viewports | Builder | L3, L5 | review (draft, open screen fixes below) |
 | B6 | **Performance** with the Arabic font: measure Home, `/ar` and `/ar/day/1` on mobile Lighthouse; keep Home at 80 or above; report in `.github/PERFORMANCE.md` | Builder | L2, L3 | todo |
 
 ## File ownership
@@ -121,6 +121,10 @@ _(format: `- [from → to] request (status)`)_
 - [Builder → Lead] On merge, set the Arabic home scene to `images/ar/hero.webp` and add alt text for the old-city lane with a carved doorway, mashrabiya balcony, bicycle and café chair.
 - [Builder → Lead] On the signed-in home screen, an empty loading state shifts the footer when Today appears. A direct Today import in `src/pages/Home.jsx` removed the measured layout shift in both courses. (open)
 
+- [Builder → Lead] On /welcome, selecting Arabic in the app bar opens the missing /ar/welcome route. Keep an existing sign-in page open with Arabic selected. (open)
+- [Builder → Lead] On the signed-out Arabic home page in dark mode, the Day 2 preview glyph has 1.05:1 contrast when its cover is missing. Give the letter sufficient contrast on the fallback tile. (open)
+- [Builder → Lead] Keep Match card positions stable until the board is complete. Selecting a correct pair currently reshuffles both columns. Initialize the board once per keyed round with `useState(() => buildMatchRound(words, { pairs: words.length }))`. (open)
+
 ## Status log (append only, newest at bottom)
 
 _(format: `YYYY-MM-DD HH:MM UTC | role | task | note`)_
@@ -136,3 +140,5 @@ _(format: `YYYY-MM-DD HH:MM UTC | role | task | note`)_
 - 2026-11-28 | Builder | B1 | Added all 50 lesson covers and the home scene. Each 1600 × 1000 WebP is under 140 KB. The cover paths and thumbnail and sharing-card crops were checked across the set. Ready for review.
 - 2026-11-28 03:15 UTC | Builder | B3 | Started the Korean and Arabic sharing cards using the course data and illustrations.
 - 2026-11-28 03:20 UTC | Builder | B3 | Rendered and inspected 102 course sharing cards; verified both preview tags in all 102 generated pages and the 60 KB size limit.
+- 2026-11-28 03:11 UTC | Builder | B5 | Started sign-in and language-switch coverage against the multi-course screens.
+- 2026-11-28 03:33 UTC | Builder | B5 | Submitted screen and Match regression coverage for review. All 192 browser states ran. The welcome switch, Match card positions and dark preview contrast need UI fixes. The full suite also awaits L4 recordings.
