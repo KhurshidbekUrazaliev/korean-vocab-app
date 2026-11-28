@@ -1,0 +1,73 @@
+{
+  "id": "day04",
+  "course": "ko",
+  "number": 4,
+  "slug": "entertainment",
+  "title": "Entertainment",
+  "titleNative": "공연과 여가",
+  "status": "verified",
+  "source": "owner-notes",
+  "cover": "images/days/day04.webp",
+  "words": [
+    {
+      "id": "day04-01",
+      "term": "공연",
+      "romanization": "gongyeon",
+      "english": "performance"
+    },
+    {
+      "id": "day04-02",
+      "term": "용돈",
+      "romanization": "yongdon",
+      "english": "allowance"
+    },
+    {
+      "id": "day04-03",
+      "term": "예매하다",
+      "romanization": "yemaehada",
+      "english": "to book/reserve"
+    },
+    {
+      "id": "day04-04",
+      "term": "마침",
+      "romanization": "machim",
+      "english": "just in time, coincidentally"
+    },
+    {
+      "id": "day04-05",
+      "term": "관객",
+      "romanization": "gwangaek",
+      "english": "audience"
+    },
+    {
+      "id": "day04-06",
+      "term": "떠들다",
+      "romanization": "tteodeulda",
+      "english": "to make noise, chatter"
+    },
+    {
+      "id": "day04-07",
+      "term": "집중하다",
+      "romanization": "jipjunghada",
+      "english": "to focus, concentrate"
+    },
+    {
+      "id": "day04-08",
+      "term": "제대로",
+      "romanization": "jedaero",
+      "english": "properly, correctly"
+    },
+    {
+      "id": "day04-09",
+      "term": "감상하다",
+      "romanization": "gamsanghada",
+      "english": "to appreciate, enjoy"
+    },
+    {
+      "id": "day04-10",
+      "term": "아쉽다",
+      "romanization": "aswipda",
+      "english": "to be regrettable, unfortunate"
+    }
+  ]
+}

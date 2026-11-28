@@ -1,0 +1,73 @@
+{
+  "id": "day41",
+  "course": "ko",
+  "number": 41,
+  "slug": "at-the-hair-salon",
+  "title": "At the hair salon",
+  "titleNative": "미용실에서",
+  "status": "reviewed",
+  "source": "generated",
+  "cover": "images/days/day41.webp",
+  "words": [
+    {
+      "id": "day41-01",
+      "term": "미용실",
+      "romanization": "miyongsil",
+      "english": "hair salon"
+    },
+    {
+      "id": "day41-02",
+      "term": "미용사",
+      "romanization": "miyongsa",
+      "english": "hairstylist"
+    },
+    {
+      "id": "day41-03",
+      "term": "앞머리",
+      "romanization": "ammeori",
+      "english": "bangs (fringe)"
+    },
+    {
+      "id": "day41-04",
+      "term": "염색",
+      "romanization": "yeomsaek",
+      "english": "hair coloring"
+    },
+    {
+      "id": "day41-05",
+      "term": "파마",
+      "romanization": "pama",
+      "english": "perm"
+    },
+    {
+      "id": "day41-06",
+      "term": "단발머리",
+      "romanization": "danbalmeori",
+      "english": "bobbed hair"
+    },
+    {
+      "id": "day41-07",
+      "term": "곱슬머리",
+      "romanization": "gopseulmeori",
+      "english": "curly hair"
+    },
+    {
+      "id": "day41-08",
+      "term": "빗",
+      "romanization": "bit",
+      "english": "comb"
+    },
+    {
+      "id": "day41-09",
+      "term": "자르다",
+      "romanization": "jareuda",
+      "english": "to cut"
+    },
+    {
+      "id": "day41-10",
+      "term": "다듬다",
+      "romanization": "dadeumda",
+      "english": "to trim or tidy up"
+    }
+  ]
+}

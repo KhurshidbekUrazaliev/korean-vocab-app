@@ -1,13 +1,13 @@
 import { createPortal } from 'react-dom';
 import { useLocation } from 'react-router-dom';
-import { days } from '../data/index.js';
-import { useProgress } from '../hooks/useProgress.js';
+import { COURSES } from '../data/index.js';
+import { useProfile } from '../hooks/useProfile.js';
 import { pageMetadata, socialTags } from '../lib/pageMetadata.js';
 
 export function PageHead() {
   const { pathname } = useLocation();
-  const progress = useProgress();
-  const info = pageMetadata(pathname, days, pathname === '/' && Object.keys(progress.words).length > 0);
+  const profile = useProfile();
+  const info = pageMetadata(pathname, COURSES, Boolean(profile) && (pathname === '/' || pathname === '/ar'));
   return <>
     <title>{info.title}</title>
     <meta name="description" content={info.description} />

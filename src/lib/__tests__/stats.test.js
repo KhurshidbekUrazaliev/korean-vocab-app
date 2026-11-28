@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { dayStatus, currentDay, weakWords, masteryBreakdown, weekActivity, answersOn } from '../stats.js';
 import { emptyProgress, localDateKey } from '../progress.js';
 
-const mkDay = (n) => ({ id: `day0${n}`, number: n, words: Array.from({ length: 10 }, (_, i) => ({ id: `day0${n}-${i}`, korean: `w${n}${i}` })) });
+const mkDay = (n) => ({ id: `day0${n}`, number: n, words: Array.from({ length: 10 }, (_, i) => ({ id: `day0${n}-${i}`, term: `w${n}${i}` })) });
 const days = [mkDay(1), mkDay(2), mkDay(3)];
 const all = days.flatMap((d) => d.words);
 

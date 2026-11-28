@@ -1,0 +1,73 @@
+{
+  "id": "day49",
+  "course": "ko",
+  "number": 49,
+  "slug": "household-repairs",
+  "title": "Household repairs",
+  "titleNative": "집수리",
+  "status": "reviewed",
+  "source": "generated",
+  "cover": "images/days/day49.webp",
+  "words": [
+    {
+      "id": "day49-01",
+      "term": "집수리",
+      "romanization": "jipsuri",
+      "english": "home repairs"
+    },
+    {
+      "id": "day49-02",
+      "term": "공구함",
+      "romanization": "gongguham",
+      "english": "toolbox"
+    },
+    {
+      "id": "day49-03",
+      "term": "망치",
+      "romanization": "mangchi",
+      "english": "hammer"
+    },
+    {
+      "id": "day49-04",
+      "term": "드라이버",
+      "romanization": "deuraibeo",
+      "english": "screwdriver"
+    },
+    {
+      "id": "day49-05",
+      "term": "나사",
+      "romanization": "nasa",
+      "english": "screw"
+    },
+    {
+      "id": "day49-06",
+      "term": "못",
+      "romanization": "mot",
+      "english": "nail"
+    },
+    {
+      "id": "day49-07",
+      "term": "경첩",
+      "romanization": "gyeongcheop",
+      "english": "hinge"
+    },
+    {
+      "id": "day49-08",
+      "term": "문고리",
+      "romanization": "mungori",
+      "english": "door handle"
+    },
+    {
+      "id": "day49-09",
+      "term": "조이다",
+      "romanization": "joida",
+      "english": "to tighten"
+    },
+    {
+      "id": "day49-10",
+      "term": "고치다",
+      "romanization": "gochida",
+      "english": "to repair"
+    }
+  ]
+}

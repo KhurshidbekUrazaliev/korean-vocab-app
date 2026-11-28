@@ -10,27 +10,43 @@ import Practice from './pages/Practice.jsx';
 import Review from './pages/Review.jsx';
 import Course from './pages/Course.jsx';
 import Progress from './pages/Progress.jsx';
+import Letters from './pages/Letters.jsx';
+import Welcome from './pages/Welcome.jsx';
 import { Privacy, Terms } from './pages/Legal.jsx';
 import NotFound from './pages/NotFound.jsx';
 
 installBundleRecovery();
+
+// Korean keeps the original URLs; the Arabic course repeats them under /ar.
+const coursePages = (prefix) => [
+  { path: prefix || '/', element: <Home /> },
+  { path: `${prefix}/day/:n`, element: <Day /> },
+  { path: `${prefix}/course`, element: <Course /> },
+  { path: `${prefix}/review`, element: <Review /> },
+  { path: `${prefix}/progress`, element: <Progress /> },
+  { path: `${prefix}/letters`, element: <Letters /> },
+];
 
 const router = createBrowserRouter(
   [
     {
       element: <Layout />,
       children: [
-        { path: '/', element: <Home /> },
-        { path: '/day/:n', element: <Day /> },
-        { path: '/course', element: <Course /> },
-        { path: '/review', element: <Review /> },
-        { path: '/progress', element: <Progress /> },
+        ...coursePages(''),
+        ...coursePages('/ar'),
+        { path: '/welcome', element: <Welcome /> },
         { path: '/privacy', element: <Privacy /> },
         { path: '/terms', element: <Terms /> },
         { path: '*', element: <NotFound /> },
       ],
     },
-    { element: <Layout bare />, children: [{ path: '/day/:n/practice/:mode', element: <Practice /> }] },
+    {
+      element: <Layout bare />,
+      children: [
+        { path: '/day/:n/practice/:mode', element: <Practice /> },
+        { path: '/ar/day/:n/practice/:mode', element: <Practice /> },
+      ],
+    },
   ],
   { basename: import.meta.env.BASE_URL.replace(/\/$/, '') },
 );

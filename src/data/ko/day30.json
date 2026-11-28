@@ -1,0 +1,73 @@
+{
+  "id": "day30",
+  "course": "ko",
+  "number": 30,
+  "slug": "hiking-in-the-mountains",
+  "title": "Hiking in the mountains",
+  "titleNative": "산에서 등산하기",
+  "status": "reviewed",
+  "source": "generated",
+  "cover": "images/days/day30.webp",
+  "words": [
+    {
+      "id": "day30-01",
+      "term": "등산",
+      "romanization": "deungsan",
+      "english": "mountain hiking"
+    },
+    {
+      "id": "day30-02",
+      "term": "등산화",
+      "romanization": "deungsanhwa",
+      "english": "hiking boots"
+    },
+    {
+      "id": "day30-03",
+      "term": "등산로",
+      "romanization": "deungsanno",
+      "english": "hiking trail"
+    },
+    {
+      "id": "day30-04",
+      "term": "정상",
+      "romanization": "jeongsang",
+      "english": "summit"
+    },
+    {
+      "id": "day30-05",
+      "term": "계곡",
+      "romanization": "gyegok",
+      "english": "mountain valley"
+    },
+    {
+      "id": "day30-06",
+      "term": "능선",
+      "romanization": "neungseon",
+      "english": "ridgeline"
+    },
+    {
+      "id": "day30-07",
+      "term": "바위",
+      "romanization": "bawi",
+      "english": "boulder"
+    },
+    {
+      "id": "day30-08",
+      "term": "오르막길",
+      "romanization": "oreumakgil",
+      "english": "uphill path"
+    },
+    {
+      "id": "day30-09",
+      "term": "산기슭",
+      "romanization": "sangiseuk",
+      "english": "foot of a mountain"
+    },
+    {
+      "id": "day30-10",
+      "term": "하산하다",
+      "romanization": "hasanhada",
+      "english": "to descend a mountain"
+    }
+  ]
+}

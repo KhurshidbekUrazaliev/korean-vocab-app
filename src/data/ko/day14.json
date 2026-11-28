@@ -1,0 +1,74 @@
+{
+  "id": "day14",
+  "course": "ko",
+  "number": 14,
+  "slug": "work-and-time",
+  "title": "Work & Time",
+  "titleNative": "일과 시간",
+  "status": "verified",
+  "source": "owner-notes",
+  "cover": "images/days/day14.webp",
+  "words": [
+    {
+      "id": "day14-01",
+      "term": "종일",
+      "romanization": "jongil",
+      "english": "all day long"
+    },
+    {
+      "id": "day14-02",
+      "term": "쟤",
+      "romanization": "jyae",
+      "english": "that person (casual)"
+    },
+    {
+      "id": "day14-03",
+      "term": "보고서",
+      "romanization": "bogoseo",
+      "english": "report"
+    },
+    {
+      "id": "day14-04",
+      "term": "제출하다",
+      "romanization": "jechulhada",
+      "english": "to submit, hand in"
+    },
+    {
+      "id": "day14-05",
+      "term": "전날",
+      "romanization": "jeonnal",
+      "english": "the day before, previous day"
+    },
+    {
+      "id": "day14-06",
+      "term": "아끼다",
+      "romanization": "akkida",
+      "english": "to treasure, save, spare"
+    },
+    {
+      "id": "day14-07",
+      "term": "겨우",
+      "romanization": "gyeou",
+      "english": "barely, only, just"
+    },
+    {
+      "id": "day14-08",
+      "term": "마치다",
+      "romanization": "machida",
+      "english": "to finish, complete",
+      "note": "Corrected from 마지다"
+    },
+    {
+      "id": "day14-09",
+      "term": "회식",
+      "romanization": "hoesik",
+      "english": "company dinner, work gathering"
+    },
+    {
+      "id": "day14-10",
+      "term": "기억나다",
+      "romanization": "gieongnada",
+      "english": "to remember, recall"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "id": "day05",
+  "course": "ko",
+  "number": 5,
+  "slug": "decisions",
+  "title": "Decisions & Opinions",
+  "titleNative": "결정과 의견",
+  "status": "verified",
+  "source": "owner-notes",
+  "cover": "images/days/day05.webp",
+  "words": [
+    {
+      "id": "day05-01",
+      "term": "결정하다",
+      "romanization": "gyeoljeonghada",
+      "english": "to decide"
+    },
+    {
+      "id": "day05-02",
+      "term": "의견",
+      "romanization": "uigyeon",
+      "english": "opinion"
+    },
+    {
+      "id": "day05-03",
+      "term": "차이",
+      "romanization": "chai",
+      "english": "difference"
+    },
+    {
+      "id": "day05-04",
+      "term": "모이다",
+      "romanization": "moida",
+      "english": "to gather"
+    },
+    {
+      "id": "day05-05",
+      "term": "찬성하다",
+      "romanization": "chanseonghada",
+      "english": "to agree"
+    },
+    {
+      "id": "day05-06",
+      "term": "반대하다",
+      "romanization": "bandaehada",
+      "english": "to oppose"
+    },
+    {
+      "id": "day05-07",
+      "term": "충분히",
+      "romanization": "chungbunhi",
+      "english": "sufficiently"
+    },
+    {
+      "id": "day05-08",
+      "term": "만족하다",
+      "romanization": "manjokhada",
+      "english": "to be satisfied"
+    },
+    {
+      "id": "day05-09",
+      "term": "방향",
+      "romanization": "banghyang",
+      "english": "direction"
+    },
+    {
+      "id": "day05-10",
+      "term": "선택하다",
+      "romanization": "seontaek-hada",
+      "english": "to choose"
+    }
+  ]
+}

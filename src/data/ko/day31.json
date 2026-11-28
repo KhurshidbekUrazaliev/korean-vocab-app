@@ -1,0 +1,73 @@
+{
+  "id": "day31",
+  "course": "ko",
+  "number": 31,
+  "slug": "at-the-beach",
+  "title": "At the beach",
+  "titleNative": "해변에서",
+  "status": "reviewed",
+  "source": "generated",
+  "cover": "images/days/day31.webp",
+  "words": [
+    {
+      "id": "day31-01",
+      "term": "해변",
+      "romanization": "haebyeon",
+      "english": "beach"
+    },
+    {
+      "id": "day31-02",
+      "term": "모래",
+      "romanization": "morae",
+      "english": "sand"
+    },
+    {
+      "id": "day31-03",
+      "term": "파도",
+      "romanization": "pado",
+      "english": "wave"
+    },
+    {
+      "id": "day31-04",
+      "term": "바닷물",
+      "romanization": "badanmul",
+      "english": "seawater"
+    },
+    {
+      "id": "day31-05",
+      "term": "조개껍데기",
+      "romanization": "jogaekkeopdegi",
+      "english": "seashell"
+    },
+    {
+      "id": "day31-06",
+      "term": "수영복",
+      "romanization": "suyeongbok",
+      "english": "swimsuit"
+    },
+    {
+      "id": "day31-07",
+      "term": "파라솔",
+      "romanization": "parasol",
+      "english": "beach umbrella"
+    },
+    {
+      "id": "day31-08",
+      "term": "밀물",
+      "romanization": "milmul",
+      "english": "incoming tide"
+    },
+    {
+      "id": "day31-09",
+      "term": "썰물",
+      "romanization": "sseolmul",
+      "english": "outgoing tide"
+    },
+    {
+      "id": "day31-10",
+      "term": "물놀이",
+      "romanization": "mullori",
+      "english": "playing in the water"
+    }
+  ]
+}

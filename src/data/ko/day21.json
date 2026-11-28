@@ -1,0 +1,73 @@
+{
+  "id": "day21",
+  "course": "ko",
+  "number": 21,
+  "slug": "at-the-bank",
+  "title": "At the bank",
+  "titleNative": "은행에서",
+  "status": "reviewed",
+  "source": "generated",
+  "cover": "images/days/day21.webp",
+  "words": [
+    {
+      "id": "day21-01",
+      "term": "은행",
+      "romanization": "eunhaeng",
+      "english": "bank"
+    },
+    {
+      "id": "day21-02",
+      "term": "계좌",
+      "romanization": "gyejwa",
+      "english": "bank account"
+    },
+    {
+      "id": "day21-03",
+      "term": "통장",
+      "romanization": "tongjang",
+      "english": "bankbook"
+    },
+    {
+      "id": "day21-04",
+      "term": "현금",
+      "romanization": "hyeongeum",
+      "english": "cash"
+    },
+    {
+      "id": "day21-05",
+      "term": "동전",
+      "romanization": "dongjeon",
+      "english": "coin"
+    },
+    {
+      "id": "day21-06",
+      "term": "지폐",
+      "romanization": "jipye",
+      "english": "banknote"
+    },
+    {
+      "id": "day21-07",
+      "term": "입금",
+      "romanization": "ipgeum",
+      "english": "deposit"
+    },
+    {
+      "id": "day21-08",
+      "term": "출금",
+      "romanization": "chulgeum",
+      "english": "withdrawal"
+    },
+    {
+      "id": "day21-09",
+      "term": "송금",
+      "romanization": "songgeum",
+      "english": "money transfer"
+    },
+    {
+      "id": "day21-10",
+      "term": "수수료",
+      "romanization": "susuryo",
+      "english": "service fee"
+    }
+  ]
+}

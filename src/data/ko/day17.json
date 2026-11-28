@@ -1,0 +1,73 @@
+{
+  "id": "day17",
+  "course": "ko",
+  "number": 17,
+  "slug": "asking-for-directions",
+  "title": "Asking for directions",
+  "titleNative": "길 묻기",
+  "status": "reviewed",
+  "source": "generated",
+  "cover": "images/days/day17.webp",
+  "words": [
+    {
+      "id": "day17-01",
+      "term": "길",
+      "romanization": "gil",
+      "english": "road or way"
+    },
+    {
+      "id": "day17-02",
+      "term": "지도",
+      "romanization": "jido",
+      "english": "map"
+    },
+    {
+      "id": "day17-03",
+      "term": "골목",
+      "romanization": "golmok",
+      "english": "alley"
+    },
+    {
+      "id": "day17-04",
+      "term": "사거리",
+      "romanization": "sageori",
+      "english": "four-way intersection"
+    },
+    {
+      "id": "day17-05",
+      "term": "왼쪽",
+      "romanization": "oenjjok",
+      "english": "left side"
+    },
+    {
+      "id": "day17-06",
+      "term": "오른쪽",
+      "romanization": "oreunjjok",
+      "english": "right side"
+    },
+    {
+      "id": "day17-07",
+      "term": "건너편",
+      "romanization": "geonneopyeon",
+      "english": "opposite side"
+    },
+    {
+      "id": "day17-08",
+      "term": "직진하다",
+      "romanization": "jikjinhada",
+      "english": "to go straight ahead"
+    },
+    {
+      "id": "day17-09",
+      "term": "건너다",
+      "romanization": "geonneoda",
+      "english": "to cross"
+    },
+    {
+      "id": "day17-10",
+      "term": "돌다",
+      "romanization": "dolda",
+      "english": "to turn"
+    }
+  ]
+}

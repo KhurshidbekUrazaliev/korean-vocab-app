@@ -2,7 +2,8 @@ import { useRef } from 'react';
 import { TLink } from '../components/Motion.jsx';
 import { Ring } from '../components/Meters.jsx';
 import { ArrowRight } from '../components/Icons.jsx';
-import { days, allWords, pad } from '../data/index.js';
+import { initialOf, pad } from '../data/index.js';
+import { useCourse } from '../hooks/useCourse.js';
 import { useProgress } from '../hooks/useProgress.js';
 import { currentDay, dayStatus } from '../lib/stats.js';
 import { gsap, useGSAP, reducedMotion } from '../lib/motion.js';
@@ -15,6 +16,8 @@ const STATE_TONE = { new: '', active: 'badge--accent', complete: 'badge--ink', m
 export default function Course() {
   const ref = useRef(null);
   const progress = useProgress();
+  const course = useCourse();
+  const { days, allWords, lang, dir } = course;
   const started = Object.keys(progress.words).length > 0;
   const next = started ? currentDay(progress, days) : days[0];
   const learned = allWords.filter((w) => progress.words[w.id]?.correctCount > 0).length;
@@ -28,7 +31,7 @@ export default function Course() {
         gsap.from(u.querySelectorAll('.lesson'), { y: 24, opacity: 0, stagger: 0.035, duration: 0.8, scrollTrigger: { trigger: u, start: 'top 85%', once: true } }),
       );
     },
-    { scope: ref },
+    { scope: ref, dependencies: [course.id] },
   );
 
   return (
@@ -36,7 +39,9 @@ export default function Course() {
 
       <header className="page-head">
         <div>
-          <p className="eyebrow">Course · 과정</p>
+          <p className="eyebrow">
+            {course.name} course · <span lang={lang} dir={dir}>{course.courseNative}</span>
+          </p>
           <h1 className="display">{days.length} days, {allWords.length} words.</h1>
           <p className="lede" style={{ marginTop: 16 }}>Five units of ten days. Each day is one theme and four short steps. Go in order or jump to the topic you need.</p>
         </div>
@@ -72,9 +77,9 @@ export default function Course() {
                 const isNext = d.id === next.id;
                 return (
                   <li key={d.id}>
-                    <TLink className="lesson" data-next={isNext} data-state={s.state} to={`/day/${d.number}`} ko={d.titleKo} en={`Day ${pad(d.number)}`}>
+                    <TLink className="lesson" data-next={isNext} data-state={s.state} to={course.path(`/day/${d.number}`)} native={d.titleNative} en={`Day ${pad(d.number)}`}>
                       <span className="thumb thumb--lg">
-                        {d.cover ? <img src={asset(d.cover)} alt="" loading="lazy" width="1600" height="1000" /> : <span className="ko">{d.titleKo.slice(0, 1)}</span>}
+                        {d.cover ? <img src={asset(d.cover)} alt="" loading="lazy" width="1600" height="1000" /> : <span className="ko" lang={lang}>{initialOf(d.titleNative)}</span>}
                       </span>
                       <span className="lesson__text">
                         <span className="lesson__n">
@@ -82,7 +87,7 @@ export default function Course() {
                           {isNext && <span className="badge badge--accent">Up next</span>}
                           {d.status === 'draft' && <span className="badge">Draft</span>}
                         </span>
-                        <span className="lesson__ko ko" lang="ko">{d.titleKo}</span>
+                        <span className="lesson__ko ko" lang={lang} dir={dir}>{d.titleNative}</span>
                         <span className="muted lesson__en">{d.title}</span>
                       </span>
                       <span className="lesson__end">

@@ -1,0 +1,73 @@
+{
+  "id": "day11",
+  "course": "ko",
+  "number": 11,
+  "slug": "personality",
+  "title": "Personality",
+  "titleNative": "성격",
+  "status": "verified",
+  "source": "owner-notes",
+  "cover": "images/days/day11.webp",
+  "words": [
+    {
+      "id": "day11-01",
+      "term": "성격",
+      "romanization": "seonggyeok",
+      "english": "personality"
+    },
+    {
+      "id": "day11-02",
+      "term": "활발하다",
+      "romanization": "hwalbalhada",
+      "english": "to be active, lively"
+    },
+    {
+      "id": "day11-03",
+      "term": "부럽다",
+      "romanization": "bureopda",
+      "english": "to be envious"
+    },
+    {
+      "id": "day11-04",
+      "term": "부족하다",
+      "romanization": "bujokada",
+      "english": "to be insufficient"
+    },
+    {
+      "id": "day11-05",
+      "term": "겸손하다",
+      "romanization": "gyeomsonhada",
+      "english": "to be humble"
+    },
+    {
+      "id": "day11-06",
+      "term": "장점",
+      "romanization": "jangjeom",
+      "english": "strength, advantage"
+    },
+    {
+      "id": "day11-07",
+      "term": "물론",
+      "romanization": "mullon",
+      "english": "of course"
+    },
+    {
+      "id": "day11-08",
+      "term": "단점",
+      "romanization": "danjeom",
+      "english": "weakness, disadvantage"
+    },
+    {
+      "id": "day11-09",
+      "term": "거절",
+      "romanization": "geojeol",
+      "english": "refusal, rejection"
+    },
+    {
+      "id": "day11-10",
+      "term": "들어주다",
+      "romanization": "deureojuda",
+      "english": "to listen, grant a request"
+    }
+  ]
+}

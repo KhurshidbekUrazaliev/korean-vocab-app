@@ -1,0 +1,73 @@
+{
+  "id": "day36",
+  "course": "ko",
+  "number": 36,
+  "slug": "photography",
+  "title": "Photography",
+  "titleNative": "사진 촬영",
+  "status": "reviewed",
+  "source": "generated",
+  "cover": "images/days/day36.webp",
+  "words": [
+    {
+      "id": "day36-01",
+      "term": "사진기",
+      "romanization": "sajingi",
+      "english": "camera"
+    },
+    {
+      "id": "day36-02",
+      "term": "렌즈",
+      "romanization": "renjeu",
+      "english": "lens"
+    },
+    {
+      "id": "day36-03",
+      "term": "필름",
+      "romanization": "pilleum",
+      "english": "film for a camera"
+    },
+    {
+      "id": "day36-04",
+      "term": "삼각대",
+      "romanization": "samgakdae",
+      "english": "tripod"
+    },
+    {
+      "id": "day36-05",
+      "term": "셔터",
+      "romanization": "syeoteo",
+      "english": "shutter"
+    },
+    {
+      "id": "day36-06",
+      "term": "초점",
+      "romanization": "chojeom",
+      "english": "focus"
+    },
+    {
+      "id": "day36-07",
+      "term": "구도",
+      "romanization": "gudo",
+      "english": "composition of a picture"
+    },
+    {
+      "id": "day36-08",
+      "term": "배경",
+      "romanization": "baegyeong",
+      "english": "background"
+    },
+    {
+      "id": "day36-09",
+      "term": "촬영하다",
+      "romanization": "chwaryeonghada",
+      "english": "to shoot a photo or video"
+    },
+    {
+      "id": "day36-10",
+      "term": "인화하다",
+      "romanization": "inhwahada",
+      "english": "to print a photograph"
+    }
+  ]
+}
