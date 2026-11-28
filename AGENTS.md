@@ -91,6 +91,8 @@ Status: `todo` · `doing` · `review` · `done` · `blocked`
 | B4 | **Match engine**: `src/lib/match.js` with `buildMatchRound(words, { pairs = 5, random })` returning `{ left: [{ id, text }], right: [{ id, text }] }` (Arabic or Korean term on the left, English on the right, each shuffled) and `isPair(leftId, rightId)`. Unit tests | Builder | | done. Merged 2026-11-28 |
 | B5 | **Tests and accessibility** for the new screens: Testing Library tests for sign-in, language switch and Match. Extend `e2e/` scans to `/welcome`, `/ar`, `/ar/day/1`, every Arabic practice mode, `/ar/letters`, both themes and viewports | Builder | L3, L5 | review (draft, open screen fixes below) |
 | B6 | **Performance** with the Arabic font: measure Home, `/ar` and `/ar/day/1` on mobile Lighthouse; keep Home at 80 or above; report in `.github/PERFORMANCE.md` | Builder | L2, L3 | todo |
+| B5 | **Tests and accessibility** for the new screens: Testing Library tests for sign-in, language switch and Match. Extend `e2e/` scans to `/welcome`, `/ar`, `/ar/day/1`, every Arabic practice mode, `/ar/letters`, both themes and viewports | Builder | L3, L5 | todo |
+| B6 | **Performance** with the Arabic font: measure Home, `/ar` and `/ar/day/1` on mobile Lighthouse; keep Home at 80 or above; report in `.github/PERFORMANCE.md` | Builder | L2, L3 | review |
 
 ## File ownership
 
@@ -124,6 +126,7 @@ _(format: `- [from → to] request (status)`)_
 - [Builder → Lead] On /welcome, selecting Arabic in the app bar opens the missing /ar/welcome route. Keep an existing sign-in page open with Arabic selected. (open)
 - [Builder → Lead] On the signed-out Arabic home page in dark mode, the Day 2 preview glyph has 1.05:1 contrast when its cover is missing. Give the letter sufficient contrast on the fallback tile. (open)
 - [Builder → Lead] Keep Match card positions stable until the board is complete. Selecting a correct pair currently reshuffles both columns. Initialize the board once per keyed round with `useState(() => buildMatchRound(words, { pairs: words.length }))`. (open)
+- [Builder → Lead] Render Today on the first signed-in Home render in `src/pages/Home.jsx`. A static import eliminated the mobile footer shift in a scratch production build. CLS fell from 0.469 to 0 on Korean Home and 0.482 to 0 on Arabic Home (open).
 
 ## Status log (append only, newest at bottom)
 
@@ -142,3 +145,5 @@ _(format: `YYYY-MM-DD HH:MM UTC | role | task | note`)_
 - 2026-11-28 03:20 UTC | Builder | B3 | Rendered and inspected 102 course sharing cards; verified both preview tags in all 102 generated pages and the 60 KB size limit.
 - 2026-11-28 03:11 UTC | Builder | B5 | Started sign-in and language-switch coverage against the multi-course screens.
 - 2026-11-28 03:33 UTC | Builder | B5 | Submitted screen and Match regression coverage for review. All 192 browser states ran. The welcome switch, Match card positions and dark preview contrast need UI fixes. The full suite also awaits L4 recordings.
+- 2026-11-28 03:12 UTC | Builder | B6 | Started mobile measurements on the public multi-course branch with device sign-in. Checking first visits, saved profiles and the rendered Arabic font.
+- 2026-11-28 03:35 UTC | Builder | B6 | Bundled the licensed Arabic font and measured cold mobile loads with the final lesson covers. Median scores were 93 on Home, 91 on Arabic Home and 96 on Arabic Day 1. Build and 72 accessibility scans passed. Two recording-presence tests await L4. Signed-in dashboard shifts are documented under Requests.
