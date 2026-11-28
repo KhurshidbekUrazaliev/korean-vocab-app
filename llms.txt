@@ -1,4 +1,4 @@
-# Essential Vocabulary
+# Inkday
 
 > A free website for learning Korean and Arabic vocabulary in daily sets of 10 words: 500 Korean words and 500 Arabic (Modern Standard) words, 50 days each. Every word has the native script, a romanization, an English meaning and a recorded pronunciation. Learners sign in with a name on their own device, practice with flashcards, multiple choice (both directions), typing, listening and a match game, and missed words come back through spaced review (Leitner boxes: 1, 3, 7 and 16 days). No account or server; progress stays in the browser. The Arabic word selection comes from Collins Arabic: 3000 Words and Phrases.
 
