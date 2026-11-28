@@ -82,9 +82,9 @@ Status: `todo` · `doing` · `review` · `done` · `blocked`
 | L1 | Select 500 Arabic words from Collins into 50 themed days with vowel marks, transliteration and English; cross-check letters against the book | Lead | | done (status `draft` until B2) |
 | L2 | Multi-course refactor: data move and rename, `courses.js`, course-aware routes and pages, Arabic font and right-to-left text, titles, metadata, sitemap and llms.txt for `/ar` | Lead | | done |
 | L3 | Sign-in page (device profile: name, language, daily goal), language switcher in the app bar, `/` and `/ar` routing by profile | Lead | L2 | done |
-| L4 | Arabic word audio for all 500 words, checked with Whisper | Lead | L1 | todo |
+| L4 | Arabic word audio for all 500 words, checked with Whisper | Lead | L1 | done. 500 words + 58 letter clips; see docs/AUDIO.md |
 | L5 | Letters page for both scripts, slow replay, Match game UI | Lead | L2, B4 | done |
-| L6 | Merge every Builder pull request, full QA in both courses and themes, deploy | Lead | all | todo |
+| L6 | Merge every Builder pull request, full QA in both courses and themes, deploy | Lead | all | done. Live 2026-11-28 |
 | B1 | **Arabic artwork**: 50 day covers and the home scene, following [docs/ASSETS-AR.md](docs/ASSETS-AR.md). Set each day's `cover` field when its image lands | Builder | L1 | done. Merged 2026-11-28 |
 | B2 | **Arabic language review** of all 500 entries: spelling, vowel marks, transliteration (conventions above), meaning. Correct in place, record each change in `docs/VOCABULARY-REVIEW-AR.md`, then set every day's `status` to `reviewed` | Builder | L1 | done. Merged 2026-11-28 (15 corrections) |
 | B3 | **Sharing cards** for both courses in `scripts/make-images.cjs`: site name "Essential Vocabulary", Arabic titles in Noto Naskh Arabic rendered right to left, outputs listed under Assets, JPEG under 60 KB | Builder | B1, L2 | done. Merged 2026-11-28 |
@@ -146,3 +146,4 @@ _(format: `YYYY-MM-DD HH:MM UTC | role | task | note`)_
 - 2026-11-28 03:12 UTC | Builder | B6 | Started mobile measurements on the public multi-course branch with device sign-in. Checking first visits, saved profiles and the rendered Arabic font.
 - 2026-11-28 03:35 UTC | Builder | B6 | Bundled the licensed Arabic font and measured cold mobile loads with the final lesson covers. Median scores were 93 on Home, 91 on Arabic Home and 96 on Arabic Day 1. Build and 72 accessibility scans passed. Two recording-presence tests await L4. Signed-in dashboard shifts are documented under Requests.
 - 2026-11-28 | Lead | B1, B3, B5, B6 | Merged the Arabic artwork, sharing cards, course-screen tests and the bundled Arabic font. Fixed what B5 and B6 found: switching language on the sign-in page now opens `/ar/welcome` instead of a 404, Match cards stay in place after a pair, and Today loads with the page so the footer no longer jumps (CLS 0.47 on signed-in Home). The Arabic street scene is wired into the Arabic home page.
+- 2026-11-28 | Lead | L4, L6 | Recorded all 500 Arabic words (Whisper-checked, six flagged for a human listen in docs/AUDIO.md) and the letters of both scripts. 73 unit tests and 192 strict accessibility scans (both courses, themes and viewports) pass. Deployed; verified sign-in, Arabic lessons, audio, Match and the language switch on the live site.
