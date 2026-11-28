@@ -5,7 +5,7 @@
   "slug": "phone-internet",
   "title": "Phone and internet",
   "titleNative": "الْهَاتِف وَالْإِنْتَرْنِت",
-  "status": "draft",
+  "status": "reviewed",
   "source": "collins-3000",
   "cover": null,
   "words": [
@@ -30,7 +30,7 @@
     {
       "id": "ar-day34-04",
       "term": "الْبَرِيدُ الْإِلِكْتُرُونِيّ",
-      "romanization": "al-bariid al-iliktruunii",
+      "romanization": "al-bariid al-ilikturuunii",
       "english": "email"
     },
     {
@@ -65,7 +65,7 @@
     },
     {
       "id": "ar-day34-10",
-      "term": "اتَّصَلَ",
+      "term": "اِتَّصَلَ",
       "romanization": "ittasala",
       "english": "to call"
     }

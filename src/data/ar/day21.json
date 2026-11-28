@@ -5,13 +5,13 @@
   "slug": "shopping",
   "title": "Shopping",
   "titleNative": "التَّسَوُّق",
-  "status": "draft",
+  "status": "reviewed",
   "source": "collins-3000",
   "cover": null,
   "words": [
     {
       "id": "ar-day21-01",
-      "term": "اشْتَرَى",
+      "term": "اِشْتَرَى",
       "romanization": "ishtaraa",
       "english": "to buy"
     },

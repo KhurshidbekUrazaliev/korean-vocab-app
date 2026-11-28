@@ -5,7 +5,7 @@
   "slug": "numbers",
   "title": "Numbers",
   "titleNative": "الْأَعْدَاد",
-  "status": "draft",
+  "status": "reviewed",
   "source": "collins-3000",
   "cover": null,
   "words": [
@@ -17,7 +17,7 @@
     },
     {
       "id": "ar-day02-02",
-      "term": "اثْنَان",
+      "term": "اِثْنَان",
       "romanization": "ithnaan",
       "english": "two"
     },

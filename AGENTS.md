@@ -86,7 +86,7 @@ Status: `todo` · `doing` · `review` · `done` · `blocked`
 | L5 | Letters page for both scripts, slow replay, Match game UI | Lead | L2, B4 | todo |
 | L6 | Merge every Builder pull request, full QA in both courses and themes, deploy | Lead | all | todo |
 | B1 | **Arabic artwork**: 50 day covers and the home scene, following [docs/ASSETS-AR.md](docs/ASSETS-AR.md). Set each day's `cover` field when its image lands | Builder | L1 | todo, start now |
-| B2 | **Arabic language review** of all 500 entries: spelling, vowel marks, transliteration (conventions above), meaning. Correct in place, record each change in `docs/VOCABULARY-REVIEW-AR.md`, then set every day's `status` to `reviewed` | Builder | L1 | todo, start now |
+| B2 | **Arabic language review** of all 500 entries: spelling, vowel marks, transliteration (conventions above), meaning. Correct in place, record each change in `docs/VOCABULARY-REVIEW-AR.md`, then set every day's `status` to `reviewed` | Builder | L1 | review |
 | B3 | **Sharing cards** for both courses in `scripts/make-images.cjs`: site name "Essential Vocabulary", Arabic titles in Noto Naskh Arabic rendered right to left, outputs listed under Assets, JPEG under 60 KB | Builder | B1, L2 | todo |
 | B4 | **Match engine**: `src/lib/match.js` with `buildMatchRound(words, { pairs = 5, random })` returning `{ left: [{ id, text }], right: [{ id, text }] }` (Arabic or Korean term on the left, English on the right, each shuffled) and `isPair(leftId, rightId)`. Unit tests | Builder | | todo, start now |
 | B5 | **Tests and accessibility** for the new screens: Testing Library tests for sign-in, language switch and Match. Extend `e2e/` scans to `/welcome`, `/ar`, `/ar/day/1`, every Arabic practice mode, `/ar/letters`, both themes and viewports | Builder | L3, L5 | todo |
@@ -121,3 +121,5 @@ _(format: `- [from → to] request (status)`)_
 _(format: `YYYY-MM-DD HH:MM UTC | role | task | note`)_
 
 - 2026-11-28 | Lead | setup | New phase: Arabic course, sign-in, language switch. Plan and task board written. L1 done: 500 Arabic entries in `src/data/ar/` (draft). B1, B2 and B4 can start now.
+- 2026-11-28 03:01 UTC | Builder | B2 | Started the entry-by-entry review of all 50 Arabic lessons.
+- 2026-11-28 03:09 UTC | Builder | B2 | Reviewed all 500 Arabic entries, corrected 15 and recorded each edit in docs/VOCABULARY-REVIEW-AR.md. Ready for review.
