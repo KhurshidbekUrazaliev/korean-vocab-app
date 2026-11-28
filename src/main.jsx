@@ -18,15 +18,21 @@ import NotFound from './pages/NotFound.jsx';
 installBundleRecovery();
 
 // Korean keeps the original URLs; the Arabic course repeats them under /ar.
-const coursePages = (prefix) => [
-  { path: prefix || '/', element: <Home /> },
-  { path: `${prefix}/day/:n`, element: <Day /> },
-  { path: `${prefix}/course`, element: <Course /> },
-  { path: `${prefix}/review`, element: <Review /> },
-  { path: `${prefix}/progress`, element: <Progress /> },
-  { path: `${prefix}/letters`, element: <Letters /> },
-  { path: `${prefix}/welcome`, element: <Welcome /> },
-];
+// Course pages carry the course as a key, so switching language builds the page afresh
+// instead of reusing state from the other course (Review keeps a snapshot of due words).
+// The sign-in page is shared on purpose: switching there keeps what the visitor typed.
+const coursePages = (prefix) => {
+  const key = prefix || 'ko';
+  return [
+    { path: prefix || '/', element: <Home key={key} /> },
+    { path: `${prefix}/day/:n`, element: <Day key={key} /> },
+    { path: `${prefix}/course`, element: <Course key={key} /> },
+    { path: `${prefix}/review`, element: <Review key={key} /> },
+    { path: `${prefix}/progress`, element: <Progress key={key} /> },
+    { path: `${prefix}/letters`, element: <Letters key={key} /> },
+    { path: `${prefix}/welcome`, element: <Welcome /> },
+  ];
+};
 
 const router = createBrowserRouter(
   [
@@ -43,8 +49,8 @@ const router = createBrowserRouter(
     {
       element: <Layout bare />,
       children: [
-        { path: '/day/:n/practice/:mode', element: <Practice /> },
-        { path: '/ar/day/:n/practice/:mode', element: <Practice /> },
+        { path: '/day/:n/practice/:mode', element: <Practice key="ko" /> },
+        { path: '/ar/day/:n/practice/:mode', element: <Practice key="ar" /> },
       ],
     },
   ],

@@ -54,7 +54,7 @@ export default function Progress() {
           [learned, 'Words learned', `of ${allWords.length}`],
           [mastered, 'Words mastered', 'box 4 or higher'],
           [streak.current, 'Day streak', `best ${streak.best}`],
-          [total, 'Answers', 'all time'],
+          [total, 'Answers', 'all courses, all time'],
         ].map(([v, label, sub]) => (
           <li className="stat card" key={label}>
             <span className="stat__l">{label}</span>
