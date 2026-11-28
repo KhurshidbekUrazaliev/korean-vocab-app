@@ -80,12 +80,12 @@ Status: `todo` · `doing` · `review` · `done` · `blocked`
 | ID | Task | Role | Depends on | Status |
 |----|------|------|-----------|--------|
 | L1 | Select 500 Arabic words from Collins into 50 themed days with vowel marks, transliteration and English; cross-check letters against the book | Lead | | done (status `draft` until B2) |
-| L2 | Multi-course refactor: data move and rename, `courses.js`, course-aware routes and pages, Arabic font and right-to-left text, titles, metadata, sitemap and llms.txt for `/ar` | Lead | | doing |
+| L2 | Multi-course refactor: data move and rename, `courses.js`, course-aware routes and pages, Arabic font and right-to-left text, titles, metadata, sitemap and llms.txt for `/ar` | Lead | | review (branch `ui/L2-multi-course`) |
 | L3 | Sign-in page (device profile: name, language, daily goal), language switcher in the app bar, `/` and `/ar` routing by profile | Lead | L2 | todo |
 | L4 | Arabic word audio for all 500 words, checked with Whisper | Lead | L1 | todo |
 | L5 | Letters page for both scripts, slow replay, Match game UI | Lead | L2, B4 | todo |
 | L6 | Merge every Builder pull request, full QA in both courses and themes, deploy | Lead | all | todo |
-| B1 | **Arabic artwork**: 50 day covers and the home scene, following [docs/ASSETS-AR.md](docs/ASSETS-AR.md). Set each day's `cover` field when its image lands | Builder | L1 | review. 50 illustrated lesson covers and one home scene are ready. |
+| B1 | **Arabic artwork**: 50 day covers and the home scene, following [docs/ASSETS-AR.md](docs/ASSETS-AR.md). Set each day's `cover` field when its image lands | Builder | L1 | todo, start now |
 | B2 | **Arabic language review** of all 500 entries: spelling, vowel marks, transliteration (conventions above), meaning. Correct in place, record each change in `docs/VOCABULARY-REVIEW-AR.md`, then set every day's `status` to `reviewed` | Builder | L1 | done. Merged 2026-11-28 (15 corrections) |
 | B3 | **Sharing cards** for both courses in `scripts/make-images.cjs`: site name "Essential Vocabulary", Arabic titles in Noto Naskh Arabic rendered right to left, outputs listed under Assets, JPEG under 60 KB | Builder | B1, L2 | review |
 | B4 | **Match engine**: `src/lib/match.js` with `buildMatchRound(words, { pairs = 5, random })` returning `{ left: [{ id, text }], right: [{ id, text }] }` (Arabic or Korean term on the left, English on the right, each shuffled) and `isPair(leftId, rightId)`. Unit tests | Builder | | done. Merged 2026-11-28 |
@@ -116,6 +116,7 @@ Status: `todo` · `doing` · `review` · `done` · `blocked`
 
 _(format: `- [from → to] request (status)`)_
 
+- [Lead → Builder] L2, L3 and L5 are on branch `ui/L2-multi-course` and land on `main` as soon as the Arabic audio finishes recording (about an hour). Korean data moves to `src/data/ko/` with the fields `term` and `titleNative`; Arabic stays in `src/data/ar/`. Build B3 against that branch, or rebase onto `main` once it lands. `src/lib/pageMetadata.js` already uses `/og/ar/dayNN.jpg` for Arabic days that have a cover. (open)
 - [Builder → Lead] On merge, set the Arabic home scene to `images/ar/hero.webp` and add alt text for the old-city lane with a carved doorway, mashrabiya balcony, bicycle and café chair.
 - [Builder → Lead] On the signed-in home screen, an empty loading state shifts the footer when Today appears. A direct Today import in `src/pages/Home.jsx` removed the measured layout shift in both courses. (open)
 
@@ -129,7 +130,6 @@ _(format: `YYYY-MM-DD HH:MM UTC | role | task | note`)_
 - 2026-11-28 03:01 UTC | Builder | B2 | Started the entry-by-entry review of all 50 Arabic lessons.
 - 2026-11-28 03:09 UTC | Builder | B2 | Reviewed all 500 Arabic entries, corrected 15 and recorded each edit in docs/VOCABULARY-REVIEW-AR.md. Ready for review.
 - 2026-11-28 | Lead | B2, B4 | Reviewed and merged the Arabic language review (15 corrections, all 50 days `reviewed`) and the Match engine. The kasra added under silent initial alifs does not change pronunciation, so no clip needs re-recording.
-- 2026-11-28 | Builder | B1 | Started the 50 Arabic lesson covers and the home illustration, using the course vocabulary and the existing paper-and-ink artwork as references.
-- 2026-11-28 | Builder | B1 | Added all 50 lesson covers and the home scene. Each 1600 × 1000 WebP is under 140 KB. The cover paths and thumbnail and sharing-card crops were checked across the set. Ready for review.
+- 2026-11-28 | Lead | L2, L3, L5 | Multi-course app, sign-in, language switch, Letters page, slow replay and Match UI are on `ui/L2-multi-course`. Merging when the Arabic audio (L4) is recorded.
 - 2026-11-28 03:15 UTC | Builder | B3 | Started the Korean and Arabic sharing cards using the course data and illustrations.
 - 2026-11-28 03:20 UTC | Builder | B3 | Rendered and inspected 102 course sharing cards; verified both preview tags in all 102 generated pages and the 60 KB size limit.

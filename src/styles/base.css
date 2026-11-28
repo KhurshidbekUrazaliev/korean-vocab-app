@@ -817,9 +817,10 @@ kbd {
   letter-spacing: 0 !important;
   word-break: normal;
 }
-/* Arabic blocks keep the alignment of the English page around them (left, centred). */
-:where([dir='rtl']) {
-  text-align: match-parent;
+/* The page is left to right. Its base alignment is "left" rather than the default "start",
+   so Arabic blocks inherit the alignment of the English page around them (left, or centred). */
+html {
+  text-align: left;
 }
 /* Display-size Arabic needs room above and below for vowel marks. */
 .day-hero__ko[lang='ar'],
