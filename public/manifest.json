@@ -1,13 +1,31 @@
 {
-  "short_name": "한국어 공부",
-  "name": "Essential Korean Vocabulary",
-  "icons": [
-    { "src": "icon-192.png", "type": "image/png", "sizes": "192x192" },
-    { "src": "icon-512.png", "type": "image/png", "sizes": "512x512" }
-  ],
+  "id": "/korean-vocab-app/",
+  "name": "Essential Vocabulary",
+  "short_name": "Vocabulary",
+  "description": "Learn Korean and Arabic words, ten a day, with audio, four practice modes, a match game and spaced review.",
+  "lang": "en",
+  "dir": "ltr",
   "start_url": "/korean-vocab-app/",
   "scope": "/korean-vocab-app/",
   "display": "standalone",
+  "orientation": "any",
   "theme_color": "#f6ede2",
-  "background_color": "#f6ede2"
+  "background_color": "#f6ede2",
+  "categories": ["education", "productivity"],
+  "icons": [
+    { "src": "icon-192.png", "type": "image/png", "sizes": "192x192", "purpose": "any" },
+    { "src": "icon-512.png", "type": "image/png", "sizes": "512x512", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "type": "image/png", "sizes": "512x512", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Korean: Today", "short_name": "Korean", "url": "/korean-vocab-app/", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] },
+    { "name": "Arabic: Today", "short_name": "Arabic", "url": "/korean-vocab-app/ar", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] },
+    { "name": "Korean review", "short_name": "Review", "url": "/korean-vocab-app/review", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] },
+    { "name": "Arabic review", "short_name": "مراجعة", "url": "/korean-vocab-app/ar/review", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] }
+  ],
+  "screenshots": [
+    { "src": "screenshots/wide.jpg", "sizes": "1280x800", "type": "image/jpeg", "form_factor": "wide", "label": "Sign in, pick Korean or Arabic and a daily goal" },
+    { "src": "screenshots/narrow-day.jpg", "sizes": "390x844", "type": "image/jpeg", "form_factor": "narrow", "label": "An illustrated Arabic lesson with ten words" },
+    { "src": "screenshots/narrow-practice.jpg", "sizes": "390x844", "type": "image/jpeg", "form_factor": "narrow", "label": "Multiple-choice practice in Korean" }
+  ]
 }

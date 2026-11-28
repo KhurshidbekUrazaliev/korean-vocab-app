@@ -76,6 +76,9 @@ export function pageMetadata(pathname, courses, returning = false) {
     case '/progress': return route(`${name} progress | ${NAME}`, 'Your learning progress, stored in this browser.', { noindex: true });
     case '/welcome': return route(`Sign in | ${NAME}`, 'Choose a name, a language and a daily goal. Your profile stays on this device.', { noindex: true });
   }
+  if (id === 'ko' && rest === '/install') {
+    return route(`Install the app | ${NAME}`, `Install ${NAME} on your phone, tablet or computer. It opens in its own window and works offline for the pages you have opened.`);
+  }
   if (id === 'ko') {
     switch (rest) {
       case '/privacy': return route(`Privacy | ${NAME}`, `What ${NAME} stores about you: only your profile and practice progress, kept in your own browser.`);

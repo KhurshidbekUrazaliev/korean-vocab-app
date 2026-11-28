@@ -17,6 +17,7 @@ export function Footer() {
             <li><TLink to={course.path('/course')}>Course</TLink></li>
             <li><TLink to={course.path('/letters')}>Letters</TLink></li>
             <li><TLink to={course.path('/review')} native={course.reviewNative} en="Review">Review</TLink></li>
+            <li><TLink to="/install">Install app</TLink></li>
             <li><TLink to="/privacy">Privacy</TLink></li>
             <li><TLink to="/terms">Terms</TLink></li>
           </ul>

@@ -45,3 +45,9 @@ export const SoundOff = (p) => (
 export const Play = (p) => (
   <svg {...base} {...p}><path d="M7 5v14l12-7z" fill="currentColor" stroke="none" /></svg>
 );
+export const Download = (p) => (
+  <svg {...base} {...p}><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19.5h14" /></svg>
+);
+export const Share = (p) => (
+  <svg {...base} {...p}><path d="M12 3.5v11M8 7l4-3.5L16 7M7 11H5.5v9.5h13V11H17" /></svg>
+);

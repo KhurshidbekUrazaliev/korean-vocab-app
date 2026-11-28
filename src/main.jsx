@@ -13,6 +13,7 @@ import Progress from './pages/Progress.jsx';
 import Letters from './pages/Letters.jsx';
 import Welcome from './pages/Welcome.jsx';
 import { Privacy, Terms } from './pages/Legal.jsx';
+import Install from './pages/Install.jsx';
 import NotFound from './pages/NotFound.jsx';
 
 installBundleRecovery();
@@ -41,6 +42,7 @@ const router = createBrowserRouter(
       children: [
         ...coursePages(''),
         ...coursePages('/ar'),
+        { path: '/install', element: <Install /> },
         { path: '/privacy', element: <Privacy /> },
         { path: '/terms', element: <Terms /> },
         { path: '*', element: <NotFound /> },
@@ -65,3 +67,12 @@ createRoot(document.getElementById('root')).render(
     <RouterProvider router={router} />
   </StrictMode>,
 );
+
+// Offline support and installability: the service worker is written by scripts/postbuild.js.
+if (import.meta.env.PROD && 'serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register(`${import.meta.env.BASE_URL}sw.js`).catch(() => {
+      /* The site works without it; it only adds offline pages and faster repeat visits. */
+    });
+  });
+}

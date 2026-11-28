@@ -771,3 +771,80 @@
   line-height: 1.4;
   text-align: center;
 }
+
+/* ---------- Install page ---------- */
+.install-page {
+  display: grid;
+  gap: var(--s-7);
+  padding-top: var(--s-8);
+  max-width: 920px;
+}
+.install-page__head {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--s-6);
+  align-items: start;
+}
+.install-page__head > div {
+  display: grid;
+  gap: var(--s-4);
+}
+.install-page__icon {
+  border-radius: 28px;
+  box-shadow: var(--shadow-1);
+}
+.install-page__action {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-4);
+  padding: var(--s-5);
+}
+.install-page__done,
+.install-page__ios {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-2);
+  font-size: var(--fs-18);
+}
+.install-page__done svg {
+  color: var(--good);
+}
+.install-page__steps {
+  display: grid;
+  gap: var(--s-4);
+}
+.install-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.install-steps li {
+  display: grid;
+  gap: var(--s-2);
+  align-content: start;
+  padding: var(--s-4);
+  font-size: var(--fs-14);
+  color: var(--ink-2);
+}
+.install-steps b {
+  font-size: var(--fs-16);
+  color: var(--ink);
+}
+@media (max-width: 720px) {
+  .install-page__head {
+    grid-template-columns: 1fr;
+  }
+  .install-page__icon {
+    width: 88px;
+    height: 88px;
+    border-radius: 20px;
+  }
+  .install-steps {
+    grid-template-columns: 1fr;
+  }
+}
