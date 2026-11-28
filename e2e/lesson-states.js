@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
-const day = JSON.parse(await readFile(new URL('../src/data/days/day01.json', import.meta.url)));
-const meanings = new Map(day.words.map(word => [word.korean, word.english]));
+const day = JSON.parse(await readFile(new URL('../src/data/ko/day01.json', import.meta.url)));
+const meanings = new Map(day.words.map(word => [word.term, word.english]));
 
 export const expectedStates = [
   'landing', 'review-empty', 'course', 'day1', 'flash-front', 'flash-back', 'review-due',
@@ -92,6 +92,8 @@ export async function visitStates(page, baseURL, { theme, mobile }, scan) {
   assert.equal(await page.locator('.results__pct').innerText(), '0');
   await scan('results-with-miss');
 
+  // Today needs a signed-in profile (a name saved on the device), as after the sign-in page.
+  await page.evaluate(() => localStorage.setItem('kv.profile', JSON.stringify({ name: 'Learner', course: 'ko', goal: 20 })));
   await open('', '.today__greet');
   await scan('today');
   await open('progress', '.progress-page');
