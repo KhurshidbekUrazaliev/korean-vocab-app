@@ -98,6 +98,25 @@ it('keeps sign-in available when a visitor picks Arabic in the welcome header', 
   screen.getByRole('button', { name: 'Start learning Arabic' });
 });
 
+it('uses the saved course throughout the welcome header and switches course on the same URL', async () => {
+  profileStore.save({ name: 'Noor', course: 'ar', goal: 30 });
+  const { user, router } = visit('/welcome');
+  const header = within(screen.getByRole('banner'));
+  const language = within(header.getByRole('group', { name: 'Course language' }));
+  const form = within(screen.getByRole('group', { name: 'I want to learn' }));
+
+  language.getByRole('button', { name: /Arabic/, pressed: true });
+  expect(header.getByRole('link', { name: /Essential Vocabulary Arabic/ }).getAttribute('href')).toBe('/ar');
+  expect(header.getByRole('link', { name: 'Course' }).getAttribute('href')).toBe('/ar/course');
+  expect(form.getByRole('radio', { name: /Arabic/ }).checked).toBe(true);
+
+  await user.click(language.getByRole('button', { name: /Korean/ }));
+  expect(router.state.location.pathname).toBe('/welcome');
+  language.getByRole('button', { name: /Korean/, pressed: true });
+  expect(form.getByRole('radio', { name: /Korean/ }).checked).toBe(true);
+  expect(profile()).toMatchObject({ name: 'Noor', course: 'ko', goal: 30 });
+});
+
 it('switches the current lesson in both directions and remembers the chosen course', async () => {
   const saved = profileStore.save({ name: 'Mina', course: 'ko', goal: 10 });
   const { user, router } = visit('/day/2');

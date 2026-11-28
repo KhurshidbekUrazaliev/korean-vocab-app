@@ -199,6 +199,7 @@ export async function visitStates(page, baseURL, { theme, mobile }, scan) {
   await page.getByRole('heading', { level: 1, name: /Your profile/ }).waitFor();
   assert.equal(await name.inputValue(), 'Ari');
   assert.ok(await page.getByRole('radio', { name: /Arabic/ }).isChecked());
+  await page.getByRole('banner').getByRole('button', { name: /Arabic/, pressed: true }).waitFor();
   await scan('profile-edit');
 
   await open('a11y-missing-page', '.not-found', 404);
