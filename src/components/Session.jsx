@@ -427,7 +427,8 @@ function Listening({ word, pool, onAnswer, onNext }) {
 const MATCH_PAIRS = 5;
 
 function MatchBoard({ words, onAnswer, onDone }) {
-  const board = useMemo(() => buildMatchRound(words, { pairs: words.length }), [words]);
+  // Shuffled once per board: re-shuffling on every render would move the remaining cards.
+  const [board] = useState(() => buildMatchRound(words, { pairs: words.length }));
   const byId = useMemo(() => new Map(words.map((w) => [w.id, w])), [words]);
   const [selected, setSelected] = useState(null); // { side: 'left' | 'right', id }
   const [matched, setMatched] = useState(() => new Set());

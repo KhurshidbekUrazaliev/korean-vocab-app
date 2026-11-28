@@ -67,7 +67,11 @@ export const COURSES = {
       vocabularyNative: 'كَلِمَات',
       courseNative: 'الدُّرُوس',
       speechLang: 'ar-SA',
-      scene: null, // the Arabic street scene arrives with task B1
+      scene: {
+        src: 'images/ar/hero.webp',
+        alt: 'Illustration of a quiet old-city lane with a carved wooden door, a screened balcony, a bicycle and a minaret in the distance',
+        places: 'a family table, a market stall, a train platform',
+      },
     },
     arabic,
     arabicLetters,
@@ -83,6 +87,7 @@ export function courseFromPath(pathname = '/') {
 
 /** The same page in another course: /day/7 <-> /ar/day/7. Practice and day numbers carry over. */
 export function switchPath(pathname, to) {
+  if (pathname === '/privacy' || pathname === '/terms') return to.path('/');
   const from = courseFromPath(pathname);
   const rest = from.base ? pathname.slice(from.base.length) || '/' : pathname;
   return to.path(rest);

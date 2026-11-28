@@ -44,6 +44,7 @@ function visit(path) {
       { path: '/', element: <Home /> },
       { path: '/ar', element: <Home /> },
       { path: '/welcome', element: <Welcome /> },
+      { path: '/ar/welcome', element: <Welcome /> },
       { path: '/day/:n', element: <Day /> },
       { path: '/ar/day/:n', element: <Day /> },
       { path: '/ar/day/:n/practice/:mode', element: <Practice /> },

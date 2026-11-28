@@ -92,7 +92,7 @@ export function Header({ theme, onToggleTheme }) {
               </NavLink>
             )}
             {profile && (
-              <TLink to="/welcome" className="avatar" title={`${profile.name}: edit profile`}>
+              <TLink to={course.path('/welcome')} className="avatar" title={`${profile.name}: edit profile`}>
                 <span aria-hidden="true">{[...profile.name.trim()][0]?.toUpperCase() ?? '?'}</span>
                 <span className="visually-hidden">Profile: {profile.name}</span>
               </TLink>

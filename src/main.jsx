@@ -25,6 +25,7 @@ const coursePages = (prefix) => [
   { path: `${prefix}/review`, element: <Review /> },
   { path: `${prefix}/progress`, element: <Progress /> },
   { path: `${prefix}/letters`, element: <Letters /> },
+  { path: `${prefix}/welcome`, element: <Welcome /> },
 ];
 
 const router = createBrowserRouter(
@@ -34,7 +35,6 @@ const router = createBrowserRouter(
       children: [
         ...coursePages(''),
         ...coursePages('/ar'),
-        { path: '/welcome', element: <Welcome /> },
         { path: '/privacy', element: <Privacy /> },
         { path: '/terms', element: <Terms /> },
         { path: '*', element: <NotFound /> },

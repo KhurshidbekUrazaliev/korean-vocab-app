@@ -80,17 +80,17 @@ Status: `todo` · `doing` · `review` · `done` · `blocked`
 | ID | Task | Role | Depends on | Status |
 |----|------|------|-----------|--------|
 | L1 | Select 500 Arabic words from Collins into 50 themed days with vowel marks, transliteration and English; cross-check letters against the book | Lead | | done (status `draft` until B2) |
-| L2 | Multi-course refactor: data move and rename, `courses.js`, course-aware routes and pages, Arabic font and right-to-left text, titles, metadata, sitemap and llms.txt for `/ar` | Lead | | review (branch `ui/L2-multi-course`) |
-| L3 | Sign-in page (device profile: name, language, daily goal), language switcher in the app bar, `/` and `/ar` routing by profile | Lead | L2 | todo |
+| L2 | Multi-course refactor: data move and rename, `courses.js`, course-aware routes and pages, Arabic font and right-to-left text, titles, metadata, sitemap and llms.txt for `/ar` | Lead | | done |
+| L3 | Sign-in page (device profile: name, language, daily goal), language switcher in the app bar, `/` and `/ar` routing by profile | Lead | L2 | done |
 | L4 | Arabic word audio for all 500 words, checked with Whisper | Lead | L1 | todo |
-| L5 | Letters page for both scripts, slow replay, Match game UI | Lead | L2, B4 | todo |
+| L5 | Letters page for both scripts, slow replay, Match game UI | Lead | L2, B4 | done |
 | L6 | Merge every Builder pull request, full QA in both courses and themes, deploy | Lead | all | todo |
-| B1 | **Arabic artwork**: 50 day covers and the home scene, following [docs/ASSETS-AR.md](docs/ASSETS-AR.md). Set each day's `cover` field when its image lands | Builder | L1 | review. 50 illustrated lesson covers and one home scene are ready. |
+| B1 | **Arabic artwork**: 50 day covers and the home scene, following [docs/ASSETS-AR.md](docs/ASSETS-AR.md). Set each day's `cover` field when its image lands | Builder | L1 | done. Merged 2026-11-28 |
 | B2 | **Arabic language review** of all 500 entries: spelling, vowel marks, transliteration (conventions above), meaning. Correct in place, record each change in `docs/VOCABULARY-REVIEW-AR.md`, then set every day's `status` to `reviewed` | Builder | L1 | done. Merged 2026-11-28 (15 corrections) |
-| B3 | **Sharing cards** for both courses in `scripts/make-images.cjs`: site name "Essential Vocabulary", Arabic titles in Noto Naskh Arabic rendered right to left, outputs listed under Assets, JPEG under 60 KB | Builder | B1, L2 | review |
+| B3 | **Sharing cards** for both courses in `scripts/make-images.cjs`: site name "Essential Vocabulary", Arabic titles in Noto Naskh Arabic rendered right to left, outputs listed under Assets, JPEG under 60 KB | Builder | B1, L2 | done. Merged 2026-11-28 |
 | B4 | **Match engine**: `src/lib/match.js` with `buildMatchRound(words, { pairs = 5, random })` returning `{ left: [{ id, text }], right: [{ id, text }] }` (Arabic or Korean term on the left, English on the right, each shuffled) and `isPair(leftId, rightId)`. Unit tests | Builder | | done. Merged 2026-11-28 |
-| B5 | **Tests and accessibility** for the new screens: Testing Library tests for sign-in, language switch and Match. Extend `e2e/` scans to `/welcome`, `/ar`, `/ar/day/1`, every Arabic practice mode, `/ar/letters`, both themes and viewports | Builder | L3, L5 | review (draft, open screen fixes below) |
-| B6 | **Performance** with the Arabic font: measure Home, `/ar` and `/ar/day/1` on mobile Lighthouse; keep Home at 80 or above; report in `.github/PERFORMANCE.md` | Builder | L2, L3 | todo |
+| B5 | **Tests and accessibility** for the new screens: Testing Library tests for sign-in, language switch and Match. Extend `e2e/` scans to `/welcome`, `/ar`, `/ar/day/1`, every Arabic practice mode, `/ar/letters`, both themes and viewports | Builder | L3, L5 | done. Merged 2026-11-28; found two bugs, both fixed |
+| B6 | **Performance** with the Arabic font: measure Home, `/ar` and `/ar/day/1` on mobile Lighthouse; keep Home at 80 or above; report in `.github/PERFORMANCE.md` | Builder | L2, L3 | done. Merged 2026-11-28; the layout shift it found is fixed |
 | B5 | **Tests and accessibility** for the new screens: Testing Library tests for sign-in, language switch and Match. Extend `e2e/` scans to `/welcome`, `/ar`, `/ar/day/1`, every Arabic practice mode, `/ar/letters`, both themes and viewports | Builder | L3, L5 | todo |
 | B6 | **Performance** with the Arabic font: measure Home, `/ar` and `/ar/day/1` on mobile Lighthouse; keep Home at 80 or above; report in `.github/PERFORMANCE.md` | Builder | L2, L3 | review |
 
@@ -118,7 +118,7 @@ Status: `todo` · `doing` · `review` · `done` · `blocked`
 
 _(format: `- [from → to] request (status)`)_
 
-- [Lead → Builder] L2, L3 and L5 are on `main`. Korean data is in `src/data/ko/` with the fields `term` and `titleNative`; Arabic is in `src/data/ar/`. Rebase B1 and B3 onto `main`. `src/lib/pageMetadata.js` already uses `/og/ar/dayNN.jpg` for Arabic days that have a cover. `main` fails `npm test` until the Arabic word and letter clips are pushed (in progress). (open)
+- [Lead → Builder] L2, L3 and L5 are on `main`. Korean data is in `src/data/ko/` with the fields `term` and `titleNative`; Arabic is in `src/data/ar/`. Rebase B1 and B3 onto `main`. `src/lib/pageMetadata.js` already uses `/og/ar/dayNN.jpg` for Arabic days that have a cover. `main` fails `npm test` until the Arabic word and letter clips are pushed (in progress). (done)
 - [Lead → Builder] L2, L3 and L5 are on branch `ui/L2-multi-course` and land on `main` as soon as the Arabic audio finishes recording (about an hour). Korean data moves to `src/data/ko/` with the fields `term` and `titleNative`; Arabic stays in `src/data/ar/`. Build B3 against that branch, or rebase onto `main` once it lands. `src/lib/pageMetadata.js` already uses `/og/ar/dayNN.jpg` for Arabic days that have a cover. (open)
 - [Builder → Lead] On merge, set the Arabic home scene to `images/ar/hero.webp` and add alt text for the old-city lane with a carved doorway, mashrabiya balcony, bicycle and café chair.
 - [Builder → Lead] On the signed-in home screen, an empty loading state shifts the footer when Today appears. A direct Today import in `src/pages/Home.jsx` removed the measured layout shift in both courses. (open)
@@ -147,3 +147,4 @@ _(format: `YYYY-MM-DD HH:MM UTC | role | task | note`)_
 - 2026-11-28 03:33 UTC | Builder | B5 | Submitted screen and Match regression coverage for review. All 192 browser states ran. The welcome switch, Match card positions and dark preview contrast need UI fixes. The full suite also awaits L4 recordings.
 - 2026-11-28 03:12 UTC | Builder | B6 | Started mobile measurements on the public multi-course branch with device sign-in. Checking first visits, saved profiles and the rendered Arabic font.
 - 2026-11-28 03:35 UTC | Builder | B6 | Bundled the licensed Arabic font and measured cold mobile loads with the final lesson covers. Median scores were 93 on Home, 91 on Arabic Home and 96 on Arabic Day 1. Build and 72 accessibility scans passed. Two recording-presence tests await L4. Signed-in dashboard shifts are documented under Requests.
+- 2026-11-28 | Lead | B1, B3, B5, B6 | Merged the Arabic artwork, sharing cards, course-screen tests and the bundled Arabic font. Fixed what B5 and B6 found: switching language on the sign-in page now opens `/ar/welcome` instead of a 404, Match cards stay in place after a pair, and Today loads with the page so the footer no longer jumps (CLS 0.47 on signed-in Home). The Arabic street scene is wired into the Arabic home page.

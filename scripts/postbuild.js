@@ -103,6 +103,7 @@ for (const c of Object.values(COURSES)) {
     urls.push(path);
   }
   write(`${c.base ? c.base.slice(1) + '/' : ''}progress`, page(`${c.base}/progress`));
+  write(`${c.base ? c.base.slice(1) + '/' : ''}welcome`, page(`${c.base}/welcome`));
 }
 
 for (const path of ['privacy', 'terms']) {
@@ -110,7 +111,6 @@ for (const path of ['privacy', 'terms']) {
   write(path, page('/' + path, `${nav(COURSES.ko)}<main><h1>${esc(title.split(' |')[0])}</h1><p>${esc(description)}</p></main>`));
   urls.push('/' + path);
 }
-write('welcome', page('/welcome'));
 writeFileSync(join(DIST, '404.html'), page('/404'));
 
 // sitemap.xml

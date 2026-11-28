@@ -1,11 +1,11 @@
-import { lazy, Suspense, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useCourse } from '../hooks/useCourse.js';
 import { profileStore, useProfile } from '../hooks/useProfile.js';
 import { useProgress } from '../hooks/useProgress.js';
 import Welcome from './Welcome.jsx';
-
-const Today = lazy(() => import('./Today.jsx'));
+// Imported statically: loading Today later let the footer flash at the top, then jump (layout shift).
+import Today from './Today.jsx';
 
 /**
  * / and /ar. Signed-out visitors get the sign-in page; signed-in learners get Today for the
@@ -21,11 +21,7 @@ export default function Home() {
     if (profile && !wrongHome) profileStore.setCourse(course.id);
   }, [profile, wrongHome, course.id]);
 
-  if (!profile) return <Welcome initialCourse={course.id} />;
+  if (!profile) return <Welcome />;
   if (wrongHome) return <Navigate to="/ar" replace />;
-  return (
-    <Suspense fallback={null}>
-      <Today progress={progress} />
-    </Suspense>
-  );
+  return <Today progress={progress} />;
 }

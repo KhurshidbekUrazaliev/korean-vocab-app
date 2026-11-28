@@ -74,10 +74,10 @@ export function pageMetadata(pathname, courses, returning = false) {
       ? 'All 28 Arabic letters with their sounds, the forms they take inside a word, and the short vowel marks, with audio.'
       : 'The 24 basic Hangul letters with their sounds and how they stack into syllable blocks, with audio.');
     case '/progress': return route(`${name} progress | ${NAME}`, 'Your learning progress, stored in this browser.', { noindex: true });
+    case '/welcome': return route(`Sign in | ${NAME}`, 'Choose a name, a language and a daily goal. Your profile stays on this device.', { noindex: true });
   }
   if (id === 'ko') {
     switch (rest) {
-      case '/welcome': return route(`Sign in | ${NAME}`, 'Choose a name, a language and a daily goal. Your profile stays on this device.', { noindex: true });
       case '/privacy': return route(`Privacy | ${NAME}`, `What ${NAME} stores about you: only your profile and practice progress, kept in your own browser.`);
       case '/terms': return route(`Terms of use | ${NAME}`, `Terms for using ${NAME}, a free Korean and Arabic word practice site.`);
     }
