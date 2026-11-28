@@ -5,7 +5,8 @@ import { SpeakButton } from '../components/SpeakButton.jsx';
 import { RevealGroup } from '../components/Reveal.jsx';
 import { Mastery } from '../components/Meters.jsx';
 import { ArrowLeft, ArrowRight, Check } from '../components/Icons.jsx';
-import { getDay, pad, PLANNED_DAYS } from '../data/index.js';
+import { pad, PLANNED_DAYS } from '../data/index.js';
+import { useCourse } from '../hooks/useCourse.js';
 import { useProgress } from '../hooks/useProgress.js';
 import { MODE_ORDER, MODE_STEPS, MODE_TITLES, dayStatus, wordLevel } from '../lib/stats.js';
 import { gsap, SplitText, useGSAP, reducedMotion } from '../lib/motion.js';
@@ -23,17 +24,20 @@ const MODE_INFO = {
 
 export default function Day() {
   const { n } = useParams();
-  const day = getDay(n);
+  const course = useCourse();
+  const { lang, dir } = course;
+  const day = course.getDay(n);
   const progress = useProgress();
   const ref = useRef(null);
 
   useGSAP(
     () => {
       if (!day || reducedMotion()) return;
-      const split = SplitText.create('.day-hero__ko', { type: 'words,chars', wordsClass: 'split-word', aria: 'none' });
+      // Arabic letters join, so Arabic titles animate word by word, never letter by letter.
+      const split = SplitText.create('.day-hero__ko', { type: lang === 'ar' ? 'words' : 'words,chars', wordsClass: 'split-word', aria: 'none' });
       gsap
         .timeline({ delay: 0.1 })
-        .from(split.chars, { yPercent: 60, opacity: 0, stagger: 0.07, duration: 1.2 })
+        .from(lang === 'ar' ? split.words : split.chars, { yPercent: 60, opacity: 0, stagger: lang === 'ar' ? 0.12 : 0.07, duration: 1.2 })
         .from('.day-hero__meta > *:not(h1)', { y: 18, opacity: 0, stagger: 0.05 }, 0.2)
         .from('.day-hero__en', { y: 18, opacity: 0 }, 0.3)
         .from('.day-hero__cover', { clipPath: 'inset(100% 0% 0% 0% round 24px)', duration: 1.3 }, 0.15)
@@ -41,13 +45,13 @@ export default function Day() {
         .from('.lesson-path', { y: 30, opacity: 0, duration: 1 }, 0.5);
       return () => split.revert();
     },
-    { scope: ref, dependencies: [n] },
+    { scope: ref, dependencies: [n, course.id] },
   );
 
   if (!day) return <NotFound />;
   const s = dayStatus(progress, day);
-  const prev = getDay(day.number - 1);
-  const next = getDay(day.number + 1);
+  const prev = course.getDay(day.number - 1);
+  const next = course.getDay(day.number + 1);
   const unit = Math.ceil(day.number / 10);
   const primary = s.nextMode ?? 'choice';
   const primaryLabel = !s.nextMode ? 'Practice again' : s.modes.length ? `Continue: ${MODE_TITLES[primary]}` : 'Start the lesson';
@@ -57,7 +61,7 @@ export default function Day() {
       <section className={`day-hero wrap ${day.cover ? '' : 'day-hero--plain'}`}>
         <div className="day-hero__meta">
           <p className="day-hero__crumbs">
-            <TLink to="/course">Course</TLink>
+            <TLink to={course.path('/course')}>{course.name}</TLink>
             <span aria-hidden="true">/</span>
             <span>Unit {unit}</span>
             <span aria-hidden="true">/</span>
@@ -67,8 +71,10 @@ export default function Day() {
           </p>
           <h1 className="day-hero__title">
             {/* The split letters are for show; screen readers get the title once, as plain text. */}
-            <span className="day-hero__ko ko" lang="ko" aria-hidden="true" data-long={day.titleKo.replace(/ /g, '').length > 4}>{day.titleKo}</span>
-            <span className="visually-hidden" lang="ko">{day.titleKo}</span>
+            <span className="day-hero__ko ko" lang={lang} dir={dir} aria-hidden="true" data-long={day.titleNative.replace(/[\s\u064B-\u0652]/g, '').length > (lang === 'ar' ? 8 : 4)}>
+              {day.titleNative}
+            </span>
+            <span className="visually-hidden" lang={lang}>{day.titleNative}</span>
             <span className="day-hero__en">{day.title}</span>
           </h1>
           <dl className="day-hero__stats">
@@ -91,7 +97,7 @@ export default function Day() {
               const current = m === s.nextMode;
               return (
                 <li key={m}>
-                  <TLink className="lp-step" data-done={done} data-current={current} to={`/day/${day.number}/practice/${m}`} ko={day.titleKo} en={MODE_TITLES[m]}>
+                  <TLink className="lp-step" data-done={done} data-current={current} to={course.path(`/day/${day.number}/practice/${m}`)} native={day.titleNative} en={MODE_TITLES[m]}>
                     <span className="lp-step__dot">{done ? <Check width={14} height={14} /> : k + 1}</span>
                     <span className="lp-step__text">
                       <b>{MODE_STEPS[m]}</b>
@@ -102,7 +108,7 @@ export default function Day() {
               );
             })}
           </ol>
-          <TLink className="btn btn--lg btn--accent lesson-path__cta" to={`/day/${day.number}/practice/${primary}`} ko={day.titleKo} en={MODE_TITLES[primary]}>
+          <TLink className="btn btn--lg btn--accent lesson-path__cta" to={course.path(`/day/${day.number}/practice/${primary}`)} native={day.titleNative} en={MODE_TITLES[primary]}>
             {primaryLabel} <ArrowRight />
           </TLink>
         </nav>
@@ -111,23 +117,34 @@ export default function Day() {
       <section className="words wrap" aria-labelledby="words-title">
         <div className="section-head">
           <div>
-            <p className="eyebrow">Vocabulary · 단어</p>
+            <p className="eyebrow">
+              Vocabulary · <span lang={lang} dir={dir}>{course.vocabularyNative}</span>
+            </p>
             <h2 className="h2" id="words-title">The {day.words.length} words</h2>
           </div>
-          <p className="lede">Tap the speaker, then say each word after the voice. The bars show how well you know it.</p>
+          <div className="words__aside">
+            <p className="lede">Tap the speaker, then say each word after the voice. Tap again to hear it slowly. The bars show how well you know it.</p>
+            <TLink className="btn btn--ghost" to={course.path(`/day/${day.number}/practice/match`)} native={day.titleNative} en="Match">
+              Play Match <ArrowRight />
+            </TLink>
+          </div>
         </div>
         {day.status === 'draft' && (
-          <p className="draft-note">This is a new list that hasn’t been checked against class notes yet. If a word looks wrong, please report it.</p>
+          <p className="draft-note">
+            {course.id === 'ar'
+              ? 'This list is waiting for its language review. If a word looks wrong, please report it.'
+              : 'This is a new list that hasn’t been checked against class notes yet. If a word looks wrong, please report it.'}
+          </p>
         )}
         <RevealGroup as="ol" className="words__list" stagger={0.04}>
           {day.words.map((w, k) => (
             <li className="word-row" key={w.id}>
               <span className="word-row__i num">{pad(k + 1)}</span>
-              <span className="word-row__ko ko" lang="ko">{w.korean}</span>
+              <span className="word-row__ko ko" lang={lang} dir={dir}>{w.term}</span>
               <span className="word-row__rom">{w.romanization}</span>
               <span className="word-row__en">{w.english}</span>
               <Mastery level={wordLevel(progress, w)} />
-              <SpeakButton text={w.korean} />
+              <SpeakButton text={w.term} />
             </li>
           ))}
         </RevealGroup>
@@ -135,18 +152,18 @@ export default function Day() {
 
       <nav className="day-pager wrap" aria-label="Other days">
         {prev ? (
-          <TLink className="day-pager__link" to={`/day/${prev.number}`} ko={prev.titleKo} en={`Day ${pad(prev.number)}`}>
+          <TLink className="day-pager__link" to={course.path(`/day/${prev.number}`)} native={prev.titleNative} en={`Day ${pad(prev.number)}`}>
             <ArrowLeft />
-            <span><small>Previous · Day {pad(prev.number)}</small><span className="ko">{prev.titleKo}</span></span>
+            <span><small>Previous · Day {pad(prev.number)}</small><span className="ko" lang={lang} dir={dir}>{prev.titleNative}</span></span>
           </TLink>
         ) : <span />}
         {next ? (
-          <TLink className="day-pager__link day-pager__link--next" to={`/day/${next.number}`} ko={next.titleKo} en={`Day ${pad(next.number)}`}>
-            <span><small>Next · Day {pad(next.number)}</small><span className="ko">{next.titleKo}</span></span>
+          <TLink className="day-pager__link day-pager__link--next" to={course.path(`/day/${next.number}`)} native={next.titleNative} en={`Day ${pad(next.number)}`}>
+            <span><small>Next · Day {pad(next.number)}</small><span className="ko" lang={lang} dir={dir}>{next.titleNative}</span></span>
             <ArrowRight />
           </TLink>
         ) : (
-          <TLink className="day-pager__link day-pager__link--next" to="/review" ko="복습" en="Review">
+          <TLink className="day-pager__link day-pager__link--next" to={course.path('/review')} native={course.reviewNative} en="Review">
             <span><small>Last day</small>Review your due words</span>
             <ArrowRight />
           </TLink>

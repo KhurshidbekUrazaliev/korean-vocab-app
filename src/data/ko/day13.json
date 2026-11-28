@@ -1,0 +1,73 @@
+{
+  "id": "day13",
+  "course": "ko",
+  "number": 13,
+  "slug": "gardening-and-weather",
+  "title": "Gardening & Weather",
+  "titleNative": "식물과 날씨",
+  "status": "verified",
+  "source": "owner-notes",
+  "cover": "images/days/day13.webp",
+  "words": [
+    {
+      "id": "day13-01",
+      "term": "심다",
+      "romanization": "simda",
+      "english": "to plant"
+    },
+    {
+      "id": "day13-02",
+      "term": "베란다",
+      "romanization": "beranda",
+      "english": "veranda, balcony"
+    },
+    {
+      "id": "day13-03",
+      "term": "화분",
+      "romanization": "hwabun",
+      "english": "flower pot"
+    },
+    {
+      "id": "day13-04",
+      "term": "가꾸다",
+      "romanization": "gakkuda",
+      "english": "to cultivate, grow, tend to"
+    },
+    {
+      "id": "day13-05",
+      "term": "피다",
+      "romanization": "pida",
+      "english": "to bloom, flower"
+    },
+    {
+      "id": "day13-06",
+      "term": "장마",
+      "romanization": "jangma",
+      "english": "rainy season, monsoon"
+    },
+    {
+      "id": "day13-07",
+      "term": "오랫동안",
+      "romanization": "oraettongan",
+      "english": "for a long time"
+    },
+    {
+      "id": "day13-08",
+      "term": "야외",
+      "romanization": "yaoe",
+      "english": "outdoors, open air"
+    },
+    {
+      "id": "day13-09",
+      "term": "실내",
+      "romanization": "sillae",
+      "english": "indoors"
+    },
+    {
+      "id": "day13-10",
+      "term": "막다",
+      "romanization": "makda",
+      "english": "to block, stop, prevent"
+    }
+  ]
+}

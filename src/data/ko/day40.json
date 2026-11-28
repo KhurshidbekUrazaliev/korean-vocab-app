@@ -1,0 +1,73 @@
+{
+  "id": "day40",
+  "course": "ko",
+  "number": 40,
+  "slug": "chuseok-traditions",
+  "title": "Chuseok traditions",
+  "titleNative": "추석 풍습",
+  "status": "reviewed",
+  "source": "generated",
+  "cover": "images/days/day40.webp",
+  "words": [
+    {
+      "id": "day40-01",
+      "term": "추석",
+      "romanization": "chuseok",
+      "english": "Chuseok, the Korean harvest festival"
+    },
+    {
+      "id": "day40-02",
+      "term": "송편",
+      "romanization": "songpyeon",
+      "english": "half-moon rice cake"
+    },
+    {
+      "id": "day40-03",
+      "term": "명절",
+      "romanization": "myeongjeol",
+      "english": "traditional holiday"
+    },
+    {
+      "id": "day40-04",
+      "term": "보름달",
+      "romanization": "boreumdal",
+      "english": "full moon"
+    },
+    {
+      "id": "day40-05",
+      "term": "차례",
+      "romanization": "charye",
+      "english": "ancestral rite held on a major holiday"
+    },
+    {
+      "id": "day40-06",
+      "term": "성묘",
+      "romanization": "seongmyo",
+      "english": "visit to an ancestor's grave"
+    },
+    {
+      "id": "day40-07",
+      "term": "고향",
+      "romanization": "gohyang",
+      "english": "hometown"
+    },
+    {
+      "id": "day40-08",
+      "term": "친척",
+      "romanization": "chincheok",
+      "english": "relative"
+    },
+    {
+      "id": "day40-09",
+      "term": "한복",
+      "romanization": "hanbok",
+      "english": "traditional Korean clothing"
+    },
+    {
+      "id": "day40-10",
+      "term": "보자기",
+      "romanization": "bojagi",
+      "english": "wrapping cloth"
+    }
+  ]
+}

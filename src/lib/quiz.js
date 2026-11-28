@@ -1,8 +1,9 @@
 import { shuffle } from './shuffle.js';
 
-const label = (word, side) => (side === 'ko' ? word.korean : word.english);
+// 'ko' names the side of the course language (Korean or Arabic) for historical reasons.
+const label = (word, side) => (side === 'ko' ? word.term : word.english);
 
-/** direction 'ko-en': show Korean, pick English. 'en-ko': the reverse. */
+/** direction 'ko-en': show the course-language term, pick English. 'en-ko': the reverse. */
 export function buildMultipleChoice(word, pool, { count = 4, direction = 'ko-en' } = {}) {
   const answerSide = direction === 'ko-en' ? 'en' : 'ko';
   const distractors = shuffle(pool.filter((w) => w.id !== word.id && label(w, answerSide) !== label(word, answerSide)))
@@ -28,7 +29,7 @@ function similarity(a, b) {
 export function checkTyped(input, word, { direction = 'en-ko' } = {}) {
   const typed = normalize(input);
   if (!typed) return { correct: false, closeness: 0 };
-  const targets = [direction === 'en-ko' ? word.korean : word.english];
+  const targets = [direction === 'en-ko' ? word.term : word.english];
   if (direction === 'ko-en' && /[,/;]/.test(word.english)) targets.push(...word.english.split(/[,/;]/));
   const closeness = Math.max(...targets.map((t) => similarity(typed, normalize(t))));
   return { correct: closeness === 1, closeness };

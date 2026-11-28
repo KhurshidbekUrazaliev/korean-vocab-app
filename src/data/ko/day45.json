@@ -1,0 +1,73 @@
+{
+  "id": "day45",
+  "course": "ko",
+  "number": 45,
+  "slug": "taking-a-train",
+  "title": "Taking a train",
+  "titleNative": "기차 타기",
+  "status": "reviewed",
+  "source": "generated",
+  "cover": "images/days/day45.webp",
+  "words": [
+    {
+      "id": "day45-01",
+      "term": "기차",
+      "romanization": "gicha",
+      "english": "train"
+    },
+    {
+      "id": "day45-02",
+      "term": "기차표",
+      "romanization": "gichapyo",
+      "english": "train ticket"
+    },
+    {
+      "id": "day45-03",
+      "term": "철도",
+      "romanization": "cheoldo",
+      "english": "railway"
+    },
+    {
+      "id": "day45-04",
+      "term": "승무원",
+      "romanization": "seungmuwon",
+      "english": "crew member"
+    },
+    {
+      "id": "day45-05",
+      "term": "입석",
+      "romanization": "ipseok",
+      "english": "standing room"
+    },
+    {
+      "id": "day45-06",
+      "term": "특실",
+      "romanization": "teuksil",
+      "english": "first-class compartment"
+    },
+    {
+      "id": "day45-07",
+      "term": "객차",
+      "romanization": "gaekcha",
+      "english": "passenger carriage"
+    },
+    {
+      "id": "day45-08",
+      "term": "차창",
+      "romanization": "chachang",
+      "english": "train or vehicle window"
+    },
+    {
+      "id": "day45-09",
+      "term": "종착역",
+      "romanization": "jongchangnyeok",
+      "english": "terminal station"
+    },
+    {
+      "id": "day45-10",
+      "term": "연착",
+      "romanization": "yeonchak",
+      "english": "late arrival"
+    }
+  ]
+}

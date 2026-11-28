@@ -364,8 +364,7 @@ button {
   box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--accent-ink) 22%, transparent);
 }
 .brand__name {
-  font-family: var(--font-ko);
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.1;
@@ -557,7 +556,7 @@ button {
   letter-spacing: -0.03em;
   line-height: 1.1;
 }
-.footer__motto span {
+.footer__motto .footer__sub {
   display: block;
   margin-top: var(--s-2);
   font-family: var(--font);
@@ -808,4 +807,81 @@ kbd {
   kbd {
     display: none;
   }
+}
+
+/* Arabic text: Naskh for anything marked lang="ar". Letter spacing must stay at 0,
+   because any spacing pulls the joined letters apart. Vowel marks need taller lines. */
+[lang='ar'],
+[lang='ar'] * {
+  font-family: var(--font-ar) !important;
+  letter-spacing: 0 !important;
+  word-break: normal;
+}
+/* The page is left to right. Its base alignment is "left" rather than the default "start",
+   so Arabic blocks inherit the alignment of the English page around them (left, or centred). */
+html {
+  text-align: left;
+}
+/* Display-size Arabic needs room above and below for vowel marks. */
+.day-hero__ko[lang='ar'],
+.today__greet [lang='ar'],
+.continue__title [lang='ar'],
+.footer__motto [lang='ar'],
+.not-found__code[lang='ar'],
+.curtain__word [lang='ar'] {
+  line-height: 1.4;
+}
+
+/* ---------- Course language switch and profile ---------- */
+.lang-switch {
+  display: inline-flex;
+  padding: 3px;
+  border-radius: var(--r-pill);
+  background: var(--surface-2);
+}
+.lang-switch button {
+  min-height: 32px;
+  padding: 0 var(--s-3);
+  border: 0;
+  border-radius: var(--r-pill);
+  background: none;
+  font-size: var(--fs-14);
+  font-weight: 600;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: background-color var(--t-fast), color var(--t-fast);
+}
+.lang-switch button:hover {
+  color: var(--ink);
+}
+.lang-switch button[aria-pressed='true'] {
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--shadow-1);
+}
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: var(--fs-14);
+  font-weight: 700;
+  text-decoration: none;
+}
+.avatar:hover {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+@media (max-width: 560px) {
+  .lang-switch button {
+    padding: 0 var(--s-2);
+    font-size: var(--fs-12);
+  }
+}
+.icon-btn[data-slow='true'] {
+  box-shadow: inset 0 0 0 2px var(--accent);
+  color: var(--accent);
 }

@@ -1,0 +1,73 @@
+{
+  "id": "day32",
+  "course": "ko",
+  "number": 32,
+  "slug": "winter-sports",
+  "title": "Winter sports",
+  "titleNative": "겨울 스포츠",
+  "status": "reviewed",
+  "source": "generated",
+  "cover": "images/days/day32.webp",
+  "words": [
+    {
+      "id": "day32-01",
+      "term": "스키",
+      "romanization": "seuki",
+      "english": "skis"
+    },
+    {
+      "id": "day32-02",
+      "term": "스키장",
+      "romanization": "seukijang",
+      "english": "ski resort"
+    },
+    {
+      "id": "day32-03",
+      "term": "스노보드",
+      "romanization": "seunobodeu",
+      "english": "snowboard"
+    },
+    {
+      "id": "day32-04",
+      "term": "리프트",
+      "romanization": "ripeuteu",
+      "english": "ski lift"
+    },
+    {
+      "id": "day32-05",
+      "term": "고글",
+      "romanization": "gogeul",
+      "english": "goggles"
+    },
+    {
+      "id": "day32-06",
+      "term": "스케이트",
+      "romanization": "seukeiteu",
+      "english": "ice skates"
+    },
+    {
+      "id": "day32-07",
+      "term": "빙판",
+      "romanization": "bingpan",
+      "english": "icy surface"
+    },
+    {
+      "id": "day32-08",
+      "term": "썰매",
+      "romanization": "sseolmae",
+      "english": "sled"
+    },
+    {
+      "id": "day32-09",
+      "term": "넘어지다",
+      "romanization": "neomeojida",
+      "english": "to fall over"
+    },
+    {
+      "id": "day32-10",
+      "term": "미끄럽다",
+      "romanization": "mikkeureopda",
+      "english": "to be slippery"
+    }
+  ]
+}

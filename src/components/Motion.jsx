@@ -13,7 +13,7 @@ export function MotionProvider({ children }) {
   const lenisRef = useRef(null);
   const curtainRef = useRef(null);
   const busy = useRef(false);
-  const [label, setLabel] = useState({ ko: '', en: '' });
+  const [label, setLabel] = useState({ native: '', en: '' });
 
   useEffect(() => {
     if (reducedMotion()) return;
@@ -45,7 +45,7 @@ export function MotionProvider({ children }) {
   }, [location.pathname, location.hash]);
 
   const go = useCallback(
-    (to, next = { ko: '', en: '' }) => {
+    (to, next = { native: '', en: '' }) => {
       if (busy.current) return;
       if (reducedMotion() || !curtainRef.current) return navigate(to);
       busy.current = true;
@@ -69,7 +69,7 @@ export function MotionProvider({ children }) {
       {children}
       <div className="curtain" ref={curtainRef} aria-hidden="true">
         <div className="curtain__word">
-          {label.ko}
+          {label.native && <span lang={/[\u0600-\u06FF]/.test(label.native) ? 'ar' : 'ko'}>{label.native}</span>}
           {label.en && <small>{label.en}</small>}
         </div>
       </div>
@@ -78,7 +78,7 @@ export function MotionProvider({ children }) {
 }
 
 /** A real <a href> link that plays the curtain on plain left clicks. */
-export function TLink({ to, ko, en, onClick, ...props }) {
+export function TLink({ to, native, en, onClick, ...props }) {
   const { go } = useMotion();
   const location = useLocation();
   return (
@@ -90,7 +90,7 @@ export function TLink({ to, ko, en, onClick, ...props }) {
         const [path] = String(to).split('#');
         if (path === location.pathname || (path === '' && String(to).startsWith('#'))) return; // same page: let Lenis handle the anchor
         e.preventDefault();
-        go(to, { ko, en });
+        go(to, { native, en });
       }}
       {...props}
     />

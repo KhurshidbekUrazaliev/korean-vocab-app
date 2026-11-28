@@ -1,0 +1,73 @@
+{
+  "id": "day48",
+  "course": "ko",
+  "number": 48,
+  "slug": "lost-and-found",
+  "title": "Lost and found",
+  "titleNative": "분실물 찾기",
+  "status": "reviewed",
+  "source": "generated",
+  "cover": "images/days/day48.webp",
+  "words": [
+    {
+      "id": "day48-01",
+      "term": "분실물",
+      "romanization": "bunsilmul",
+      "english": "lost item"
+    },
+    {
+      "id": "day48-02",
+      "term": "분실물 센터",
+      "romanization": "bunsilmul senteo",
+      "english": "lost-and-found office"
+    },
+    {
+      "id": "day48-03",
+      "term": "주인",
+      "romanization": "juin",
+      "english": "owner"
+    },
+    {
+      "id": "day48-04",
+      "term": "맡기다",
+      "romanization": "matgida",
+      "english": "to leave in someone's care"
+    },
+    {
+      "id": "day48-05",
+      "term": "잃어버리다",
+      "romanization": "ireobeorida",
+      "english": "to lose"
+    },
+    {
+      "id": "day48-06",
+      "term": "되찾다",
+      "romanization": "doechatda",
+      "english": "to get back something lost"
+    },
+    {
+      "id": "day48-07",
+      "term": "우산",
+      "romanization": "usan",
+      "english": "umbrella"
+    },
+    {
+      "id": "day48-08",
+      "term": "목도리",
+      "romanization": "mokdori",
+      "english": "scarf"
+    },
+    {
+      "id": "day48-09",
+      "term": "장갑",
+      "romanization": "janggap",
+      "english": "gloves"
+    },
+    {
+      "id": "day48-10",
+      "term": "열쇠고리",
+      "romanization": "yeolsoegori",
+      "english": "key ring"
+    }
+  ]
+}

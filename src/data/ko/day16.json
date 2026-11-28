@@ -1,0 +1,73 @@
+{
+  "id": "day16",
+  "course": "ko",
+  "number": 16,
+  "slug": "riding-the-subway",
+  "title": "Riding the subway",
+  "titleNative": "지하철 타기",
+  "status": "reviewed",
+  "source": "generated",
+  "cover": "images/days/day16.webp",
+  "words": [
+    {
+      "id": "day16-01",
+      "term": "지하철",
+      "romanization": "jihacheol",
+      "english": "subway"
+    },
+    {
+      "id": "day16-02",
+      "term": "노선도",
+      "romanization": "noseondo",
+      "english": "route map"
+    },
+    {
+      "id": "day16-03",
+      "term": "환승",
+      "romanization": "hwanseung",
+      "english": "transfer between lines"
+    },
+    {
+      "id": "day16-04",
+      "term": "승강장",
+      "romanization": "seunggangjang",
+      "english": "platform"
+    },
+    {
+      "id": "day16-05",
+      "term": "개찰구",
+      "romanization": "gaechalgu",
+      "english": "ticket gate"
+    },
+    {
+      "id": "day16-06",
+      "term": "교통 카드",
+      "romanization": "gyotong kadeu",
+      "english": "transit card"
+    },
+    {
+      "id": "day16-07",
+      "term": "손잡이",
+      "romanization": "sonjabi",
+      "english": "handgrip"
+    },
+    {
+      "id": "day16-08",
+      "term": "첫차",
+      "romanization": "cheotcha",
+      "english": "first train, first bus"
+    },
+    {
+      "id": "day16-09",
+      "term": "막차",
+      "romanization": "makcha",
+      "english": "last train, last bus"
+    },
+    {
+      "id": "day16-10",
+      "term": "내리다",
+      "romanization": "naerida",
+      "english": "to get off"
+    }
+  ]
+}

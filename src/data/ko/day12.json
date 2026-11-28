@@ -1,0 +1,73 @@
+{
+  "id": "day12",
+  "course": "ko",
+  "number": 12,
+  "slug": "fatigue-and-change",
+  "title": "Fatigue & Change",
+  "titleNative": "피로와 변화",
+  "status": "verified",
+  "source": "owner-notes",
+  "cover": "images/days/day12.webp",
+  "words": [
+    {
+      "id": "day12-01",
+      "term": "변화",
+      "romanization": "byeonhwa",
+      "english": "change, variation"
+    },
+    {
+      "id": "day12-02",
+      "term": "졸리다",
+      "romanization": "jollida",
+      "english": "to be sleepy"
+    },
+    {
+      "id": "day12-03",
+      "term": "하품",
+      "romanization": "hapum",
+      "english": "yawn"
+    },
+    {
+      "id": "day12-04",
+      "term": "피부",
+      "romanization": "pibu",
+      "english": "skin"
+    },
+    {
+      "id": "day12-05",
+      "term": "여드름",
+      "romanization": "yeodeureum",
+      "english": "pimple, acne"
+    },
+    {
+      "id": "day12-06",
+      "term": "머리카락",
+      "romanization": "meorikarak",
+      "english": "hair (strand of hair)"
+    },
+    {
+      "id": "day12-07",
+      "term": "점점",
+      "romanization": "jeomjeom",
+      "english": "gradually, increasingly"
+    },
+    {
+      "id": "day12-08",
+      "term": "빠지다",
+      "romanization": "ppajida",
+      "english": "to fall out, be missing"
+    },
+    {
+      "id": "day12-09",
+      "term": "푹",
+      "romanization": "puk",
+      "english": "deeply, soundly, sufficiently"
+    },
+    {
+      "id": "day12-10",
+      "term": "피로",
+      "romanization": "piro",
+      "english": "fatigue, tiredness"
+    }
+  ]
+}

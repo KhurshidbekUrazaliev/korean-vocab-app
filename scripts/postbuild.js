@@ -7,16 +7,22 @@ import { mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 
 import { SITE, NAME, pageMetadata, socialTags } from '../src/lib/pageMetadata.js';
+import { MODE_TITLES } from '../src/lib/stats.js';
 
 const DIST = 'dist';
 const pad = (n) => String(n).padStart(2, '0');
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
-const days = readdirSync('src/data/days')
-  .filter((f) => f.endsWith('.json'))
-  .map((f) => JSON.parse(readFileSync(join('src/data/days', f), 'utf8')))
-  .sort((a, b) => a.number - b.number);
-const wordCount = days.reduce((n, d) => n + d.words.length, 0);
+function loadCourse(id) {
+  const dir = join('src/data', id);
+  const days = readdirSync(dir)
+    .filter((f) => /^day\d+\.json$/.test(f))
+    .map((f) => JSON.parse(readFileSync(join(dir, f), 'utf8')))
+    .sort((a, b) => a.number - b.number);
+  const base = id === 'ar' ? '/ar' : '';
+  return { id, base, days, lang: id, dir: id === 'ar' ? 'rtl' : 'ltr', name: id === 'ar' ? 'Arabic' : 'Korean', words: days.reduce((n, d) => n + d.words.length, 0) };
+}
+const COURSES = { ko: loadCourse('ko'), ar: loadCourse('ar') };
 const shell = readFileSync(join(DIST, 'index.html'), 'utf8');
 
 const BASE = '/korean-vocab-app/';
@@ -24,12 +30,15 @@ const BASE = '/korean-vocab-app/';
 // A day's cover is its largest element, but React only adds it after the scripts run.
 // Preloading it from the static HTML lets the browser fetch it right away.
 function coverPreload(path) {
-  const day = days.find((d) => path === `/day/${d.number}`);
-  return day?.cover ? `<link rel="preload" as="image" href="${BASE}${esc(day.cover)}" fetchpriority="high" />` : '';
+  for (const c of Object.values(COURSES)) {
+    const day = c.days.find((d) => path === `${c.base}/day/${d.number}`);
+    if (day?.cover) return `<link rel="preload" as="image" href="${BASE}${esc(day.cover)}" fetchpriority="high" />`;
+  }
+  return '';
 }
 
 function page(path, body = '') {
-  const info = pageMetadata(path, days);
+  const info = pageMetadata(path, COURSES);
   const head = [
     coverPreload(path),
     `<title>${esc(info.title)}</title>`,
@@ -38,7 +47,7 @@ function page(path, body = '') {
     ...Object.entries(socialTags(info)).map(([key, value]) =>
       `<meta data-route-head ${key.startsWith('og:') ? 'property' : 'name'}="${key}" content="${esc(value)}" />`),
     info.jsonLd ? `<script data-route-head type="application/ld+json">${JSON.stringify(info.jsonLd).replace(/</g, '\\u003c')}</script>` : '',
-  ].join('\n    ');
+  ].filter(Boolean).join('\n    ');
   return shell
     .replace(/<title>[\s\S]*?<\/title>\s*/, '')
     .replace(/<meta name="description"[^>]*>\s*/, '')
@@ -53,62 +62,59 @@ function write(path, html) {
   writeFileSync(file, html);
 }
 
-const nav = `<nav><a href="${SITE}/">Home</a> <a href="${SITE}/course">Course</a> <a href="${SITE}/review">Review</a> <a href="${SITE}/privacy">Privacy</a> <a href="${SITE}/terms">Terms</a></nav>`;
+const nav = (c) =>
+  `<nav><a href="${SITE}/">Korean</a> <a href="${SITE}/ar">Arabic</a> <a href="${SITE}${c.base}/course">${c.name} course</a> <a href="${SITE}${c.base}/letters">${c.name} letters</a> <a href="${SITE}${c.base}/review">Review</a> <a href="${SITE}/privacy">Privacy</a> <a href="${SITE}/terms">Terms</a></nav>`;
+const native = (c, text) => `<span lang="${c.lang}" dir="${c.dir}">${esc(text)}</span>`;
+const dayList = (c) =>
+  `<ol>${c.days.map((d) => `<li><a href="${SITE}${c.base}/day/${d.number}">Day ${pad(d.number)}: ${esc(d.title)}</a> (${native(c, d.titleNative)})</li>`).join('')}</ol>`;
+const MODES = Object.keys(MODE_TITLES);
+const urls = [];
+let practiceRoutes = 0;
 
-// Home
-const homeDesc = pageMetadata('/', days).description;
-writeFileSync(
-  join(DIST, 'index.html'),
-  page('/',
-    `${nav}<main><h1>Learn Korean one day at a time</h1><p>${esc(homeDesc)}</p><ol>${days
-      .map((d) => `<li><a href="${SITE}/day/${d.number}">Day ${pad(d.number)}: ${esc(d.title)} (${esc(d.titleKo)})</a></li>`)
-      .join('')}</ol></main>`,
-  ),
-);
+for (const c of Object.values(COURSES)) {
+  const home = c.base || '/';
+  const { title, description } = pageMetadata(home, COURSES);
+  const html = page(home, `${nav(c)}<main><h1>${esc(title.split(' |')[0])}</h1><p>${esc(description)}</p>${dayList(c)}</main>`);
+  if (c.base) write(c.base.slice(1), html);
+  else writeFileSync(join(DIST, 'index.html'), html);
+  urls.push(home);
 
-// Days
-for (const d of days) {
-  const path = `/day/${d.number}`;
-  const { description } = pageMetadata(path, days);
-  write(
-    path.slice(1),
-    page(path,
-      `${nav}<main><h1>Day ${pad(d.number)}: ${esc(d.title)} <span lang="ko">${esc(d.titleKo)}</span></h1>${d.status === 'reviewed' ? '<p>Dictionary-reviewed</p>' : ''}<p>${esc(description)}</p><ol>${d.words
-        .map((w) => `<li><span lang="ko">${esc(w.korean)}</span> (${esc(w.romanization)}): ${esc(w.english)}</li>`)
-        .join('')}</ol><p><a href="${SITE}/day/${d.number}/practice/flashcards">Start flashcards</a> · <a href="${SITE}/day/${d.number}/practice/choice">Start quiz</a></p></main>`,
-    ),
-  );
-}
-
-// Course index
-write(
-  'course',
-  page('/course',
-    `${nav}<main><h1>Course: ${days.length} days, ${wordCount} words</h1><ol>${days
-      .map((d) => `<li><a href="${SITE}/day/${d.number}">Day ${pad(d.number)}: ${esc(d.title)} (${esc(d.titleKo)})</a></li>`)
-      .join('')}</ol></main>`,
-  ),
-);
-
-// Other pages
-for (const path of ['review', 'privacy', 'terms']) {
-  const { title, description } = pageMetadata('/' + path, days);
-  write(path, page('/' + path, `${nav}<main><h1>${esc(title.split(' |')[0])}</h1><p>${esc(description)}</p></main>`));
-}
-write('progress', page('/progress'));
-
-// Practice sessions: app shell only, not indexed.
-for (const d of days) {
-  for (const mode of ['flashcards', 'choice', 'typing', 'listening']) {
-    const path = `day/${d.number}/practice/${mode}`;
-    write(path, page('/' + path));
+  for (const d of c.days) {
+    const path = `${c.base}/day/${d.number}`;
+    const { description: about } = pageMetadata(path, COURSES);
+    const practice = MODES.map((m) => `<a href="${SITE}${path}/practice/${m}">${MODE_TITLES[m]}</a>`).join(' · ');
+    write(path.slice(1), page(path,
+      `${nav(c)}<main><h1>Day ${pad(d.number)}: ${esc(d.title)} ${native(c, d.titleNative)}</h1><p>${esc(about)}</p><ol>${d.words
+        .map((w) => `<li>${native(c, w.term)} (${esc(w.romanization)}): ${esc(w.english)}</li>`)
+        .join('')}</ol><p>${practice}</p></main>`));
+    urls.push(path);
+    for (const m of MODES) write(`${path.slice(1)}/practice/${m}`, page(`${path}/practice/${m}`));
+    practiceRoutes += MODES.length;
   }
+
+  write(`${c.base.slice(1) || ''}${c.base ? '/' : ''}course`, page(`${c.base}/course`,
+    `${nav(c)}<main><h1>${c.name} course: ${c.days.length} days, ${c.words} words</h1>${dayList(c)}</main>`));
+  urls.push(`${c.base}/course`);
+
+  for (const sub of ['review', 'letters']) {
+    const path = `${c.base}/${sub}`;
+    const meta = pageMetadata(path, COURSES);
+    write(path.slice(1), page(path, `${nav(c)}<main><h1>${esc(meta.title.split(' |')[0])}</h1><p>${esc(meta.description)}</p></main>`));
+    urls.push(path);
+  }
+  write(`${c.base ? c.base.slice(1) + '/' : ''}progress`, page(`${c.base}/progress`));
 }
+
+for (const path of ['privacy', 'terms']) {
+  const { title, description } = pageMetadata('/' + path, COURSES);
+  write(path, page('/' + path, `${nav(COURSES.ko)}<main><h1>${esc(title.split(' |')[0])}</h1><p>${esc(description)}</p></main>`));
+  urls.push('/' + path);
+}
+write('welcome', page('/welcome'));
 writeFileSync(join(DIST, '404.html'), page('/404'));
 
 // sitemap.xml
 const today = new Date().toISOString().slice(0, 10);
-const urls = ['/', '/course', ...days.map((d) => `/day/${d.number}`), '/review', '/privacy', '/terms'];
 writeFileSync(
   join(DIST, 'sitemap.xml'),
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls
@@ -125,22 +131,26 @@ writeFileSync(
 );
 
 // llms.txt
-const draftDays = days.filter((day) => day.status === 'draft').map((day) => day.number);
+const courseBlock = (c) => {
+  const drafts = c.days.filter((d) => d.status === 'draft').length;
+  return `## ${c.name} (${c.days.length} days, ${c.words} words)
+${drafts ? `${drafts === c.days.length ? 'All' : drafts} ${c.name} lists are drafts awaiting language review.\n` : ''}- [${c.name} course index](${SITE}${c.base}/course)
+- [${c.name} letters](${SITE}${c.base}/letters)
+${c.days.map((d) => `- [Day ${pad(d.number)}: ${d.title} (${d.titleNative})](${SITE}${c.base}/day/${d.number})`).join('\n')}
+`;
+};
 writeFileSync(
   join(DIST, 'llms.txt'),
   `# ${NAME}
 
-> A free website for learning Korean vocabulary in daily sets of 10 words. ${days.length} days, ${wordCount} words. Each word has Hangul, romanization, an English meaning and a recorded pronunciation. Learners practice with flashcards, multiple choice (both directions), typing and listening, and missed words come back through spaced review (Leitner boxes: 1, 3, 7 and 16 days). No account is needed; progress stays in the browser.
+> A free website for learning Korean and Arabic vocabulary in daily sets of 10 words: ${COURSES.ko.words} Korean words and ${COURSES.ar.words} Arabic (Modern Standard) words, 50 days each. Every word has the native script, a romanization, an English meaning and a recorded pronunciation. Learners sign in with a name on their own device, practice with flashcards, multiple choice (both directions), typing, listening and a match game, and missed words come back through spaced review (Leitner boxes: 1, 3, 7 and 16 days). No account or server; progress stays in the browser. The Arabic word selection comes from Collins Arabic: 3000 Words and Phrases.
 
-${draftDays.length ? `Days ${draftDays.join(', ')} are draft lists under review.\n\n` : ''}## Days
-${days.map((d) => `- [Day ${pad(d.number)}: ${d.title} (${d.titleKo})](${SITE}/day/${d.number})`).join('\n')}
-
+${courseBlock(COURSES.ko)}
+${courseBlock(COURSES.ar)}
 ## Other pages
-- [Course index](${SITE}/course)
-- [Review due words](${SITE}/review)
 - [Privacy](${SITE}/privacy)
 - [Terms](${SITE}/terms)
 `,
 );
 
-console.log(`postbuild: ${urls.length} public routes + ${days.length * 4} practice routes, sitemap, robots.txt, llms.txt, 404.html`);
+console.log(`postbuild: ${urls.length} public routes + ${practiceRoutes} practice routes, sitemap, robots.txt, llms.txt, 404.html`);

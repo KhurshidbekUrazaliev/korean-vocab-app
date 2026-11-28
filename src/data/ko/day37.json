@@ -1,0 +1,73 @@
+{
+  "id": "day37",
+  "course": "ko",
+  "number": 37,
+  "slug": "a-pottery-class",
+  "title": "A pottery class",
+  "titleNative": "도예 수업",
+  "status": "reviewed",
+  "source": "generated",
+  "cover": "images/days/day37.webp",
+  "words": [
+    {
+      "id": "day37-01",
+      "term": "도예",
+      "romanization": "doye",
+      "english": "ceramic art"
+    },
+    {
+      "id": "day37-02",
+      "term": "점토",
+      "romanization": "jeomto",
+      "english": "clay"
+    },
+    {
+      "id": "day37-03",
+      "term": "물레",
+      "romanization": "mulle",
+      "english": "potter's wheel"
+    },
+    {
+      "id": "day37-04",
+      "term": "가마",
+      "romanization": "gama",
+      "english": "kiln"
+    },
+    {
+      "id": "day37-05",
+      "term": "유약",
+      "romanization": "yuyak",
+      "english": "glaze for pottery"
+    },
+    {
+      "id": "day37-06",
+      "term": "항아리",
+      "romanization": "hangari",
+      "english": "earthenware jar"
+    },
+    {
+      "id": "day37-07",
+      "term": "꽃병",
+      "romanization": "kkotbyeong",
+      "english": "flower vase"
+    },
+    {
+      "id": "day37-08",
+      "term": "그릇",
+      "romanization": "geureut",
+      "english": "bowl or dish"
+    },
+    {
+      "id": "day37-09",
+      "term": "빚다",
+      "romanization": "bitda",
+      "english": "to shape by hand"
+    },
+    {
+      "id": "day37-10",
+      "term": "굽다",
+      "romanization": "gupda",
+      "english": "to fire pottery"
+    }
+  ]
+}

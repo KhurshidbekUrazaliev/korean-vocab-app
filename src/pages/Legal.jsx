@@ -6,9 +6,9 @@ export function Privacy() {
         <h1 className="display">Privacy</h1>
         <p>Last updated 28 November 2026.</p>
         <h2>What is stored</h2>
-        <p>Your practice progress (which words you answered, when they are due for review, your streak), your light or dark theme choice and whether practice sound effects are on. All of it is saved in your browser’s local storage on your device. They are never sent to us or anyone else.</p>
+        <p>Your profile (the name you enter, the language you are learning and your daily goal), your practice progress (which words you answered, when they are due for review, your streak), your light or dark theme choice and whether practice sound effects are on. All of it is saved in your browser’s local storage on your device. They are never sent to us or anyone else.</p>
         <h2>No accounts, no tracking</h2>
-        <p>The site has no sign-up, no analytics, no advertising and no tracking cookies.</p>
+        <p>Signing in only saves a name on your own device: there is no account, password or email. The site has no analytics, no advertising and no tracking cookies.</p>
         <h2>Third parties</h2>
         <p>The site is hosted on GitHub Pages, which may log basic request data such as IP addresses as described in GitHub’s privacy statement. Fonts are loaded from the jsDelivr CDN (Pretendard) and Google Fonts (Noto Serif KR), which receive your IP address when the fonts download. Pronunciation plays short recorded audio files served from this site, made in advance with an open text-to-speech model. If a file can’t load, your device’s built-in speech voice is used instead, and that audio is generated on your device.</p>
         <h2>Deleting your data</h2>

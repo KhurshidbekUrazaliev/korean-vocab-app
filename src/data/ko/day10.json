@@ -1,0 +1,73 @@
+{
+  "id": "day10",
+  "course": "ko",
+  "number": 10,
+  "slug": "imagination",
+  "title": "Imagination",
+  "titleNative": "상상",
+  "status": "verified",
+  "source": "owner-notes",
+  "cover": "images/days/day10.webp",
+  "words": [
+    {
+      "id": "day10-01",
+      "term": "조카",
+      "romanization": "joka",
+      "english": "nephew, niece"
+    },
+    {
+      "id": "day10-02",
+      "term": "서투르다",
+      "romanization": "seotureuda",
+      "english": "to be clumsy, unskilled"
+    },
+    {
+      "id": "day10-03",
+      "term": "직접",
+      "romanization": "jikjeop",
+      "english": "directly, personally"
+    },
+    {
+      "id": "day10-04",
+      "term": "장난감",
+      "romanization": "jangnangam",
+      "english": "toy"
+    },
+    {
+      "id": "day10-05",
+      "term": "인형",
+      "romanization": "inhyeong",
+      "english": "doll"
+    },
+    {
+      "id": "day10-06",
+      "term": "풍선",
+      "romanization": "pungseon",
+      "english": "balloon"
+    },
+    {
+      "id": "day10-07",
+      "term": "멋지다",
+      "romanization": "meotjida",
+      "english": "to be cool, wonderful"
+    },
+    {
+      "id": "day10-08",
+      "term": "꾸미다",
+      "romanization": "kkumida",
+      "english": "to decorate, to make up"
+    },
+    {
+      "id": "day10-09",
+      "term": "정신없다",
+      "romanization": "jeongsineopda",
+      "english": "to be busy, hectic"
+    },
+    {
+      "id": "day10-10",
+      "term": "상상하다",
+      "romanization": "sangsanghada",
+      "english": "to imagine"
+    }
+  ]
+}

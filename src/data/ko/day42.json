@@ -1,0 +1,73 @@
+{
+  "id": "day42",
+  "course": "ko",
+  "number": 42,
+  "slug": "at-the-laundromat",
+  "title": "At the laundromat",
+  "titleNative": "빨래방에서",
+  "status": "reviewed",
+  "source": "generated",
+  "cover": "images/days/day42.webp",
+  "words": [
+    {
+      "id": "day42-01",
+      "term": "빨래방",
+      "romanization": "ppallaebang",
+      "english": "laundromat"
+    },
+    {
+      "id": "day42-02",
+      "term": "세탁기",
+      "romanization": "setakgi",
+      "english": "washing machine"
+    },
+    {
+      "id": "day42-03",
+      "term": "건조기",
+      "romanization": "geonjogi",
+      "english": "clothes dryer"
+    },
+    {
+      "id": "day42-04",
+      "term": "세제",
+      "romanization": "seje",
+      "english": "laundry detergent"
+    },
+    {
+      "id": "day42-05",
+      "term": "섬유 유연제",
+      "romanization": "seomyu yuyeonje",
+      "english": "fabric softener"
+    },
+    {
+      "id": "day42-06",
+      "term": "탈수",
+      "romanization": "talsu",
+      "english": "spin-drying (laundry)"
+    },
+    {
+      "id": "day42-07",
+      "term": "헹구다",
+      "romanization": "hengguda",
+      "english": "to rinse"
+    },
+    {
+      "id": "day42-08",
+      "term": "널다",
+      "romanization": "neolda",
+      "english": "to hang laundry out to dry"
+    },
+    {
+      "id": "day42-09",
+      "term": "개다",
+      "romanization": "gaeda",
+      "english": "to fold clothes"
+    },
+    {
+      "id": "day42-10",
+      "term": "얼룩",
+      "romanization": "eolluk",
+      "english": "stain"
+    }
+  ]
+}

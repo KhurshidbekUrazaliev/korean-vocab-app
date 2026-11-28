@@ -1,6 +1,6 @@
-# Essential Korean Vocabulary (한국어 공부)
+# Essential Vocabulary
 
-A Korean vocabulary app in daily sets of ten words. Each word has Hangul, romanization, an English meaning and audio. Each day is a four-step lesson (flashcards, multiple choice in both directions, typing, listening), and every answer feeds a spaced-review schedule. Returning learners land on a Today dashboard with their next step, due reviews, streak and daily goal.
+A vocabulary app for **Korean** and **Arabic** in daily sets of ten words: 50 days and 500 words per language. Each word has the native script, a romanization, an English meaning and a recorded pronunciation. Each day is a four-step lesson (flashcards, multiple choice in both directions, typing, listening) plus a Match game, and every answer feeds a spaced-review schedule. Learners sign in with a name on their own device, choose a language and a daily goal, and can switch language from the app bar. A Letters page teaches Hangul and the Arabic alphabet.
 
 [Open the course on GitHub Pages](https://khurshidbekurazaliev.github.io/korean-vocab-app/)
 
@@ -43,16 +43,16 @@ npm run dev
 
 ## Adding a day
 
-1. Add `src/data/days/dayNN.json` following the schema in `docs/PROJECT.md` (10 words, unique Korean words across all days). Save the cover as `public/images/days/dayNN.webp` and use `images/days/dayNN.webp` in the JSON.
+1. Add `src/data/<course>/dayNN.json` following the schema in `docs/PROJECT.md` (10 words, unique terms across the course). Save the cover as `public/images/days/dayNN.webp` and use `images/days/dayNN.webp` in the JSON.
 2. Run `npm test` (checks numbering, word count, duplicates).
 3. Run `node scripts/make-images.cjs --previews-only` to regenerate sharing images.
-4. Run `python scripts/make-audio.py --check` to record the new words.
+4. Run `python scripts/make-audio.py --course <ko|ar> --check` to record the new words.
 
 ## Project structure
 
 ```
 src/
-  data/days/       one JSON file per day
+  data/ko, data/ar one JSON file per day and the letters of each script
   lib/             practice logic: shuffle, quiz, spaced review, progress, streak, speech, motion setup
   components/      header, footer, page transitions, hero particle field, practice session
   pages/           Home, Day, Practice, Review, Privacy/Terms, NotFound

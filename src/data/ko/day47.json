@@ -1,0 +1,73 @@
+{
+  "id": "day47",
+  "course": "ko",
+  "number": 47,
+  "slug": "cycling-by-the-river",
+  "title": "Cycling by the river",
+  "titleNative": "강변에서 자전거 타기",
+  "status": "reviewed",
+  "source": "generated",
+  "cover": "images/days/day47.webp",
+  "words": [
+    {
+      "id": "day47-01",
+      "term": "자전거",
+      "romanization": "jajeongeo",
+      "english": "bicycle"
+    },
+    {
+      "id": "day47-02",
+      "term": "강변",
+      "romanization": "gangbyeon",
+      "english": "riverside"
+    },
+    {
+      "id": "day47-03",
+      "term": "페달",
+      "romanization": "pedal",
+      "english": "pedal"
+    },
+    {
+      "id": "day47-04",
+      "term": "체인",
+      "romanization": "chein",
+      "english": "chain"
+    },
+    {
+      "id": "day47-05",
+      "term": "안장",
+      "romanization": "anjang",
+      "english": "saddle"
+    },
+    {
+      "id": "day47-06",
+      "term": "브레이크",
+      "romanization": "beureikeu",
+      "english": "brake"
+    },
+    {
+      "id": "day47-07",
+      "term": "헬멧",
+      "romanization": "helmet",
+      "english": "helmet"
+    },
+    {
+      "id": "day47-08",
+      "term": "자전거 도로",
+      "romanization": "jajeongeo doro",
+      "english": "bicycle path"
+    },
+    {
+      "id": "day47-09",
+      "term": "바퀴",
+      "romanization": "bakwi",
+      "english": "wheel"
+    },
+    {
+      "id": "day47-10",
+      "term": "강바람",
+      "romanization": "gangbaram",
+      "english": "river breeze"
+    }
+  ]
+}

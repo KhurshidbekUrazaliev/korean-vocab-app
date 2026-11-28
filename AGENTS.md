@@ -80,7 +80,7 @@ Status: `todo` · `doing` · `review` · `done` · `blocked`
 | ID | Task | Role | Depends on | Status |
 |----|------|------|-----------|--------|
 | L1 | Select 500 Arabic words from Collins into 50 themed days with vowel marks, transliteration and English; cross-check letters against the book | Lead | | done (status `draft` until B2) |
-| L2 | Multi-course refactor: data move and rename, `courses.js`, course-aware routes and pages, Arabic font and right-to-left text, titles, metadata, sitemap and llms.txt for `/ar` | Lead | | doing |
+| L2 | Multi-course refactor: data move and rename, `courses.js`, course-aware routes and pages, Arabic font and right-to-left text, titles, metadata, sitemap and llms.txt for `/ar` | Lead | | review (branch `ui/L2-multi-course`) |
 | L3 | Sign-in page (device profile: name, language, daily goal), language switcher in the app bar, `/` and `/ar` routing by profile | Lead | L2 | todo |
 | L4 | Arabic word audio for all 500 words, checked with Whisper | Lead | L1 | todo |
 | L5 | Letters page for both scripts, slow replay, Match game UI | Lead | L2, B4 | todo |
@@ -116,6 +116,7 @@ Status: `todo` · `doing` · `review` · `done` · `blocked`
 
 _(format: `- [from → to] request (status)`)_
 
+- [Lead → Builder] L2, L3 and L5 are on branch `ui/L2-multi-course` and land on `main` as soon as the Arabic audio finishes recording (about an hour). Korean data moves to `src/data/ko/` with the fields `term` and `titleNative`; Arabic stays in `src/data/ar/`. Build B3 against that branch, or rebase onto `main` once it lands. `src/lib/pageMetadata.js` already uses `/og/ar/dayNN.jpg` for Arabic days that have a cover. (open)
 - [Builder → Lead] On merge, set the Arabic home scene to `images/ar/hero.webp` and add alt text for the old-city lane with a carved doorway, mashrabiya balcony, bicycle and café chair.
 
 ## Status log (append only, newest at bottom)
@@ -128,5 +129,6 @@ _(format: `YYYY-MM-DD HH:MM UTC | role | task | note`)_
 - 2026-11-28 03:01 UTC | Builder | B2 | Started the entry-by-entry review of all 50 Arabic lessons.
 - 2026-11-28 03:09 UTC | Builder | B2 | Reviewed all 500 Arabic entries, corrected 15 and recorded each edit in docs/VOCABULARY-REVIEW-AR.md. Ready for review.
 - 2026-11-28 | Lead | B2, B4 | Reviewed and merged the Arabic language review (15 corrections, all 50 days `reviewed`) and the Match engine. The kasra added under silent initial alifs does not change pronunciation, so no clip needs re-recording.
+- 2026-11-28 | Lead | L2, L3, L5 | Multi-course app, sign-in, language switch, Letters page, slow replay and Match UI are on `ui/L2-multi-course`. Merging when the Arabic audio (L4) is recorded.
 - 2026-11-28 | Builder | B1 | Started the 50 Arabic lesson covers and the home illustration, using the course vocabulary and the existing paper-and-ink artwork as references.
 - 2026-11-28 | Builder | B1 | Added all 50 lesson covers and the home scene. Each 1600 × 1000 WebP is under 140 KB. The cover paths and thumbnail and sharing-card crops were checked across the set. Ready for review.

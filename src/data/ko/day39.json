@@ -1,0 +1,73 @@
+{
+  "id": "day39",
+  "course": "ko",
+  "number": 39,
+  "slug": "a-birthday-celebration",
+  "title": "A birthday celebration",
+  "titleNative": "생일 축하",
+  "status": "reviewed",
+  "source": "generated",
+  "cover": "images/days/day39.webp",
+  "words": [
+    {
+      "id": "day39-01",
+      "term": "생일",
+      "romanization": "saengil",
+      "english": "birthday"
+    },
+    {
+      "id": "day39-02",
+      "term": "생신",
+      "romanization": "saengsin",
+      "english": "birthday (honorific)"
+    },
+    {
+      "id": "day39-03",
+      "term": "미역국",
+      "romanization": "miyeokguk",
+      "english": "seaweed soup"
+    },
+    {
+      "id": "day39-04",
+      "term": "케이크",
+      "romanization": "keikeu",
+      "english": "cake"
+    },
+    {
+      "id": "day39-05",
+      "term": "촛불",
+      "romanization": "chotbul",
+      "english": "candle flame"
+    },
+    {
+      "id": "day39-06",
+      "term": "선물",
+      "romanization": "seonmul",
+      "english": "gift"
+    },
+    {
+      "id": "day39-07",
+      "term": "소원",
+      "romanization": "sowon",
+      "english": "wish"
+    },
+    {
+      "id": "day39-08",
+      "term": "초대하다",
+      "romanization": "chodaehada",
+      "english": "to invite"
+    },
+    {
+      "id": "day39-09",
+      "term": "축하하다",
+      "romanization": "chukahada",
+      "english": "to congratulate or celebrate"
+    },
+    {
+      "id": "day39-10",
+      "term": "생일상",
+      "romanization": "saengilsang",
+      "english": "meal laid out for a birthday"
+    }
+  ]
+}

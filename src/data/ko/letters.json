@@ -1,0 +1,185 @@
+{
+  "course": "ko",
+  "groups": [
+    {
+      "id": "consonants",
+      "title": "Consonants",
+      "items": [
+        {
+          "id": "ko-letter-01",
+          "glyph": "ㄱ",
+          "name": "giyeok",
+          "romanization": "g / k",
+          "term": "가"
+        },
+        {
+          "id": "ko-letter-02",
+          "glyph": "ㄴ",
+          "name": "nieun",
+          "romanization": "n",
+          "term": "나"
+        },
+        {
+          "id": "ko-letter-03",
+          "glyph": "ㄷ",
+          "name": "digeut",
+          "romanization": "d / t",
+          "term": "다"
+        },
+        {
+          "id": "ko-letter-04",
+          "glyph": "ㄹ",
+          "name": "rieul",
+          "romanization": "r / l",
+          "term": "라"
+        },
+        {
+          "id": "ko-letter-05",
+          "glyph": "ㅁ",
+          "name": "mieum",
+          "romanization": "m",
+          "term": "마"
+        },
+        {
+          "id": "ko-letter-06",
+          "glyph": "ㅂ",
+          "name": "bieup",
+          "romanization": "b / p",
+          "term": "바"
+        },
+        {
+          "id": "ko-letter-07",
+          "glyph": "ㅅ",
+          "name": "siot",
+          "romanization": "s",
+          "term": "사"
+        },
+        {
+          "id": "ko-letter-08",
+          "glyph": "ㅇ",
+          "name": "ieung",
+          "romanization": "silent / ng",
+          "term": "아"
+        },
+        {
+          "id": "ko-letter-09",
+          "glyph": "ㅈ",
+          "name": "jieut",
+          "romanization": "j",
+          "term": "자"
+        },
+        {
+          "id": "ko-letter-10",
+          "glyph": "ㅊ",
+          "name": "chieut",
+          "romanization": "ch",
+          "term": "차"
+        },
+        {
+          "id": "ko-letter-11",
+          "glyph": "ㅋ",
+          "name": "kieuk",
+          "romanization": "k (aspirated)",
+          "term": "카"
+        },
+        {
+          "id": "ko-letter-12",
+          "glyph": "ㅌ",
+          "name": "tieut",
+          "romanization": "t (aspirated)",
+          "term": "타"
+        },
+        {
+          "id": "ko-letter-13",
+          "glyph": "ㅍ",
+          "name": "pieup",
+          "romanization": "p (aspirated)",
+          "term": "파"
+        },
+        {
+          "id": "ko-letter-14",
+          "glyph": "ㅎ",
+          "name": "hieut",
+          "romanization": "h",
+          "term": "하"
+        }
+      ]
+    },
+    {
+      "id": "vowels",
+      "title": "Vowels",
+      "items": [
+        {
+          "id": "ko-letter-15",
+          "glyph": "ㅏ",
+          "name": "a",
+          "romanization": "a as in father",
+          "term": "아"
+        },
+        {
+          "id": "ko-letter-16",
+          "glyph": "ㅑ",
+          "name": "ya",
+          "romanization": "ya",
+          "term": "야"
+        },
+        {
+          "id": "ko-letter-17",
+          "glyph": "ㅓ",
+          "name": "eo",
+          "romanization": "o as in son",
+          "term": "어"
+        },
+        {
+          "id": "ko-letter-18",
+          "glyph": "ㅕ",
+          "name": "yeo",
+          "romanization": "yeo",
+          "term": "여"
+        },
+        {
+          "id": "ko-letter-19",
+          "glyph": "ㅗ",
+          "name": "o",
+          "romanization": "o as in go",
+          "term": "오"
+        },
+        {
+          "id": "ko-letter-20",
+          "glyph": "ㅛ",
+          "name": "yo",
+          "romanization": "yo",
+          "term": "요"
+        },
+        {
+          "id": "ko-letter-21",
+          "glyph": "ㅜ",
+          "name": "u",
+          "romanization": "oo as in moon",
+          "term": "우"
+        },
+        {
+          "id": "ko-letter-22",
+          "glyph": "ㅠ",
+          "name": "yu",
+          "romanization": "you",
+          "term": "유"
+        },
+        {
+          "id": "ko-letter-23",
+          "glyph": "ㅡ",
+          "name": "eu",
+          "romanization": "u in put, lips flat",
+          "term": "으"
+        },
+        {
+          "id": "ko-letter-24",
+          "glyph": "ㅣ",
+          "name": "i",
+          "romanization": "ee as in see",
+          "term": "이"
+        }
+      ]
+    }
+  ]
+}

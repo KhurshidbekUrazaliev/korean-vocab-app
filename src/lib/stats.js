@@ -74,5 +74,6 @@ export function weakWords(progress, allWords, limit = 6) {
     .map(({ w }) => w);
 }
 
-export const MODE_TITLES = { flashcards: 'Flashcards', choice: 'Multiple choice', typing: 'Typing', listening: 'Listening' };
+// Match is a bonus game: it has a title and a route, but it is not one of the four lesson steps.
+export const MODE_TITLES = { flashcards: 'Flashcards', choice: 'Multiple choice', typing: 'Typing', listening: 'Listening', match: 'Match' };
 export const MODE_STEPS = { flashcards: 'Learn', choice: 'Recall', typing: 'Produce', listening: 'Listen' };

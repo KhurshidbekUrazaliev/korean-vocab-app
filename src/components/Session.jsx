@@ -3,11 +3,13 @@ import { TLink } from './Motion.jsx';
 import { SpeakButton } from './SpeakButton.jsx';
 import { ArrowRight, Check, Close, Speaker, SoundOn, SoundOff } from './Icons.jsx';
 import { buildMultipleChoice, checkTyped } from '../lib/quiz.js';
+import { buildMatchRound, isPair } from '../lib/match.js';
 import { shuffle } from '../lib/shuffle.js';
 import { speak, canSpeak, warm } from '../lib/speech.js';
 import { feedback, soundOn, setSound } from '../lib/sound.js';
 import { progressStore } from '../hooks/useProgress.js';
 import { MODE_TITLES } from '../lib/stats.js';
+import { useCourse } from '../hooks/useCourse.js';
 import { gsap, useGSAP, reducedMotion } from '../lib/motion.js';
 import '../styles/practice.css';
 
@@ -30,11 +32,11 @@ export function Session({ words, pool = words, mode, dayId, title, exitTo, exitL
   const before = useRef({});
 
   const answer = useCallback(
-    (correct) => {
-      if (Object.hasOwn(before.current, word.id)) return;
-      before.current[word.id] = progressStore.get().words[word.id]?.box ?? 0;
-      progressStore.recordAnswer(word.id, correct);
-      const graded = [...results, { word, correct }];
+    (correct, w = word) => {
+      if (Object.hasOwn(before.current, w.id)) return;
+      before.current[w.id] = progressStore.get().words[w.id]?.box ?? 0;
+      progressStore.recordAnswer(w.id, correct);
+      const graded = [...results, { word: w, correct }];
       setResults(graded);
       if (round.full && graded.length === round.queue.length) {
         progressStore.recordSession(dayId, mode, graded.filter((r) => r.correct).length, graded.length);
@@ -113,6 +115,13 @@ export function Session({ words, pool = words, mode, dayId, title, exitTo, exitL
             {mode === 'choice' && <Choice word={word} pool={pool} direction={direction} onAnswer={answer} onNext={nextWord} onDirection={index === 0 ? setDirection : null} />}
             {mode === 'typing' && <Typing word={word} onAnswer={answer} onNext={nextWord} />}
             {mode === 'listening' && <Listening word={word} pool={pool} onAnswer={answer} onNext={nextWord} />}
+            {mode === 'match' && (
+              <MatchBoard
+                words={round.queue.slice(index, index + MATCH_PAIRS)}
+                onAnswer={(w, correct) => answer(correct, w)}
+                onDone={() => setIndex(index + MATCH_PAIRS)}
+              />
+            )}
           </WordFrame>
         )}
       </div>
@@ -164,12 +173,12 @@ function Flashcard({ word, onAnswer, onNext, left }) {
   const [flipped, setFlipped] = useState(false);
   const scene = useRef(null);
   const leaving = useRef(false);
-  useEffect(() => warm(word.korean), [word]);
+  useEffect(() => warm(word.term), [word]);
 
   const flip = () => {
     const nextFlip = !flipped;
     setFlipped(nextFlip);
-    if (nextFlip) speak(word.korean);
+    if (nextFlip) speak(word.term);
   };
 
   const decide = (knew) => {
@@ -202,17 +211,17 @@ function Flashcard({ word, onAnswer, onNext, left }) {
           aria-pressed={flipped}
         >
           <span className="flash__face" aria-hidden={flipped}>
-            <span className="flash__ko ko" lang="ko">{word.korean}</span>
+            <span className="flash__ko ko" {...langOf(word)}>{word.term}</span>
             <span className="flash__hint">Say it out loud, then flip</span>
           </span>
           <span className="flash__face flash__face--back" aria-hidden={!flipped}>
             <span className="flash__en">{word.english}</span>
-            <span className="flash__rom"><span className="ko" lang="ko">{word.korean}</span> · {word.romanization}</span>
+            <span className="flash__rom"><span className="ko" {...langOf(word)}>{word.term}</span> · {word.romanization}</span>
           </span>
         </button>
       </div>
       <div className="flash__actions">
-        <SpeakButton text={word.korean} />
+        <SpeakButton text={word.term} />
         {flipped ? (
           <>
             <button type="button" className="btn btn--lg btn--ghost" onClick={() => decide(false)}>Not yet <kbd>1</kbd></button>
@@ -226,19 +235,23 @@ function Flashcard({ word, onAnswer, onNext, left }) {
   );
 }
 
+/** Language attributes for a word's term: Arabic ids start with "ar-". */
+const langOf = (word) => (word.id.startsWith('ar-') ? { lang: 'ar', dir: 'rtl' } : { lang: 'ko' });
+
 /* ---------------- Multiple choice (also used by Listening) ---------------- */
 
 function Options({ q, picked, onPick }) {
+  const course = useCourse();
   return (
     <ul className="options">
       {q.options.map((o, k) => {
         const state = picked == null ? '' : o.id === q.answerId ? 'right' : o.id === picked ? 'wrong' : 'dim';
-        const ko = /[가-힣]/.test(o.label);
+        const native = /[\u0600-\u06FF가-힣]/.test(o.label);
         return (
           <li key={o.id}>
             <button type="button" className="option" data-state={state} disabled={picked != null} onClick={(e) => onPick(o.id, e.currentTarget)}>
               <kbd>{k + 1}</kbd>
-              <span lang={ko ? 'ko' : undefined} className={ko ? 'ko option__ko' : ''}>{o.label}</span>
+              <span lang={native ? course.lang : undefined} dir={native ? course.dir : undefined} className={native ? 'ko option__ko' : ''}>{o.label}</span>
               {state === 'right' && <Check className="option__mark" />}
               {state === 'wrong' && <Close className="option__mark" />}
             </button>
@@ -277,7 +290,7 @@ function Feedback({ word, correct, onNext }) {
       <p>
         <b>{correct ? 'Correct' : 'Not quite'}</b>
         <span>
-          <span className="ko" lang="ko">{word.korean}</span> · {word.romanization} · {word.english}
+          <span className="ko" {...langOf(word)}>{word.term}</span> · {word.romanization} · {word.english}
         </span>
       </p>
       <button type="button" className="btn" onClick={onNext} ref={ref}>
@@ -289,17 +302,18 @@ function Feedback({ word, correct, onNext }) {
 
 function Choice({ word, pool, direction, onAnswer, onNext, onDirection }) {
   const { q, picked, pick, next } = useChoice(word, pool, direction, onAnswer, onNext);
+  const course = useCourse();
   const koPrompt = direction === 'ko-en';
   return (
     <div className="quiz">
       {onDirection && (
         <div className="seg" role="group" aria-label="Question direction">
-          <button type="button" aria-pressed={direction === 'ko-en'} onClick={() => onDirection('ko-en')}>한국어 → English</button>
-          <button type="button" aria-pressed={direction === 'en-ko'} onClick={() => onDirection('en-ko')}>English → 한국어</button>
+          <button type="button" aria-pressed={direction === 'ko-en'} onClick={() => onDirection('ko-en')}><span lang={course.lang}>{course.nativeName}</span> → English</button>
+          <button type="button" aria-pressed={direction === 'en-ko'} onClick={() => onDirection('en-ko')}>English → <span lang={course.lang}>{course.nativeName}</span></button>
         </div>
       )}
       <p className="quiz__label">{koPrompt ? 'What does this mean?' : 'Which word means this?'}</p>
-      <h1 className={`quiz__prompt ${koPrompt ? 'ko' : ''}`} lang={koPrompt ? 'ko' : undefined}>{q.prompt}</h1>
+      <h1 className={`quiz__prompt ${koPrompt ? 'ko' : ''}`} {...(koPrompt ? langOf(word) : {})}>{q.prompt}</h1>
       <Options q={q} picked={picked} onPick={pick} />
       {picked != null && <Feedback word={word} correct={picked === q.answerId} onNext={next} />}
     </div>
@@ -332,9 +346,9 @@ function Typing({ word, onAnswer, onNext }) {
   return (
     <form className="quiz" onSubmit={submit}>
       <p className="quiz__label">Type the meaning in English</p>
-      <h1 className="quiz__prompt ko" lang="ko">{word.korean}</h1>
+      <h1 className="quiz__prompt ko" {...langOf(word)}>{word.term}</h1>
       <div className="type-field" data-state={result ? (result.correct ? 'right' : result.accepted ? 'close' : 'wrong') : ''}>
-        <label className="visually-hidden" htmlFor="answer">Meaning of {word.korean}</label>
+        <label className="visually-hidden" htmlFor="answer">Meaning of {word.term}</label>
         <input
           id="answer"
           ref={field}
@@ -354,13 +368,13 @@ function Typing({ word, onAnswer, onNext }) {
           <span className="feedback__icon">{result.accepted ? <Check /> : <Close />}</span>
           <p>
             <b>{result.correct ? 'Correct' : result.accepted ? 'Close enough, check the spelling' : 'Not quite'}</b>
-            <span><span className="ko" lang="ko">{word.korean}</span> means “{word.english}”</span>
+            <span><span className="ko" {...langOf(word)}>{word.term}</span> means “{word.english}”</span>
           </p>
         </div>
       ) : (
         <div className="quiz__aux">
           <button type="button" className="link-btn" onClick={() => setHint(true)} disabled={hint}>Show first letter</button>
-          <SpeakButton text={word.korean} />
+          <SpeakButton text={word.term} />
         </div>
       )}
     </form>
@@ -374,7 +388,7 @@ function Listening({ word, pool, onAnswer, onNext }) {
   const supported = canSpeak();
   const [playing, setPlaying] = useState(false);
   const play = useCallback(() => {
-    if (speak(word.korean)) {
+    if (speak(word.term)) {
       setPlaying(true);
       setTimeout(() => setPlaying(false), 1100);
     }
@@ -401,14 +415,91 @@ function Listening({ word, pool, onAnswer, onNext }) {
       ) : (
         <h1 className="quiz__prompt">{word.romanization}</h1>
       )}
-      <p className="quiz__reveal ko" lang="ko" data-shown={picked != null}>{picked != null ? word.korean : ' '}</p>
+      <p className="quiz__reveal ko" {...langOf(word)} data-shown={picked != null}>{picked != null ? word.term : ' '}</p>
       <Options q={q} picked={picked} onPick={pick} />
       {picked != null && <Feedback word={word} correct={picked === q.answerId} onNext={next} />}
     </div>
   );
 }
 
+/* ---------------- Match: pair each word with its meaning ---------------- */
+
+const MATCH_PAIRS = 5;
+
+function MatchBoard({ words, onAnswer, onDone }) {
+  const board = useMemo(() => buildMatchRound(words, { pairs: words.length }), [words]);
+  const byId = useMemo(() => new Map(words.map((w) => [w.id, w])), [words]);
+  const [selected, setSelected] = useState(null); // { side: 'left' | 'right', id }
+  const [matched, setMatched] = useState(() => new Set());
+  const [wrong, setWrong] = useState(null);
+  const [status, setStatus] = useState('');
+  const missed = useRef(new Set());
+
+  const pick = (side, id) => {
+    if (matched.has(id)) return;
+    if (side === 'left') speak(byId.get(id).term);
+    if (!selected || selected.side === side) return setSelected({ side, id });
+    const leftId = side === 'left' ? id : selected.id;
+    const rightId = side === 'right' ? id : selected.id;
+    setSelected(null);
+    if (isPair(leftId, rightId)) {
+      const w = byId.get(leftId);
+      feedback('right');
+      onAnswer(w, !missed.current.has(leftId));
+      const next = new Set(matched).add(leftId);
+      setMatched(next);
+      setStatus(`Matched: ${w.term} means ${w.english}.`);
+      if (next.size === board.left.length) setTimeout(onDone, reducedMotion() ? 0 : 500);
+    } else {
+      // A wrong pair counts against both words: each was confused with the other.
+      feedback('wrong');
+      missed.current.add(leftId).add(rightId);
+      setWrong({ leftId, rightId });
+      setStatus('Not a pair. Try again.');
+      setTimeout(() => setWrong(null), 450);
+    }
+  };
+
+  const card = (side, c) => {
+    const done = matched.has(c.id);
+    const isSelected = selected?.side === side && selected.id === c.id;
+    const isWrong = wrong && (side === 'left' ? wrong.leftId : wrong.rightId) === c.id;
+    return (
+      <li key={c.id}>
+        <button
+          type="button"
+          className="match__card"
+          data-side={side}
+          data-done={done}
+          data-wrong={Boolean(isWrong)}
+          aria-pressed={isSelected}
+          disabled={done}
+          onClick={() => pick(side, c.id)}
+        >
+          {side === 'left' ? <span className="ko" {...langOf(byId.get(c.id))}>{c.text}</span> : c.text}
+        </button>
+      </li>
+    );
+  };
+
+  return (
+    <div className="quiz match">
+      <h1 className="quiz__label">Match each word with its meaning</h1>
+      <div className="match__cols">
+        <ul aria-label="Words">{board.left.map((c) => card('left', c))}</ul>
+        <ul aria-label="Meanings">{board.right.map((c) => card('right', c))}</ul>
+      </div>
+      <p className="visually-hidden" role="status">{status}</p>
+    </div>
+  );
+}
+
 /* ---------------- Results ---------------- */
+
+const VERDICTS = {
+  ko: ['완벽해요!', '잘했어요!', '좋아요.', '다시 해 봐요.'],
+  ar: ['مُمْتَاز!', 'رَائِع!', 'جَيِّد.', 'مَرَّةً أُخْرَى.'],
+};
 
 function Results({ results, before, seconds, bestRun, onRetry, exitTo, exitLabel, next }) {
   const ref = useRef(null);
@@ -419,7 +510,9 @@ function Results({ results, before, seconds, bestRun, onRetry, exitTo, exitLabel
   const after = progressStore.get().words;
   const movedUp = Object.keys(before).filter((id) => (after[id]?.box ?? 0) > Math.max(before[id], 1)).length;
   const C = 2 * Math.PI * 54;
-  const verdict = pct === 100 ? ['완벽해요!', 'Perfect round.'] : pct >= 80 ? ['잘했어요!', 'Strong round.'] : pct >= 50 ? ['좋아요.', 'Getting there.'] : ['다시 해 봐요.', 'A tough one. Run it again.'];
+  const course = useCourse();
+  const tier = pct === 100 ? 0 : pct >= 80 ? 1 : pct >= 50 ? 2 : 3;
+  const verdict = [VERDICTS[course.id][tier], ['Perfect round.', 'Strong round.', 'Getting there.', 'A tough one. Run it again.'][tier]];
   const time = seconds < 60 ? `${seconds}s` : `${Math.floor(seconds / 60)}m ${seconds % 60}s`;
 
   useGSAP(
@@ -444,7 +537,7 @@ function Results({ results, before, seconds, bestRun, onRetry, exitTo, exitLabel
         <p><span className="results__pct num">{pct}</span><small>%</small></p>
       </div>
       <h1 className="results__title">
-        <span className="ko" lang="ko">{verdict[0]}</span>
+        <span className="ko" lang={course.lang} dir={course.dir}>{verdict[0]}</span>
         <span>{verdict[1]}</span>
       </h1>
       <ul className="results__stats">
@@ -459,9 +552,9 @@ function Results({ results, before, seconds, bestRun, onRetry, exitTo, exitLabel
           <ul>
             {missed.map((w) => (
               <li key={w.id}>
-                <span className="ko" lang="ko">{w.korean}</span>
+                <span className="ko" {...langOf(w)}>{w.term}</span>
                 <span className="muted">{w.english}</span>
-                <SpeakButton text={w.korean} />
+                <SpeakButton text={w.term} />
               </li>
             ))}
           </ul>
@@ -469,7 +562,7 @@ function Results({ results, before, seconds, bestRun, onRetry, exitTo, exitLabel
       )}
       <div className="results__actions">
         {next && (
-          <TLink className="btn btn--lg btn--accent" to={next.to} ko={next.ko} en={next.label}>
+          <TLink className="btn btn--lg btn--accent" to={next.to} native={next.native} en={next.label}>
             {next.label} <ArrowRight />
           </TLink>
         )}

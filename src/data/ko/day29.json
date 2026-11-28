@@ -1,0 +1,73 @@
+{
+  "id": "day29",
+  "course": "ko",
+  "number": 29,
+  "slug": "exercise-and-fitness",
+  "title": "Exercise and fitness",
+  "titleNative": "운동과 체력",
+  "status": "reviewed",
+  "source": "generated",
+  "cover": "images/days/day29.webp",
+  "words": [
+    {
+      "id": "day29-01",
+      "term": "운동하다",
+      "romanization": "undonghada",
+      "english": "to exercise"
+    },
+    {
+      "id": "day29-02",
+      "term": "체력",
+      "romanization": "cheryeok",
+      "english": "physical strength"
+    },
+    {
+      "id": "day29-03",
+      "term": "근육",
+      "romanization": "geunyuk",
+      "english": "muscle"
+    },
+    {
+      "id": "day29-04",
+      "term": "아령",
+      "romanization": "aryeong",
+      "english": "dumbbell"
+    },
+    {
+      "id": "day29-05",
+      "term": "줄넘기",
+      "romanization": "julleomgi",
+      "english": "jumping rope"
+    },
+    {
+      "id": "day29-06",
+      "term": "스트레칭",
+      "romanization": "seuteureching",
+      "english": "stretching"
+    },
+    {
+      "id": "day29-07",
+      "term": "달리기",
+      "romanization": "dalligi",
+      "english": "running"
+    },
+    {
+      "id": "day29-08",
+      "term": "팔 굽혀 펴기",
+      "romanization": "pal gupyeo pyeogi",
+      "english": "push-ups"
+    },
+    {
+      "id": "day29-09",
+      "term": "땀",
+      "romanization": "ttam",
+      "english": "sweat"
+    },
+    {
+      "id": "day29-10",
+      "term": "숨이 차다",
+      "romanization": "sumi chada",
+      "english": "to be out of breath"
+    }
+  ]
+}

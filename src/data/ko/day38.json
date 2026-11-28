@@ -1,0 +1,73 @@
+{
+  "id": "day38",
+  "course": "ko",
+  "number": 38,
+  "slug": "at-the-cinema",
+  "title": "At the cinema",
+  "titleNative": "영화관에서",
+  "status": "reviewed",
+  "source": "generated",
+  "cover": "images/days/day38.webp",
+  "words": [
+    {
+      "id": "day38-01",
+      "term": "영화관",
+      "romanization": "yeonghwagwan",
+      "english": "movie theater"
+    },
+    {
+      "id": "day38-02",
+      "term": "상영관",
+      "romanization": "sangyeonggwan",
+      "english": "screening room"
+    },
+    {
+      "id": "day38-03",
+      "term": "영화표",
+      "romanization": "yeonghwapyo",
+      "english": "movie ticket"
+    },
+    {
+      "id": "day38-04",
+      "term": "매표소",
+      "romanization": "maepyoso",
+      "english": "ticket booth"
+    },
+    {
+      "id": "day38-05",
+      "term": "예고편",
+      "romanization": "yegopyeon",
+      "english": "trailer for a film"
+    },
+    {
+      "id": "day38-06",
+      "term": "자막",
+      "romanization": "jamak",
+      "english": "subtitles"
+    },
+    {
+      "id": "day38-07",
+      "term": "감독",
+      "romanization": "gamdok",
+      "english": "director"
+    },
+    {
+      "id": "day38-08",
+      "term": "배우",
+      "romanization": "baeu",
+      "english": "actor"
+    },
+    {
+      "id": "day38-09",
+      "term": "줄거리",
+      "romanization": "julgeori",
+      "english": "plot, storyline"
+    },
+    {
+      "id": "day38-10",
+      "term": "개봉하다",
+      "romanization": "gaebonghada",
+      "english": "to release a film"
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "id": "day03",
+  "course": "ko",
+  "number": 3,
+  "slug": "student-life",
+  "title": "Student Life",
+  "titleNative": "학교생활",
+  "status": "verified",
+  "source": "owner-notes",
+  "cover": "images/days/day03.webp",
+  "words": [
+    {
+      "id": "day03-01",
+      "term": "유학생",
+      "romanization": "yuhaksaeng",
+      "english": "international student"
+    },
+    {
+      "id": "day03-02",
+      "term": "동아리 활동",
+      "romanization": "dongari hwaldong",
+      "english": "club activities",
+      "note": "Corrected from 동특증"
+    },
+    {
+      "id": "day03-03",
+      "term": "방법",
+      "romanization": "bangbeop",
+      "english": "method, way"
+    },
+    {
+      "id": "day03-04",
+      "term": "지원",
+      "romanization": "jiwon",
+      "english": "support, aid"
+    },
+    {
+      "id": "day03-05",
+      "term": "센터",
+      "romanization": "senteo",
+      "english": "center"
+    },
+    {
+      "id": "day03-06",
+      "term": "자기",
+      "romanization": "jagi",
+      "english": "oneself, self"
+    },
+    {
+      "id": "day03-07",
+      "term": "따라오다",
+      "romanization": "ttaraoda",
+      "english": "to follow"
+    },
+    {
+      "id": "day03-08",
+      "term": "작성하다",
+      "romanization": "jakseonghada",
+      "english": "to fill out, to write"
+    },
+    {
+      "id": "day03-09",
+      "term": "대하다",
+      "romanization": "daehada",
+      "english": "to treat, to deal with"
+    },
+    {
+      "id": "day03-10",
+      "term": "감동하다",
+      "romanization": "gamdonghada",
+      "english": "to be moved, touched"
+    }
+  ]
+}

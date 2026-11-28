@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { TLink } from './Motion.jsx';
 import { Moon, Sun, Today, Course, Repeat, Chart, Flame } from './Icons.jsx';
 import { useProgress } from '../hooks/useProgress.js';
+import { useCourse } from '../hooks/useCourse.js';
+import { profileStore, useProfile } from '../hooks/useProfile.js';
 import { getDueWords } from '../lib/srs.js';
 import { getStreak } from '../lib/streak.js';
-import { allWords } from '../data/index.js';
+import { COURSE_LIST, switchPath } from '../data/index.js';
 
 const TABS = [
   { to: '/', label: 'Today', Icon: Today, end: true },
@@ -14,9 +16,37 @@ const TABS = [
   { to: '/progress', label: 'Progress', Icon: Chart },
 ];
 
+/** Korean | Arabic switch. Moves to the same page in the other course and remembers the choice. */
+export function LanguageSwitch({ className = '' }) {
+  const course = useCourse();
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+  return (
+    <div className={`lang-switch ${className}`} role="group" aria-label="Course language">
+      {COURSE_LIST.map((c) => (
+        <button
+          key={c.id}
+          type="button"
+          aria-pressed={c.id === course.id}
+          onClick={() => {
+            if (c.id === course.id) return;
+            profileStore.setCourse(c.id);
+            navigate(switchPath(pathname, c));
+          }}
+        >
+          <span lang={c.lang}>{c.nativeName}</span>
+          <span className="visually-hidden"> ({c.name})</span>
+        </button>
+      ))}
+    </div>
+  );
+}
+
 export function Header({ theme, onToggleTheme }) {
   const progress = useProgress();
-  const due = getDueWords(progress, allWords).length;
+  const course = useCourse();
+  const profile = useProfile();
+  const due = getDueWords(progress, course.allWords).length;
   const { current, practicedToday } = getStreak(progress);
   const [scrolled, setScrolled] = useState(false);
 
@@ -29,7 +59,7 @@ export function Header({ theme, onToggleTheme }) {
 
   const links = (cls) =>
     TABS.map(({ to, label, Icon, end, due: showDue }) => (
-      <NavLink key={to} to={to} end={end}>
+      <NavLink key={to} to={course.path(to)} end={end}>
         {cls === 'tab' && <Icon />}
         <span>{label}</span>
         {showDue && due > 0 && (
@@ -45,20 +75,27 @@ export function Header({ theme, onToggleTheme }) {
     <>
       <header className="appbar" data-scrolled={scrolled}>
         <div className="wrap appbar__inner">
-          <TLink to="/" ko="한국어 공부" en="Today" className="brand">
-            <span className="seal" aria-hidden="true">한</span>
+          <TLink to={course.path('/')} native={course.nativeName} en="Today" className="brand">
+            <span className="seal" lang={course.lang} aria-hidden="true">{course.seal}</span>
             <span className="brand__name">
-              한국어 공부
-              <span className="brand__sub">Essential Korean Vocabulary</span>
+              Essential Vocabulary
+              <span className="brand__sub">{course.name}</span>
             </span>
           </TLink>
           <nav className="appnav" aria-label="Main">{links('nav')}</nav>
           <div className="appbar__end">
+            <LanguageSwitch />
             {progress.activity.length > 0 && (
-              <NavLink to="/progress" className="streak" data-on={practicedToday} aria-label={`${current} day streak`}>
+              <NavLink to={course.path('/progress')} className="streak" data-on={practicedToday} aria-label={`${current} day streak`}>
                 <Flame />
                 <span className="num">{current}</span>
               </NavLink>
+            )}
+            {profile && (
+              <TLink to="/welcome" className="avatar" title={`${profile.name}: edit profile`}>
+                <span aria-hidden="true">{[...profile.name.trim()][0]?.toUpperCase() ?? '?'}</span>
+                <span className="visually-hidden">Profile: {profile.name}</span>
+              </TLink>
             )}
             <button
               type="button"

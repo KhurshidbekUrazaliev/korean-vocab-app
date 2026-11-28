@@ -1,0 +1,485 @@
+{
+  "course": "ar",
+  "groups": [
+    {
+      "id": "letters",
+      "title": "The 28 letters",
+      "items": [
+        {
+          "id": "ar-letter-01",
+          "glyph": "ا",
+          "name": "أَلِف",
+          "romanization": "alif",
+          "sound": "aa (long a); also carries hamza",
+          "joins": false,
+          "forms": {
+            "isolated": "ا",
+            "initial": "ا",
+            "medial": "ـا",
+            "final": "ـا"
+          },
+          "term": "أَلِف"
+        },
+        {
+          "id": "ar-letter-02",
+          "glyph": "ب",
+          "name": "بَاء",
+          "romanization": "baa’",
+          "sound": "b",
+          "joins": true,
+          "forms": {
+            "isolated": "ب",
+            "initial": "بـ",
+            "medial": "ـبـ",
+            "final": "ـب"
+          },
+          "term": "بَاء"
+        },
+        {
+          "id": "ar-letter-03",
+          "glyph": "ت",
+          "name": "تَاء",
+          "romanization": "taa’",
+          "sound": "t",
+          "joins": true,
+          "forms": {
+            "isolated": "ت",
+            "initial": "تـ",
+            "medial": "ـتـ",
+            "final": "ـت"
+          },
+          "term": "تَاء"
+        },
+        {
+          "id": "ar-letter-04",
+          "glyph": "ث",
+          "name": "ثَاء",
+          "romanization": "thaa’",
+          "sound": "th as in think",
+          "joins": true,
+          "forms": {
+            "isolated": "ث",
+            "initial": "ثـ",
+            "medial": "ـثـ",
+            "final": "ـث"
+          },
+          "term": "ثَاء"
+        },
+        {
+          "id": "ar-letter-05",
+          "glyph": "ج",
+          "name": "جِيم",
+          "romanization": "jiim",
+          "sound": "j",
+          "joins": true,
+          "forms": {
+            "isolated": "ج",
+            "initial": "جـ",
+            "medial": "ـجـ",
+            "final": "ـج"
+          },
+          "term": "جِيم"
+        },
+        {
+          "id": "ar-letter-06",
+          "glyph": "ح",
+          "name": "حَاء",
+          "romanization": "haa’",
+          "sound": "h, breathed from the throat",
+          "joins": true,
+          "forms": {
+            "isolated": "ح",
+            "initial": "حـ",
+            "medial": "ـحـ",
+            "final": "ـح"
+          },
+          "term": "حَاء"
+        },
+        {
+          "id": "ar-letter-07",
+          "glyph": "خ",
+          "name": "خَاء",
+          "romanization": "khaa’",
+          "sound": "kh as in Scottish loch",
+          "joins": true,
+          "forms": {
+            "isolated": "خ",
+            "initial": "خـ",
+            "medial": "ـخـ",
+            "final": "ـخ"
+          },
+          "term": "خَاء"
+        },
+        {
+          "id": "ar-letter-08",
+          "glyph": "د",
+          "name": "دَال",
+          "romanization": "daal",
+          "sound": "d",
+          "joins": false,
+          "forms": {
+            "isolated": "د",
+            "initial": "د",
+            "medial": "ـد",
+            "final": "ـد"
+          },
+          "term": "دَال"
+        },
+        {
+          "id": "ar-letter-09",
+          "glyph": "ذ",
+          "name": "ذَال",
+          "romanization": "dhaal",
+          "sound": "th as in this",
+          "joins": false,
+          "forms": {
+            "isolated": "ذ",
+            "initial": "ذ",
+            "medial": "ـذ",
+            "final": "ـذ"
+          },
+          "term": "ذَال"
+        },
+        {
+          "id": "ar-letter-10",
+          "glyph": "ر",
+          "name": "رَاء",
+          "romanization": "raa’",
+          "sound": "r, rolled",
+          "joins": false,
+          "forms": {
+            "isolated": "ر",
+            "initial": "ر",
+            "medial": "ـر",
+            "final": "ـر"
+          },
+          "term": "رَاء"
+        },
+        {
+          "id": "ar-letter-11",
+          "glyph": "ز",
+          "name": "زَاي",
+          "romanization": "zaay",
+          "sound": "z",
+          "joins": false,
+          "forms": {
+            "isolated": "ز",
+            "initial": "ز",
+            "medial": "ـز",
+            "final": "ـز"
+          },
+          "term": "زَاي"
+        },
+        {
+          "id": "ar-letter-12",
+          "glyph": "س",
+          "name": "سِين",
+          "romanization": "siin",
+          "sound": "s",
+          "joins": true,
+          "forms": {
+            "isolated": "س",
+            "initial": "سـ",
+            "medial": "ـسـ",
+            "final": "ـس"
+          },
+          "term": "سِين"
+        },
+        {
+          "id": "ar-letter-13",
+          "glyph": "ش",
+          "name": "شِين",
+          "romanization": "shiin",
+          "sound": "sh",
+          "joins": true,
+          "forms": {
+            "isolated": "ش",
+            "initial": "شـ",
+            "medial": "ـشـ",
+            "final": "ـش"
+          },
+          "term": "شِين"
+        },
+        {
+          "id": "ar-letter-14",
+          "glyph": "ص",
+          "name": "صَاد",
+          "romanization": "saad",
+          "sound": "heavy s",
+          "joins": true,
+          "forms": {
+            "isolated": "ص",
+            "initial": "صـ",
+            "medial": "ـصـ",
+            "final": "ـص"
+          },
+          "term": "صَاد"
+        },
+        {
+          "id": "ar-letter-15",
+          "glyph": "ض",
+          "name": "ضَاد",
+          "romanization": "daad",
+          "sound": "heavy d",
+          "joins": true,
+          "forms": {
+            "isolated": "ض",
+            "initial": "ضـ",
+            "medial": "ـضـ",
+            "final": "ـض"
+          },
+          "term": "ضَاد"
+        },
+        {
+          "id": "ar-letter-16",
+          "glyph": "ط",
+          "name": "طَاء",
+          "romanization": "taa’",
+          "sound": "heavy t",
+          "joins": true,
+          "forms": {
+            "isolated": "ط",
+            "initial": "طـ",
+            "medial": "ـطـ",
+            "final": "ـط"
+          },
+          "term": "طَاء"
+        },
+        {
+          "id": "ar-letter-17",
+          "glyph": "ظ",
+          "name": "ظَاء",
+          "romanization": "dhaa’",
+          "sound": "heavy th as in this",
+          "joins": true,
+          "forms": {
+            "isolated": "ظ",
+            "initial": "ظـ",
+            "medial": "ـظـ",
+            "final": "ـظ"
+          },
+          "term": "ظَاء"
+        },
+        {
+          "id": "ar-letter-18",
+          "glyph": "ع",
+          "name": "عَيْن",
+          "romanization": "‘ayn",
+          "sound": "‘, a voiced sound from the throat",
+          "joins": true,
+          "forms": {
+            "isolated": "ع",
+            "initial": "عـ",
+            "medial": "ـعـ",
+            "final": "ـع"
+          },
+          "term": "عَيْن"
+        },
+        {
+          "id": "ar-letter-19",
+          "glyph": "غ",
+          "name": "غَيْن",
+          "romanization": "ghayn",
+          "sound": "gh, like a French r",
+          "joins": true,
+          "forms": {
+            "isolated": "غ",
+            "initial": "غـ",
+            "medial": "ـغـ",
+            "final": "ـغ"
+          },
+          "term": "غَيْن"
+        },
+        {
+          "id": "ar-letter-20",
+          "glyph": "ف",
+          "name": "فَاء",
+          "romanization": "faa’",
+          "sound": "f",
+          "joins": true,
+          "forms": {
+            "isolated": "ف",
+            "initial": "فـ",
+            "medial": "ـفـ",
+            "final": "ـف"
+          },
+          "term": "فَاء"
+        },
+        {
+          "id": "ar-letter-21",
+          "glyph": "ق",
+          "name": "قَاف",
+          "romanization": "qaaf",
+          "sound": "q, a k from deep in the throat",
+          "joins": true,
+          "forms": {
+            "isolated": "ق",
+            "initial": "قـ",
+            "medial": "ـقـ",
+            "final": "ـق"
+          },
+          "term": "قَاف"
+        },
+        {
+          "id": "ar-letter-22",
+          "glyph": "ك",
+          "name": "كَاف",
+          "romanization": "kaaf",
+          "sound": "k",
+          "joins": true,
+          "forms": {
+            "isolated": "ك",
+            "initial": "كـ",
+            "medial": "ـكـ",
+            "final": "ـك"
+          },
+          "term": "كَاف"
+        },
+        {
+          "id": "ar-letter-23",
+          "glyph": "ل",
+          "name": "لَام",
+          "romanization": "laam",
+          "sound": "l",
+          "joins": true,
+          "forms": {
+            "isolated": "ل",
+            "initial": "لـ",
+            "medial": "ـلـ",
+            "final": "ـل"
+          },
+          "term": "لَام"
+        },
+        {
+          "id": "ar-letter-24",
+          "glyph": "م",
+          "name": "مِيم",
+          "romanization": "miim",
+          "sound": "m",
+          "joins": true,
+          "forms": {
+            "isolated": "م",
+            "initial": "مـ",
+            "medial": "ـمـ",
+            "final": "ـم"
+          },
+          "term": "مِيم"
+        },
+        {
+          "id": "ar-letter-25",
+          "glyph": "ن",
+          "name": "نُون",
+          "romanization": "nuun",
+          "sound": "n",
+          "joins": true,
+          "forms": {
+            "isolated": "ن",
+            "initial": "نـ",
+            "medial": "ـنـ",
+            "final": "ـن"
+          },
+          "term": "نُون"
+        },
+        {
+          "id": "ar-letter-26",
+          "glyph": "ه",
+          "name": "هَاء",
+          "romanization": "haa’",
+          "sound": "h",
+          "joins": true,
+          "forms": {
+            "isolated": "ه",
+            "initial": "هـ",
+            "medial": "ـهـ",
+            "final": "ـه"
+          },
+          "term": "هَاء"
+        },
+        {
+          "id": "ar-letter-27",
+          "glyph": "و",
+          "name": "وَاو",
+          "romanization": "waaw",
+          "sound": "w; uu (long u)",
+          "joins": false,
+          "forms": {
+            "isolated": "و",
+            "initial": "و",
+            "medial": "ـو",
+            "final": "ـو"
+          },
+          "term": "وَاو"
+        },
+        {
+          "id": "ar-letter-28",
+          "glyph": "ي",
+          "name": "يَاء",
+          "romanization": "yaa’",
+          "sound": "y; ii (long i)",
+          "joins": true,
+          "forms": {
+            "isolated": "ي",
+            "initial": "يـ",
+            "medial": "ـيـ",
+            "final": "ـي"
+          },
+          "term": "يَاء"
+        }
+      ]
+    },
+    {
+      "id": "marks",
+      "title": "Vowel marks",
+      "items": [
+        {
+          "id": "ar-mark-01",
+          "glyph": "بَ",
+          "name": "fatha",
+          "romanization": "a",
+          "sound": "short a above the letter",
+          "term": "بَ"
+        },
+        {
+          "id": "ar-mark-02",
+          "glyph": "بِ",
+          "name": "kasra",
+          "romanization": "i",
+          "sound": "short i below the letter",
+          "term": "بِ"
+        },
+        {
+          "id": "ar-mark-03",
+          "glyph": "بُ",
+          "name": "damma",
+          "romanization": "u",
+          "sound": "short u above the letter",
+          "term": "بُ"
+        },
+        {
+          "id": "ar-mark-04",
+          "glyph": "بْ",
+          "name": "sukun",
+          "romanization": "–",
+          "sound": "no vowel after the letter",
+          "term": "بْ"
+        },
+        {
+          "id": "ar-mark-05",
+          "glyph": "بّ",
+          "name": "shadda",
+          "romanization": "bb",
+          "sound": "the letter is doubled",
+          "term": "بّ"
+        },
+        {
+          "id": "ar-mark-06",
+          "glyph": "بًا",
+          "name": "tanwiin",
+          "romanization": "an",
+          "sound": "-an at the end of a word",
+          "term": "بًا"
+        }
+      ]
+    }
+  ]
+}
