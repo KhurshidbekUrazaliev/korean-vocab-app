@@ -3,6 +3,7 @@ import { TLink } from './Motion.jsx';
 import { SpeakButton } from './SpeakButton.jsx';
 import { ArrowRight, Check, Close, Speaker, SoundOn, SoundOff } from './Icons.jsx';
 import { buildMultipleChoice, checkTyped } from '../lib/quiz.js';
+import { buildMatchRound, isPair } from '../lib/match.js';
 import { shuffle } from '../lib/shuffle.js';
 import { speak, canSpeak, warm } from '../lib/speech.js';
 import { feedback, soundOn, setSound } from '../lib/sound.js';
@@ -31,11 +32,11 @@ export function Session({ words, pool = words, mode, dayId, title, exitTo, exitL
   const before = useRef({});
 
   const answer = useCallback(
-    (correct) => {
-      if (Object.hasOwn(before.current, word.id)) return;
-      before.current[word.id] = progressStore.get().words[word.id]?.box ?? 0;
-      progressStore.recordAnswer(word.id, correct);
-      const graded = [...results, { word, correct }];
+    (correct, w = word) => {
+      if (Object.hasOwn(before.current, w.id)) return;
+      before.current[w.id] = progressStore.get().words[w.id]?.box ?? 0;
+      progressStore.recordAnswer(w.id, correct);
+      const graded = [...results, { word: w, correct }];
       setResults(graded);
       if (round.full && graded.length === round.queue.length) {
         progressStore.recordSession(dayId, mode, graded.filter((r) => r.correct).length, graded.length);
@@ -114,6 +115,13 @@ export function Session({ words, pool = words, mode, dayId, title, exitTo, exitL
             {mode === 'choice' && <Choice word={word} pool={pool} direction={direction} onAnswer={answer} onNext={nextWord} onDirection={index === 0 ? setDirection : null} />}
             {mode === 'typing' && <Typing word={word} onAnswer={answer} onNext={nextWord} />}
             {mode === 'listening' && <Listening word={word} pool={pool} onAnswer={answer} onNext={nextWord} />}
+            {mode === 'match' && (
+              <MatchBoard
+                words={round.queue.slice(index, index + MATCH_PAIRS)}
+                onAnswer={(w, correct) => answer(correct, w)}
+                onDone={() => setIndex(index + MATCH_PAIRS)}
+              />
+            )}
           </WordFrame>
         )}
       </div>
@@ -410,6 +418,78 @@ function Listening({ word, pool, onAnswer, onNext }) {
       <p className="quiz__reveal ko" {...langOf(word)} data-shown={picked != null}>{picked != null ? word.term : ' '}</p>
       <Options q={q} picked={picked} onPick={pick} />
       {picked != null && <Feedback word={word} correct={picked === q.answerId} onNext={next} />}
+    </div>
+  );
+}
+
+/* ---------------- Match: pair each word with its meaning ---------------- */
+
+const MATCH_PAIRS = 5;
+
+function MatchBoard({ words, onAnswer, onDone }) {
+  const board = useMemo(() => buildMatchRound(words, { pairs: words.length }), [words]);
+  const byId = useMemo(() => new Map(words.map((w) => [w.id, w])), [words]);
+  const [selected, setSelected] = useState(null); // { side: 'left' | 'right', id }
+  const [matched, setMatched] = useState(() => new Set());
+  const [wrong, setWrong] = useState(null);
+  const [status, setStatus] = useState('');
+  const missed = useRef(new Set());
+
+  const pick = (side, id) => {
+    if (matched.has(id)) return;
+    if (side === 'left') speak(byId.get(id).term);
+    if (!selected || selected.side === side) return setSelected({ side, id });
+    const leftId = side === 'left' ? id : selected.id;
+    const rightId = side === 'right' ? id : selected.id;
+    setSelected(null);
+    if (isPair(leftId, rightId)) {
+      const w = byId.get(leftId);
+      feedback('right');
+      onAnswer(w, !missed.current.has(leftId));
+      const next = new Set(matched).add(leftId);
+      setMatched(next);
+      setStatus(`Matched: ${w.term} means ${w.english}.`);
+      if (next.size === board.left.length) setTimeout(onDone, reducedMotion() ? 0 : 500);
+    } else {
+      // A wrong pair counts against both words: each was confused with the other.
+      feedback('wrong');
+      missed.current.add(leftId).add(rightId);
+      setWrong({ leftId, rightId });
+      setStatus('Not a pair. Try again.');
+      setTimeout(() => setWrong(null), 450);
+    }
+  };
+
+  const card = (side, c) => {
+    const done = matched.has(c.id);
+    const isSelected = selected?.side === side && selected.id === c.id;
+    const isWrong = wrong && (side === 'left' ? wrong.leftId : wrong.rightId) === c.id;
+    return (
+      <li key={c.id}>
+        <button
+          type="button"
+          className="match__card"
+          data-side={side}
+          data-done={done}
+          data-wrong={Boolean(isWrong)}
+          aria-pressed={isSelected}
+          disabled={done}
+          onClick={() => pick(side, c.id)}
+        >
+          {side === 'left' ? <span className="ko" {...langOf(byId.get(c.id))}>{c.text}</span> : c.text}
+        </button>
+      </li>
+    );
+  };
+
+  return (
+    <div className="quiz match">
+      <h1 className="quiz__label">Match each word with its meaning</h1>
+      <div className="match__cols">
+        <ul aria-label="Words">{board.left.map((c) => card('left', c))}</ul>
+        <ul aria-label="Meanings">{board.right.map((c) => card('right', c))}</ul>
+      </div>
+      <p className="visually-hidden" role="status">{status}</p>
     </div>
   );
 }

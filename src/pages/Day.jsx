@@ -122,7 +122,12 @@ export default function Day() {
             </p>
             <h2 className="h2" id="words-title">The {day.words.length} words</h2>
           </div>
-          <p className="lede">Tap the speaker, then say each word after the voice. The bars show how well you know it.</p>
+          <div className="words__aside">
+            <p className="lede">Tap the speaker, then say each word after the voice. Tap again to hear it slowly. The bars show how well you know it.</p>
+            <TLink className="btn btn--ghost" to={course.path(`/day/${day.number}/practice/match`)} native={day.titleNative} en="Match">
+              Play Match <ArrowRight />
+            </TLink>
+          </div>
         </div>
         {day.status === 'draft' && (
           <p className="draft-note">

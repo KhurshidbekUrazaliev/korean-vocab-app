@@ -292,3 +292,10 @@
     flex-direction: column;
   }
 }
+
+.words__aside {
+  display: grid;
+  gap: var(--s-4);
+  justify-items: start;
+  max-width: 46ch;
+}
