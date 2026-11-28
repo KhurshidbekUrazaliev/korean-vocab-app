@@ -43,7 +43,7 @@ npm run dev
 
 ## Adding a day
 
-1. Add `src/data/days/dayNN.json` following the schema in `AGENTS.md` (10 words, unique Korean words across all days). Save the cover as `public/images/days/dayNN.webp` and use `images/days/dayNN.webp` in the JSON.
+1. Add `src/data/days/dayNN.json` following the schema in `docs/PROJECT.md` (10 words, unique Korean words across all days). Save the cover as `public/images/days/dayNN.webp` and use `images/days/dayNN.webp` in the JSON.
 2. Run `npm test` (checks numbering, word count, duplicates).
 3. Run `node scripts/make-images.cjs --previews-only` to regenerate sharing images.
 4. Run `python scripts/make-audio.py --check` to record the new words.
@@ -57,10 +57,10 @@ src/
   components/      header, footer, page transitions, hero particle field, practice session
   pages/           Home, Day, Practice, Review, Privacy/Terms, NotFound
   styles/          tokens, base, and per-area CSS
-scripts/           postbuild (SEO files) and image generation
+scripts/           postbuild (SEO files), image and audio generation
 ```
 
-Work is coordinated between agents in `AGENTS.md`.
+Architecture, data format, design system and decisions: `docs/PROJECT.md`.
 
 ## License
 

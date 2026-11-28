@@ -1,0 +1,135 @@
+# Project notes
+
+How the app is built, the data format, the design system and the decisions behind them.
+
+## Goal
+
+Turn the existing Korean vocabulary app into a polished, professional
+learning product with **50 vocabulary days**. It should be engaging enough
+that people come back daily, look like a designed product (not a template),
+and be findable by search engines and AI assistants.
+
+Live site: https://khurshidbekurazaliev.github.io/korean-vocab-app/
+
+## Current state (2026-11-28)
+
+- Vite + React 19 + React Router 7. GSAP (ScrollTrigger, SplitText, CustomEase), Lenis smooth
+  scroll, three.js hero (lazy chunk). Plain CSS with tokens. Vitest. Every push to `main` is tested and
+  published to GitHub Pages (`gh-pages` branch) by GitHub Actions.
+- **50 days / 500 words.** Days 01-15 = owner's notes (`status: verified`), with 4 typos fixed
+  (동특증→동아리 활동, 짐장히→굉장히, 마지다→마치다, 영덩이→엉덩이; each has a `note`).
+  Days 16–50 contain 350 generated entries matched to the illustrated topics. All 35 lists carry
+  `status: reviewed` and `source: generated`. See [the vocabulary review](docs/VOCABULARY-REVIEW.md). Each day offers direct links to
+  flashcards, multiple choice, typing and listening in its lesson steps.
+- Every public route gets static HTML from `scripts/postbuild.js`: own title, description,
+  canonical, OG/Twitter tags, per-day 1200x630 preview image, JSON-LD, and the word list as
+  plain HTML inside `#root`. Sitemap, robots.txt (AI bots allowed), llms.txt, 404.html.
+- The app uses hanji paper tones, seal red and Noto Serif KR for Hangul, with Pretendard for UI text. See the v2 design system below.
+- Motion: hero particle field that forms real Korean words (cursor pushes particles), line-mask
+  text reveals, scroll-velocity word ticker, pinned "four ways to practice" scene, staggered day
+  index with sticky block numbers, ink curtain page transitions showing the destination's Korean
+  title, 3D flashcard flip, answer pop/shake, animated score ring. All off under
+  `prefers-reduced-motion` (Lenis disabled, hero rendered still, transitions instant).
+
+## Architecture
+
+```
+src/
+  data/days/dayNN.json      one file per day (schema below)
+  data/index.js             days, allWords, getDay, pad, PLANNED_DAYS
+  lib/                      pure logic, unit-tested in lib/__tests__
+    shuffle.js quiz.js srs.js progress.js streak.js speech.js
+    stats.js                dayStatus, currentDay, weakWords, activity, mastery breakdown
+    sound.js                feedback tones (Web Audio) + vibration
+    motion.js               GSAP plugin registration + reducedMotion()
+  hooks/                    useProgress (store over localStorage), useTheme
+  components/               Header, Footer, Motion (Lenis + curtain + TLink), Reveal,
+                            HangulField (three.js), Session (all practice modes + results),
+                            SpeakButton, Icons
+  pages/                    Home (Landing for new visitors, Today for returning), Course, Day,
+                            Practice, Review, Progress, Legal (Privacy, Terms), NotFound
+  styles/                   tokens.css, base.css, landing.css, app.css, day.css, practice.css
+scripts/postbuild.js        per-route HTML + SEO files (runs in `npm run build`)
+scripts/make-images.cjs     OG images + icons (dev-only, Playwright)
+scripts/make-audio.py       word clips with Supertonic 3 (dev-only, Python; --check transcribes with Whisper)
+```
+
+**Routes**: `/` (Landing or Today) · `/course` · `/progress` (noindex) · `/day/:n` · `/day/:n/practice/:mode` (flashcards|choice|typing|listening,
+noindex) · `/review` · `/privacy` · `/terms` · anything else → app 404 (served via 404.html).
+Title pattern: `Day 07: Travel | Essential Korean Vocabulary`.
+
+Links between pages use `TLink` (a real `<a href>` that plays the curtain). Page `<title>`/meta
+are rendered by React 19 inside each page; postbuild bakes the same values into static HTML.
+
+### Data schema (`src/data/days/dayNN.json`)
+
+```json
+{
+  "id": "day07", "number": 7, "slug": "travel", "title": "Travel", "titleKo": "여행",
+  "status": "verified", "source": "owner-notes", "cover": "images/days/day07.webp",
+  "words": [{ "id": "day07-01", "korean": "기대하다", "romanization": "gidaehada", "english": "to expect", "note": "optional" }]
+}
+```
+`status`: `verified` (class notes) | `reviewed` (dictionary review) | `draft`. `source`: `owner-notes` | `generated`. Tests enforce 10 words
+per day, sequential numbers, unique ids and unique Korean words across all days.
+
+### Practice engine (`src/lib`)
+
+```js
+shuffle(array) -> new array                       // Fisher-Yates
+buildMultipleChoice(word, pool, { count = 4, direction = 'ko-en' }) -> { prompt, options, answerId }
+checkTyped(input, word, { direction }) -> { correct, closeness }   // UI accepts closeness >= 0.8
+schedule(state, correct, now) -> { box, dueAt, seen, correctCount } // boxes 1-5, [0,1,3,7,16] days; new+correct -> box 2;
+                                                  // correct before dueAt keeps box and dueAt; miss -> box 1
+getDueWords(progress, allWords, now) -> word[]
+loadProgress() / saveProgress(p)                  // key "kv.progress.v2", imports compatible v1 progress
+getStreak(progress, now) -> { current, best, practicedToday }
+speak(text, { rate })                             // recorded clip public/audio/<id>.mp3, else best ko-KR device voice
+warm(text)                                        // preload a clip (hover, next card)
+```
+
+## Design system (v2, 2026-11-27)
+
+See `docs/DESIGN-CRITIQUE.md`: it explains why v1 looked like a template and what v2 changes.
+
+- **Identity**: hanji paper that matches the illustrations' ground (#F6ECDF), warm ink, and one
+  seal-red accent (인주) taken from the art. No lime, no gradients, no glass, no emoji.
+- **Type**: Hangul display in **Noto Serif KR** (Myeongjo, Google Fonts) via `.ko`; UI in
+  Pretendard. Use `.ko-ui` for small Hangul inside UI text. Tabular numbers via `.num`.
+- **Tokens** (`src/styles/tokens.css`): paper `#f6ede2`, surface `#fffaf3`, surface-2 `#ece2d3`,
+  ink `#1c1a16`, ink-2 `#5f584d`, ink-3 `#8a8172` (large/decorative only), line `#e0d5c4`,
+  accent `#a8322a` + soft `#f2ddd2`, good `#2e6440` + soft `#dde9d7`, dark band `#24201b`.
+- **Contrast** (WCAG AA, checked 2026-11-27): ink/paper 15.00, ink-2/paper 6.06,
+  ink-2/surface-2 5.48, accent/paper 5.75, white-on-accent 6.41, good/paper 6.02;
+  dark: ink/paper 15.11, ink-2/surface 6.56, accent/paper 5.86, accent/surface 5.37, good 8.61.
+  ink-3 is 3.32 and is only for large or decorative text.
+- **App structure**: top app bar (brand seal, Today / Course / Review / Progress, streak, theme)
+  and a bottom tab bar under 820px. Practice runs full-screen without them.
+- **Components**: `.btn` (ink), `.btn--accent` (the one primary action per screen), `.btn--ghost`,
+  `.card`, `.badge(--accent|--good|--ink)`, `Ring`, `Mastery` (5 bars = review box).
+- Spacing 4/8/12/16/24/32/48/64 (+96/128). Radius 8/14/24/pill.
+- Motion: GSAP for entrances, scroll scenes and the curtain; CSS for hover. All off for reduced motion.
+- Practice feedback: soft Web Audio tones + vibration on mobile, toggle in the session bar
+  (`kv.sound` in localStorage).
+
+## Decisions
+
+| Date | Decision |
+|------|----------|
+| 2026-11-27 | One data file per day + one shared lesson UI instead of per-day components |
+| 2026-11-27 | Move off Create React App (deprecated) to Vite; pre-render every route |
+| 2026-11-27 | Progress kept in localStorage; no paid/permission state on the client |
+| 2026-11-27 | Plain CSS + tokens instead of Tailwind (fewer deps, design needs custom motion styles) |
+| 2026-11-27 | Days 16-50 drafted so the course is complete; marked draft until checked |
+| 2026-11-27 | No background video. Motion, the WebGL hero and the illustrations carry the visual weight |
+| 2026-11-27 | v2 design: app structure (Today/Course/Review/Progress), hanji + seal red palette from the art, Noto Serif KR for Hangul. Replaces v1's lime/pine landing-page look |
+| 2026-11-28 | Use the original Day 16–50 illustration topics for the replacement lessons and keep their generated vocabulary marked as draft. |
+| 2026-11-28 | Complete the dictionary review of Days 16–50, record the corrections and merge PR #2 into the v2 design. |
+
+## Open questions for the owner
+
+- **Q1 resolved** The owner requested a language review of the generated entries. The review and corrections are recorded in [the vocabulary review](docs/VOCABULARY-REVIEW.md).
+- **Q2** "Conversion" means what: sign-ups, paid plan, or daily return? (Paid plan = backend + payment provider = new plan section.)
+- **Q3** Stay on GitHub Pages, or move to Vercel/Netlify (needed if we add accounts/payments)?
+- **Q5** Site name and domain. Current candidates: "한국어 공부", "Essential Korean Vocabulary".
+- **Q6** Name/contact for footer, Privacy, Terms, and structured data.

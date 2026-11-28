@@ -90,7 +90,7 @@ The nine WebPs in `docs/artwork-unassigned/` are historical copies from the earl
 > bicycle, a convenience store glow, power lines, a few distant pedestrians
 > from behind. Leave the left half calm for the headline.
 
-## Checklist before handing images to the agents
+## Checklist before adding images
 
 - [x] All images share the same style and palette
 - [x] No visible text or letters

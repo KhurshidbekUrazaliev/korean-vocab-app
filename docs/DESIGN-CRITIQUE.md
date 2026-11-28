@@ -42,7 +42,7 @@ that the UI around them ignores.
 
 ## Accessibility
 
-- Contrast passes AA in v1. v2 tokens are re-checked (ratios in AGENTS.md).
+- Contrast passes AA in v1. v2 tokens are re-checked (ratios in docs/PROJECT.md).
 - Ultralight 200 weights at mid sizes read thin on low-DPI screens. v2 uses 300 minimum.
 - "Move your cursor through the word" hint is meaningless on touch. Hide it there.
 
