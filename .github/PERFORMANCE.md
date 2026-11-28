@@ -62,3 +62,53 @@ Median of three mobile Lighthouse 13.6.0 runs on the local production build (sam
 | After | 86 | 2.02 s | 2.02 s | 444 ms | 2.79 s |
 
 The accessibility audit's rendered-font check now waits for the stylesheets to apply before inspecting glyphs.
+
+## Mobile results for the Korean and Arabic courses
+
+First-visit Home scored **87** against the target of 80. Arabic Home scored **88**, and Arabic Day 1 scored **95** with its illustrated cover. Home now opens the device sign-in form for a new learner.
+
+| Cold navigation | Score (range) | FCP | LCP | TBT | CLS |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| `/` · first visit | 87 (87–89) | 2.37 s | 2.37 s | 322 ms | 0.001 |
+| `/ar` · first visit | 88 (87–89) | 2.28 s | 2.28 s | 350 ms | <0.001 |
+| `/ar/day/1` · Greetings | 95 (87–96) | 2.12 s | 2.12 s | 101 ms | 0 |
+| `/` · signed-in Korean dashboard | 57 (24–76) | 1.26 s | 6.34 s | 111 ms | 0.469 |
+| `/ar` · signed-in Arabic dashboard | 71 (56–73) | 1.23 s | 6.16 s | 183 ms | <0.001 |
+
+The enrolled dashboards had the slowest largest contentful paint. The footer briefly occupied the space reserved for Today while its JavaScript loaded. Layout shift reached 0.469 on Korean Home and 0.482 on Arabic Home. In a separate scratch build, rendering Today with a static import removed that shift on both routes. The current lesson cover remained the Korean dashboard's largest element.
+
+### Font and build
+
+The course CSS specified Noto Naskh Arabic, but Chrome used the system font Geeza Pro for the Day 1 title before the webfont was available. Vite now bundles the Arabic-script subset from `@fontsource-variable/noto-naskh-arabic@5.3.0` and its SIL Open Font License. One 94,032-byte WOFF2 file covers weights 400–700. Chrome's rendered-font inspector confirmed that this file drew the Arabic greeting on both sign-in pages and the Day 1 title. The Arabic Day 1 cover also returned HTTP 200 in every run. [Font package](https://fontsource.org/fonts/noto-naskh-arabic) · [Upstream font and license](https://github.com/google/fonts/tree/main/ofl/notonaskharabic)
+
+The measured production build combined the multi-course and device sign-in implementation (`008260f`), the published Arabic images and cover paths (`3fc90d6`), and the bundled webfont (`7300f55`). Its application entry was `index-DDp7hTuO.js`. The course registry at that revision still had an empty Arabic home scene, so the Arabic sign-in measurements exclude that below-the-fold image.
+
+### Repeating the measurements
+
+Build with `npm ci && npm run build`. Serve `dist` at `/korean-vocab-app/` with extensionless routes resolving to their generated HTML and gzip enabled for HTML, CSS and JavaScript. Use Lighthouse 13.6.0's default mobile performance audit. These runs used Chrome 158.0.8127.37 and Node 22.23.5 on ARM64 macOS. Each of three rounds visited all five states in a rotated order. Every visit started a new Chrome process with an empty network cache. The table shows the median of each metric and the full score range. All 15 reports completed on the requested URL without a failed HTTP response, page error or Lighthouse warning.
+
+Leave browser storage empty for the first-visit measurements. For each enrolled measurement, set only the relevant device profile before the app's first script runs. The following snippet uses Lighthouse's Puppeteer page argument so its normal cache and storage resets stay enabled. Run it in a scratch directory with `npm install lighthouse@13.6.0 puppeteer-core@25.16.0`. Set `URL` to the full route, `CHROME_PATH` to the browser executable and `COURSE` to `ko` or `ar` for enrolled runs. Omit `COURSE` for a first visit.
+
+```js
+import lighthouse from 'lighthouse';
+import puppeteer from 'puppeteer-core';
+
+const { URL: url, COURSE: course, CHROME_PATH: executablePath } = process.env;
+const browser = await puppeteer.launch({ executablePath, headless: true });
+try {
+  const page = await browser.newPage();
+  if (course) {
+    await page.evaluateOnNewDocument((origin, course) => {
+      if (location.origin === origin && window === top) {
+        localStorage.setItem('kv.profile', JSON.stringify({
+          name: 'Sample', course, goal: 10, createdAt: '2026-11-28T00:00:00.000Z',
+        }));
+      }
+    }, new URL(url).origin, course);
+  }
+  const { lhr } = await lighthouse(url, { onlyCategories: ['performance'] }, undefined, page);
+  console.log(lhr.finalDisplayedUrl, Math.round(100 * lhr.categories.performance.score));
+} finally {
+  await browser.close();
+}
+```
