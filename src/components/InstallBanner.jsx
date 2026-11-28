@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { TLink } from './Motion.jsx';
 import { Close, Download, Share } from './Icons.jsx';
 import { promptInstall, useInstall } from '../hooks/useInstall.js';
+import { BRAND } from '../data/brand.js';
 
 const KEY = 'kv.install.dismissed';
 const SNOOZE_DAYS = 14;
@@ -43,7 +44,7 @@ export function InstallBanner() {
     <aside className="install-banner card" aria-labelledby="install-banner-title">
       <img src={icon} alt="" width="48" height="48" className="install-banner__icon" />
       <div className="install-banner__text">
-        <p id="install-banner-title"><b>Install Essential Vocabulary</b></p>
+        <p id="install-banner-title"><b>Install {BRAND}</b></p>
         {canPrompt ? (
           <p className="muted">Open it like an app, in its own window. Pages you have opened also work offline.</p>
         ) : (

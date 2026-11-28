@@ -1,4 +1,4 @@
-# Essential Vocabulary
+# Inkday
 
 A vocabulary app for **Korean** and **Arabic** in daily sets of ten words: 50 days and 500 words per language. Each word has the native script, a romanization, an English meaning and a recorded pronunciation. Each day is a four-step lesson (flashcards, multiple choice in both directions, typing, listening) plus a Match game, and every answer feeds a spaced-review schedule. Learners sign in with a name on their own device, choose a language and a daily goal, and can switch language from the app bar. A Letters page teaches Hangul and the Arabic alphabet.
 

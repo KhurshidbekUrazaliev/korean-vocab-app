@@ -1,5 +1,6 @@
 import { TLink } from './Motion.jsx';
 import { useCourse } from '../hooks/useCourse.js';
+import { BRAND } from '../data/brand.js';
 
 export function Footer() {
   const course = useCourse();
@@ -23,7 +24,7 @@ export function Footer() {
           </ul>
         </div>
         <div className="footer__legal">
-          <span>© {new Date().getFullYear()} Essential Vocabulary</span>
+          <span>© {new Date().getFullYear()} {BRAND}</span>
           <span>
             Developed by Khurshidbek · <a href="mailto:ummahfaris@gmail.com">ummahfaris@gmail.com</a>
           </span>

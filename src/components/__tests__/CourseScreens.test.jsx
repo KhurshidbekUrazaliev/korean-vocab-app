@@ -106,7 +106,7 @@ it('uses the saved course throughout the welcome header and switches course on t
   const form = within(screen.getByRole('group', { name: 'I want to learn' }));
 
   language.getByRole('button', { name: /Arabic/, pressed: true });
-  expect(header.getByRole('link', { name: /Essential Vocabulary Arabic/ }).getAttribute('href')).toBe('/ar');
+  expect(header.getByRole('link', { name: /Inkday Arabic/ }).getAttribute('href')).toBe('/ar');
   expect(header.getByRole('link', { name: 'Course' }).getAttribute('href')).toBe('/ar/course');
   expect(form.getByRole('radio', { name: /Arabic/ }).checked).toBe(true);
 

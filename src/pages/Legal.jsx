@@ -1,3 +1,4 @@
+import { BRAND } from '../data/brand.js';
 
 export function Privacy() {
   return (
@@ -29,7 +30,7 @@ export function Terms() {
         <h1 className="display">Terms of use</h1>
         <p>Last updated 28 November 2026.</p>
         <h2>Using the site</h2>
-        <p>Essential Korean Vocabulary is a free study tool. You may use it for personal learning. Please don’t copy the site or its word lists to republish them elsewhere.</p>
+        <p>{BRAND} is a free study tool. You may use it for personal learning. Please don’t copy the site or its word lists to republish them elsewhere.</p>
         <h2>Accuracy</h2>
         <p>Word lists are checked carefully, but mistakes can happen. Translations give the common meanings of a word, not every meaning. If you find an error, please report it.</p>
         <h2>No warranty</h2>

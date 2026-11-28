@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { TLink } from './Motion.jsx';
-import { Moon, Sun, Today, Course, Repeat, Chart, Flame } from './Icons.jsx';
+import { Logo, Moon, Sun, Today, Course, Repeat, Chart, Flame } from './Icons.jsx';
 import { useProgress } from '../hooks/useProgress.js';
 import { useCourse } from '../hooks/useCourse.js';
 import { profileStore, useProfile } from '../hooks/useProfile.js';
 import { getDueWords } from '../lib/srs.js';
 import { getStreak } from '../lib/streak.js';
 import { COURSE_LIST, switchPath } from '../data/index.js';
+import { BRAND } from '../data/brand.js';
 
 const TABS = [
   { to: '/', label: 'Today', Icon: Today, end: true },
@@ -76,9 +77,9 @@ export function Header({ theme, onToggleTheme }) {
       <header className="appbar" data-scrolled={scrolled}>
         <div className="wrap appbar__inner">
           <TLink to={course.path('/')} native={course.nativeName} en="Today" className="brand">
-            <span className="seal" lang={course.lang} aria-hidden="true">{course.seal}</span>
+            <Logo className="brand__mark" />
             <span className="brand__name">
-              Essential Vocabulary
+              {BRAND}
               <span className="brand__sub">{course.name}</span>
             </span>
           </TLink>

@@ -1,3 +1,5 @@
+import { MARK_PATHS } from '../data/brand.js';
+
 const base = { width: 20, height: 20, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.8, strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': true };
 
 export const ArrowRight = (p) => (
@@ -50,4 +52,12 @@ export const Download = (p) => (
 );
 export const Share = (p) => (
   <svg {...base} {...p}><path d="M12 3.5v11M8 7l4-3.5L16 7M7 11H5.5v9.5h13V11H17" /></svg>
+);
+
+/** The Inkday mark in the current theme's accent colours. */
+export const Logo = (p) => (
+  <svg width="32" height="32" viewBox="0 0 512 512" aria-hidden="true" {...p}>
+    <rect width="512" height="512" rx="112" fill="var(--accent)" />
+    {MARK_PATHS.map((d) => <path key={d} d={d} fill="var(--accent-ink)" />)}
+  </svg>
 );

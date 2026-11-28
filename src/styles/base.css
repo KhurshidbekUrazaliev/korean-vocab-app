@@ -349,19 +349,11 @@ button {
   justify-self: start;
   text-decoration: none;
 }
-.seal {
-  display: grid;
-  place-items: center;
+.brand__mark {
+  display: block;
+  flex: none;
   width: 32px;
   height: 32px;
-  border-radius: 7px;
-  background: var(--accent);
-  color: var(--accent-ink);
-  font-family: var(--font-ko);
-  font-size: 17px;
-  font-weight: 700;
-  line-height: 1;
-  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--accent-ink) 22%, transparent);
 }
 .brand__name {
   font-size: 16px;

@@ -2,6 +2,7 @@ import { useEffect, useId, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from '../components/Icons.jsx';
 import { COURSES, COURSE_LIST } from '../data/index.js';
+import { BRAND } from '../data/brand.js';
 import { GOALS, profileStore, useProfile } from '../hooks/useProfile.js';
 import { useCourse } from '../hooks/useCourse.js';
 import Landing from './Landing.jsx';
@@ -41,7 +42,7 @@ export default function Welcome() {
 
   const copy = (
     <div className="hero__copy signin">
-      <p className="eyebrow">Essential Vocabulary</p>
+      <p className="eyebrow">{BRAND}</p>
       <h1 className="display signin__title">{profile ? 'Your profile.' : 'Ten words a day, in the language you choose.'}</h1>
       <form className="signin__form" onSubmit={submit} noValidate>
         <div className="field">

@@ -1,4 +1,4 @@
-// Run after changing lesson titles or artwork. --previews-only skips app icons;
+// Run after changing lesson titles, artwork or the logo. --previews-only skips app icons;
 // --days=8,16-50 regenerates just those lesson cards in both courses.
 const fs = require('node:fs');
 const path = require('node:path');
@@ -9,9 +9,16 @@ const publicDir = path.join(root, 'public');
 const pad = n => String(n).padStart(2, '0');
 const esc = text => text.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 const courses = [
-  { id: 'ko', name: 'Korean', native: '한국어', dir: 'ltr', seal: '한', hero: 'images/hero.webp', out: 'og' },
-  { id: 'ar', name: 'Arabic', native: 'الْعَرَبِيَّة', dir: 'rtl', seal: 'ع', hero: 'images/ar/hero.webp', out: 'og/ar' },
+  { id: 'ko', name: 'Korean', native: '한국어', dir: 'ltr', hero: 'images/hero.webp', out: 'og' },
+  { id: 'ar', name: 'Arabic', native: 'الْعَرَبِيَّة', dir: 'rtl', hero: 'images/ar/hero.webp', out: 'og/ar' },
 ];
+// App icons: [file, size, corner radius on the 512 grid]. iOS and maskable icons are full bleed
+// because the system rounds them itself.
+const ICONS = [
+  ['favicon-32.png', 32, 96], ['apple-touch-icon.png', 180, 0], ['icon-192.png', 192, 112],
+  ['icon-512.png', 512, 112], ['icon-maskable-512.png', 512, 0],
+];
+let brand; // src/data/brand.js, an ES module, loaded in generate()
 
 function loadDays(id) {
   const dir = path.join(root, 'src/data', id);
@@ -43,8 +50,7 @@ main{position:relative;width:1200px;height:630px;overflow:hidden}
 [lang=ar]{font-family:'Noto Naskh Arabic',serif}
 header,footer{position:absolute;left:60px;right:60px;display:flex;align-items:center}
 header{top:40px;gap:14px;font-size:26px;font-weight:600;letter-spacing:-.025em}
-.seal{background:#a8322a;color:#fff7ec;display:grid;place-items:center;width:46px;height:46px;border-radius:10px;font-size:30px;line-height:1}
-.seal[lang=ar]{font-size:34px}
+header svg{display:block;flex:none}
 .art{position:absolute;right:52px;top:117px;width:556px;height:366px;object-fit:cover;object-position:78% 50%;border:1px solid #d5c7b6;border-radius:18px}
 .copy{position:absolute;top:133px;left:60px;width:504px}
 .kicker{color:#8c3029;font-weight:700;font-size:22px;letter-spacing:.035em;margin:0 0 12px}
@@ -55,7 +61,6 @@ footer{bottom:41px;min-height:63px;border-top:1px solid #b9ac99;padding-top:19px
 .samples{font-size:27px;line-height:1.6;white-space:nowrap;font-weight:600}
 .samples[lang=ar]{font-size:31px}
 .count{white-space:nowrap;font-size:21px;letter-spacing:-.015em}
-.icon{background:#a8322a;color:#fffaf3;display:grid;place-items:center;font-weight:700;line-height:1}
 `;
 
 function card(course, days, day) {
@@ -68,7 +73,7 @@ function card(course, days, day) {
   const count = day ? day.words.length : days.reduce((total, d) => total + d.words.length, 0);
   const samples = (day || days[0]).words.slice(0, 3).map(w => '<bdi>' + esc(w.term) + '</bdi>').join(' · ');
   return `<main>
-    <header><span class="seal" ${lang}>${course.seal}</span>Essential Vocabulary</header>
+    <header>${brand.markSvg({ size: 46, radius: 100 })}${brand.BRAND}</header>
     <img class="art" src="data:image/webp;base64,${image}" alt="">
     <div class="copy"><p class="kicker">${day ? course.name + ' · Day ' + pad(day.number) : course.name + ' course'}</p>
       <h1 class="native" ${lang}>${esc(native)}</h1><p class="english">${esc(label)}</p></div>
@@ -131,7 +136,11 @@ async function saveJpeg(page, file) {
 }
 
 async function generate() {
-  const browser = await chromium.launch({ channel: process.env.CHROMIUM_CHANNEL || undefined });
+  brand = await import('../src/data/brand.js');
+  const browser = await chromium.launch({
+    channel: process.env.CHROMIUM_CHANNEL || undefined,
+    executablePath: process.env.CHROME_PATH || undefined, // same override as the e2e scans
+  });
   try {
     const page = await browser.newPage({ viewport: { width: 1200, height: 630 } });
     await loadTemplate(page);
@@ -149,14 +158,14 @@ async function generate() {
       }
     }
     if (!process.argv.some(arg => arg.startsWith('--days=') || arg === '--previews-only')) {
-      for (const [size, file] of [[32, 'favicon-32.png'], [180, 'apple-touch-icon.png'], [192, 'icon-192.png'], [512, 'icon-512.png']]) {
+      fs.writeFileSync(path.join(publicDir, 'favicon.svg'), brand.markSvg({ size: 32, radius: 96 }) + '\n');
+      for (const [file, size, radius] of ICONS) {
         await page.setViewportSize({ width: size, height: size });
-        await page.evaluate(async size => {
-          document.body.innerHTML = '<span class="icon" lang="ko">한</span>';
-          Object.assign(document.querySelector('.icon').style, { height: size+'px', fontSize: Math.round(size*.56)+'px' });
-          await document.fonts.ready;
-        }, size);
-        await page.screenshot({ path: path.join(publicDir, file) });
+        await page.evaluate(svg => {
+          document.body.style.background = 'transparent';
+          document.body.innerHTML = svg;
+        }, brand.markSvg({ size, radius }));
+        await page.screenshot({ path: path.join(publicDir, file), omitBackground: true });
       }
     }
     console.log('Generated ' + total + ' sharing cards.');

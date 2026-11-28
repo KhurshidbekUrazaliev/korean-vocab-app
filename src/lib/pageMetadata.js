@@ -1,7 +1,8 @@
 import { MODE_TITLES } from './stats.js';
+import { BRAND } from '../data/brand.js';
 
 export const SITE = 'https://khurshidbekurazaliev.github.io/korean-vocab-app';
-export const NAME = 'Essential Vocabulary';
+export const NAME = BRAND;
 const website = { '@context': 'https://schema.org', '@type': 'WebSite', name: NAME, url: SITE + '/', inLanguage: 'en' };
 const COURSE_NAMES = { ko: 'Korean', ar: 'Arabic' };
 const pad = (n) => String(n).padStart(2, '0');

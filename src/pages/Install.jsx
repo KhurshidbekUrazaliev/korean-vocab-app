@@ -4,6 +4,7 @@ import { ArrowRight, Check, Download, Share } from '../components/Icons.jsx';
 import { promptInstall, useInstall } from '../hooks/useInstall.js';
 import { useProfile } from '../hooks/useProfile.js';
 import { COURSES } from '../data/index.js';
+import { BRAND } from '../data/brand.js';
 import '../styles/app.css';
 
 const icon = `${import.meta.env.BASE_URL}icon-512.png`;
@@ -18,10 +19,10 @@ export default function Install() {
   return (
     <article className="install-page wrap">
       <header className="install-page__head">
-        <img src={icon} alt="Essential Vocabulary app icon" width="128" height="128" className="install-page__icon" />
+        <img src={icon} alt={`${BRAND} app icon`} width="128" height="128" className="install-page__icon" />
         <div>
           <p className="eyebrow">Web app</p>
-          <h1 className="display">Install Essential Vocabulary.</h1>
+          <h1 className="display">Install {BRAND}.</h1>
           <p className="lede">
             Add the app to your phone, tablet or computer. It opens in its own window from your home screen or app list, and the
             pages you have opened also work without a connection. Your profile and progress stay on the device.

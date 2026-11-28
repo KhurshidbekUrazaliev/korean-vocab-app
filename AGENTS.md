@@ -19,7 +19,7 @@ The owner tells each agent which role it has. Architecture, data format, design 
 
 ## Goal of this phase
 
-Add an **Arabic** course next to the Korean one, under the new site name **Essential Vocabulary**:
+Add an **Arabic** course next to the Korean one, under the site name **Inkday** (named Essential Vocabulary until 2026-11-28):
 
 - A sign-in page at the start: the learner enters a name, picks a language (Korean or Arabic) and a daily goal. The profile is saved on the device only; there is no server and no password (owner's decision, 2026-11-28).
 - After signing in, the learner can switch language from the app bar at any time.
@@ -108,6 +108,7 @@ Status: `todo` · `doing` · `review` · `done` · `blocked`
 | 2026-11-28 | Site name: Essential Vocabulary. Korean keeps its URLs; Arabic lives under `/ar` |
 | 2026-11-28 | Arabic vocabulary comes from the owner's Collins book: 413 of the 500 entries match a Collins headword directly. The rest are basics the book teaches inside phrases (numbers, eat, drink) or very common words (car, bank, house) |
 | 2026-11-28 | One progress store for both courses; ids are prefixed per course |
+| 2026-11-28 | Site renamed **Inkday** with a new logo: a lowercase i whose dot is a brush dot of ink (owner's choice). The mark lives in `src/data/brand.js` |
 
 ## Open questions for the owner
 
@@ -153,3 +154,4 @@ _(format: `YYYY-MM-DD HH:MM UTC | role | task | note`)_
 - 2026-11-28 04:40 UTC | Builder | B7 | Unified the welcome header and form course selection; added regression coverage for saved Arabic and switching back to Korean on the same URL.
 - 2026-11-28 | Lead | QA | Merged the welcome-header fix (PR 14). Browser sweep of 144 routes x 4 states (desktop and phone, light and dark, signed in and out): no errors, broken assets, overflow or dead links. Played every mode in both courses. Fixed two switching bugs: Review kept the other course's due words, and Today sent a learner browsing Korean to Arabic.
 - 2026-11-28 | Lead | app | Made the site an installable web app: manifest with maskable icons, shortcuts and screenshots, a service worker that keeps opened pages working offline, an Install banner and an `/install` page with steps for iPhone, Android and computers.
+- 2026-11-28 | Lead | brand | Renamed the site Inkday and replaced the 한/ع seal with the Inkday mark in the app bar, favicon, app icons and all 102 sharing cards. `scripts/make-images.cjs` now draws the icons from `src/data/brand.js` and accepts `CHROME_PATH`.

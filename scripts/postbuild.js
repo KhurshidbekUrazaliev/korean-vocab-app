@@ -161,7 +161,7 @@ console.log(`postbuild: ${urls.length} public routes + ${practiceRoutes} practic
 //   the JS bundle, so any page can render offline from the shell.
 // - Pages: network first, then the cached copy, then the shell.
 // - Images, sharing cards and word clips: served from cache, refreshed in the background.
-const precache = ['', 'manifest.json', 'favicon-32.png', 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png',
+const precache = ['', 'manifest.json', 'favicon.svg', 'favicon-32.png', 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png',
   'apple-touch-icon.png', ...readdirSync(join(DIST, 'assets')).map((f) => `assets/${f}`)];
 const version = createHash('sha256');
 for (const f of precache) version.update(f ? readFileSync(join(DIST, f)) : readFileSync(join(DIST, 'index.html')));
