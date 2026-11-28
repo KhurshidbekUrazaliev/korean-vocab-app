@@ -5,7 +5,7 @@
   "slug": "directions",
   "title": "Directions",
   "titleNative": "الِاتِّجَاهَات",
-  "status": "draft",
+  "status": "reviewed",
   "source": "collins-3000",
   "cover": null,
   "words": [
@@ -23,7 +23,7 @@
     },
     {
       "id": "ar-day16-03",
-      "term": "انْعَطَفَ",
+      "term": "اِنْعَطَفَ",
       "romanization": "in‘atafa",
       "english": "to turn"
     },

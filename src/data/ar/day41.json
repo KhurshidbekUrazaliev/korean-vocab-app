@@ -5,7 +5,7 @@
   "slug": "free-time",
   "title": "Free time",
   "titleNative": "وَقْتُ الْفَرَاغ",
-  "status": "draft",
+  "status": "reviewed",
   "source": "collins-3000",
   "cover": null,
   "words": [
@@ -54,7 +54,7 @@
     {
       "id": "ar-day41-08",
       "term": "الْفِيلْم",
-      "romanization": "al-film",
+      "romanization": "al-fiilm",
       "english": "film"
     },
     {
