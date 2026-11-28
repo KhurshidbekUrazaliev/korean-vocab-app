@@ -1,4 +1,4 @@
-import { lazy, Suspense, useCallback, useMemo, useRef, useState } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { TLink } from '../components/Motion.jsx';
 import { RevealText, RevealGroup } from '../components/Reveal.jsx';
 import { SpeakButton } from '../components/SpeakButton.jsx';
@@ -36,6 +36,18 @@ function Hero() {
   const word = showcase[i];
   const [useStillHero, setUseStillHero] = useState(reducedMotion);
   const showStillHero = useCallback(() => setUseStillHero(true), []);
+  // Start the WebGL field once the page has painted, so it never delays the first view.
+  const [fieldReady, setFieldReady] = useState(false);
+  useEffect(() => {
+    if (useStillHero) return;
+    const start = () => setFieldReady(true);
+    if ('requestIdleCallback' in window) {
+      const id = requestIdleCallback(start, { timeout: 2000 });
+      return () => cancelIdleCallback(id);
+    }
+    const id = setTimeout(start, 1200);
+    return () => clearTimeout(id);
+  }, [useStillHero]);
 
   useGSAP(
     () => {
@@ -43,7 +55,8 @@ function Hero() {
       gsap
         .timeline({ delay: 0.1 })
         .from('.hero__stage', { clipPath: 'inset(10% 10% 10% 10% round 24px)', duration: 1.5 })
-        .from('.hero .eyebrow, .hero .lede, .hero__ctas > *, .hero__facts > *', { y: 20, opacity: 0, stagger: 0.06 }, 0.45)
+        .from('.hero .eyebrow, .hero__ctas > *, .hero__facts > *', { y: 20, opacity: 0, stagger: 0.06 }, 0.45)
+        .from('.hero .lede', { y: 20 }, 0.5) // stays visible: it is the first large text a visitor sees
         .from('.hero__chip', { y: 24, opacity: 0, stagger: 0.12, duration: 1.1 }, 0.9);
       gsap.to('.hero__stage', { yPercent: 6, ease: 'none', scrollTrigger: { trigger: ref.current, start: 'top top', end: 'bottom top', scrub: true } });
     },
@@ -82,10 +95,10 @@ function Hero() {
       </div>
 
       <div className="hero__stage">
-        {useStillHero ? (
+        {useStillHero || !fieldReady ? (
           <div className="hero__still ko" lang="ko" aria-hidden="true">{word.korean}</div>
         ) : (
-          <Suspense fallback={<div className="hero__field" />}>
+          <Suspense fallback={<div className="hero__still ko" lang="ko" aria-hidden="true">{word.korean}</div>}>
             <HangulField className="hero__field" words={showcaseKo} onWordChange={setI} onUnavailable={showStillHero} />
           </Suspense>
         )}

@@ -30,7 +30,7 @@ export default function Day() {
   useGSAP(
     () => {
       if (!day || reducedMotion()) return;
-      const split = SplitText.create('.day-hero__ko', { type: 'words,chars', wordsClass: 'split-word' });
+      const split = SplitText.create('.day-hero__ko', { type: 'words,chars', wordsClass: 'split-word', aria: 'none' });
       gsap
         .timeline({ delay: 0.1 })
         .from(split.chars, { yPercent: 60, opacity: 0, stagger: 0.07, duration: 1.2 })
@@ -66,7 +66,9 @@ export default function Day() {
             {day.status === 'reviewed' && <span className="badge">Dictionary-reviewed</span>}
           </p>
           <h1 className="day-hero__title">
-            <span className="day-hero__ko ko" lang="ko" data-long={day.titleKo.replace(/ /g, '').length > 4}>{day.titleKo}</span>
+            {/* The split letters are for show; screen readers get the title once, as plain text. */}
+            <span className="day-hero__ko ko" lang="ko" aria-hidden="true" data-long={day.titleKo.replace(/ /g, '').length > 4}>{day.titleKo}</span>
+            <span className="visually-hidden" lang="ko">{day.titleKo}</span>
             <span className="day-hero__en">{day.title}</span>
           </h1>
           <dl className="day-hero__stats">

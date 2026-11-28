@@ -45,3 +45,20 @@ npx --yes lighthouse@13.6.0 http://127.0.0.1:43719/korean-vocab-app/day/1 \
 ```
 
 These measurements describe a first visit on the lab machine. CPU contention, connection timing and the randomized words on Home affect individual samples. A repeat-visit audit or field data from GitHub Pages would answer different questions about caching and real users.
+
+## Update: deferred hero and non-blocking font CSS (2026-11-28)
+
+Home's LCP element was the intro paragraph, held back by the hero entrance fade, two render-blocking font stylesheets and the WebGL field starting during the first render. Three changes:
+
+- The particle field mounts after the page has painted (`requestIdleCallback`, 2 s timeout). Until then the hero shows the same word as still text.
+- Both font stylesheets load with `rel="preload"` and switch to `rel="stylesheet"` on load (`<noscript>` fallback). Both use `font-display: swap`.
+- The intro paragraph slides in without fading from transparent.
+
+Median of three mobile Lighthouse 13.6.0 runs on the local production build (same machine, same settings):
+
+| Home | Score | FCP | LCP | TBT | Speed Index |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Before | 55 | 1.99 s | 7.73 s | 754 ms | 3.47 s |
+| After | 86 | 2.02 s | 2.02 s | 444 ms | 2.79 s |
+
+The accessibility audit's rendered-font check now waits for the stylesheets to apply before inspecting glyphs.

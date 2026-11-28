@@ -15,7 +15,13 @@ function findSample(family) {
 }
 
 export async function renderedFonts(page, session) {
-  await page.waitForFunction(() => document.fonts.status === 'loaded');
+  // The font stylesheets load without blocking the first paint (preload, then rel=stylesheet).
+  // Wait until both are applied and their faces have loaded before inspecting glyphs.
+  await page.waitForFunction(() => {
+    const pending = document.querySelector('link[rel="preload"][as="style"]');
+    const families = new Set([...document.fonts].filter(f => f.status === 'loaded').map(f => f.family.replace(/["']/g, '')));
+    return !pending && document.fonts.status === 'loaded' && families.has('Pretendard Variable');
+  });
   await session.send('DOM.getDocument');
   const samples = {};
   try {
