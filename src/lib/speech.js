@@ -49,6 +49,7 @@ export const canSpeak = () => hasAudio() || hasTTS();
 
 const clips = new Map();
 let playing = null;
+let playbackRequest = 0;
 
 function clip(src) {
   let a = clips.get(src);
@@ -79,23 +80,22 @@ function speakTTS(text, rate) {
 }
 
 export function speak(text, { rate = 0.9 } = {}) {
+  const request = ++playbackRequest;
+  playing?.pause();
+  playing = null;
   const src = hasAudio() && clipFor(text);
   if (!src) return speakTTS(text, rate);
   if (hasTTS()) window.speechSynthesis.cancel();
-  playing?.pause();
   const a = clip(src);
   playing = a;
-  a.currentTime = 0;
-  let started;
   try {
-    started = a.play();
+    a.currentTime = 0;
+    a.play()?.catch(err => {
+      // A second click can interrupt a pending play(), even on the same clip.
+      if (request === playbackRequest && err?.name !== 'NotAllowedError') speakTTS(text, rate);
+    });
+    return true;
   } catch {
-    started = null;
+    return speakTTS(text, rate);
   }
-  if (!started?.catch) return speakTTS(text, rate) || true;
-  started.catch((err) => {
-    // A blocked autoplay would block the device voice too; anything else means the clip failed.
-    if (err?.name !== 'NotAllowedError') speakTTS(text, rate);
-  });
-  return true;
 }

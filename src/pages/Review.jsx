@@ -7,8 +7,6 @@ import { allWords } from '../data/index.js';
 import { useProgress } from '../hooks/useProgress.js';
 import { getDueWords } from '../lib/srs.js';
 
-const SITE = 'https://khurshidbekurazaliev.github.io/korean-vocab-app';
-
 export default function Review() {
   const progress = useProgress();
   // Freeze the due list when the page opens so answering doesn't reshuffle the round.
@@ -19,18 +17,10 @@ export default function Review() {
     return times.length ? new Date(Math.min(...times)) : null;
   }, [progress]);
 
-  const head = (
-    <>
-      <title>Review due words | Essential Korean Vocabulary</title>
-      <meta name="description" content="Spaced review of the Korean words you have practiced, scheduled so each one comes back just before you forget it." />
-      <link rel="canonical" href={`${SITE}/review`} />
-    </>
-  );
-
   if (mode) {
     return (
       <div className="review-session">
-        {head}
+
         <Session words={due} pool={allWords} mode={mode} title="Review" exitTo="/" exitLabel="Back to Today" next={{ to: '/progress', label: 'See your progress', ko: '기록' }} />
       </div>
     );
@@ -38,7 +28,7 @@ export default function Review() {
 
   return (
     <section className="prose-page wrap review-page">
-      {head}
+
       <p className="eyebrow">Spaced review · 복습</p>
       <h1 className="display">{due.length ? `${due.length} ${due.length === 1 ? 'word is' : 'words are'} due.` : 'Nothing due right now.'}</h1>
       {due.length ? (
@@ -59,7 +49,7 @@ export default function Review() {
           <p className="lede">
             {Object.keys(progress.words).length
               ? `Your next word comes back ${next ? next.toLocaleString(undefined, { weekday: 'long', hour: 'numeric', minute: '2-digit' }) : 'soon'}.`
-              : 'Practice any day first. Words you answer show up here on a schedule: missed words tomorrow, known words a few days later.'}
+              : 'Practice a lesson to start your review list. Missed words are due immediately. A new word you answer correctly comes back in one day.'}
           </p>
           <div className="hero__ctas">
             <TLink className="btn btn--lg btn--accent" to="/course">Open the course <ArrowRight /></TLink>

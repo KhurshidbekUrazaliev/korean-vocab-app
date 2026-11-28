@@ -11,7 +11,8 @@ export const expectedStates = [
 ];
 
 /** Every scan follows an assertion on the rendered React page or feedback state. */
-export async function visitStates(page, baseURL, theme, scan) {
+export async function visitStates(page, baseURL, { theme, mobile }, scan) {
+  const activate = locator => mobile ? locator.tap() : locator.click();
   async function open(route, selector, status = 200) {
     const url = new URL(route, baseURL).href;
     const response = await page.goto(url, { waitUntil: 'domcontentloaded' });
@@ -21,7 +22,6 @@ export async function visitStates(page, baseURL, theme, scan) {
     await page.waitForFunction(expected =>
       document.documentElement.dataset.theme === expected &&
       matchMedia('(prefers-reduced-motion: reduce)').matches, theme);
-    await page.waitForFunction(() => document.fonts.status === 'loaded');
   }
   async function mode(name, selector) {
     await open(`day/1/practice/${name}`, selector);
@@ -48,16 +48,16 @@ export async function visitStates(page, baseURL, theme, scan) {
   const card = page.locator('.flash__card');
   assert.equal(await card.getAttribute('data-flipped'), 'false');
   await scan('flash-front');
-  await card.click();
+  await activate(card);
   await page.locator('.flash__card[data-flipped="true"]').waitFor();
   await scan('flash-back');
-  await page.getByRole('button', { name: /Not yet/ }).click();
+  await activate(page.getByRole('button', { name: /Not yet/ }));
   await page.locator('.session__count').filter({ hasText: /^2\/10$/ }).waitFor();
 
   await open('review', '.review-page__words li');
   assert.equal(await page.locator('.review-page__words li').count(), 1);
   await scan('review-due');
-  await page.getByRole('button', { name: 'Review with multiple choice' }).click();
+  await activate(page.getByRole('button', { name: 'Review with multiple choice' }));
   await page.locator('.quiz__prompt').waitFor();
   await scan('review-choice');
   const answer = meanings.get(await page.locator('.quiz__prompt').innerText());
@@ -66,10 +66,10 @@ export async function visitStates(page, baseURL, theme, scan) {
   const labels = await options.locator('span').allTextContents();
   assert.equal(labels.length, 4);
   assert.ok(labels.includes(answer));
-  await options.nth(labels.findIndex(label => label !== answer)).click();
+  await activate(options.nth(labels.findIndex(label => label !== answer)));
   await page.locator('.feedback[data-correct="false"]').waitFor();
   await scan('wrong-feedback');
-  await page.locator('.feedback button').click();
+  await activate(page.locator('.feedback button'));
   await page.getByRole('button', { name: 'Retry 1 missed' }).waitFor();
   assert.equal(await page.locator('.results__pct').innerText(), '0');
   await scan('results-with-miss');
@@ -83,14 +83,14 @@ export async function visitStates(page, baseURL, theme, scan) {
   await mode('choice', '.quiz__prompt');
   assert.equal(await page.locator('.option').count(), 4);
   await scan('choice');
-  await page.getByRole('button', { name: 'English → 한국어' }).click();
+  await activate(page.getByRole('button', { name: 'English → 한국어' }));
   await page.locator('.option__ko').first().waitFor();
   await scan('reverse-choice');
 
   await mode('typing', '#answer');
   await scan('typing');
   await page.locator('#answer').fill('incorrect answer');
-  await page.getByRole('button', { name: 'Check', exact: true }).click();
+  await activate(page.getByRole('button', { name: 'Check', exact: true }));
   await page.locator('.feedback[data-correct="false"]').waitFor();
   await scan('typing-feedback');
 

@@ -4,14 +4,15 @@ import { createRequire } from 'node:module';
 import { chromium } from 'playwright';
 import { servePages } from './pages-server.js';
 import { expectedStates, visitStates } from './lesson-states.js';
+import { renderedFonts } from './rendered-fonts.js';
 
 const require = createRequire(import.meta.url);
 const reports = new URL('results/', import.meta.url);
 const baseline = JSON.parse(await readFile(new URL('known-findings.json', import.meta.url)));
 const strict = process.env.A11Y_STRICT === '1';
 const profiles = {
-  desktop: { width: 1280, height: 900 },
-  mobile: { width: 390, height: 844 },
+  desktop: { viewport: { width: 1280, height: 900 } },
+  mobile: { viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true },
 };
 
 function fingerprint(rule, node, state) {
@@ -24,29 +25,58 @@ const observed = new Set();
 const summary = { strict, states: [], errors: [], unmatchedBaseline: [] };
 
 async function runProfile(browser, url, profile, theme) {
-  const context = await browser.newContext({ viewport: profiles[profile], colorScheme: theme, reducedMotion: 'reduce' });
+  const context = await browser.newContext({ ...profiles[profile], colorScheme: theme, reducedMotion: 'reduce' });
   const page = await context.newPage();
   page.setDefaultTimeout(20_000);
-  const report = { profile, theme, browser: browser.version(), states: {} };
+  const report = { profile, theme, browser: browser.version(), states: {}, resourceFailures: [], errors: [] };
+  const states = [];
+  const seen = new Set();
   const id = `${profile}/${theme}`;
-  page.on('pageerror', error => summary.errors.push(`${id} ${page.url()}: ${error.message}`));
+  const pageErrors = [];
+  page.on('pageerror', error => pageErrors.push(`${id} ${page.url()}: ${error.message}`));
+  function resourceFailure(request, reason, transient) {
+    const type = request.resourceType();
+    if (!['stylesheet', 'font', 'script'].includes(type)) return;
+    const externalFont = (type === 'stylesheet' || type === 'font') && new URL(request.url()).origin !== new URL(url).origin;
+    report.resourceFailures.push({ type, url: request.url(), reason, retryable: externalFont && transient });
+  }
+  page.on('response', response => {
+    const status = response.status();
+    if (status >= 400) resourceFailure(response.request(), `HTTP ${status}`, status === 429 || status >= 500);
+  });
+  page.on('requestfailed', request => {
+    const reason = request.failure()?.errorText;
+    // A navigation can cancel an obsolete request. The next scan still has
+    // to prove that the current page actually rendered with its web fonts.
+    if (reason !== 'net::ERR_ABORTED') resourceFailure(request, reason, true);
+  });
   try {
-    await visitStates(page, url, theme, async name => {
+    const session = await context.newCDPSession(page);
+    await session.send('DOM.enable');
+    await session.send('CSS.enable');
+    report.input = await page.evaluate(() => ({
+      touch: navigator.maxTouchPoints > 0, coarse: matchMedia('(pointer: coarse)').matches,
+      hover: matchMedia('(hover: hover)').matches,
+    }));
+    const mobile = profile === 'mobile';
+    assert.deepEqual(report.input, { touch: mobile, coarse: mobile, hover: !mobile }, id);
+    await visitStates(page, url, { theme, mobile }, async name => {
       if (!await page.evaluate(() => typeof window.axe !== 'undefined')) {
         await page.addScriptTag({ path: require.resolve('axe-core/axe.min.js') });
       }
       // Clicks can leave the pointer over the next control on small screens.
       // Sample the resting state consistently across randomized question orders.
-      await page.mouse.move(0, 0);
+      if (!mobile) await page.mouse.move(0, 0);
       await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
       const state = `${id}/${name}`;
+      const fonts = await renderedFonts(page, session);
       // All default-enabled axe rules run against the entire document.
       const result = await page.evaluate(() => axe.run(document, {
         xpath: true, resultTypes: ['violations', 'incomplete'],
       }));
       assert.ok(!Object.hasOwn(report.states, name), `Duplicate scan: ${state}`);
       report.states[name] = {
-        url: new URL(page.url()).pathname, engine: result.testEngine,
+        url: new URL(page.url()).pathname, engine: result.testEngine, fonts,
         violations: result.violations, incomplete: result.incomplete,
       };
       let known = 0;
@@ -54,23 +84,41 @@ async function runProfile(browser, url, profile, theme) {
       for (const rule of result.violations) {
         for (const node of rule.nodes) {
           const key = fingerprint(rule.id, node, state);
-          observed.add(key);
+          seen.add(key);
           if (expected.has(key)) known++;
           else newFindings.push({ rule: rule.id, target: node.target, xpath: node.xpath });
         }
       }
-      summary.states.push({ state, known, newFindings });
+      states.push({ state, known, newFindings });
       console.log(`${state}: ${known} known, ${newFindings.length} unexpected`);
       for (const finding of newFindings) console.error('  ', finding.rule, JSON.stringify(finding.target));
     });
     assert.deepEqual(Object.keys(report.states).sort(), [...expectedStates].sort(), `Incomplete profile: ${id}`);
   } catch (error) {
-    summary.errors.push(`${id}: ${error.stack}`);
+    report.errors.push(`${id}: ${error.stack}`);
     console.error(`${id}: ${error.message}`);
   } finally {
-    await writeFile(new URL(`${profile}-${theme}.json`, reports), JSON.stringify(report, null, 2));
     await context.close();
   }
+  const failed = report.resourceFailures;
+  const retryable = failed.length > 0 && failed.every(f => f.retryable) &&
+    !pageErrors.length && !states.some(s => s.newFindings.length);
+  report.errors.push(...pageErrors, ...failed.map(f => `${id} ${f.type} ${f.url}: ${f.reason}`));
+  return { report, states, seen, retryable };
+}
+
+async function checkProfile(browser, url, profile, theme) {
+  let run = await runProfile(browser, url, profile, theme);
+  if (run.retryable) {
+    const firstAttempt = run.report.resourceFailures;
+    console.log(`${profile}/${theme}: retrying once after an external font service failure`);
+    run = await runProfile(browser, url, profile, theme);
+    run.report.firstAttemptResourceFailures = firstAttempt;
+  }
+  await writeFile(new URL(`${profile}-${theme}.json`, reports), JSON.stringify(run.report, null, 2));
+  summary.states.push(...run.states);
+  summary.errors.push(...run.report.errors);
+  for (const key of run.seen) observed.add(key);
 }
 
 await mkdir(reports, { recursive: true });
@@ -80,7 +128,7 @@ try {
   browser = await chromium.launch(process.env.CHROME_PATH ? { executablePath: process.env.CHROME_PATH } : {});
   // Run two contexts at a time so a hosted runner has headroom for contrast checks.
   for (const profile of Object.keys(profiles)) {
-    await Promise.all(['light', 'dark'].map(theme => runProfile(browser, server.url, profile, theme)));
+    await Promise.all(['light', 'dark'].map(theme => checkProfile(browser, server.url, profile, theme)));
   }
 } catch (error) {
   summary.errors.push(error.stack);

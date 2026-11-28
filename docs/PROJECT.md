@@ -58,8 +58,7 @@ scripts/make-audio.py       word clips with Supertonic 3 (dev-only, Python; --ch
 noindex) · `/review` · `/privacy` · `/terms` · anything else → app 404 (served via 404.html).
 Title pattern: `Day 07: Travel | Essential Korean Vocabulary`.
 
-Links between pages use `TLink` (a real `<a href>` that plays the curtain). Page `<title>`/meta
-are rendered by React 19 inside each page; postbuild bakes the same values into static HTML.
+Links between pages use `TLink` (a real `<a href>` that plays the curtain). The shared route metadata supplies the React document head and the static HTML, including indexing, sharing cards and structured data.
 
 ### Data schema (`src/data/days/dayNN.json`)
 
@@ -82,7 +81,7 @@ checkTyped(input, word, { direction }) -> { correct, closeness }   // UI accepts
 schedule(state, correct, now) -> { box, dueAt, seen, correctCount } // boxes 1-5, [0,1,3,7,16] days; new+correct -> box 2;
                                                   // correct before dueAt keeps box and dueAt; miss -> box 1
 getDueWords(progress, allWords, now) -> word[]
-loadProgress() / saveProgress(p)                  // key "kv.progress.v2", imports compatible v1 progress
+loadProgress() / saveProgress(p)                  // imports existing v1/v2 data, with per-grade writes and periodic checkpoints
 getStreak(progress, now) -> { current, best, practicedToday }
 speak(text, { rate })                             // recorded clip public/audio/<id>.mp3, else best ko-KR device voice
 warm(text)                                        // preload a clip (hover, next card)

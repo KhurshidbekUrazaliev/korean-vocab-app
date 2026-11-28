@@ -11,18 +11,11 @@ import '../styles/landing.css';
 // three.js is only needed for the hero, so it loads in its own chunk.
 const HangulField = lazy(() => import('../components/HangulField.jsx').then((m) => ({ default: m.HangulField })));
 
-const SITE = 'https://khurshidbekurazaliev.github.io/korean-vocab-app/';
 const asset = (p) => `${import.meta.env.BASE_URL}${p}`;
 
 export default function Landing() {
   return (
     <>
-      <title>Essential Korean Vocabulary: learn Korean words one day at a time</title>
-      <meta
-        name="description"
-        content={`${allWords.length} Korean words in ${days.length} daily sets, with flashcards, multiple choice, typing and listening practice and spaced review.`}
-      />
-      <link rel="canonical" href={SITE} />
       <Hero />
       <Marquee />
       <Scene />
@@ -349,15 +342,16 @@ function Review() {
         <div>
           <p className="eyebrow eyebrow--light">Spaced review · 복습</p>
           <RevealText as="h2" className="h2" id="review-title">Missed words come back right before you forget them.</RevealText>
-          <p className="lede">Every answer moves a word between five review boxes. You only see what is due, so a daily session stays short.</p>
+          <p className="lede">A missed word is ready to review immediately. Each time you recall a word when it’s due, its next review moves farther out, up to 16 days. Practicing early keeps its review date.</p>
           <TLink className="btn btn--lg btn--accent" to="/day/1" ko={days[0].titleKo} en="Day 01">Start Day 01 <ArrowRight /></TLink>
         </div>
         <RevealGroup as="ol" className="boxes">
           {[
-            ['Missed', 'tomorrow'],
-            ['Right once', 'in 3 days'],
-            ['Right twice', 'in a week'],
-            ['Right again', 'in 16 days'],
+            ['Missed', 'now'],
+            ['First correct answer', 'in 1 day'],
+            ['First successful review', 'in 3 days'],
+            ['Second successful review', 'in 7 days'],
+            ['Third successful review', 'in 16 days'],
           ].map(([a, b], k) => (
             <li key={a}>
               <span className="boxes__n num">{k + 1}</span>

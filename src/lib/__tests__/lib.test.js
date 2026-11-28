@@ -103,7 +103,13 @@ describe('streak', () => {
 describe('progress storage', () => {
   const mem = () => {
     const m = new Map();
-    return { getItem: (k) => m.get(k) ?? null, setItem: (k, v) => m.set(k, v) };
+    return {
+      get length() { return m.size; },
+      key: i => [...m.keys()][i] ?? null,
+      getItem: k => m.get(k) ?? null,
+      setItem: (k, v) => m.set(k, v),
+      removeItem: k => m.delete(k),
+    };
   };
   it('round-trips and ignores unknown versions', () => {
     const s = mem();
@@ -131,7 +137,7 @@ describe('progress storage', () => {
       words: { 'day15-10': state, 'day27-07': state }, // 증상 moved from Day 17 to Day 27
     });
     expect(storage.getItem('kv.progress.v1')).toBe(legacy);
-    expect(JSON.parse(storage.getItem(PROGRESS_KEY))).toEqual(migrated);
+    expect(storage.getItem(PROGRESS_KEY)).toBeNull(); // Preserve concurrent v2 writers during a read.
     migrated.words['day16-01'] = { ...state, seen: 1 };
     saveProgress(migrated, storage);
     expect(loadProgress(storage)).toEqual(migrated);

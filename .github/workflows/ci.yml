@@ -56,22 +56,35 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          path: release-tools
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
           ref: gh-pages
+          path: site
       - uses: actions/download-artifact@v4
         with:
           name: course-dist
           path: ${{ runner.temp }}/course-dist
       - name: Publish tested files and request a Pages build
+        working-directory: site
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if [[ "$(git ls-remote origin refs/heads/main | cut -f1)" != "$GITHUB_SHA" ]]; then
+          remote_main=$(git ls-remote --exit-code --refs origin refs/heads/main)
+          read -r main_sha main_ref <<< "$remote_main"
+          if [[ ! "$main_sha" =~ ^[0-9a-f]{40}$ || "$main_ref" != refs/heads/main ]]; then
+            echo "::error::Could not determine the current main revision."
+            exit 1
+          fi
+          if [[ "$main_sha" != "$GITHUB_SHA" ]]; then
             echo "A newer main revision is queued for publication."
             exit 0
           fi
           test -s "$RUNNER_TEMP/course-dist/index.html"
           test -f "$RUNNER_TEMP/course-dist/.nojekyll"
           rsync -a --delete --exclude='.git/' --exclude='CNAME' "$RUNNER_TEMP/course-dist/" ./
+          node "$GITHUB_WORKSPACE/release-tools/.github/retain-pages-assets.cjs"
           git add -A
           if ! git diff --cached --quiet; then
             git -c user.name=github-actions -c user.email=41898282+github-actions[bot]@users.noreply.github.com commit -m "Publish ${GITHUB_SHA}"

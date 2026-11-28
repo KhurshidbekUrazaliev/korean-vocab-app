@@ -1,3 +1,4 @@
+import { CHECKPOINT_KEY, compactJournal, journalView, operationWriter, scheduledAt } from './progressJournal.js';
 import { legacyWordIds } from './legacyWordIds.js';
 import { INTERVAL_DAYS } from './srs.js';
 
@@ -20,8 +21,7 @@ const validDay = (day) => isRecord(day) && isCount(day.best) && day.best <= 100
 // take the higher counters without counting a shared history twice.
 function mergeWord(legacy, current) {
   if (!validWord(current)) return legacy;
-  const lastAnswer = (word) => Date.parse(word.dueAt) - INTERVAL_DAYS[word.box - 1] * 86_400_000;
-  const latest = lastAnswer(legacy) > lastAnswer(current) ? legacy : current;
+  const latest = scheduledAt(legacy) > scheduledAt(current) ? legacy : current;
   return {
     ...legacy, ...current, ...latest,
     seen: Math.max(legacy.seen, current.seen),
@@ -69,29 +69,87 @@ function read(storage, key) {
   }
 }
 
-export function loadProgress(storage) {
+function legacyProgress(storage) {
   try {
-    storage ??= globalThis.localStorage;
     const saved = read(storage, PROGRESS_KEY);
     if (saved && saved.version !== 2) return emptyProgress();
     const current = { ...emptyProgress(), ...saved };
     const legacy = read(storage, LEGACY_KEY);
     if (legacy?.version !== 1) return current;
-    const next = importLegacy(legacy, current);
-    if (JSON.stringify(next) !== JSON.stringify(saved)) saveProgress(next, storage);
-    return next;
+    // An older tab can still update v2. Cache the migration only in our locked
+    // checkpoint; a read/merge/write here could overwrite that tab's grade.
+    return importLegacy(legacy, current);
   } catch {
     return emptyProgress();
   }
 }
 
-export function saveProgress(progress, storage) {
-  try {
-    storage ??= globalThis.localStorage;
-    storage?.setItem(PROGRESS_KEY, JSON.stringify(progress));
-  } catch {
-    // Storage full or blocked (private mode). Progress just won't persist.
+export function browserStorage() {
+  try { return globalThis.localStorage; } catch { return undefined; }
+}
+
+// Older, still-open tabs write cumulative v2 snapshots. Import only advances since
+// the last checkpoint, separately from grades written by journal-aware tabs.
+function readBaseline(storage, checkpoint) {
+  const live = legacyProgress(storage);
+  if (!checkpoint) return { progress: live, baseline: live };
+  const prior = checkpoint.baseline;
+  const saved = checkpoint.progress;
+  if (JSON.stringify(live) === JSON.stringify(prior)) return { progress: saved, baseline: prior };
+
+  const progress = { ...saved, words: { ...saved.words }, days: { ...saved.days }, daily: { ...saved.daily } };
+  const baseline = { ...prior, words: { ...prior.words }, days: { ...prior.days }, daily: { ...prior.daily } };
+  for (const [id, word] of Object.entries(live.words)) {
+    if (!validWord(word)) continue;
+    const before = prior.words[id];
+    const seen = Math.max(0, word.seen - (before?.seen ?? 0));
+    const correct = Math.max(0, word.correctCount - (before?.correctCount ?? 0));
+    baseline.words[id] = mergeWord(word, before);
+    if (!seen && !correct) continue;
+    const current = saved.words[id];
+    const merged = validWord(current) ? mergeWord(current, word) : word;
+    progress.words[id] = {
+      ...merged, seen: (current?.seen ?? 0) + seen, correctCount: (current?.correctCount ?? 0) + correct,
+    };
   }
+  for (const [id, day] of Object.entries(live.days)) {
+    if (!validDay(day)) continue;
+    baseline.days[id] = mergeDay(day, prior.days[id]);
+    progress.days[id] = mergeDay(day, saved.days[id]);
+  }
+  for (const [date, count] of Object.entries(live.daily)) {
+    if (!isDayKey(date) || !isCount(count)) continue;
+    const before = prior.daily[date] ?? 0;
+    baseline.daily[date] = Math.max(before, count);
+    progress.daily[date] = (saved.daily[date] ?? 0) + Math.max(0, count - before);
+  }
+  baseline.activity = [...new Set([...prior.activity, ...live.activity])].sort();
+  progress.activity = [...new Set([...saved.activity, ...live.activity])].sort();
+  return { progress, baseline };
+}
+
+export function readProgress(storage, volatile) {
+  return journalView(storage, checkpoint => readBaseline(storage, checkpoint), volatile);
+}
+
+export function compactProgress(storage) {
+  return compactJournal(storage, checkpoint => readBaseline(storage, checkpoint));
+}
+
+export function loadProgress(storage = browserStorage()) {
+  try { return readProgress(storage).progress; } catch { return legacyProgress(storage); }
+}
+
+// Explicit snapshot replacement for callers importing or restoring progress.
+export function saveProgress(progress, storage = browserStorage()) {
+  try {
+    if (!storage) return;
+    const view = readProgress(storage);
+    if (view.sequence || storage.getItem(CHECKPOINT_KEY)) {
+      const op = operationWriter()({ kind: 'replace', progress }, new Date(), view.sequence);
+      storage.setItem(op.key, JSON.stringify(op.value));
+    } else storage.setItem(PROGRESS_KEY, JSON.stringify(progress));
+  } catch { /* The caller can still use the supplied snapshot in memory. */ }
 }
 
 export const localDateKey = (d = new Date()) =>
