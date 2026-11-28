@@ -2,6 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './styles/base.css';
+import { installBundleRecovery } from './lib/recoverBundle.js';
 import { Layout } from './App.jsx';
 import Home from './pages/Home.jsx';
 import Day from './pages/Day.jsx';
@@ -11,6 +12,8 @@ import Course from './pages/Course.jsx';
 import Progress from './pages/Progress.jsx';
 import { Privacy, Terms } from './pages/Legal.jsx';
 import NotFound from './pages/NotFound.jsx';
+
+installBundleRecovery();
 
 const router = createBrowserRouter(
   [
@@ -32,9 +35,8 @@ const router = createBrowserRouter(
   { basename: import.meta.env.BASE_URL.replace(/\/$/, '') },
 );
 
-// The static HTML from scripts/postbuild.js carries its own title, description and canonical
-// for crawlers. Each page renders these itself, so drop the static copies to avoid duplicates.
-document.head.querySelectorAll('title, meta[name="description"], link[rel="canonical"]').forEach((el) => el.remove());
+// PageHead takes ownership of the prerendered metadata on startup.
+document.head.querySelectorAll('title, meta[name="description"], [data-route-head]').forEach(el => el.remove());
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

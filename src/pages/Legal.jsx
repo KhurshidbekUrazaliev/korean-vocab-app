@@ -1,11 +1,7 @@
-const SITE = 'https://khurshidbekurazaliev.github.io/korean-vocab-app';
 
 export function Privacy() {
   return (
     <article className="prose-page wrap">
-      <title>Privacy | Essential Korean Vocabulary</title>
-      <meta name="description" content="What Essential Korean Vocabulary stores about you: only your practice progress, kept in your own browser." />
-      <link rel="canonical" href={`${SITE}/privacy`} />
       <div className="prose">
         <h1 className="display">Privacy</h1>
         <p>Last updated 28 November 2026.</p>
@@ -29,9 +25,6 @@ export function Privacy() {
 export function Terms() {
   return (
     <article className="prose-page wrap">
-      <title>Terms of use | Essential Korean Vocabulary</title>
-      <meta name="description" content="Terms for using Essential Korean Vocabulary, a free Korean word practice site." />
-      <link rel="canonical" href={`${SITE}/terms`} />
       <div className="prose">
         <h1 className="display">Terms of use</h1>
         <p>Last updated 28 November 2026.</p>

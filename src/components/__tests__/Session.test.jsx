@@ -6,7 +6,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { MotionProvider } from '../Motion.jsx';
 import { Session } from '../Session.jsx';
 import { progressStore } from '../../hooks/useProgress.js';
-import { localDateKey, PROGRESS_KEY } from '../../lib/progress.js';
+import { loadProgress, localDateKey } from '../../lib/progress.js';
 import day from '../../data/days/day01.json';
 
 // GSAP queries media preferences when its plugins register. Use the app's real
@@ -20,6 +20,8 @@ vi.hoisted(() => {
 });
 
 beforeEach(() => {
+  // jsdom has no media player. The listening tests exercise device speech and its fallback.
+  vi.stubGlobal('Audio', undefined);
   localStorage.clear();
   window.dispatchEvent(new StorageEvent('storage', { key: null }));
 });
@@ -42,7 +44,7 @@ function start(mode, words) {
 }
 
 function saved() {
-  const persisted = JSON.parse(localStorage.getItem(PROGRESS_KEY));
+  const persisted = loadProgress(localStorage);
   expect(persisted).toEqual(progressStore.get());
   return persisted;
 }
@@ -76,6 +78,7 @@ describe('Session', () => {
     screen.getByRole('button', { name: front(known) });
     await user.keyboard('[Space]2');
     expectResult(1, 2);
+    screen.getByText('Ready to review now');
     expect(saved()).toMatchObject({
       days: { [day.id]: { best: 50, modes: ['flashcards'] } },
       words: { [missed.id]: { seen: 1, correctCount: 0 }, [known.id]: { seen: 1, correctCount: 1 } },
@@ -89,8 +92,14 @@ describe('Session', () => {
     screen.getByRole('button', { name: 'Run it again' });
     expect(saved()).toMatchObject({
       words: { [missed.id]: { box: 2, seen: 2, correctCount: 1 }, [known.id]: { seen: 1 } },
+      days: { [day.id]: { best: 50 } },
       daily: { [localDateKey()]: 3 },
     });
+
+    await user.click(screen.getByRole('button', { name: 'Run it again' }));
+    await user.keyboard('[Space]2[Space]2');
+    expectResult(2, 2);
+    expect(saved().days[day.id].best).toBe(100);
   });
 
   it('selects each of the four numbered options in reverse direction and advances once with Enter', async () => {
@@ -108,8 +117,13 @@ describe('Session', () => {
       await user.keyboard(String(key));
       within(screen.getByRole('status')).getByText(correct ? 'Correct' : 'Not quite');
       expect(choices.every((button) => button.disabled)).toBe(true);
-      await user.keyboard('1{Enter}'); // a second selection cannot overwrite the first
-      expect(saved().words[word.id]).toMatchObject({ seen: 1, correctCount: Number(correct) });
+      const graded = saved();
+      expect(graded.words[word.id]).toMatchObject({ seen: 1, correctCount: Number(correct) });
+      expect(graded.daily[localDateKey()]).toBe(key);
+      if (key === 4) expect(graded.days[day.id].best).toBe(score * 25);
+      else expect(graded.days[day.id]).toBeUndefined();
+      await user.keyboard('1{Enter}'); // another selection or Next must never grade again
+      expect(saved()).toEqual(graded);
     }
     expectResult(score, 4);
     expect(saved().days[day.id]).toMatchObject({ modes: ['choice'], best: score * 25 });
@@ -133,8 +147,11 @@ describe('Session', () => {
       await user.keyboard(answer + '{Enter}');
       within(screen.getByRole('status')).getByText(feedback);
       expect(field.readOnly).toBe(true);
+      const graded = saved();
+      expect(graded.words[word.id]).toMatchObject({ seen: 1, correctCount });
+      if (i === words.length - 1) expect(graded.days[day.id].best).toBe(67);
       await user.keyboard('{Enter}');
-      expect(saved().words[word.id]).toMatchObject({ seen: 1, correctCount });
+      expect(saved()).toEqual(graded);
     }
     expectResult(2, 3);
     expect(saved().days[day.id]).toMatchObject({ modes: ['typing'], best: 67 });
@@ -187,7 +204,6 @@ describe('Session', () => {
   });
 
   it('offers the romanized listening prompt when speech is unavailable', async () => {
-    vi.stubGlobal('Audio', undefined);
     const word = day.words[0];
     const user = start('listening', [word]);
     screen.getByRole('heading', { name: word.romanization });
@@ -196,6 +212,10 @@ describe('Session', () => {
     const wrong = choices.find((button) => !within(button).queryByText(word.english));
     await user.click(wrong);
     within(screen.getByRole('status')).getByText('Not quite');
+    expect(saved()).toMatchObject({
+      words: { [word.id]: { seen: 1, correctCount: 0 } },
+      days: { [day.id]: { best: 0, modes: ['listening'] } },
+    });
     await user.keyboard('{Enter}');
     expectResult(0, 1);
     expect(saved().words[word.id]).toMatchObject({ seen: 1, correctCount: 0 });

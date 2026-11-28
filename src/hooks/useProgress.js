@@ -1,54 +1,74 @@
 import { useSyncExternalStore } from 'react';
-import { emptyProgress, loadProgress, saveProgress, localDateKey, PROGRESS_KEY, LEGACY_KEY } from '../lib/progress.js';
-import { schedule } from '../lib/srs.js';
+import { browserStorage, compactProgress, emptyProgress, localDateKey, readProgress } from '../lib/progress.js';
+import { applyOperation, COMPACT_AFTER, isProgressKey, operationWriter, withProgressLock } from '../lib/progressJournal.js';
 
-let state = typeof window === 'undefined' ? emptyProgress() : loadProgress();
-const listeners = new Set();
+export function createProgressStore(storage, lock = withProgressLock) {
+  const listeners = new Set();
+  const operation = operationWriter();
+  let state = emptyProgress();
+  let volatile = [];
+  let scheduled = false;
 
-function set(next) {
-  state = next;
-  saveProgress(state);
-  listeners.forEach((l) => l());
+  function flushVolatile() {
+    while (volatile.length) {
+      const { key, value } = volatile[0];
+      try { storage.setItem(key, JSON.stringify(value)); } catch { break; }
+      volatile.shift();
+    }
+  }
+
+  function refresh() {
+    if (storage) {
+      try {
+        flushVolatile();
+        const view = readProgress(storage, volatile);
+        state = view.progress;
+        if (!scheduled && (view.keys.length >= COMPACT_AFTER || (volatile.length && view.keys.length))) {
+          scheduled = true;
+          Promise.resolve().then(() => lock(() => {
+            compactProgress(storage);
+            flushVolatile();
+          })).catch(() => { /* The journal survives a failed cleanup. */ })
+            .finally(() => { scheduled = false; });
+        }
+      } catch { /* Keep the last in-memory view if storage becomes unavailable. */ }
+    }
+    listeners.forEach(listener => listener());
+  }
+
+  function record(fields, now = new Date()) {
+    let observed = 0;
+    try { observed = readProgress(storage, volatile).sequence; } catch { /* Storage unavailable. */ }
+    const entry = operation(fields, now, observed);
+    state = applyOperation(state, entry.value);
+    // A successful synchronous setItem survives immediate tab closure.
+    if (storage) volatile.push(entry);
+    refresh();
+  }
+
+  refresh();
+  return {
+    get: () => state,
+    subscribe(listener) {
+      listeners.add(listener);
+      return () => listeners.delete(listener);
+    },
+    refresh,
+    recordAnswer(word, correct) {
+      const now = new Date();
+      record({ kind: 'answer', word, correct, date: localDateKey(now) }, now);
+    },
+    recordSession(day, mode, score, total) {
+      if (day) record({ kind: 'session', day, mode, percent: Math.round(score / total * 100) });
+    },
+  };
 }
 
-export const progressStore = {
-  get: () => state,
-  subscribe(l) {
-    listeners.add(l);
-    return () => listeners.delete(l);
-  },
-  recordAnswer(wordId, correct) {
-    const today = localDateKey();
-    set({
-      ...state,
-      words: { ...state.words, [wordId]: schedule(state.words[wordId], correct) },
-      activity: state.activity.includes(today) ? state.activity : [...state.activity, today],
-      daily: { ...state.daily, [today]: (state.daily?.[today] ?? 0) + 1 },
-    });
-  },
-  recordSession(dayId, mode, score, total) {
-    if (!dayId) return;
-    const prev = state.days[dayId] ?? { best: 0, modes: [] };
-    set({
-      ...state,
-      days: {
-        ...state.days,
-        [dayId]: {
-          best: Math.max(prev.best, Math.round((score / total) * 100)),
-          modes: prev.modes.includes(mode) ? prev.modes : [...prev.modes, mode],
-          lastAt: new Date().toISOString(),
-        },
-      },
-    });
-  },
-};
+export const progressStore = createProgressStore(typeof window === 'undefined' ? undefined : browserStorage());
 
 if (typeof window !== 'undefined') {
-  window.addEventListener('storage', (e) => {
-    if (e.key === PROGRESS_KEY || e.key === LEGACY_KEY || e.key === null) {
-      state = loadProgress();
-      listeners.forEach((l) => l());
-    }
+  window.addEventListener('storage', e => {
+    if (isProgressKey(e.key)) progressStore.refresh();
   });
 }
 

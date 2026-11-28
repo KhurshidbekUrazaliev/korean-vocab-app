@@ -8,7 +8,6 @@ import { currentDay, dayStatus } from '../lib/stats.js';
 import { gsap, useGSAP, reducedMotion } from '../lib/motion.js';
 import '../styles/app.css';
 
-const SITE = 'https://khurshidbekurazaliev.github.io/korean-vocab-app';
 const asset = (p) => `${import.meta.env.BASE_URL}${p}`;
 const STATE_LABEL = { new: 'New', active: 'In progress', complete: 'Completed', mastered: 'Mastered' };
 const STATE_TONE = { new: '', active: 'badge--accent', complete: 'badge--ink', mastered: 'badge--good' };
@@ -34,9 +33,6 @@ export default function Course() {
 
   return (
     <div className="wrap course" ref={ref}>
-      <title>{`Course: all ${days.length} days | Essential Korean Vocabulary`}</title>
-      <meta name="description" content={`All ${days.length} days of the course, ${allWords.length} Korean words in themed sets of ten.`} />
-      <link rel="canonical" href={`${SITE}/course`} />
 
       <header className="page-head">
         <div>

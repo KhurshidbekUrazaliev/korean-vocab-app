@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "test": "vitest run",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist --dotfiles",
+    "deploy": "gh-pages -d dist --dotfiles --before-add ./.github/retain-pages-assets.cjs",
     "test:a11y": "node e2e/accessibility.js"
   },
   "dependencies": {

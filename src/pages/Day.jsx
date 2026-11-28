@@ -12,7 +12,6 @@ import { gsap, SplitText, useGSAP, reducedMotion } from '../lib/motion.js';
 import NotFound from './NotFound.jsx';
 import '../styles/day.css';
 
-const SITE = 'https://khurshidbekurazaliev.github.io/korean-vocab-app';
 const asset = (p) => `${import.meta.env.BASE_URL}${p}`;
 
 const MODE_INFO = {
@@ -50,20 +49,11 @@ export default function Day() {
   const prev = getDay(day.number - 1);
   const next = getDay(day.number + 1);
   const unit = Math.ceil(day.number / 10);
-  const title = `Day ${pad(day.number)}: ${day.title}`;
-  const description = `Learn ${day.words.length} Korean words about ${day.title.toLowerCase()}: ${day.words
-    .slice(0, 4)
-    .map((w) => `${w.korean} (${w.english.split(',')[0]})`)
-    .join(', ')} and more, with audio and four practice modes.`;
   const primary = s.nextMode ?? 'choice';
   const primaryLabel = !s.nextMode ? 'Practice again' : s.modes.length ? `Continue: ${MODE_TITLES[primary]}` : 'Start the lesson';
 
   return (
     <div ref={ref} key={day.id}>
-      <title>{`${title} | Essential Korean Vocabulary`}</title>
-      <meta name="description" content={description} />
-      <link rel="canonical" href={`${SITE}/day/${day.number}`} />
-
       <section className={`day-hero wrap ${day.cover ? '' : 'day-hero--plain'}`}>
         <div className="day-hero__meta">
           <p className="day-hero__crumbs">

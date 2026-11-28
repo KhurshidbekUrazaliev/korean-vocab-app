@@ -5,10 +5,13 @@ import { days, allWords, pad } from '../data/index.js';
 import { useProgress } from '../hooks/useProgress.js';
 import { getStreak } from '../lib/streak.js';
 import { activityGrid, dayStatus, masteryBreakdown } from '../lib/stats.js';
+import { INTERVAL_DAYS } from '../lib/srs.js';
 import { gsap, useGSAP, reducedMotion } from '../lib/motion.js';
 import '../styles/app.css';
 
-const BOXES = ['Not started', 'Box 1 · tomorrow', 'Box 2 · 3 days', 'Box 3 · a week', 'Box 4 · 16 days', 'Box 5 · long term'];
+const BOXES = ['Not started', ...INTERVAL_DAYS.map((days, i) =>
+  `Box ${i + 1} · ${days === 0 ? 'due now' : `${days}-day interval`}`,
+)];
 
 export default function Progress() {
   const ref = useRef(null);
@@ -34,8 +37,6 @@ export default function Progress() {
 
   return (
     <div className="wrap progress-page" ref={ref}>
-      <title>Progress | Essential Korean Vocabulary</title>
-      <meta name="robots" content="noindex" />
       <header className="page-head">
         <div>
           <p className="eyebrow">Progress · 기록</p>

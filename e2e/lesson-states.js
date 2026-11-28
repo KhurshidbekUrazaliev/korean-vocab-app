@@ -10,8 +10,27 @@ export const expectedStates = [
   'reverse-choice', 'typing', 'typing-feedback', 'listening', '404',
 ];
 
+function typingTarget(button) {
+  const bounds = element => {
+    const { left, top, width, height } = element.getBoundingClientRect();
+    return { left, top, width, height };
+  };
+  const input = bounds(document.getElementById('answer'));
+  const target = bounds(button);
+  const center = document.elementFromPoint(target.left + target.width / 2, target.top + target.height / 2);
+  const { width, height, offsetLeft, offsetTop, scale } = visualViewport;
+  return {
+    input, target, viewport: { width, height, offsetLeft, offsetTop, scale },
+    layoutWidth: document.documentElement.clientWidth, scrollWidth: document.documentElement.scrollWidth,
+    centerElement: center?.outerHTML.slice(0, 180), receivesTap: button.contains(center),
+    fits: target.left >= offsetLeft - 1 && target.left + target.width <= offsetLeft + width + 1 &&
+      target.top >= offsetTop - 1 && target.top + target.height <= offsetTop + height + 1,
+  };
+}
+
 /** Every scan follows an assertion on the rendered React page or feedback state. */
-export async function visitStates(page, baseURL, theme, scan) {
+export async function visitStates(page, baseURL, { theme, mobile }, scan) {
+  const activate = locator => mobile ? locator.tap() : locator.click();
   async function open(route, selector, status = 200) {
     const url = new URL(route, baseURL).href;
     const response = await page.goto(url, { waitUntil: 'domcontentloaded' });
@@ -21,7 +40,6 @@ export async function visitStates(page, baseURL, theme, scan) {
     await page.waitForFunction(expected =>
       document.documentElement.dataset.theme === expected &&
       matchMedia('(prefers-reduced-motion: reduce)').matches, theme);
-    await page.waitForFunction(() => document.fonts.status === 'loaded');
   }
   async function mode(name, selector) {
     await open(`day/1/practice/${name}`, selector);
@@ -48,16 +66,16 @@ export async function visitStates(page, baseURL, theme, scan) {
   const card = page.locator('.flash__card');
   assert.equal(await card.getAttribute('data-flipped'), 'false');
   await scan('flash-front');
-  await card.click();
+  await activate(card);
   await page.locator('.flash__card[data-flipped="true"]').waitFor();
   await scan('flash-back');
-  await page.getByRole('button', { name: /Not yet/ }).click();
+  await activate(page.getByRole('button', { name: /Not yet/ }));
   await page.locator('.session__count').filter({ hasText: /^2\/10$/ }).waitFor();
 
   await open('review', '.review-page__words li');
   assert.equal(await page.locator('.review-page__words li').count(), 1);
   await scan('review-due');
-  await page.getByRole('button', { name: 'Review with multiple choice' }).click();
+  await activate(page.getByRole('button', { name: 'Review with multiple choice' }));
   await page.locator('.quiz__prompt').waitFor();
   await scan('review-choice');
   const answer = meanings.get(await page.locator('.quiz__prompt').innerText());
@@ -66,10 +84,10 @@ export async function visitStates(page, baseURL, theme, scan) {
   const labels = await options.locator('span').allTextContents();
   assert.equal(labels.length, 4);
   assert.ok(labels.includes(answer));
-  await options.nth(labels.findIndex(label => label !== answer)).click();
+  await activate(options.nth(labels.findIndex(label => label !== answer)));
   await page.locator('.feedback[data-correct="false"]').waitFor();
   await scan('wrong-feedback');
-  await page.locator('.feedback button').click();
+  await activate(page.locator('.feedback button'));
   await page.getByRole('button', { name: 'Retry 1 missed' }).waitFor();
   assert.equal(await page.locator('.results__pct').innerText(), '0');
   await scan('results-with-miss');
@@ -83,14 +101,26 @@ export async function visitStates(page, baseURL, theme, scan) {
   await mode('choice', '.quiz__prompt');
   assert.equal(await page.locator('.option').count(), 4);
   await scan('choice');
-  await page.getByRole('button', { name: 'English → 한국어' }).click();
+  await activate(page.getByRole('button', { name: 'English → 한국어' }));
   await page.locator('.option__ko').first().waitFor();
   await scan('reverse-choice');
 
   await mode('typing', '#answer');
+  const check = page.getByRole('button', { name: 'Check', exact: true });
+  const beforeScan = mobile ? await check.evaluate(typingTarget) : undefined;
   await scan('typing');
   await page.locator('#answer').fill('incorrect answer');
-  await page.getByRole('button', { name: 'Check', exact: true }).click();
+  if (mobile) {
+    await check.scrollIntoViewIfNeeded();
+    const beforeTap = await check.evaluate(typingTarget);
+    assert.ok(beforeTap.receivesTap && beforeTap.fits, JSON.stringify({ beforeScan, beforeTap }));
+    try {
+      await check.tap();
+    } catch (error) {
+      const afterTap = await check.evaluate(typingTarget);
+      throw new Error(`Check tap failed. ${JSON.stringify({ beforeScan, beforeTap, afterTap })}\n${error.message}`);
+    }
+  } else await check.click();
   await page.locator('.feedback[data-correct="false"]').waitFor();
   await scan('typing-feedback');
 

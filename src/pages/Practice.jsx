@@ -7,7 +7,7 @@ import NotFound from './NotFound.jsx';
 export default function Practice() {
   const { n, mode } = useParams();
   const day = getDay(n);
-  if (!day || !MODE_TITLES[mode]) return <NotFound />;
+  if (!day || !Object.hasOwn(MODE_TITLES, mode)) return <NotFound />;
 
   // After a round, suggest the next step of the lesson, then the next day.
   const step = MODE_ORDER.indexOf(mode);
@@ -20,19 +20,15 @@ export default function Practice() {
         : { to: '/review', label: 'Review due words', ko: '복습' };
 
   return (
-    <>
-      <title>{`${MODE_TITLES[mode]}: Day ${pad(day.number)} ${day.title} | Essential Korean Vocabulary`}</title>
-      <meta name="robots" content="noindex" />
-      <Session
-        key={`${day.id}-${mode}`}
-        words={day.words}
-        mode={mode}
-        dayId={day.id}
-        title={`Day ${pad(day.number)} · ${day.title}`}
-        exitTo={`/day/${day.number}`}
-        exitLabel={`Back to Day ${pad(day.number)}`}
-        next={next}
-      />
-    </>
+    <Session
+      key={`${day.id}-${mode}`}
+      words={day.words}
+      mode={mode}
+      dayId={day.id}
+      title={`Day ${pad(day.number)} · ${day.title}`}
+      exitTo={`/day/${day.number}`}
+      exitLabel={`Back to Day ${pad(day.number)}`}
+      next={next}
+    />
   );
 }

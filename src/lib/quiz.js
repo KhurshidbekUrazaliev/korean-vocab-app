@@ -12,7 +12,7 @@ export function buildMultipleChoice(word, pool, { count = 4, direction = 'ko-en'
 }
 
 const normalize = (s) =>
-  s.toLowerCase().normalize('NFC').replace(/\(.*?\)/g, '').replace(/^to\s+(be\s+)?/, '').replace(/[^\p{L}\p{N}\s]/gu, '').replace(/\s+/g, ' ').trim();
+  s.trim().toLowerCase().normalize('NFC').replace(/\(.*?\)/g, '').replace(/^to\s+(be\s+)?/, '').replace(/[^\p{L}\p{N}\s]/gu, '').replace(/\s+/g, ' ').trim();
 
 function similarity(a, b) {
   if (!a.length && !b.length) return 1;
@@ -24,11 +24,12 @@ function similarity(a, b) {
   return 1 - dp[a.length][b.length] / Math.max(a.length, b.length);
 }
 
-/** Typed answer check. English answers accept any comma/slash-separated meaning. */
+/** Accept the displayed English definition or any comma/slash/semicolon-separated meaning. */
 export function checkTyped(input, word, { direction = 'en-ko' } = {}) {
   const typed = normalize(input);
   if (!typed) return { correct: false, closeness: 0 };
-  const targets = direction === 'en-ko' ? [word.korean] : word.english.split(/[,/;]/);
+  const targets = [direction === 'en-ko' ? word.korean : word.english];
+  if (direction === 'ko-en' && /[,/;]/.test(word.english)) targets.push(...word.english.split(/[,/;]/));
   const closeness = Math.max(...targets.map((t) => similarity(typed, normalize(t))));
   return { correct: closeness === 1, closeness };
 }

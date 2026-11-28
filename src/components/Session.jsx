@@ -19,7 +19,7 @@ export { MODE_TITLES };
  * `next` ({ to, label, ko }) is the suggested step after the round.
  */
 export function Session({ words, pool = words, mode, dayId, title, exitTo, exitLabel, next }) {
-  const [round, setRound] = useState(() => ({ queue: shuffle(words), id: 0, startedAt: Date.now() }));
+  const [round, setRound] = useState(() => ({ queue: shuffle(words), id: 0, startedAt: Date.now(), full: true }));
   const [index, setIndex] = useState(0);
   const [results, setResults] = useState([]);
   const [direction, setDirection] = useState('ko-en');
@@ -31,30 +31,29 @@ export function Session({ words, pool = words, mode, dayId, title, exitTo, exitL
 
   const answer = useCallback(
     (correct) => {
-      before.current[word.id] ??= progressStore.get().words[word.id]?.box ?? 0;
+      if (Object.hasOwn(before.current, word.id)) return;
+      before.current[word.id] = progressStore.get().words[word.id]?.box ?? 0;
       progressStore.recordAnswer(word.id, correct);
-      setResults((r) => [...r, { word, correct }]);
+      const graded = [...results, { word, correct }];
+      setResults(graded);
+      if (round.full && graded.length === round.queue.length) {
+        progressStore.recordSession(dayId, mode, graded.filter((r) => r.correct).length, graded.length);
+      }
       setRun((r) => {
         const now = correct ? r.now + 1 : 0;
         return { now, best: Math.max(r.best, now) };
       });
-      setIndex((i) => i + 1);
     },
-    [word],
+    [word, results, round, dayId, mode],
   );
+  const nextWord = () => setIndex(index + 1);
 
   useEffect(() => {
-    if (done && results.length) {
-      const score = results.filter((r) => r.correct).length;
-      progressStore.recordSession(dayId, mode, score, results.length);
-      feedback('done');
-    }
-    // Only when a round finishes.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (done) feedback('done');
   }, [done]);
 
-  const restart = (list) => {
-    setRound((r) => ({ queue: shuffle(list), id: r.id + 1, startedAt: Date.now() }));
+  const restart = (missed) => {
+    setRound((r) => ({ queue: shuffle(missed ?? words), id: r.id + 1, startedAt: Date.now(), full: !missed }));
     setIndex(0);
     setResults([]);
     setRun({ now: 0, best: 0 });
@@ -107,14 +106,13 @@ export function Session({ words, pool = words, mode, dayId, title, exitTo, exitL
             exitTo={exitTo}
             exitLabel={exitLabel}
             next={next}
-            all={words}
           />
         ) : (
           <WordFrame key={`${round.id}-${index}`}>
-            {mode === 'flashcards' && <Flashcard word={word} onAnswer={answer} left={round.queue.length - index - 1} />}
-            {mode === 'choice' && <Choice word={word} pool={pool} direction={direction} onAnswer={answer} onDirection={index === 0 ? setDirection : null} />}
-            {mode === 'typing' && <Typing word={word} onAnswer={answer} />}
-            {mode === 'listening' && <Listening word={word} pool={pool} onAnswer={answer} />}
+            {mode === 'flashcards' && <Flashcard word={word} onAnswer={answer} onNext={nextWord} left={round.queue.length - index - 1} />}
+            {mode === 'choice' && <Choice word={word} pool={pool} direction={direction} onAnswer={answer} onNext={nextWord} onDirection={index === 0 ? setDirection : null} />}
+            {mode === 'typing' && <Typing word={word} onAnswer={answer} onNext={nextWord} />}
+            {mode === 'listening' && <Listening word={word} pool={pool} onAnswer={answer} onNext={nextWord} />}
           </WordFrame>
         )}
       </div>
@@ -162,7 +160,7 @@ const pop = (el) => el && !reducedMotion() && gsap.fromTo(el, { scale: 0.97 }, {
 
 /* ---------------- Flashcards ---------------- */
 
-function Flashcard({ word, onAnswer, left }) {
+function Flashcard({ word, onAnswer, onNext, left }) {
   const [flipped, setFlipped] = useState(false);
   const scene = useRef(null);
   const leaving = useRef(false);
@@ -177,15 +175,16 @@ function Flashcard({ word, onAnswer, left }) {
   const decide = (knew) => {
     if (!flipped || leaving.current) return;
     leaving.current = true;
+    onAnswer(knew);
     feedback(knew ? 'right' : 'wrong');
-    if (reducedMotion()) return onAnswer(knew);
+    if (reducedMotion()) return onNext();
     gsap.to(scene.current.querySelector('.flash__card'), {
       x: knew ? 180 : -180,
       rotate: knew ? 8 : -8,
       opacity: 0,
       duration: 0.38,
       ease: 'power2.in',
-      onComplete: () => onAnswer(knew),
+      onComplete: onNext,
     });
   };
 
@@ -250,19 +249,20 @@ function Options({ q, picked, onPick }) {
   );
 }
 
-function useChoice(word, pool, direction, onAnswer) {
+function useChoice(word, pool, direction, onAnswer, onNext) {
   const q = useMemo(() => buildMultipleChoice(word, pool, { direction }), [word, pool, direction]);
   const [picked, setPicked] = useState(null);
   const pick = (id, el) => {
     if (picked != null) return;
     setPicked(id);
     const right = id === q.answerId;
+    onAnswer(right);
     feedback(right ? 'right' : 'wrong');
     const btn = el ?? document.querySelectorAll('.option')[q.options.findIndex((o) => o.id === id)];
     right ? pop(btn) : shake(btn);
   };
-  const next = () => picked != null && onAnswer(picked === q.answerId);
-  const keys = { Enter: next, __ownsEnter: true };
+  const next = () => picked != null && onNext();
+  const keys = { Enter: next };
   q.options.forEach((o, k) => (keys[String(k + 1)] = () => pick(o.id)));
   useKeys(keys, [picked, q]);
   return { q, picked, pick, next };
@@ -287,8 +287,8 @@ function Feedback({ word, correct, onNext }) {
   );
 }
 
-function Choice({ word, pool, direction, onAnswer, onDirection }) {
-  const { q, picked, pick, next } = useChoice(word, pool, direction, onAnswer);
+function Choice({ word, pool, direction, onAnswer, onNext, onDirection }) {
+  const { q, picked, pick, next } = useChoice(word, pool, direction, onAnswer, onNext);
   const koPrompt = direction === 'ko-en';
   return (
     <div className="quiz">
@@ -308,7 +308,7 @@ function Choice({ word, pool, direction, onAnswer, onDirection }) {
 
 /* ---------------- Typing ---------------- */
 
-function Typing({ word, onAnswer }) {
+function Typing({ word, onAnswer, onNext }) {
   const [value, setValue] = useState('');
   const [result, setResult] = useState(null);
   const [hint, setHint] = useState(false);
@@ -318,10 +318,11 @@ function Typing({ word, onAnswer }) {
 
   const submit = (e) => {
     e.preventDefault();
-    if (result) return onAnswer(result.accepted);
+    if (result) return onNext();
     if (!value.trim()) return;
     const r = checkTyped(value, word, { direction: 'ko-en' });
     const accepted = r.correct || r.closeness >= 0.8;
+    onAnswer(accepted);
     setResult({ ...r, accepted });
     feedback(accepted ? 'right' : 'wrong');
     if (!accepted) shake(field.current.parentElement);
@@ -368,8 +369,8 @@ function Typing({ word, onAnswer }) {
 
 /* ---------------- Listening ---------------- */
 
-function Listening({ word, pool, onAnswer }) {
-  const { q, picked, pick, next } = useChoice(word, pool, 'ko-en', onAnswer);
+function Listening({ word, pool, onAnswer, onNext }) {
+  const { q, picked, pick, next } = useChoice(word, pool, 'ko-en', onAnswer, onNext);
   const supported = canSpeak();
   const [playing, setPlaying] = useState(false);
   const play = useCallback(() => {
@@ -409,7 +410,7 @@ function Listening({ word, pool, onAnswer }) {
 
 /* ---------------- Results ---------------- */
 
-function Results({ results, before, seconds, bestRun, onRetry, exitTo, exitLabel, next, all }) {
+function Results({ results, before, seconds, bestRun, onRetry, exitTo, exitLabel, next }) {
   const ref = useRef(null);
   const score = results.filter((r) => r.correct).length;
   const total = results.length;
@@ -454,7 +455,7 @@ function Results({ results, before, seconds, bestRun, onRetry, exitTo, exitLabel
       </ul>
       {missed.length > 0 && (
         <div className="results__missed card">
-          <p className="results__missed-head">To review tomorrow</p>
+          <p className="results__missed-head">Ready to review now</p>
           <ul>
             {missed.map((w) => (
               <li key={w.id}>
@@ -477,7 +478,7 @@ function Results({ results, before, seconds, bestRun, onRetry, exitTo, exitLabel
             Retry {missed.length} missed
           </button>
         ) : (
-          <button type="button" className="btn btn--lg btn--ghost" onClick={() => onRetry(all)}>Run it again</button>
+          <button type="button" className="btn btn--lg btn--ghost" onClick={() => onRetry()}>Run it again</button>
         )}
         <TLink className="link" to={exitTo}>{exitLabel}</TLink>
       </div>

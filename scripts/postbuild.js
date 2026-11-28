@@ -6,8 +6,8 @@
 import { mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 
-const SITE = 'https://khurshidbekurazaliev.github.io/korean-vocab-app';
-const NAME = 'Essential Korean Vocabulary';
+import { SITE, NAME, pageMetadata, socialTags } from '../src/lib/pageMetadata.js';
+
 const DIST = 'dist';
 const pad = (n) => String(n).padStart(2, '0');
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -19,25 +19,15 @@ const days = readdirSync('src/data/days')
 const wordCount = days.reduce((n, d) => n + d.words.length, 0);
 const shell = readFileSync(join(DIST, 'index.html'), 'utf8');
 
-function page({ path, title, description, image = 'og/home.jpg', jsonLd, body, noindex = false }) {
-  const url = `${SITE}${path}`;
+function page(path, body = '') {
+  const info = pageMetadata(path, days);
   const head = [
-    `<title>${esc(title)}</title>`,
-    `<meta name="description" content="${esc(description)}" />`,
-    noindex ? '<meta name="robots" content="noindex" />' : `<link rel="canonical" href="${url}" />`,
-    `<meta property="og:type" content="website" />`,
-    `<meta property="og:site_name" content="${NAME}" />`,
-    `<meta property="og:title" content="${esc(title)}" />`,
-    `<meta property="og:description" content="${esc(description)}" />`,
-    `<meta property="og:url" content="${url}" />`,
-    `<meta property="og:image" content="${SITE}/${image}" />`,
-    `<meta property="og:image:width" content="1200" />`,
-    `<meta property="og:image:height" content="630" />`,
-    `<meta name="twitter:card" content="summary_large_image" />`,
-    `<meta name="twitter:title" content="${esc(title)}" />`,
-    `<meta name="twitter:description" content="${esc(description)}" />`,
-    `<meta name="twitter:image" content="${SITE}/${image}" />`,
-    jsonLd ? `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>` : '',
+    `<title>${esc(info.title)}</title>`,
+    `<meta name="description" content="${esc(info.description)}" />`,
+    info.noindex ? '<meta data-route-head name="robots" content="noindex" />' : `<link data-route-head rel="canonical" href="${esc(info.url)}" />`,
+    ...Object.entries(socialTags(info)).map(([key, value]) =>
+      `<meta data-route-head ${key.startsWith('og:') ? 'property' : 'name'}="${key}" content="${esc(value)}" />`),
+    info.jsonLd ? `<script data-route-head type="application/ld+json">${JSON.stringify(info.jsonLd).replace(/</g, '\\u003c')}</script>` : '',
   ].join('\n    ');
   return shell
     .replace(/<title>[\s\S]*?<\/title>\s*/, '')
@@ -53,109 +43,58 @@ function write(path, html) {
   writeFileSync(file, html);
 }
 
-const website = { '@context': 'https://schema.org', '@type': 'WebSite', name: NAME, url: `${SITE}/`, inLanguage: 'en' };
 const nav = `<nav><a href="${SITE}/">Home</a> <a href="${SITE}/course">Course</a> <a href="${SITE}/review">Review</a> <a href="${SITE}/privacy">Privacy</a> <a href="${SITE}/terms">Terms</a></nav>`;
 
 // Home
-const homeDesc = `${wordCount} Korean words in ${days.length} daily sets of 10, with audio, flashcards, multiple choice, typing and listening practice, and spaced review of the words you miss.`;
+const homeDesc = pageMetadata('/', days).description;
 writeFileSync(
   join(DIST, 'index.html'),
-  page({
-    path: '/',
-    title: `${NAME}: learn Korean words one day at a time`,
-    description: homeDesc,
-    jsonLd: [
-      website,
-      {
-        '@context': 'https://schema.org',
-        '@type': 'Course',
-        name: NAME,
-        description: homeDesc,
-        url: `${SITE}/`,
-        inLanguage: 'en',
-        teaches: 'Korean vocabulary',
-        isAccessibleForFree: true,
-        provider: { '@type': 'Organization', name: NAME, url: `${SITE}/` },
-        hasCourseInstance: { '@type': 'CourseInstance', courseMode: 'online', courseWorkload: 'PT10M' },
-      },
-    ],
-    body: `${nav}<main><h1>Learn Korean one day at a time</h1><p>${esc(homeDesc)}</p><ol>${days
+  page('/',
+    `${nav}<main><h1>Learn Korean one day at a time</h1><p>${esc(homeDesc)}</p><ol>${days
       .map((d) => `<li><a href="${SITE}/day/${d.number}">Day ${pad(d.number)}: ${esc(d.title)} (${esc(d.titleKo)})</a></li>`)
       .join('')}</ol></main>`,
-  }),
+  ),
 );
 
 // Days
 for (const d of days) {
-  const title = `Day ${pad(d.number)}: ${d.title} | ${NAME}`;
-  const description = `Learn ${d.words.length} Korean words about ${d.title.toLowerCase()}: ${d.words
-    .slice(0, 4)
-    .map((w) => `${w.korean} (${w.english.split(/[,;]/)[0]})`)
-    .join(', ')} and more, with audio and four practice modes.`;
+  const path = `/day/${d.number}`;
+  const { description } = pageMetadata(path, days);
   write(
-    `day/${d.number}`,
-    page({
-      path: `/day/${d.number}`,
-      title,
-      description,
-      image: `og/day${pad(d.number)}.jpg`,
-      jsonLd: [
-        website,
-        {
-          '@context': 'https://schema.org',
-          '@type': 'DefinedTermSet',
-          name: `Day ${pad(d.number)}: ${d.title}`,
-          url: `${SITE}/day/${d.number}`,
-          inLanguage: ['ko', 'en'],
-          hasDefinedTerm: d.words.map((w) => ({ '@type': 'DefinedTerm', name: w.korean, alternateName: w.romanization, description: w.english, inLanguage: 'ko' })),
-        },
-      ],
-      body: `${nav}<main><h1>Day ${pad(d.number)}: ${esc(d.title)} <span lang="ko">${esc(d.titleKo)}</span></h1>${d.status === 'reviewed' ? '<p>Dictionary-reviewed</p>' : ''}<p>${esc(description)}</p><ol>${d.words
+    path.slice(1),
+    page(path,
+      `${nav}<main><h1>Day ${pad(d.number)}: ${esc(d.title)} <span lang="ko">${esc(d.titleKo)}</span></h1>${d.status === 'reviewed' ? '<p>Dictionary-reviewed</p>' : ''}<p>${esc(description)}</p><ol>${d.words
         .map((w) => `<li><span lang="ko">${esc(w.korean)}</span> (${esc(w.romanization)}): ${esc(w.english)}</li>`)
         .join('')}</ol><p><a href="${SITE}/day/${d.number}/practice/flashcards">Start flashcards</a> · <a href="${SITE}/day/${d.number}/practice/choice">Start quiz</a></p></main>`,
-    }),
+    ),
   );
 }
 
 // Course index
 write(
   'course',
-  page({
-    path: '/course',
-    title: `Course: all ${days.length} days | ${NAME}`,
-    description: `All ${days.length} days of the course, ${wordCount} Korean words in themed sets of ten.`,
-    body: `${nav}<main><h1>Course: ${days.length} days, ${wordCount} words</h1><ol>${days
+  page('/course',
+    `${nav}<main><h1>Course: ${days.length} days, ${wordCount} words</h1><ol>${days
       .map((d) => `<li><a href="${SITE}/day/${d.number}">Day ${pad(d.number)}: ${esc(d.title)} (${esc(d.titleKo)})</a></li>`)
       .join('')}</ol></main>`,
-  }),
+  ),
 );
 
 // Other pages
-const simple = [
-  ['review', `Review due words | ${NAME}`, 'Spaced review of the Korean words you have practiced, scheduled so each one comes back just before you forget it.'],
-  ['privacy', `Privacy | ${NAME}`, `What ${NAME} stores about you: only your practice progress, kept in your own browser.`],
-  ['terms', `Terms of use | ${NAME}`, `Terms for using ${NAME}, a free Korean word practice site.`],
-];
-for (const [path, title, description] of simple) {
-  write(path, page({ path: `/${path}`, title, description, body: `${nav}<main><h1>${esc(title.split(' |')[0])}</h1><p>${esc(description)}</p></main>` }));
+for (const path of ['review', 'privacy', 'terms']) {
+  const { title, description } = pageMetadata('/' + path, days);
+  write(path, page('/' + path, `${nav}<main><h1>${esc(title.split(' |')[0])}</h1><p>${esc(description)}</p></main>`));
 }
-write('progress', page({ path: '/progress', title: `Progress | ${NAME}`, description: 'Your learning progress, stored in this browser.', noindex: true }));
+write('progress', page('/progress'));
 
 // Practice sessions: app shell only, not indexed.
 for (const d of days) {
   for (const mode of ['flashcards', 'choice', 'typing', 'listening']) {
-    write(
-      `day/${d.number}/practice/${mode}`,
-      page({ path: `/day/${d.number}/practice/${mode}`, title: `Practice Day ${pad(d.number)}: ${d.title} | ${NAME}`, description: `Practice the ${d.title} words.`, image: `og/day${pad(d.number)}.jpg`, noindex: true }),
-    );
+    const path = `day/${d.number}/practice/${mode}`;
+    write(path, page('/' + path));
   }
 }
-
-// Unknown paths: GitHub Pages serves 404.html (status 404), which boots the app's own 404 page.
-writeFileSync(
-  join(DIST, '404.html'),
-  page({ path: '/404', title: `Page not found | ${NAME}`, description: 'This page does not exist.', noindex: true }),
-);
+writeFileSync(join(DIST, '404.html'), page('/404'));
 
 // sitemap.xml
 const today = new Date().toISOString().slice(0, 10);
