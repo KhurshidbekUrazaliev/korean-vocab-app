@@ -151,3 +151,4 @@ _(format: `YYYY-MM-DD HH:MM UTC | role | task | note`)_
 - 2026-11-28 | Lead | requests | Closed every Builder request. Fallback lesson tiles keep dark ink on the light illustration paper in dark mode. The owner deleted the merged branches.
 - 2026-11-28 04:39 UTC | Builder | B7 | Started the saved-language welcome-header fix and regression test.
 - 2026-11-28 04:40 UTC | Builder | B7 | Unified the welcome header and form course selection; added regression coverage for saved Arabic and switching back to Korean on the same URL.
+- 2026-11-28 | Lead | QA | Merged the welcome-header fix (PR 14). Browser sweep of 144 routes x 4 states (desktop and phone, light and dark, signed in and out): no errors, broken assets, overflow or dead links. Played every mode in both courses. Fixed two switching bugs: Review kept the other course's due words, and Today sent a learner browsing Korean to Arabic.
