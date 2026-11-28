@@ -91,8 +91,6 @@ Status: `todo` · `doing` · `review` · `done` · `blocked`
 | B4 | **Match engine**: `src/lib/match.js` with `buildMatchRound(words, { pairs = 5, random })` returning `{ left: [{ id, text }], right: [{ id, text }] }` (Arabic or Korean term on the left, English on the right, each shuffled) and `isPair(leftId, rightId)`. Unit tests | Builder | | done. Merged 2026-11-28 |
 | B5 | **Tests and accessibility** for the new screens: Testing Library tests for sign-in, language switch and Match. Extend `e2e/` scans to `/welcome`, `/ar`, `/ar/day/1`, every Arabic practice mode, `/ar/letters`, both themes and viewports | Builder | L3, L5 | done. Merged 2026-11-28; found two bugs, both fixed |
 | B6 | **Performance** with the Arabic font: measure Home, `/ar` and `/ar/day/1` on mobile Lighthouse; keep Home at 80 or above; report in `.github/PERFORMANCE.md` | Builder | L2, L3 | done. Merged 2026-11-28; the layout shift it found is fixed |
-| B5 | **Tests and accessibility** for the new screens: Testing Library tests for sign-in, language switch and Match. Extend `e2e/` scans to `/welcome`, `/ar`, `/ar/day/1`, every Arabic practice mode, `/ar/letters`, both themes and viewports | Builder | L3, L5 | todo |
-| B6 | **Performance** with the Arabic font: measure Home, `/ar` and `/ar/day/1` on mobile Lighthouse; keep Home at 80 or above; report in `.github/PERFORMANCE.md` | Builder | L2, L3 | review |
 
 ## File ownership
 
