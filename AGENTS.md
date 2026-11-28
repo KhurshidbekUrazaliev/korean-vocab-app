@@ -109,6 +109,7 @@ Status: `todo` · `doing` · `review` · `done` · `blocked`
 | 2026-11-28 | Arabic vocabulary comes from the owner's Collins book: 413 of the 500 entries match a Collins headword directly. The rest are basics the book teaches inside phrases (numbers, eat, drink) or very common words (car, bank, house) |
 | 2026-11-28 | One progress store for both courses; ids are prefixed per course |
 | 2026-11-28 | Site renamed **Inkday** with a new logo: a lowercase i whose dot is a brush dot of ink (owner's choice). The mark lives in `src/data/brand.js` |
+| 2026-11-28 | Repository renamed `inkday` (owner's request), so the site moved from `/korean-vocab-app/` to https://khurshidbekurazaliev.github.io/inkday/ |
 
 ## Open questions for the owner
 
@@ -155,3 +156,4 @@ _(format: `YYYY-MM-DD HH:MM UTC | role | task | note`)_
 - 2026-11-28 | Lead | QA | Merged the welcome-header fix (PR 14). Browser sweep of 144 routes x 4 states (desktop and phone, light and dark, signed in and out): no errors, broken assets, overflow or dead links. Played every mode in both courses. Fixed two switching bugs: Review kept the other course's due words, and Today sent a learner browsing Korean to Arabic.
 - 2026-11-28 | Lead | app | Made the site an installable web app: manifest with maskable icons, shortcuts and screenshots, a service worker that keeps opened pages working offline, an Install banner and an `/install` page with steps for iPhone, Android and computers.
 - 2026-11-28 | Lead | brand | Renamed the site Inkday and replaced the 한/ع seal with the Inkday mark in the app bar, favicon, app icons and all 102 sharing cards. `scripts/make-images.cjs` now draws the icons from `src/data/brand.js` and accepts `CHROME_PATH`.
+- 2026-11-28 | Lead | brand | Renamed the repository to `inkday` and moved every base path, canonical URL, manifest scope and sitemap entry to `/inkday/`. Tests, build and 192 strict accessibility scans pass at the new path.

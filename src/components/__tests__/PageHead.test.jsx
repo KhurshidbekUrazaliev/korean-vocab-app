@@ -16,7 +16,7 @@ it('updates canonical, indexing, social previews and structured data on navigati
   expect(tags('meta[name="robots"]').map(el => el.content)).toEqual(['noindex']);
   fireEvent.click(screen.getByText('Lesson'));
   expect(tags('meta[name="robots"]')).toHaveLength(0);
-  expect(tags('link[rel="canonical"]').map(el => el.href)).toEqual(['https://khurshidbekurazaliev.github.io/korean-vocab-app/day/1']);
+  expect(tags('link[rel="canonical"]').map(el => el.href)).toEqual(['https://khurshidbekurazaliev.github.io/inkday/day/1']);
   expect(tags('meta[property="og:url"]')[0].content).toMatch(/\/day\/1$/);
   expect(tags('meta[name="twitter:image"]')[0].content).toMatch(/\/og\/day01.jpg$/);
   expect(JSON.parse(tags('script[type="application/ld+json"]')[0].textContent)[1].hasDefinedTerm).toHaveLength(10);

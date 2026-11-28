@@ -9,7 +9,7 @@ learning product with **50 vocabulary days**. It should be engaging enough
 that people come back daily, look like a designed product (not a template),
 and be findable by search engines and AI assistants.
 
-Live site: https://khurshidbekurazaliev.github.io/korean-vocab-app/
+Live site: https://khurshidbekurazaliev.github.io/inkday/
 
 ## Current state (2026-11-28)
 

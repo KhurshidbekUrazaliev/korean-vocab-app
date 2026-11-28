@@ -1,12 +1,12 @@
 {
-  "id": "/korean-vocab-app/",
+  "id": "/inkday/",
   "name": "Inkday",
   "short_name": "Inkday",
   "description": "Learn Korean and Arabic words, ten a day, with audio, four practice modes, a match game and spaced review.",
   "lang": "en",
   "dir": "ltr",
-  "start_url": "/korean-vocab-app/",
-  "scope": "/korean-vocab-app/",
+  "start_url": "/inkday/",
+  "scope": "/inkday/",
   "display": "standalone",
   "orientation": "any",
   "theme_color": "#f6ede2",
@@ -39,7 +39,7 @@
     {
       "name": "Korean: Today",
       "short_name": "Korean",
-      "url": "/korean-vocab-app/",
+      "url": "/inkday/",
       "icons": [
         {
           "src": "icon-192.png",
@@ -50,7 +50,7 @@
     {
       "name": "Arabic: Today",
       "short_name": "Arabic",
-      "url": "/korean-vocab-app/ar",
+      "url": "/inkday/ar",
       "icons": [
         {
           "src": "icon-192.png",
@@ -61,7 +61,7 @@
     {
       "name": "Korean review",
       "short_name": "Review",
-      "url": "/korean-vocab-app/review",
+      "url": "/inkday/review",
       "icons": [
         {
           "src": "icon-192.png",
@@ -72,7 +72,7 @@
     {
       "name": "Arabic review",
       "short_name": "مراجعة",
-      "url": "/korean-vocab-app/ar/review",
+      "url": "/inkday/ar/review",
       "icons": [
         {
           "src": "icon-192.png",

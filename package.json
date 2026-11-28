@@ -1,9 +1,9 @@
 {
-  "name": "korean-vocab-app",
+  "name": "inkday",
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "homepage": "https://khurshidbekurazaliev.github.io/korean-vocab-app",
+  "homepage": "https://khurshidbekurazaliev.github.io/inkday",
   "scripts": {
     "dev": "vite",
     "build": "vite build && node scripts/postbuild.js",

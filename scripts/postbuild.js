@@ -26,7 +26,7 @@ function loadCourse(id) {
 const COURSES = { ko: loadCourse('ko'), ar: loadCourse('ar') };
 const shell = readFileSync(join(DIST, 'index.html'), 'utf8');
 
-const BASE = '/korean-vocab-app/';
+const BASE = '/inkday/';
 
 // A day's cover is its largest element, but React only adds it after the scripts run.
 // Preloading it from the static HTML lets the browser fetch it right away.
@@ -123,7 +123,7 @@ writeFileSync(
     .join('\n')}\n</urlset>\n`,
 );
 
-// robots.txt (note: GitHub Pages project sites only serve /korean-vocab-app/robots.txt;
+// robots.txt (note: GitHub Pages project sites only serve /inkday/robots.txt;
 // crawlers read robots.txt at the domain root, so this file matters once a custom domain is used)
 const bots = ['GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-SearchBot', 'PerplexityBot', 'Google-Extended'];
 writeFileSync(

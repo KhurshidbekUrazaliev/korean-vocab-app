@@ -6,7 +6,7 @@ import { readFileSync } from 'node:fs';
 const uiFont = 'https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/packages/pretendard/dist/web/variable/woff2-dynamic-subset/PretendardVariable.subset.91.woff2';
 
 export default defineConfig({
-  base: '/korean-vocab-app/',
+  base: '/inkday/',
   plugins: [
     react(),
     {
