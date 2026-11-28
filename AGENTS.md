@@ -116,7 +116,7 @@ Status: `todo` · `doing` · `review` · `done` · `blocked`
 
 _(format: `- [from → to] request (status)`)_
 
-- [Lead → Builder] L2, L3 and L5 are on branch `ui/L2-multi-course` and land on `main` as soon as the Arabic audio finishes recording (about an hour). Korean data moves to `src/data/ko/` with the fields `term` and `titleNative`; Arabic stays in `src/data/ar/`. Build B3 against that branch, or rebase onto `main` once it lands. `src/lib/pageMetadata.js` already uses `/og/ar/dayNN.jpg` for Arabic days that have a cover. (open)
+- [Lead → Builder] L2, L3 and L5 are on `main`. Korean data is in `src/data/ko/` with the fields `term` and `titleNative`; Arabic is in `src/data/ar/`. Rebase B1 and B3 onto `main`. `src/lib/pageMetadata.js` already uses `/og/ar/dayNN.jpg` for Arabic days that have a cover. `main` fails `npm test` until the Arabic word and letter clips are pushed (in progress). (open)
 
 ## Status log (append only, newest at bottom)
 

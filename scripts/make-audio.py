@@ -96,6 +96,12 @@ SOUNDS_LIKE = {
     '알약': ['알략'], '산기슭': ['산기슥'],
 }
 
+# Whisper writes Arabic number words as digits.
+SOUNDS_LIKE_AR = {
+    'واحد': ['1'], 'اثنان': ['2'], 'ثلاثه': ['3'], 'اربعه': ['4'], 'خمسه': ['5'],
+    'سته': ['6'], 'سبعه': ['7'], 'ثمانيه': ['8'], 'تسعه': ['9'], 'عشره': ['10'],
+}
+
 # The model reads spelling literally. Where standard pronunciation (표준 발음법) differs,
 # give it the pronounced form: ㄴ-insertion + liquidization in 알약, ㄺ → [ㄱ] in 산기슭.
 SAY = {'알약': '알략', '산기슭': '산기슥'}
@@ -131,7 +137,8 @@ class Listener:
         segs, _ = self.model.transcribe(audio, language=self.lang, beam_size=5, condition_on_previous_text=False)
         heard = ''.join(s.text for s in segs)
         if self.lang == 'ar':
-            return norm_ar(heard) == norm_ar(term), heard.strip()
+            ok = norm_ar(heard) in [norm_ar(term), *SOUNDS_LIKE_AR.get(norm_ar(term), [])]
+            return ok, heard.strip()
         heard = norm(heard)
         return heard in [norm(term), *map(norm, SOUNDS_LIKE.get(term, []))], heard
 
