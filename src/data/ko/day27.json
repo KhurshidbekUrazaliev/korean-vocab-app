@@ -1,0 +1,73 @@
+{
+  "id": "day27",
+  "course": "ko",
+  "number": 27,
+  "slug": "visiting-a-clinic",
+  "title": "Visiting a clinic",
+  "titleNative": "의원에서 진료받기",
+  "status": "reviewed",
+  "source": "generated",
+  "cover": "images/days/day27.webp",
+  "words": [
+    {
+      "id": "day27-01",
+      "term": "의원",
+      "romanization": "uiwon",
+      "english": "local medical clinic"
+    },
+    {
+      "id": "day27-02",
+      "term": "의사",
+      "romanization": "uisa",
+      "english": "doctor"
+    },
+    {
+      "id": "day27-03",
+      "term": "간호사",
+      "romanization": "ganhosa",
+      "english": "nurse"
+    },
+    {
+      "id": "day27-04",
+      "term": "환자",
+      "romanization": "hwanja",
+      "english": "patient"
+    },
+    {
+      "id": "day27-05",
+      "term": "진료실",
+      "romanization": "jillyosil",
+      "english": "consultation room"
+    },
+    {
+      "id": "day27-06",
+      "term": "대기실",
+      "romanization": "daegisil",
+      "english": "waiting room"
+    },
+    {
+      "id": "day27-07",
+      "term": "증상",
+      "romanization": "jeungsang",
+      "english": "symptom"
+    },
+    {
+      "id": "day27-08",
+      "term": "기침",
+      "romanization": "gichim",
+      "english": "cough"
+    },
+    {
+      "id": "day27-09",
+      "term": "체온",
+      "romanization": "che-on",
+      "english": "body temperature"
+    },
+    {
+      "id": "day27-10",
+      "term": "청진기",
+      "romanization": "cheongjingi",
+      "english": "stethoscope"
+    }
+  ]
+}

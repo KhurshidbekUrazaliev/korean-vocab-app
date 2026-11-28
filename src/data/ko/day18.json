@@ -1,0 +1,73 @@
+{
+  "id": "day18",
+  "course": "ko",
+  "number": 18,
+  "slug": "at-the-traditional-market",
+  "title": "At the traditional market",
+  "titleNative": "전통 시장에서",
+  "status": "reviewed",
+  "source": "generated",
+  "cover": "images/days/day18.webp",
+  "words": [
+    {
+      "id": "day18-01",
+      "term": "시장",
+      "romanization": "sijang",
+      "english": "market"
+    },
+    {
+      "id": "day18-02",
+      "term": "상인",
+      "romanization": "sangin",
+      "english": "merchant"
+    },
+    {
+      "id": "day18-03",
+      "term": "가게",
+      "romanization": "gage",
+      "english": "shop"
+    },
+    {
+      "id": "day18-04",
+      "term": "가격",
+      "romanization": "gagyeok",
+      "english": "price"
+    },
+    {
+      "id": "day18-05",
+      "term": "거스름돈",
+      "romanization": "geoseureumdon",
+      "english": "change given back"
+    },
+    {
+      "id": "day18-06",
+      "term": "저울",
+      "romanization": "jeoul",
+      "english": "weighing scale"
+    },
+    {
+      "id": "day18-07",
+      "term": "무",
+      "romanization": "mu",
+      "english": "radish"
+    },
+    {
+      "id": "day18-08",
+      "term": "배추",
+      "romanization": "baechu",
+      "english": "napa cabbage"
+    },
+    {
+      "id": "day18-09",
+      "term": "고추",
+      "romanization": "gochu",
+      "english": "chili pepper"
+    },
+    {
+      "id": "day18-10",
+      "term": "깎다",
+      "romanization": "kkakda",
+      "english": "to lower a price"
+    }
+  ]
+}

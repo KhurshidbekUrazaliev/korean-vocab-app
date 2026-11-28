@@ -1,0 +1,73 @@
+{
+  "id": "day33",
+  "course": "ko",
+  "number": 33,
+  "slug": "at-the-library",
+  "title": "At the library",
+  "titleNative": "도서관에서",
+  "status": "reviewed",
+  "source": "generated",
+  "cover": "images/days/day33.webp",
+  "words": [
+    {
+      "id": "day33-01",
+      "term": "도서관",
+      "romanization": "doseogwan",
+      "english": "library"
+    },
+    {
+      "id": "day33-02",
+      "term": "사서",
+      "romanization": "saseo",
+      "english": "librarian"
+    },
+    {
+      "id": "day33-03",
+      "term": "서가",
+      "romanization": "seoga",
+      "english": "bookshelf"
+    },
+    {
+      "id": "day33-04",
+      "term": "열람실",
+      "romanization": "yeollamsil",
+      "english": "reading room"
+    },
+    {
+      "id": "day33-05",
+      "term": "소설",
+      "romanization": "soseol",
+      "english": "novel"
+    },
+    {
+      "id": "day33-06",
+      "term": "사전",
+      "romanization": "sajeon",
+      "english": "dictionary"
+    },
+    {
+      "id": "day33-07",
+      "term": "대출하다",
+      "romanization": "daechulhada",
+      "english": "to check out a book"
+    },
+    {
+      "id": "day33-08",
+      "term": "반납하다",
+      "romanization": "bannapada",
+      "english": "to return a borrowed item"
+    },
+    {
+      "id": "day33-09",
+      "term": "연체",
+      "romanization": "yeonche",
+      "english": "overdue status"
+    },
+    {
+      "id": "day33-10",
+      "term": "회원증",
+      "romanization": "hoewonjeung",
+      "english": "membership card"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "id": "day26",
+  "course": "ko",
+  "number": 26,
+  "slug": "ordering-at-a-cafe",
+  "title": "Ordering at a café",
+  "titleNative": "카페에서 주문하기",
+  "status": "reviewed",
+  "source": "generated",
+  "cover": "images/days/day26.webp",
+  "words": [
+    {
+      "id": "day26-01",
+      "term": "카페",
+      "romanization": "kape",
+      "english": "café"
+    },
+    {
+      "id": "day26-02",
+      "term": "메뉴판",
+      "romanization": "menyupan",
+      "english": "menu"
+    },
+    {
+      "id": "day26-03",
+      "term": "주문하다",
+      "romanization": "jumunhada",
+      "english": "to order"
+    },
+    {
+      "id": "day26-04",
+      "term": "커피",
+      "romanization": "keopi",
+      "english": "coffee"
+    },
+    {
+      "id": "day26-05",
+      "term": "라테",
+      "romanization": "rate",
+      "english": "latte"
+    },
+    {
+      "id": "day26-06",
+      "term": "우유",
+      "romanization": "uyu",
+      "english": "milk"
+    },
+    {
+      "id": "day26-07",
+      "term": "얼음",
+      "romanization": "eoreum",
+      "english": "ice"
+    },
+    {
+      "id": "day26-08",
+      "term": "빨대",
+      "romanization": "ppaldae",
+      "english": "drinking straw"
+    },
+    {
+      "id": "day26-09",
+      "term": "머그잔",
+      "romanization": "meugeujan",
+      "english": "mug"
+    },
+    {
+      "id": "day26-10",
+      "term": "시럽",
+      "romanization": "sireop",
+      "english": "syrup"
+    }
+  ]
+}

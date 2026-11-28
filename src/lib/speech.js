@@ -13,29 +13,34 @@ const QUALITY = [
   [/heami|compact|espeak/i, -50],
 ];
 
-export function rankVoice(voice) {
+export function rankVoice(voice, want = 'ko') {
   const lang = (voice.lang || '').replace('_', '-').toLowerCase();
-  if (!lang.startsWith('ko')) return -Infinity;
-  let score = lang === 'ko-kr' ? 5 : 0;
+  if (!lang.startsWith(want)) return -Infinity;
+  let score = lang === `${want}-${want === 'ko' ? 'kr' : 'sa'}` ? 5 : 0;
   for (const [pattern, points] of QUALITY) if (pattern.test(voice.name)) score += points;
   if (voice.localService === false) score += 10;
   return score;
 }
 
-export function bestKoreanVoice(voices) {
+export function bestVoice(voices, want = 'ko') {
   let best = null;
   let bestScore = -Infinity;
   for (const v of voices) {
-    const s = rankVoice(v);
+    const s = rankVoice(v, want);
     if (s > bestScore) [best, bestScore] = [v, s];
   }
   return best;
 }
+export const bestKoreanVoice = (voices) => bestVoice(voices, 'ko');
 
-let koreanVoice = null;
+const voices = { ko: null, ar: null };
+const SPEECH_LANG = { ko: 'ko-KR', ar: 'ar-SA' };
+const langOfText = (text) => (/[\u0600-\u06FF]/.test(text) ? 'ar' : 'ko');
 
 function pickVoice() {
-  koreanVoice = bestKoreanVoice(window.speechSynthesis?.getVoices() ?? []);
+  const all = window.speechSynthesis?.getVoices() ?? [];
+  voices.ko = bestVoice(all, 'ko');
+  voices.ar = bestVoice(all, 'ar');
 }
 
 if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
@@ -62,34 +67,41 @@ function clip(src) {
 }
 
 /** Start loading a word's clip before it is needed (hover, next card). */
-export function warm(text) {
-  const src = hasAudio() && clipFor(text);
+export function warm(text, clipSrc) {
+  const src = hasAudio() && (clipSrc ?? clipFor(text));
   if (src) clip(src);
 }
 
 function speakTTS(text, rate) {
   if (!hasTTS()) return false;
-  if (!koreanVoice) pickVoice();
+  const lang = langOfText(text);
+  if (!voices[lang]) pickVoice();
   window.speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(text);
-  u.lang = 'ko-KR';
+  u.lang = SPEECH_LANG[lang];
   u.rate = rate;
-  if (koreanVoice) u.voice = koreanVoice;
+  if (voices[lang]) u.voice = voices[lang];
   window.speechSynthesis.speak(u);
   return true;
 }
 
-export function speak(text, { rate = 0.9 } = {}) {
+/**
+ * Play a word: its recorded clip if there is one, otherwise the device voice.
+ * `src` picks a clip directly (letters). `slow` replays at 70% speed, keeping the pitch.
+ */
+export function speak(text, { rate = 0.9, src: clipSrc, slow = false } = {}) {
   const request = ++playbackRequest;
   playing?.pause();
   playing = null;
-  const src = hasAudio() && clipFor(text);
-  if (!src) return speakTTS(text, rate);
+  const src = hasAudio() && (clipSrc ?? clipFor(text));
+  if (!src) return speakTTS(text, slow ? 0.6 : rate);
   if (hasTTS()) window.speechSynthesis.cancel();
   const a = clip(src);
   playing = a;
   try {
     a.currentTime = 0;
+    a.playbackRate = slow ? 0.7 : 1;
+    a.preservesPitch = true;
     a.play()?.catch(err => {
       // A second click can interrupt a pending play(), even on the same clip.
       if (request === playbackRequest && err?.name !== 'NotAllowedError') speakTTS(text, rate);

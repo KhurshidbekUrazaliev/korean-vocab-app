@@ -1,0 +1,73 @@
+{
+  "id": "day35",
+  "course": "ko",
+  "number": 35,
+  "slug": "playing-music",
+  "title": "Playing music",
+  "titleNative": "악기 연주",
+  "status": "reviewed",
+  "source": "generated",
+  "cover": "images/days/day35.webp",
+  "words": [
+    {
+      "id": "day35-01",
+      "term": "악기",
+      "romanization": "akgi",
+      "english": "musical instrument"
+    },
+    {
+      "id": "day35-02",
+      "term": "연주하다",
+      "romanization": "yeonjuhada",
+      "english": "to play an instrument"
+    },
+    {
+      "id": "day35-03",
+      "term": "기타",
+      "romanization": "gita",
+      "english": "guitar"
+    },
+    {
+      "id": "day35-04",
+      "term": "장구",
+      "romanization": "janggu",
+      "english": "Korean hourglass-shaped drum"
+    },
+    {
+      "id": "day35-05",
+      "term": "피아노",
+      "romanization": "piano",
+      "english": "piano"
+    },
+    {
+      "id": "day35-06",
+      "term": "악보",
+      "romanization": "akbo",
+      "english": "sheet music"
+    },
+    {
+      "id": "day35-07",
+      "term": "박자",
+      "romanization": "bakja",
+      "english": "beat or meter"
+    },
+    {
+      "id": "day35-08",
+      "term": "음정",
+      "romanization": "eumjeong",
+      "english": "interval between notes"
+    },
+    {
+      "id": "day35-09",
+      "term": "합주",
+      "romanization": "hapju",
+      "english": "ensemble performance"
+    },
+    {
+      "id": "day35-10",
+      "term": "조율하다",
+      "romanization": "joyulhada",
+      "english": "to tune an instrument"
+    }
+  ]
+}

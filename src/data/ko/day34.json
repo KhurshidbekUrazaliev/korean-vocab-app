@@ -1,0 +1,73 @@
+{
+  "id": "day34",
+  "course": "ko",
+  "number": 34,
+  "slug": "art-and-museums",
+  "title": "Art and museums",
+  "titleNative": "미술과 박물관",
+  "status": "reviewed",
+  "source": "generated",
+  "cover": "images/days/day34.webp",
+  "words": [
+    {
+      "id": "day34-01",
+      "term": "미술관",
+      "romanization": "misulgwan",
+      "english": "art museum"
+    },
+    {
+      "id": "day34-02",
+      "term": "박물관",
+      "romanization": "bangmulgwan",
+      "english": "museum"
+    },
+    {
+      "id": "day34-03",
+      "term": "전시회",
+      "romanization": "jeonsihoe",
+      "english": "exhibition"
+    },
+    {
+      "id": "day34-04",
+      "term": "작품",
+      "romanization": "jakpum",
+      "english": "work of art"
+    },
+    {
+      "id": "day34-05",
+      "term": "화가",
+      "romanization": "hwaga",
+      "english": "painter"
+    },
+    {
+      "id": "day34-06",
+      "term": "초상화",
+      "romanization": "chosanghwa",
+      "english": "portrait painting"
+    },
+    {
+      "id": "day34-07",
+      "term": "풍경화",
+      "romanization": "punggyeonghwa",
+      "english": "landscape painting"
+    },
+    {
+      "id": "day34-08",
+      "term": "조각상",
+      "romanization": "jogaksang",
+      "english": "statue"
+    },
+    {
+      "id": "day34-09",
+      "term": "액자",
+      "romanization": "aekja",
+      "english": "picture frame"
+    },
+    {
+      "id": "day34-10",
+      "term": "관람하다",
+      "romanization": "gwallamhada",
+      "english": "to view an exhibition or performance"
+    }
+  ]
+}

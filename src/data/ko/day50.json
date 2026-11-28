@@ -1,0 +1,73 @@
+{
+  "id": "day50",
+  "course": "ko",
+  "number": 50,
+  "slug": "graduation-day",
+  "title": "Graduation day",
+  "titleNative": "졸업하는 날",
+  "status": "reviewed",
+  "source": "generated",
+  "cover": "images/days/day50.webp",
+  "words": [
+    {
+      "id": "day50-01",
+      "term": "졸업",
+      "romanization": "joreop",
+      "english": "graduation"
+    },
+    {
+      "id": "day50-02",
+      "term": "졸업식",
+      "romanization": "joreopsik",
+      "english": "graduation ceremony"
+    },
+    {
+      "id": "day50-03",
+      "term": "졸업장",
+      "romanization": "joreopjang",
+      "english": "diploma"
+    },
+    {
+      "id": "day50-04",
+      "term": "학사모",
+      "romanization": "haksamo",
+      "english": "graduation cap"
+    },
+    {
+      "id": "day50-05",
+      "term": "학위",
+      "romanization": "hagwi",
+      "english": "academic degree"
+    },
+    {
+      "id": "day50-06",
+      "term": "졸업생",
+      "romanization": "joreopsaeng",
+      "english": "graduate"
+    },
+    {
+      "id": "day50-07",
+      "term": "동창",
+      "romanization": "dongchang",
+      "english": "former schoolmate"
+    },
+    {
+      "id": "day50-08",
+      "term": "후배",
+      "romanization": "hubae",
+      "english": "junior schoolmate or colleague"
+    },
+    {
+      "id": "day50-09",
+      "term": "교가",
+      "romanization": "gyoga",
+      "english": "school song"
+    },
+    {
+      "id": "day50-10",
+      "term": "꽃다발",
+      "romanization": "kkotdabal",
+      "english": "bouquet"
+    }
+  ]
+}

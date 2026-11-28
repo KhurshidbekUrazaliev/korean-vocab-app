@@ -6,11 +6,11 @@ import { getStreak } from '../streak.js';
 import { loadProgress, saveProgress, emptyProgress, localDateKey, PROGRESS_KEY } from '../progress.js';
 
 const words = [
-  { id: 'a', korean: '외식', english: 'dining out' },
-  { id: 'b', korean: '마늘', english: 'garlic' },
-  { id: 'c', korean: '후식', english: 'dessert' },
-  { id: 'd', korean: '야경', english: 'night view' },
-  { id: 'e', korean: '취소하다', english: 'to cancel' },
+  { id: 'a', term: '외식', english: 'dining out' },
+  { id: 'b', term: '마늘', english: 'garlic' },
+  { id: 'c', term: '후식', english: 'dessert' },
+  { id: 'd', term: '야경', english: 'night view' },
+  { id: 'e', term: '취소하다', english: 'to cancel' },
 ];
 
 describe('shuffle', () => {

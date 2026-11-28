@@ -1,0 +1,73 @@
+{
+  "id": "day23",
+  "course": "ko",
+  "number": 23,
+  "slug": "moving-day",
+  "title": "Moving day",
+  "titleNative": "이사하는 날",
+  "status": "reviewed",
+  "source": "generated",
+  "cover": "images/days/day23.webp",
+  "words": [
+    {
+      "id": "day23-01",
+      "term": "이사",
+      "romanization": "isa",
+      "english": "moving house"
+    },
+    {
+      "id": "day23-02",
+      "term": "사다리차",
+      "romanization": "sadaricha",
+      "english": "ladder truck"
+    },
+    {
+      "id": "day23-03",
+      "term": "상자",
+      "romanization": "sangja",
+      "english": "box"
+    },
+    {
+      "id": "day23-04",
+      "term": "테이프",
+      "romanization": "teipeu",
+      "english": "tape"
+    },
+    {
+      "id": "day23-05",
+      "term": "포장하다",
+      "romanization": "pojanghada",
+      "english": "to pack or wrap"
+    },
+    {
+      "id": "day23-06",
+      "term": "옮기다",
+      "romanization": "omgida",
+      "english": "to move something"
+    },
+    {
+      "id": "day23-07",
+      "term": "나르다",
+      "romanization": "nareuda",
+      "english": "to carry from one place to another"
+    },
+    {
+      "id": "day23-08",
+      "term": "풀다",
+      "romanization": "pulda",
+      "english": "to unpack or untie"
+    },
+    {
+      "id": "day23-09",
+      "term": "현관",
+      "romanization": "hyeongwan",
+      "english": "entryway"
+    },
+    {
+      "id": "day23-10",
+      "term": "열쇠",
+      "romanization": "yeolsoe",
+      "english": "key"
+    }
+  ]
+}

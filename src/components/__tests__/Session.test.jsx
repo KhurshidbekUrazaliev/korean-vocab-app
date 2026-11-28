@@ -7,7 +7,7 @@ import { MotionProvider } from '../Motion.jsx';
 import { Session } from '../Session.jsx';
 import { progressStore } from '../../hooks/useProgress.js';
 import { loadProgress, localDateKey } from '../../lib/progress.js';
-import day from '../../data/days/day01.json';
+import day from '../../data/ko/day01.json';
 
 // GSAP queries media preferences when its plugins register. Use the app's real
 // reduced-motion path in jsdom, which has no layout, media queries or scrolling.
@@ -65,9 +65,9 @@ describe('Session', () => {
   it('flips with Space, grades with 1 and 2, and retries just the missed flashcard', async () => {
     const words = day.words.slice(0, 2);
     const user = start('flashcards', words);
-    const front = (w) => new RegExp(`^${w.korean}\\s*Say it out loud`);
+    const front = (w) => new RegExp(`^${w.term}\\s*Say it out loud`);
     const firstCard = screen.getByRole('button', { name: /Say it out loud, then flip/ });
-    const missed = words.find((w) => firstCard.textContent.startsWith(w.korean));
+    const missed = words.find((w) => firstCard.textContent.startsWith(w.term));
     const known = words.find((w) => w !== missed);
 
     await user.keyboard('2'); // a hidden answer cannot be graded
@@ -111,8 +111,8 @@ describe('Session', () => {
       const prompt = screen.getByRole('heading', { level: 1 }).textContent;
       const word = words.find((w) => w.english === prompt);
       const choices = options();
-      expect(choices.some((button) => within(button).queryByText(word.korean))).toBe(true);
-      const correct = Boolean(within(choices[key - 1]).queryByText(word.korean));
+      expect(choices.some((button) => within(button).queryByText(word.term))).toBe(true);
+      const correct = Boolean(within(choices[key - 1]).queryByText(word.term));
       score += Number(correct);
       await user.keyboard(String(key));
       within(screen.getByRole('status')).getByText(correct ? 'Correct' : 'Not quite');
@@ -138,9 +138,9 @@ describe('Session', () => {
     };
     const user = start('typing', words);
     for (let i = 0; i < words.length; i++) {
-      const word = words.find((w) => w.korean === screen.getByRole('heading', { level: 1 }).textContent);
+      const word = words.find((w) => w.term === screen.getByRole('heading', { level: 1 }).textContent);
       const [answer, feedback, correctCount] = cases[word.english];
-      const field = screen.getByRole('textbox', { name: 'Meaning of ' + word.korean });
+      const field = screen.getByRole('textbox', { name: 'Meaning of ' + word.term });
       expect(document.activeElement).toBe(field);
       await user.keyboard('{Enter}');
       expect(screen.queryByRole('status')).toBeNull();
@@ -184,17 +184,17 @@ describe('Session', () => {
     vi.stubGlobal('SpeechSynthesisUtterance', class { constructor(text) { this.text = text; } });
     const user = start('listening', [word]);
     screen.getByRole('button', { name: 'Play the word again' });
-    expect(screen.queryByText(word.korean)).toBeNull();
+    expect(screen.queryByText(word.term)).toBeNull();
     await waitFor(() => expect(speak).toHaveBeenCalledTimes(1));
     await user.keyboard('R');
     expect(speak).toHaveBeenCalledTimes(2);
     for (const [utterance] of speak.mock.calls) {
-      expect(utterance).toMatchObject({ text: word.korean, lang: 'ko-KR' });
+      expect(utterance).toMatchObject({ text: word.term, lang: 'ko-KR' });
     }
 
     const key = options().findIndex((button) => within(button).queryByText(word.english)) + 1;
     await user.keyboard(String(key));
-    within(screen.getByRole('status')).getByText(word.korean);
+    within(screen.getByRole('status')).getByText(word.term);
     await user.keyboard('{Enter}');
     expectResult(1, 1);
     expect(saved()).toMatchObject({

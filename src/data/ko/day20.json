@@ -1,0 +1,73 @@
+{
+  "id": "day20",
+  "course": "ko",
+  "number": 20,
+  "slug": "at-the-post-office",
+  "title": "At the post office",
+  "titleNative": "우체국에서",
+  "status": "reviewed",
+  "source": "generated",
+  "cover": "images/days/day20.webp",
+  "words": [
+    {
+      "id": "day20-01",
+      "term": "우체국",
+      "romanization": "ucheguk",
+      "english": "post office"
+    },
+    {
+      "id": "day20-02",
+      "term": "우표",
+      "romanization": "upyo",
+      "english": "postage stamp"
+    },
+    {
+      "id": "day20-03",
+      "term": "봉투",
+      "romanization": "bongtu",
+      "english": "envelope"
+    },
+    {
+      "id": "day20-04",
+      "term": "편지",
+      "romanization": "pyeonji",
+      "english": "letter"
+    },
+    {
+      "id": "day20-05",
+      "term": "소포",
+      "romanization": "sopo",
+      "english": "parcel"
+    },
+    {
+      "id": "day20-06",
+      "term": "주소",
+      "romanization": "juso",
+      "english": "address"
+    },
+    {
+      "id": "day20-07",
+      "term": "우편 번호",
+      "romanization": "upyeon beonho",
+      "english": "postal code"
+    },
+    {
+      "id": "day20-08",
+      "term": "우체통",
+      "romanization": "uchetong",
+      "english": "mailbox for outgoing mail"
+    },
+    {
+      "id": "day20-09",
+      "term": "보내다",
+      "romanization": "bonaeda",
+      "english": "to send"
+    },
+    {
+      "id": "day20-10",
+      "term": "받는 사람",
+      "romanization": "banneun saram",
+      "english": "recipient"
+    }
+  ]
+}

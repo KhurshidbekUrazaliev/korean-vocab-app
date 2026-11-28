@@ -1,0 +1,73 @@
+{
+  "id": "day24",
+  "course": "ko",
+  "number": 24,
+  "slug": "cooking-at-home",
+  "title": "Cooking at home",
+  "titleNative": "집에서 요리하기",
+  "status": "reviewed",
+  "source": "generated",
+  "cover": "images/days/day24.webp",
+  "words": [
+    {
+      "id": "day24-01",
+      "term": "요리하다",
+      "romanization": "yorihada",
+      "english": "to cook"
+    },
+    {
+      "id": "day24-02",
+      "term": "재료",
+      "romanization": "jaeryo",
+      "english": "ingredient"
+    },
+    {
+      "id": "day24-03",
+      "term": "도마",
+      "romanization": "doma",
+      "english": "cutting board"
+    },
+    {
+      "id": "day24-04",
+      "term": "칼",
+      "romanization": "kal",
+      "english": "knife"
+    },
+    {
+      "id": "day24-05",
+      "term": "냄비",
+      "romanization": "naembi",
+      "english": "cooking pot"
+    },
+    {
+      "id": "day24-06",
+      "term": "두부",
+      "romanization": "dubu",
+      "english": "tofu"
+    },
+    {
+      "id": "day24-07",
+      "term": "대파",
+      "romanization": "daepa",
+      "english": "large green onion"
+    },
+    {
+      "id": "day24-08",
+      "term": "썰다",
+      "romanization": "sseolda",
+      "english": "to slice"
+    },
+    {
+      "id": "day24-09",
+      "term": "끓이다",
+      "romanization": "kkeurida",
+      "english": "to boil a liquid"
+    },
+    {
+      "id": "day24-10",
+      "term": "간장",
+      "romanization": "ganjang",
+      "english": "soy sauce"
+    }
+  ]
+}
