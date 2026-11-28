@@ -22,4 +22,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://khurshidbekurazaliev.github.io/korean-vocab-app/sitemap.xml
+Sitemap: https://khurshidbekurazaliev.github.io/inkday/sitemap.xml
