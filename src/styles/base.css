@@ -603,6 +603,15 @@ button {
   font-size: var(--fs-12);
   color: var(--ink-2);
 }
+.footer__legal a {
+  color: var(--ink);
+  text-underline-offset: 3px;
+  text-decoration-color: var(--line-strong);
+}
+.footer__legal a:hover {
+  color: var(--accent);
+  text-decoration-color: currentColor;
+}
 
 /* ---------- Static HTML written by scripts/postbuild.js; React replaces it ---------- */
 .prerender {

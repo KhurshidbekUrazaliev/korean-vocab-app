@@ -20,6 +20,9 @@ export function Footer() {
         </div>
         <div className="footer__legal">
           <span>© {new Date().getFullYear()} Essential Korean Vocabulary</span>
+          <span>
+            Developed by Khurshidbek · <a href="mailto:ummahfaris@gmail.com">ummahfaris@gmail.com</a>
+          </span>
           <span>No account needed. Progress is saved in this browser.</span>
         </div>
       </div>
