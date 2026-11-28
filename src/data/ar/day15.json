@@ -1,0 +1,73 @@
+{
+  "id": "ar-day15",
+  "course": "ar",
+  "number": 15,
+  "slug": "airport",
+  "title": "At the airport",
+  "titleNative": "فِي الْمَطَار",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day15-01",
+      "term": "الْمَطَار",
+      "romanization": "al-mataar",
+      "english": "airport"
+    },
+    {
+      "id": "ar-day15-02",
+      "term": "جَوَازُ السَّفَر",
+      "romanization": "jawaaz as-safar",
+      "english": "passport"
+    },
+    {
+      "id": "ar-day15-03",
+      "term": "الْجَمَارِك",
+      "romanization": "al-jamaarik",
+      "english": "customs"
+    },
+    {
+      "id": "ar-day15-04",
+      "term": "الرِّحْلَة",
+      "romanization": "ar-rihla",
+      "english": "flight, trip"
+    },
+    {
+      "id": "ar-day15-05",
+      "term": "بِطَاقَةُ الصُّعُود",
+      "romanization": "bitaaqat as-su‘uud",
+      "english": "boarding pass"
+    },
+    {
+      "id": "ar-day15-06",
+      "term": "حَقِيبَةُ السَّفَر",
+      "romanization": "haqiibat as-safar",
+      "english": "suitcase"
+    },
+    {
+      "id": "ar-day15-07",
+      "term": "الطَّيَّار",
+      "romanization": "at-tayyaar",
+      "english": "pilot"
+    },
+    {
+      "id": "ar-day15-08",
+      "term": "الْمُغَادَرَة",
+      "romanization": "al-mughaadara",
+      "english": "departures"
+    },
+    {
+      "id": "ar-day15-09",
+      "term": "الْوُصُول",
+      "romanization": "al-wusuul",
+      "english": "arrivals"
+    },
+    {
+      "id": "ar-day15-10",
+      "term": "الْأَمْتِعَة",
+      "romanization": "al-amti‘a",
+      "english": "luggage"
+    }
+  ]
+}

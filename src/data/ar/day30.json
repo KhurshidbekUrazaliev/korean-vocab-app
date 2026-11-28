@@ -1,0 +1,73 @@
+{
+  "id": "ar-day30",
+  "course": "ar",
+  "number": 30,
+  "slug": "shops",
+  "title": "Shops",
+  "titleNative": "الْمَحَلَّات",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day30-01",
+      "term": "الصَّيْدَلِيَّة",
+      "romanization": "as-saydaliyya",
+      "english": "pharmacy, chemist's"
+    },
+    {
+      "id": "ar-day30-02",
+      "term": "الصَّيْدَلِيّ",
+      "romanization": "as-saydalii",
+      "english": "pharmacist"
+    },
+    {
+      "id": "ar-day30-03",
+      "term": "الْخَبَّاز",
+      "romanization": "al-khabbaaz",
+      "english": "baker"
+    },
+    {
+      "id": "ar-day30-04",
+      "term": "اللَّحَّام",
+      "romanization": "al-lahhaam",
+      "english": "butcher"
+    },
+    {
+      "id": "ar-day30-05",
+      "term": "الْبَقَّالَة",
+      "romanization": "al-baqqaala",
+      "english": "grocer's, corner shop"
+    },
+    {
+      "id": "ar-day30-06",
+      "term": "الْحَلَّاق",
+      "romanization": "al-hallaaq",
+      "english": "barber, hairdresser"
+    },
+    {
+      "id": "ar-day30-07",
+      "term": "مَحَلُّ الْأَحْذِيَة",
+      "romanization": "mahall al-ahdhiya",
+      "english": "shoe shop"
+    },
+    {
+      "id": "ar-day30-08",
+      "term": "بَائِعُ الزُّهُور",
+      "romanization": "baa’i‘ az-zuhuur",
+      "english": "florist"
+    },
+    {
+      "id": "ar-day30-09",
+      "term": "مَتْجَرُ الْأَلْعَاب",
+      "romanization": "matjar al-al‘aab",
+      "english": "toyshop"
+    },
+    {
+      "id": "ar-day30-10",
+      "term": "وَكَالَةُ السَّفَر",
+      "romanization": "wakaalat as-safar",
+      "english": "travel agency"
+    }
+  ]
+}

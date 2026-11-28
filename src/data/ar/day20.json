@@ -1,0 +1,73 @@
+{
+  "id": "ar-day20",
+  "course": "ar",
+  "number": 20,
+  "slug": "bedroom-bathroom",
+  "title": "Bedroom and bathroom",
+  "titleNative": "غُرْفَةُ النَّوْم وَالْحَمَّام",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day20-01",
+      "term": "السَّرِير",
+      "romanization": "as-sariir",
+      "english": "bed"
+    },
+    {
+      "id": "ar-day20-02",
+      "term": "الْبَطَّانِيَّة",
+      "romanization": "al-battaaniyya",
+      "english": "blanket"
+    },
+    {
+      "id": "ar-day20-03",
+      "term": "خِزَانَةُ الْمَلَابِس",
+      "romanization": "khizaanat al-malaabis",
+      "english": "wardrobe"
+    },
+    {
+      "id": "ar-day20-04",
+      "term": "الْحَمَّام",
+      "romanization": "al-hammaam",
+      "english": "bathroom, toilet"
+    },
+    {
+      "id": "ar-day20-05",
+      "term": "الصَّابُون",
+      "romanization": "as-saabuun",
+      "english": "soap"
+    },
+    {
+      "id": "ar-day20-06",
+      "term": "الْمِنْشَفَة",
+      "romanization": "al-minshafa",
+      "english": "towel"
+    },
+    {
+      "id": "ar-day20-07",
+      "term": "فُرْشَاةُ الْأَسْنَان",
+      "romanization": "furshaat al-asnaan",
+      "english": "toothbrush"
+    },
+    {
+      "id": "ar-day20-08",
+      "term": "مَعْجُونُ الْأَسْنَان",
+      "romanization": "ma‘juun al-asnaan",
+      "english": "toothpaste"
+    },
+    {
+      "id": "ar-day20-09",
+      "term": "الْمُشْط",
+      "romanization": "al-musht",
+      "english": "comb"
+    },
+    {
+      "id": "ar-day20-10",
+      "term": "نَامَ",
+      "romanization": "naama",
+      "english": "to sleep"
+    }
+  ]
+}

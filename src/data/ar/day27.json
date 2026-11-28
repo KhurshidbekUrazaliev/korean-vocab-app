@@ -1,0 +1,73 @@
+{
+  "id": "ar-day27",
+  "course": "ar",
+  "number": 27,
+  "slug": "eating-out",
+  "title": "Eating out",
+  "titleNative": "فِي الْمَطْعَم",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day27-01",
+      "term": "قَائِمَةُ الطَّعَام",
+      "romanization": "qaa’imat at-ta‘aam",
+      "english": "menu"
+    },
+    {
+      "id": "ar-day27-02",
+      "term": "الْفَاتُورَة",
+      "romanization": "al-faatuura",
+      "english": "bill"
+    },
+    {
+      "id": "ar-day27-03",
+      "term": "الْبَخْشِيش",
+      "romanization": "al-bakhshiish",
+      "english": "tip"
+    },
+    {
+      "id": "ar-day27-04",
+      "term": "طَلَبَ",
+      "romanization": "talaba",
+      "english": "to order"
+    },
+    {
+      "id": "ar-day27-05",
+      "term": "النَّادِل",
+      "romanization": "an-naadil",
+      "english": "waiter"
+    },
+    {
+      "id": "ar-day27-06",
+      "term": "الْمِنْدِيل",
+      "romanization": "al-mindiil",
+      "english": "napkin"
+    },
+    {
+      "id": "ar-day27-07",
+      "term": "جَائِع",
+      "romanization": "jaa’i‘",
+      "english": "hungry"
+    },
+    {
+      "id": "ar-day27-08",
+      "term": "عَطْشَان",
+      "romanization": "‘atshaan",
+      "english": "thirsty"
+    },
+    {
+      "id": "ar-day27-09",
+      "term": "لَذِيذ",
+      "romanization": "ladhiidh",
+      "english": "delicious"
+    },
+    {
+      "id": "ar-day27-10",
+      "term": "نَبَاتِيّ",
+      "romanization": "nabaatii",
+      "english": "vegetarian"
+    }
+  ]
+}

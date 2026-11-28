@@ -1,0 +1,73 @@
+{
+  "id": "ar-day48",
+  "course": "ar",
+  "number": 48,
+  "slug": "nature",
+  "title": "Nature",
+  "titleNative": "الطَّبِيعَة",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day48-01",
+      "term": "الْجَبَل",
+      "romanization": "al-jabal",
+      "english": "mountain"
+    },
+    {
+      "id": "ar-day48-02",
+      "term": "النَّهْر",
+      "romanization": "an-nahr",
+      "english": "river"
+    },
+    {
+      "id": "ar-day48-03",
+      "term": "الصَّحْرَاء",
+      "romanization": "as-sahraa’",
+      "english": "desert"
+    },
+    {
+      "id": "ar-day48-04",
+      "term": "الْغَابَة",
+      "romanization": "al-ghaaba",
+      "english": "forest"
+    },
+    {
+      "id": "ar-day48-05",
+      "term": "الْجَزِيرَة",
+      "romanization": "al-jaziira",
+      "english": "island"
+    },
+    {
+      "id": "ar-day48-06",
+      "term": "الْوَادِي",
+      "romanization": "al-waadii",
+      "english": "valley"
+    },
+    {
+      "id": "ar-day48-07",
+      "term": "الْبُحَيْرَة",
+      "romanization": "al-buhayra",
+      "english": "lake"
+    },
+    {
+      "id": "ar-day48-08",
+      "term": "الشَّمْس",
+      "romanization": "ash-shams",
+      "english": "sun"
+    },
+    {
+      "id": "ar-day48-09",
+      "term": "الْقَمَر",
+      "romanization": "al-qamar",
+      "english": "moon"
+    },
+    {
+      "id": "ar-day48-10",
+      "term": "النُّجُوم",
+      "romanization": "an-nujuum",
+      "english": "stars"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "id": "ar-day33",
+  "course": "ar",
+  "number": 33,
+  "slug": "work",
+  "title": "At work",
+  "titleNative": "فِي الْعَمَل",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day33-01",
+      "term": "الْمُدِير",
+      "romanization": "al-mudiir",
+      "english": "manager"
+    },
+    {
+      "id": "ar-day33-02",
+      "term": "الشَّرِكَة",
+      "romanization": "ash-sharika",
+      "english": "company"
+    },
+    {
+      "id": "ar-day33-03",
+      "term": "الِاجْتِمَاع",
+      "romanization": "al-ijtimaa‘",
+      "english": "meeting"
+    },
+    {
+      "id": "ar-day33-04",
+      "term": "الْمَكْتَب",
+      "romanization": "al-maktab",
+      "english": "office, desk"
+    },
+    {
+      "id": "ar-day33-05",
+      "term": "التَّقْرِير",
+      "romanization": "at-taqriir",
+      "english": "report"
+    },
+    {
+      "id": "ar-day33-06",
+      "term": "الزَّبُون",
+      "romanization": "az-zabuun",
+      "english": "client, customer"
+    },
+    {
+      "id": "ar-day33-07",
+      "term": "الْعَرْض",
+      "romanization": "al-‘ard",
+      "english": "presentation"
+    },
+    {
+      "id": "ar-day33-08",
+      "term": "الْحَاسُوب",
+      "romanization": "al-haasuub",
+      "english": "computer"
+    },
+    {
+      "id": "ar-day33-09",
+      "term": "الطَّابِعَة",
+      "romanization": "at-taabi‘a",
+      "english": "printer"
+    },
+    {
+      "id": "ar-day33-10",
+      "term": "فَرِيقُ الْعَمَل",
+      "romanization": "fariiq al-‘amal",
+      "english": "staff, team"
+    }
+  ]
+}

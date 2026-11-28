@@ -1,0 +1,73 @@
+{
+  "id": "ar-day36",
+  "course": "ar",
+  "number": 36,
+  "slug": "body",
+  "title": "The body",
+  "titleNative": "الْجِسْم",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day36-01",
+      "term": "الرَّأْس",
+      "romanization": "ar-ra’s",
+      "english": "head"
+    },
+    {
+      "id": "ar-day36-02",
+      "term": "الْوَجْه",
+      "romanization": "al-wajh",
+      "english": "face"
+    },
+    {
+      "id": "ar-day36-03",
+      "term": "الْعَيْن",
+      "romanization": "al-‘ayn",
+      "english": "eye"
+    },
+    {
+      "id": "ar-day36-04",
+      "term": "الْأُذُن",
+      "romanization": "al-udhun",
+      "english": "ear"
+    },
+    {
+      "id": "ar-day36-05",
+      "term": "الْأَنْف",
+      "romanization": "al-anf",
+      "english": "nose"
+    },
+    {
+      "id": "ar-day36-06",
+      "term": "الْفَم",
+      "romanization": "al-fam",
+      "english": "mouth"
+    },
+    {
+      "id": "ar-day36-07",
+      "term": "الشَّعْر",
+      "romanization": "ash-sha‘r",
+      "english": "hair"
+    },
+    {
+      "id": "ar-day36-08",
+      "term": "الْيَد",
+      "romanization": "al-yad",
+      "english": "hand"
+    },
+    {
+      "id": "ar-day36-09",
+      "term": "الرِّجْل",
+      "romanization": "ar-rijl",
+      "english": "leg"
+    },
+    {
+      "id": "ar-day36-10",
+      "term": "الْقَلْب",
+      "romanization": "al-qalb",
+      "english": "heart"
+    }
+  ]
+}

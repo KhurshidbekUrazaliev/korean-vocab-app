@@ -1,0 +1,73 @@
+{
+  "id": "ar-day28",
+  "course": "ar",
+  "number": 28,
+  "slug": "clothes",
+  "title": "Clothes",
+  "titleNative": "الْمَلَابِس",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day28-01",
+      "term": "الْقَمِيص",
+      "romanization": "al-qamiis",
+      "english": "shirt"
+    },
+    {
+      "id": "ar-day28-02",
+      "term": "الْفُسْتَان",
+      "romanization": "al-fustaan",
+      "english": "dress"
+    },
+    {
+      "id": "ar-day28-03",
+      "term": "الْبَنْطَال",
+      "romanization": "al-bantaal",
+      "english": "trousers"
+    },
+    {
+      "id": "ar-day28-04",
+      "term": "التَّنُّورَة",
+      "romanization": "at-tannuura",
+      "english": "skirt"
+    },
+    {
+      "id": "ar-day28-05",
+      "term": "الْحِذَاء",
+      "romanization": "al-hidhaa’",
+      "english": "shoes"
+    },
+    {
+      "id": "ar-day28-06",
+      "term": "الْمِعْطَف",
+      "romanization": "al-mi‘taf",
+      "english": "coat"
+    },
+    {
+      "id": "ar-day28-07",
+      "term": "السُّتْرَة",
+      "romanization": "as-sutra",
+      "english": "jacket"
+    },
+    {
+      "id": "ar-day28-08",
+      "term": "الْقُبَّعَة",
+      "romanization": "al-qubba‘a",
+      "english": "hat"
+    },
+    {
+      "id": "ar-day28-09",
+      "term": "الْحِزَام",
+      "romanization": "al-hizaam",
+      "english": "belt"
+    },
+    {
+      "id": "ar-day28-10",
+      "term": "الشَّال",
+      "romanization": "ash-shaal",
+      "english": "scarf"
+    }
+  ]
+}

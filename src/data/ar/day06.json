@@ -1,0 +1,73 @@
+{
+  "id": "ar-day06",
+  "course": "ar",
+  "number": 6,
+  "slug": "jobs",
+  "title": "Jobs",
+  "titleNative": "الْمِهَن",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day06-01",
+      "term": "الطَّبِيب",
+      "romanization": "at-tabiib",
+      "english": "doctor"
+    },
+    {
+      "id": "ar-day06-02",
+      "term": "الْمُعَلِّم",
+      "romanization": "al-mu‘allim",
+      "english": "teacher"
+    },
+    {
+      "id": "ar-day06-03",
+      "term": "الْمُمَرِّض",
+      "romanization": "al-mumarrid",
+      "english": "nurse"
+    },
+    {
+      "id": "ar-day06-04",
+      "term": "الطَّبَّاخ",
+      "romanization": "at-tabbaakh",
+      "english": "chef, cook"
+    },
+    {
+      "id": "ar-day06-05",
+      "term": "الْمُحَامِي",
+      "romanization": "al-muhaamii",
+      "english": "lawyer"
+    },
+    {
+      "id": "ar-day06-06",
+      "term": "الشُّرْطِيّ",
+      "romanization": "ash-shurtii",
+      "english": "police officer"
+    },
+    {
+      "id": "ar-day06-07",
+      "term": "الْمُزَارِع",
+      "romanization": "al-muzaari‘",
+      "english": "farmer"
+    },
+    {
+      "id": "ar-day06-08",
+      "term": "الصَّحَفِيّ",
+      "romanization": "as-sahafii",
+      "english": "journalist"
+    },
+    {
+      "id": "ar-day06-09",
+      "term": "الْعَالِم",
+      "romanization": "al-‘aalim",
+      "english": "scientist"
+    },
+    {
+      "id": "ar-day06-10",
+      "term": "الْبَائِع",
+      "romanization": "al-baa’i‘",
+      "english": "salesperson, seller"
+    }
+  ]
+}

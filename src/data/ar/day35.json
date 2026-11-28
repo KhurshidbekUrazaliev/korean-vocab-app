@@ -1,0 +1,73 @@
+{
+  "id": "ar-day35",
+  "course": "ar",
+  "number": 35,
+  "slug": "bank-post",
+  "title": "Bank and post",
+  "titleNative": "الْبَنْك وَالْبَرِيد",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day35-01",
+      "term": "الْبَنْك",
+      "romanization": "al-bank",
+      "english": "bank"
+    },
+    {
+      "id": "ar-day35-02",
+      "term": "الْحِسَاب",
+      "romanization": "al-hisaab",
+      "english": "account"
+    },
+    {
+      "id": "ar-day35-03",
+      "term": "الْعُمْلَة",
+      "romanization": "al-‘umla",
+      "english": "currency"
+    },
+    {
+      "id": "ar-day35-04",
+      "term": "الصَّرَّافُ الْآلِيّ",
+      "romanization": "as-sarraaf al-aalii",
+      "english": "cash machine, ATM"
+    },
+    {
+      "id": "ar-day35-05",
+      "term": "الْقَرْض",
+      "romanization": "al-qard",
+      "english": "loan"
+    },
+    {
+      "id": "ar-day35-06",
+      "term": "سَحَبَ",
+      "romanization": "sahaba",
+      "english": "to withdraw"
+    },
+    {
+      "id": "ar-day35-07",
+      "term": "الْبَرِيد",
+      "romanization": "al-bariid",
+      "english": "post, mail"
+    },
+    {
+      "id": "ar-day35-08",
+      "term": "الْمُغَلَّف",
+      "romanization": "al-mughallaf",
+      "english": "envelope"
+    },
+    {
+      "id": "ar-day35-09",
+      "term": "الْعُنْوَان",
+      "romanization": "al-‘unwaan",
+      "english": "address"
+    },
+    {
+      "id": "ar-day35-10",
+      "term": "أَرْسَلَ",
+      "romanization": "arsala",
+      "english": "to send"
+    }
+  ]
+}

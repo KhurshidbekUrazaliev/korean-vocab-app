@@ -1,0 +1,73 @@
+{
+  "id": "ar-day17",
+  "course": "ar",
+  "number": 17,
+  "slug": "house",
+  "title": "The house",
+  "titleNative": "الْبَيْت",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day17-01",
+      "term": "الْبَيْت",
+      "romanization": "al-bayt",
+      "english": "house, home"
+    },
+    {
+      "id": "ar-day17-02",
+      "term": "الشَّقَّة",
+      "romanization": "ash-shaqqa",
+      "english": "flat, apartment"
+    },
+    {
+      "id": "ar-day17-03",
+      "term": "الْغُرْفَة",
+      "romanization": "al-ghurfa",
+      "english": "room"
+    },
+    {
+      "id": "ar-day17-04",
+      "term": "الْبَاب",
+      "romanization": "al-baab",
+      "english": "door"
+    },
+    {
+      "id": "ar-day17-05",
+      "term": "النَّافِذَة",
+      "romanization": "an-naafidha",
+      "english": "window"
+    },
+    {
+      "id": "ar-day17-06",
+      "term": "الْحَائِط",
+      "romanization": "al-haa’it",
+      "english": "wall"
+    },
+    {
+      "id": "ar-day17-07",
+      "term": "السَّقْف",
+      "romanization": "as-saqf",
+      "english": "ceiling, roof"
+    },
+    {
+      "id": "ar-day17-08",
+      "term": "الْأَرْضِيَّة",
+      "romanization": "al-ardiyya",
+      "english": "floor"
+    },
+    {
+      "id": "ar-day17-09",
+      "term": "الدَّرَج",
+      "romanization": "ad-daraj",
+      "english": "stairs"
+    },
+    {
+      "id": "ar-day17-10",
+      "term": "الْمِفْتَاح",
+      "romanization": "al-miftaah",
+      "english": "key"
+    }
+  ]
+}

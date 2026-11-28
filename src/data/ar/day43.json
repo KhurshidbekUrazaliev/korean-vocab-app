@@ -1,0 +1,73 @@
+{
+  "id": "ar-day43",
+  "course": "ar",
+  "number": 43,
+  "slug": "beach-camping",
+  "title": "Beach and camping",
+  "titleNative": "الشَّاطِئ وَالتَّخْيِيم",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day43-01",
+      "term": "الشَّاطِئ",
+      "romanization": "ash-shaati’",
+      "english": "beach"
+    },
+    {
+      "id": "ar-day43-02",
+      "term": "الْبَحْر",
+      "romanization": "al-bahr",
+      "english": "sea"
+    },
+    {
+      "id": "ar-day43-03",
+      "term": "الرَّمْل",
+      "romanization": "ar-raml",
+      "english": "sand"
+    },
+    {
+      "id": "ar-day43-04",
+      "term": "الْأَمْوَاج",
+      "romanization": "al-amwaaj",
+      "english": "waves"
+    },
+    {
+      "id": "ar-day43-05",
+      "term": "السِّبَاحَة",
+      "romanization": "as-sibaaha",
+      "english": "swimming"
+    },
+    {
+      "id": "ar-day43-06",
+      "term": "سَبَحَ",
+      "romanization": "sabaha",
+      "english": "to swim"
+    },
+    {
+      "id": "ar-day43-07",
+      "term": "الْخَيْمَة",
+      "romanization": "al-khayma",
+      "english": "tent"
+    },
+    {
+      "id": "ar-day43-08",
+      "term": "الْمُخَيَّم",
+      "romanization": "al-mukhayyam",
+      "english": "campsite"
+    },
+    {
+      "id": "ar-day43-09",
+      "term": "الشِّوَاء",
+      "romanization": "ash-shiwaa’",
+      "english": "barbecue"
+    },
+    {
+      "id": "ar-day43-10",
+      "term": "وَاقِي الشَّمْس",
+      "romanization": "waaqii ash-shams",
+      "english": "sunscreen"
+    }
+  ]
+}

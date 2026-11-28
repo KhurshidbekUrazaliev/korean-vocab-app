@@ -1,0 +1,73 @@
+{
+  "id": "ar-day21",
+  "course": "ar",
+  "number": 21,
+  "slug": "shopping",
+  "title": "Shopping",
+  "titleNative": "التَّسَوُّق",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day21-01",
+      "term": "اشْتَرَى",
+      "romanization": "ishtaraa",
+      "english": "to buy"
+    },
+    {
+      "id": "ar-day21-02",
+      "term": "دَفَعَ",
+      "romanization": "dafa‘a",
+      "english": "to pay"
+    },
+    {
+      "id": "ar-day21-03",
+      "term": "السِّعْر",
+      "romanization": "as-si‘r",
+      "english": "price"
+    },
+    {
+      "id": "ar-day21-04",
+      "term": "النُّقُود",
+      "romanization": "an-nuquud",
+      "english": "money, cash"
+    },
+    {
+      "id": "ar-day21-05",
+      "term": "الْبِطَاقَةُ الِائْتِمَانِيَّة",
+      "romanization": "al-bitaaqa al-i’timaaniyya",
+      "english": "credit card"
+    },
+    {
+      "id": "ar-day21-06",
+      "term": "الْإِيصَال",
+      "romanization": "al-iisaal",
+      "english": "receipt"
+    },
+    {
+      "id": "ar-day21-07",
+      "term": "الْكِيس",
+      "romanization": "al-kiis",
+      "english": "bag"
+    },
+    {
+      "id": "ar-day21-08",
+      "term": "الْفَكَّة",
+      "romanization": "al-fakka",
+      "english": "change, small coins"
+    },
+    {
+      "id": "ar-day21-09",
+      "term": "السَّلَّة",
+      "romanization": "as-salla",
+      "english": "basket"
+    },
+    {
+      "id": "ar-day21-10",
+      "term": "الْمَرْكَزُ التِّجَارِيّ",
+      "romanization": "al-markaz at-tijaarii",
+      "english": "shopping centre, mall"
+    }
+  ]
+}

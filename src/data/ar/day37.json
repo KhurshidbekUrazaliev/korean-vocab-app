@@ -1,0 +1,73 @@
+{
+  "id": "ar-day37",
+  "course": "ar",
+  "number": 37,
+  "slug": "body-2",
+  "title": "More of the body",
+  "titleNative": "أَعْضَاءُ الْجِسْم",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day37-01",
+      "term": "الْعُنُق",
+      "romanization": "al-‘unuq",
+      "english": "neck"
+    },
+    {
+      "id": "ar-day37-02",
+      "term": "الْكَتِف",
+      "romanization": "al-katif",
+      "english": "shoulder"
+    },
+    {
+      "id": "ar-day37-03",
+      "term": "الظَّهْر",
+      "romanization": "adh-dhahr",
+      "english": "back"
+    },
+    {
+      "id": "ar-day37-04",
+      "term": "الْبَطْن",
+      "romanization": "al-batn",
+      "english": "abdomen, belly"
+    },
+    {
+      "id": "ar-day37-05",
+      "term": "الصَّدْر",
+      "romanization": "as-sadr",
+      "english": "chest"
+    },
+    {
+      "id": "ar-day37-06",
+      "term": "الْإِصْبَع",
+      "romanization": "al-isba‘",
+      "english": "finger"
+    },
+    {
+      "id": "ar-day37-07",
+      "term": "الْقَدَم",
+      "romanization": "al-qadam",
+      "english": "foot"
+    },
+    {
+      "id": "ar-day37-08",
+      "term": "الرُّكْبَة",
+      "romanization": "ar-rukba",
+      "english": "knee"
+    },
+    {
+      "id": "ar-day37-09",
+      "term": "الْأَسْنَان",
+      "romanization": "al-asnaan",
+      "english": "teeth"
+    },
+    {
+      "id": "ar-day37-10",
+      "term": "اللِّسَان",
+      "romanization": "al-lisaan",
+      "english": "tongue"
+    }
+  ]
+}

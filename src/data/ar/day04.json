@@ -1,0 +1,73 @@
+{
+  "id": "ar-day04",
+  "course": "ar",
+  "number": 4,
+  "slug": "relatives-friends",
+  "title": "Relatives and friends",
+  "titleNative": "الْأَقَارِب وَالْأَصْدِقَاء",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day04-01",
+      "term": "الْعَمّ",
+      "romanization": "al-‘amm",
+      "english": "uncle"
+    },
+    {
+      "id": "ar-day04-02",
+      "term": "الْعَمَّة",
+      "romanization": "al-‘amma",
+      "english": "aunt"
+    },
+    {
+      "id": "ar-day04-03",
+      "term": "الْحَفِيد",
+      "romanization": "al-hafiid",
+      "english": "grandson"
+    },
+    {
+      "id": "ar-day04-04",
+      "term": "الْحَفِيدَة",
+      "romanization": "al-hafiida",
+      "english": "granddaughter"
+    },
+    {
+      "id": "ar-day04-05",
+      "term": "الطِّفْل",
+      "romanization": "at-tifl",
+      "english": "child, baby"
+    },
+    {
+      "id": "ar-day04-06",
+      "term": "الْمُرَاهِق",
+      "romanization": "al-muraahiq",
+      "english": "teenager"
+    },
+    {
+      "id": "ar-day04-07",
+      "term": "الْأَهْل",
+      "romanization": "al-ahl",
+      "english": "parents, family"
+    },
+    {
+      "id": "ar-day04-08",
+      "term": "ابْنُ الْعَمّ",
+      "romanization": "ibn al-‘amm",
+      "english": "cousin"
+    },
+    {
+      "id": "ar-day04-09",
+      "term": "الصَّدِيق",
+      "romanization": "as-sadiiq",
+      "english": "friend"
+    },
+    {
+      "id": "ar-day04-10",
+      "term": "الزَّمِيل",
+      "romanization": "az-zamiil",
+      "english": "colleague"
+    }
+  ]
+}

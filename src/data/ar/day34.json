@@ -1,0 +1,73 @@
+{
+  "id": "ar-day34",
+  "course": "ar",
+  "number": 34,
+  "slug": "phone-internet",
+  "title": "Phone and internet",
+  "titleNative": "الْهَاتِف وَالْإِنْتَرْنِت",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day34-01",
+      "term": "الْهَاتِف",
+      "romanization": "al-haatif",
+      "english": "telephone"
+    },
+    {
+      "id": "ar-day34-02",
+      "term": "الْجَوَّال",
+      "romanization": "al-jawwaal",
+      "english": "mobile phone"
+    },
+    {
+      "id": "ar-day34-03",
+      "term": "الْإِنْتَرْنِت",
+      "romanization": "al-intarnit",
+      "english": "internet"
+    },
+    {
+      "id": "ar-day34-04",
+      "term": "الْبَرِيدُ الْإِلِكْتُرُونِيّ",
+      "romanization": "al-bariid al-iliktruunii",
+      "english": "email"
+    },
+    {
+      "id": "ar-day34-05",
+      "term": "الرِّسَالَة",
+      "romanization": "ar-risaala",
+      "english": "message, letter"
+    },
+    {
+      "id": "ar-day34-06",
+      "term": "كَلِمَةُ السِّرّ",
+      "romanization": "kalimat as-sirr",
+      "english": "password"
+    },
+    {
+      "id": "ar-day34-07",
+      "term": "الشَّاشَة",
+      "romanization": "ash-shaasha",
+      "english": "screen"
+    },
+    {
+      "id": "ar-day34-08",
+      "term": "الْمَوْقِع",
+      "romanization": "al-mawqi‘",
+      "english": "website, site"
+    },
+    {
+      "id": "ar-day34-09",
+      "term": "الْبَطَّارِيَّة",
+      "romanization": "al-battaariyya",
+      "english": "battery"
+    },
+    {
+      "id": "ar-day34-10",
+      "term": "اتَّصَلَ",
+      "romanization": "ittasala",
+      "english": "to call"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "id": "ar-day50",
+  "course": "ar",
+  "number": 50,
+  "slug": "celebrations",
+  "title": "Celebrations",
+  "titleNative": "الِاحْتِفَالَات",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day50-01",
+      "term": "الْعِيد",
+      "romanization": "al-‘iid",
+      "english": "festival, Eid"
+    },
+    {
+      "id": "ar-day50-02",
+      "term": "عِيدُ الْمِيلَاد",
+      "romanization": "‘iid al-miilaad",
+      "english": "birthday"
+    },
+    {
+      "id": "ar-day50-03",
+      "term": "الْعُرْس",
+      "romanization": "al-‘urs",
+      "english": "wedding"
+    },
+    {
+      "id": "ar-day50-04",
+      "term": "الْهَدِيَّة",
+      "romanization": "al-hadiyya",
+      "english": "gift, present"
+    },
+    {
+      "id": "ar-day50-05",
+      "term": "الْحَفْلَة",
+      "romanization": "al-hafla",
+      "english": "party"
+    },
+    {
+      "id": "ar-day50-06",
+      "term": "رَمَضَان",
+      "romanization": "ramadaan",
+      "english": "Ramadan"
+    },
+    {
+      "id": "ar-day50-07",
+      "term": "عِيدُ الْفِطْر",
+      "romanization": "‘iid al-fitr",
+      "english": "Eid al-Fitr"
+    },
+    {
+      "id": "ar-day50-08",
+      "term": "عِيدُ الْأَضْحَى",
+      "romanization": "‘iid al-adhaa",
+      "english": "Eid al-Adha"
+    },
+    {
+      "id": "ar-day50-09",
+      "term": "الْكَعْكَة",
+      "romanization": "al-ka‘ka",
+      "english": "cake"
+    },
+    {
+      "id": "ar-day50-10",
+      "term": "احْتَفَلَ",
+      "romanization": "ihtafala",
+      "english": "to celebrate"
+    }
+  ]
+}

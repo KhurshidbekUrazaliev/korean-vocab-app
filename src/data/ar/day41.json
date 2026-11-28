@@ -1,0 +1,73 @@
+{
+  "id": "ar-day41",
+  "course": "ar",
+  "number": 41,
+  "slug": "free-time",
+  "title": "Free time",
+  "titleNative": "وَقْتُ الْفَرَاغ",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day41-01",
+      "term": "الْهِوَايَة",
+      "romanization": "al-hiwaaya",
+      "english": "hobby"
+    },
+    {
+      "id": "ar-day41-02",
+      "term": "الْقِرَاءَة",
+      "romanization": "al-qiraa’a",
+      "english": "reading"
+    },
+    {
+      "id": "ar-day41-03",
+      "term": "السَّفَر",
+      "romanization": "as-safar",
+      "english": "travelling"
+    },
+    {
+      "id": "ar-day41-04",
+      "term": "الْمَشْي",
+      "romanization": "al-mashy",
+      "english": "walking"
+    },
+    {
+      "id": "ar-day41-05",
+      "term": "الطَّبْخ",
+      "romanization": "at-tabkh",
+      "english": "cooking"
+    },
+    {
+      "id": "ar-day41-06",
+      "term": "التَّسَوُّق",
+      "romanization": "at-tasawwuq",
+      "english": "shopping"
+    },
+    {
+      "id": "ar-day41-07",
+      "term": "الْمُوسِيقَى",
+      "romanization": "al-muusiiqaa",
+      "english": "music"
+    },
+    {
+      "id": "ar-day41-08",
+      "term": "الْفِيلْم",
+      "romanization": "al-film",
+      "english": "film"
+    },
+    {
+      "id": "ar-day41-09",
+      "term": "السِّينَمَا",
+      "romanization": "as-siinamaa",
+      "english": "cinema"
+    },
+    {
+      "id": "ar-day41-10",
+      "term": "الْإِجَازَة",
+      "romanization": "al-ijaaza",
+      "english": "holiday"
+    }
+  ]
+}

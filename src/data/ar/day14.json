@@ -1,0 +1,73 @@
+{
+  "id": "ar-day14",
+  "course": "ar",
+  "number": 14,
+  "slug": "trains-buses",
+  "title": "Trains and buses",
+  "titleNative": "الْقِطَارَات وَالْحَافِلَات",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day14-01",
+      "term": "الْمَحَطَّة",
+      "romanization": "al-mahatta",
+      "english": "station"
+    },
+    {
+      "id": "ar-day14-02",
+      "term": "التَّذْكِرَة",
+      "romanization": "at-tadhkira",
+      "english": "ticket"
+    },
+    {
+      "id": "ar-day14-03",
+      "term": "الرَّصِيف",
+      "romanization": "ar-rasiif",
+      "english": "platform"
+    },
+    {
+      "id": "ar-day14-04",
+      "term": "مَوْقِفُ الْحَافِلَة",
+      "romanization": "mawqif al-haafila",
+      "english": "bus stop"
+    },
+    {
+      "id": "ar-day14-05",
+      "term": "الْأُجْرَة",
+      "romanization": "al-ujra",
+      "english": "fare"
+    },
+    {
+      "id": "ar-day14-06",
+      "term": "الْجَدْوَل",
+      "romanization": "al-jadwal",
+      "english": "timetable"
+    },
+    {
+      "id": "ar-day14-07",
+      "term": "مَكْتَبُ التَّذَاكِر",
+      "romanization": "maktab at-tadhaakir",
+      "english": "ticket office"
+    },
+    {
+      "id": "ar-day14-08",
+      "term": "الدَّرَجَةُ الْأُولَى",
+      "romanization": "ad-daraja al-uulaa",
+      "english": "first class"
+    },
+    {
+      "id": "ar-day14-09",
+      "term": "الْمَقْعَد",
+      "romanization": "al-maq‘ad",
+      "english": "seat"
+    },
+    {
+      "id": "ar-day14-10",
+      "term": "الْخَطّ",
+      "romanization": "al-khatt",
+      "english": "line"
+    }
+  ]
+}

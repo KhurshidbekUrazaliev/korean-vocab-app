@@ -1,0 +1,73 @@
+{
+  "id": "ar-day42",
+  "course": "ar",
+  "number": 42,
+  "slug": "sightseeing",
+  "title": "Sightseeing",
+  "titleNative": "السِّيَاحَة",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day42-01",
+      "term": "السَّائِح",
+      "romanization": "as-saa’ih",
+      "english": "tourist"
+    },
+    {
+      "id": "ar-day42-02",
+      "term": "الْقَصْر",
+      "romanization": "al-qasr",
+      "english": "palace, castle"
+    },
+    {
+      "id": "ar-day42-03",
+      "term": "التِّمْثَال",
+      "romanization": "at-timthaal",
+      "english": "statue, monument"
+    },
+    {
+      "id": "ar-day42-04",
+      "term": "الْكَامِيرَا",
+      "romanization": "al-kaamiiraa",
+      "english": "camera"
+    },
+    {
+      "id": "ar-day42-05",
+      "term": "الْجَوْلَةُ السِّيَاحِيَّة",
+      "romanization": "al-jawla as-siyaahiyya",
+      "english": "guided tour"
+    },
+    {
+      "id": "ar-day42-06",
+      "term": "حَجَزَ",
+      "romanization": "hajaza",
+      "english": "to book"
+    },
+    {
+      "id": "ar-day42-07",
+      "term": "زَارَ",
+      "romanization": "zaara",
+      "english": "to visit"
+    },
+    {
+      "id": "ar-day42-08",
+      "term": "الِاسْتِقْبَال",
+      "romanization": "al-istiqbaal",
+      "english": "reception"
+    },
+    {
+      "id": "ar-day42-09",
+      "term": "غُرْفَةٌ لِشَخْصَيْن",
+      "romanization": "ghurfa li-shakhsayn",
+      "english": "double room"
+    },
+    {
+      "id": "ar-day42-10",
+      "term": "الْمَسْرَح",
+      "romanization": "al-masrah",
+      "english": "theatre"
+    }
+  ]
+}

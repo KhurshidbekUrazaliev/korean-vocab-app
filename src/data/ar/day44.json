@@ -1,0 +1,73 @@
+{
+  "id": "ar-day44",
+  "course": "ar",
+  "number": 44,
+  "slug": "music-arts",
+  "title": "Music and arts",
+  "titleNative": "الْمُوسِيقَى وَالْفُنُون",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day44-01",
+      "term": "الْأُغْنِيَة",
+      "romanization": "al-ughniya",
+      "english": "song"
+    },
+    {
+      "id": "ar-day44-02",
+      "term": "الْمُغَنِّي",
+      "romanization": "al-mughannii",
+      "english": "singer"
+    },
+    {
+      "id": "ar-day44-03",
+      "term": "غَنَّى",
+      "romanization": "ghannaa",
+      "english": "to sing"
+    },
+    {
+      "id": "ar-day44-04",
+      "term": "الْعُود",
+      "romanization": "al-‘uud",
+      "english": "oud"
+    },
+    {
+      "id": "ar-day44-05",
+      "term": "الطَّبْل",
+      "romanization": "at-tabl",
+      "english": "drum"
+    },
+    {
+      "id": "ar-day44-06",
+      "term": "الْكَمَان",
+      "romanization": "al-kamaan",
+      "english": "violin"
+    },
+    {
+      "id": "ar-day44-07",
+      "term": "الْبِيَانُو",
+      "romanization": "al-biyaanuu",
+      "english": "piano"
+    },
+    {
+      "id": "ar-day44-08",
+      "term": "الْفَنَّان",
+      "romanization": "al-fannaan",
+      "english": "artist"
+    },
+    {
+      "id": "ar-day44-09",
+      "term": "الْخَطُّ الْعَرَبِيّ",
+      "romanization": "al-khatt al-‘arabii",
+      "english": "Arabic calligraphy"
+    },
+    {
+      "id": "ar-day44-10",
+      "term": "رَسَمَ",
+      "romanization": "rasama",
+      "english": "to draw"
+    }
+  ]
+}

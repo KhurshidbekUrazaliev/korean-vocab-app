@@ -1,0 +1,73 @@
+{
+  "id": "ar-day07",
+  "course": "ar",
+  "number": 7,
+  "slug": "time-of-day",
+  "title": "Time of day",
+  "titleNative": "أَوْقَاتُ الْيَوْم",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day07-01",
+      "term": "الصَّبَاح",
+      "romanization": "as-sabaah",
+      "english": "morning"
+    },
+    {
+      "id": "ar-day07-02",
+      "term": "بَعْدَ الظُّهْر",
+      "romanization": "ba‘da adh-dhuhr",
+      "english": "afternoon"
+    },
+    {
+      "id": "ar-day07-03",
+      "term": "الْمَسَاء",
+      "romanization": "al-masaa’",
+      "english": "evening"
+    },
+    {
+      "id": "ar-day07-04",
+      "term": "اللَّيْل",
+      "romanization": "al-layl",
+      "english": "night"
+    },
+    {
+      "id": "ar-day07-05",
+      "term": "الْيَوْم",
+      "romanization": "al-yawm",
+      "english": "today, day"
+    },
+    {
+      "id": "ar-day07-06",
+      "term": "غَدًا",
+      "romanization": "ghadan",
+      "english": "tomorrow"
+    },
+    {
+      "id": "ar-day07-07",
+      "term": "أَمْس",
+      "romanization": "ams",
+      "english": "yesterday"
+    },
+    {
+      "id": "ar-day07-08",
+      "term": "الْآن",
+      "romanization": "al-aan",
+      "english": "now"
+    },
+    {
+      "id": "ar-day07-09",
+      "term": "لَاحِقًا",
+      "romanization": "laahiqan",
+      "english": "later"
+    },
+    {
+      "id": "ar-day07-10",
+      "term": "قَرِيبًا",
+      "romanization": "qariiban",
+      "english": "soon"
+    }
+  ]
+}

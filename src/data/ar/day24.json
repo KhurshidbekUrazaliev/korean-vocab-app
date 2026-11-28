@@ -1,0 +1,73 @@
+{
+  "id": "ar-day24",
+  "course": "ar",
+  "number": 24,
+  "slug": "vegetables",
+  "title": "Vegetables",
+  "titleNative": "الْخُضْرَوَات",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day24-01",
+      "term": "الطَّمَاطِم",
+      "romanization": "at-tamaatim",
+      "english": "tomatoes"
+    },
+    {
+      "id": "ar-day24-02",
+      "term": "الْبَطَاطَا",
+      "romanization": "al-bataataa",
+      "english": "potatoes"
+    },
+    {
+      "id": "ar-day24-03",
+      "term": "الْخِيَار",
+      "romanization": "al-khiyaar",
+      "english": "cucumber"
+    },
+    {
+      "id": "ar-day24-04",
+      "term": "الْجَزَر",
+      "romanization": "al-jazar",
+      "english": "carrots"
+    },
+    {
+      "id": "ar-day24-05",
+      "term": "الْبَصَل",
+      "romanization": "al-basal",
+      "english": "onions"
+    },
+    {
+      "id": "ar-day24-06",
+      "term": "الثُّوم",
+      "romanization": "ath-thuum",
+      "english": "garlic"
+    },
+    {
+      "id": "ar-day24-07",
+      "term": "الْخَسّ",
+      "romanization": "al-khass",
+      "english": "lettuce"
+    },
+    {
+      "id": "ar-day24-08",
+      "term": "الْبَاذِنْجَان",
+      "romanization": "al-baadhinjaan",
+      "english": "aubergine, eggplant"
+    },
+    {
+      "id": "ar-day24-09",
+      "term": "الْفُلْفُل",
+      "romanization": "al-fulful",
+      "english": "pepper"
+    },
+    {
+      "id": "ar-day24-10",
+      "term": "الْفُطْر",
+      "romanization": "al-futr",
+      "english": "mushrooms"
+    }
+  ]
+}

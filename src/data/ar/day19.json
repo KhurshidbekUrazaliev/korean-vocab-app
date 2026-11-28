@@ -1,0 +1,73 @@
+{
+  "id": "ar-day19",
+  "course": "ar",
+  "number": 19,
+  "slug": "kitchen",
+  "title": "The kitchen",
+  "titleNative": "الْمَطْبَخ",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day19-01",
+      "term": "الْمَطْبَخ",
+      "romanization": "al-matbakh",
+      "english": "kitchen"
+    },
+    {
+      "id": "ar-day19-02",
+      "term": "الثَّلَّاجَة",
+      "romanization": "ath-thallaaja",
+      "english": "fridge"
+    },
+    {
+      "id": "ar-day19-03",
+      "term": "الْفُرْن",
+      "romanization": "al-furn",
+      "english": "oven"
+    },
+    {
+      "id": "ar-day19-04",
+      "term": "السِّكِّين",
+      "romanization": "as-sikkiin",
+      "english": "knife"
+    },
+    {
+      "id": "ar-day19-05",
+      "term": "الشَّوْكَة",
+      "romanization": "ash-shawka",
+      "english": "fork"
+    },
+    {
+      "id": "ar-day19-06",
+      "term": "الْمِلْعَقَة",
+      "romanization": "al-mil‘aqa",
+      "english": "spoon"
+    },
+    {
+      "id": "ar-day19-07",
+      "term": "الصَّحْن",
+      "romanization": "as-sahn",
+      "english": "plate"
+    },
+    {
+      "id": "ar-day19-08",
+      "term": "الْكُوب",
+      "romanization": "al-kuub",
+      "english": "cup, glass"
+    },
+    {
+      "id": "ar-day19-09",
+      "term": "الْقِدْر",
+      "romanization": "al-qidr",
+      "english": "saucepan, pot"
+    },
+    {
+      "id": "ar-day19-10",
+      "term": "الْمِقْلَاة",
+      "romanization": "al-miqlaa",
+      "english": "frying pan"
+    }
+  ]
+}

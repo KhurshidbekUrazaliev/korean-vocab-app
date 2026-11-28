@@ -1,0 +1,73 @@
+{
+  "id": "ar-day40",
+  "course": "ar",
+  "number": 40,
+  "slug": "health-fitness",
+  "title": "Health and fitness",
+  "titleNative": "الصِّحَّة وَاللِّيَاقَة",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day40-01",
+      "term": "الصِّحَّة",
+      "romanization": "as-sihha",
+      "english": "health"
+    },
+    {
+      "id": "ar-day40-02",
+      "term": "الصَّالَةُ الرِّيَاضِيَّة",
+      "romanization": "as-saala ar-riyaadiyya",
+      "english": "gym"
+    },
+    {
+      "id": "ar-day40-03",
+      "term": "تَمَرَّنَ",
+      "romanization": "tamarrana",
+      "english": "to exercise"
+    },
+    {
+      "id": "ar-day40-04",
+      "term": "الرَّكْض",
+      "romanization": "ar-rakd",
+      "english": "running, jogging"
+    },
+    {
+      "id": "ar-day40-05",
+      "term": "الْيُوغَا",
+      "romanization": "al-yuughaa",
+      "english": "yoga"
+    },
+    {
+      "id": "ar-day40-06",
+      "term": "الْوَزْن",
+      "romanization": "al-wazn",
+      "english": "weight"
+    },
+    {
+      "id": "ar-day40-07",
+      "term": "الطُّول",
+      "romanization": "at-tuul",
+      "english": "height"
+    },
+    {
+      "id": "ar-day40-08",
+      "term": "النَّوْم",
+      "romanization": "an-nawm",
+      "english": "sleep"
+    },
+    {
+      "id": "ar-day40-09",
+      "term": "الْعِلَاج",
+      "romanization": "al-‘ilaaj",
+      "english": "treatment"
+    },
+    {
+      "id": "ar-day40-10",
+      "term": "الشِّفَاء",
+      "romanization": "ash-shifaa’",
+      "english": "recovery"
+    }
+  ]
+}

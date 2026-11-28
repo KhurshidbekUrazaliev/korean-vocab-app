@@ -1,0 +1,73 @@
+{
+  "id": "ar-day25",
+  "course": "ar",
+  "number": 25,
+  "slug": "meat-fish-dairy",
+  "title": "Meat, fish and dairy",
+  "titleNative": "اللُّحُوم وَالْأَسْمَاك وَالْأَلْبَان",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day25-01",
+      "term": "اللَّحْم",
+      "romanization": "al-lahm",
+      "english": "meat"
+    },
+    {
+      "id": "ar-day25-02",
+      "term": "الدَّجَاج",
+      "romanization": "ad-dajaaj",
+      "english": "chicken"
+    },
+    {
+      "id": "ar-day25-03",
+      "term": "السَّمَك",
+      "romanization": "as-samak",
+      "english": "fish"
+    },
+    {
+      "id": "ar-day25-04",
+      "term": "الْبَيْض",
+      "romanization": "al-bayd",
+      "english": "eggs"
+    },
+    {
+      "id": "ar-day25-05",
+      "term": "الْجُبْن",
+      "romanization": "al-jubn",
+      "english": "cheese"
+    },
+    {
+      "id": "ar-day25-06",
+      "term": "الزُّبْدَة",
+      "romanization": "az-zubda",
+      "english": "butter"
+    },
+    {
+      "id": "ar-day25-07",
+      "term": "الزَّبَادِي",
+      "romanization": "az-zabaadii",
+      "english": "yoghurt"
+    },
+    {
+      "id": "ar-day25-08",
+      "term": "لَحْمُ الْبَقَر",
+      "romanization": "lahm al-baqar",
+      "english": "beef"
+    },
+    {
+      "id": "ar-day25-09",
+      "term": "لَحْمُ الْغَنَم",
+      "romanization": "lahm al-ghanam",
+      "english": "lamb"
+    },
+    {
+      "id": "ar-day25-10",
+      "term": "الرُّوبْيَان",
+      "romanization": "ar-ruubyaan",
+      "english": "prawns, shrimp"
+    }
+  ]
+}

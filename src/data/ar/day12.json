@@ -1,0 +1,73 @@
+{
+  "id": "ar-day12",
+  "course": "ar",
+  "number": 12,
+  "slug": "transport",
+  "title": "Transport",
+  "titleNative": "الْمُوَاصَلَات",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day12-01",
+      "term": "السَّيَّارَة",
+      "romanization": "as-sayyaara",
+      "english": "car"
+    },
+    {
+      "id": "ar-day12-02",
+      "term": "الْحَافِلَة",
+      "romanization": "al-haafila",
+      "english": "bus"
+    },
+    {
+      "id": "ar-day12-03",
+      "term": "الْقِطَار",
+      "romanization": "al-qitaar",
+      "english": "train"
+    },
+    {
+      "id": "ar-day12-04",
+      "term": "الطَّائِرَة",
+      "romanization": "at-taa’ira",
+      "english": "plane"
+    },
+    {
+      "id": "ar-day12-05",
+      "term": "الدَّرَّاجَة",
+      "romanization": "ad-darraaja",
+      "english": "bicycle"
+    },
+    {
+      "id": "ar-day12-06",
+      "term": "الدَّرَّاجَة النَّارِيَّة",
+      "romanization": "ad-darraaja an-naariyya",
+      "english": "motorbike"
+    },
+    {
+      "id": "ar-day12-07",
+      "term": "سَيَّارَةُ الْأُجْرَة",
+      "romanization": "sayyaarat al-ujra",
+      "english": "taxi"
+    },
+    {
+      "id": "ar-day12-08",
+      "term": "الْمِتْرُو",
+      "romanization": "al-mitruu",
+      "english": "metro, underground"
+    },
+    {
+      "id": "ar-day12-09",
+      "term": "الْعَبَّارَة",
+      "romanization": "al-‘abbaara",
+      "english": "ferry"
+    },
+    {
+      "id": "ar-day12-10",
+      "term": "السَّفِينَة",
+      "romanization": "as-safiina",
+      "english": "ship"
+    }
+  ]
+}

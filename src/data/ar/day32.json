@@ -1,0 +1,73 @@
+{
+  "id": "ar-day32",
+  "course": "ar",
+  "number": 32,
+  "slug": "education",
+  "title": "Education",
+  "titleNative": "التَّعْلِيم",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day32-01",
+      "term": "الطَّالِب",
+      "romanization": "at-taalib",
+      "english": "student"
+    },
+    {
+      "id": "ar-day32-02",
+      "term": "الدَّرْس",
+      "romanization": "ad-dars",
+      "english": "lesson"
+    },
+    {
+      "id": "ar-day32-03",
+      "term": "الِامْتِحَان",
+      "romanization": "al-imtihaan",
+      "english": "exam"
+    },
+    {
+      "id": "ar-day32-04",
+      "term": "الْوَاجِبُ الْمَنْزِلِيّ",
+      "romanization": "al-waajib al-manzilii",
+      "english": "homework"
+    },
+    {
+      "id": "ar-day32-05",
+      "term": "الْجَامِعَة",
+      "romanization": "al-jaami‘a",
+      "english": "university"
+    },
+    {
+      "id": "ar-day32-06",
+      "term": "الْكِتَاب",
+      "romanization": "al-kitaab",
+      "english": "book"
+    },
+    {
+      "id": "ar-day32-07",
+      "term": "الْقَلَم",
+      "romanization": "al-qalam",
+      "english": "pen"
+    },
+    {
+      "id": "ar-day32-08",
+      "term": "الدَّفْتَر",
+      "romanization": "ad-daftar",
+      "english": "notebook"
+    },
+    {
+      "id": "ar-day32-09",
+      "term": "الصَّفّ",
+      "romanization": "as-saff",
+      "english": "class, classroom"
+    },
+    {
+      "id": "ar-day32-10",
+      "term": "تَعَلَّمَ",
+      "romanization": "ta‘allama",
+      "english": "to learn"
+    }
+  ]
+}

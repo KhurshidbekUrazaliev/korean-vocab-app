@@ -1,0 +1,73 @@
+{
+  "id": "ar-day26",
+  "course": "ar",
+  "number": 26,
+  "slug": "meals",
+  "title": "Meals",
+  "titleNative": "الْوَجَبَات",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day26-01",
+      "term": "الْفُطُور",
+      "romanization": "al-futuur",
+      "english": "breakfast"
+    },
+    {
+      "id": "ar-day26-02",
+      "term": "الْغَدَاء",
+      "romanization": "al-ghadaa’",
+      "english": "lunch"
+    },
+    {
+      "id": "ar-day26-03",
+      "term": "الْعَشَاء",
+      "romanization": "al-‘ashaa’",
+      "english": "dinner"
+    },
+    {
+      "id": "ar-day26-04",
+      "term": "الشُّورْبَة",
+      "romanization": "ash-shuurba",
+      "english": "soup"
+    },
+    {
+      "id": "ar-day26-05",
+      "term": "السَّلَطَة",
+      "romanization": "as-salata",
+      "english": "salad"
+    },
+    {
+      "id": "ar-day26-06",
+      "term": "الْحَلْوَى",
+      "romanization": "al-halwaa",
+      "english": "dessert, sweets"
+    },
+    {
+      "id": "ar-day26-07",
+      "term": "الْبَطَاطَا الْمَقْلِيَّة",
+      "romanization": "al-bataataa al-maqliyya",
+      "english": "chips, fries"
+    },
+    {
+      "id": "ar-day26-08",
+      "term": "الْفَلَافِل",
+      "romanization": "al-falaafil",
+      "english": "falafel"
+    },
+    {
+      "id": "ar-day26-09",
+      "term": "اللَّحْمُ الْمَشْوِيّ",
+      "romanization": "al-lahm al-mashwii",
+      "english": "grilled meat"
+    },
+    {
+      "id": "ar-day26-10",
+      "term": "الْمُثَلَّجَات",
+      "romanization": "al-muthallajaat",
+      "english": "ice cream"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "id": "ar-day09",
+  "course": "ar",
+  "number": 9,
+  "slug": "weather",
+  "title": "Weather and seasons",
+  "titleNative": "الطَّقْس وَالْفُصُول",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day09-01",
+      "term": "الصَّيْف",
+      "romanization": "as-sayf",
+      "english": "summer"
+    },
+    {
+      "id": "ar-day09-02",
+      "term": "الْخَرِيف",
+      "romanization": "al-khariif",
+      "english": "autumn"
+    },
+    {
+      "id": "ar-day09-03",
+      "term": "الشِّتَاء",
+      "romanization": "ash-shitaa’",
+      "english": "winter"
+    },
+    {
+      "id": "ar-day09-04",
+      "term": "الرَّبِيع",
+      "romanization": "ar-rabii‘",
+      "english": "spring"
+    },
+    {
+      "id": "ar-day09-05",
+      "term": "الْمَطَر",
+      "romanization": "al-matar",
+      "english": "rain"
+    },
+    {
+      "id": "ar-day09-06",
+      "term": "الثَّلْج",
+      "romanization": "ath-thalj",
+      "english": "snow"
+    },
+    {
+      "id": "ar-day09-07",
+      "term": "حَارّ",
+      "romanization": "haarr",
+      "english": "hot"
+    },
+    {
+      "id": "ar-day09-08",
+      "term": "دَافِئ",
+      "romanization": "daafi’",
+      "english": "warm"
+    },
+    {
+      "id": "ar-day09-09",
+      "term": "رَطْب",
+      "romanization": "ratb",
+      "english": "humid"
+    },
+    {
+      "id": "ar-day09-10",
+      "term": "الْعَاصِفَة",
+      "romanization": "al-‘aasifa",
+      "english": "storm, gale"
+    }
+  ]
+}

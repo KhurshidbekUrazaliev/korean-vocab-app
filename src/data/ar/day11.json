@@ -1,0 +1,73 @@
+{
+  "id": "ar-day11",
+  "course": "ar",
+  "number": 11,
+  "slug": "around-town",
+  "title": "Around town",
+  "titleNative": "فِي الْمَدِينَة",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day11-01",
+      "term": "الْمَسْجِد",
+      "romanization": "al-masjid",
+      "english": "mosque"
+    },
+    {
+      "id": "ar-day11-02",
+      "term": "الْمُسْتَشْفَى",
+      "romanization": "al-mustashfaa",
+      "english": "hospital"
+    },
+    {
+      "id": "ar-day11-03",
+      "term": "الْفُنْدُق",
+      "romanization": "al-funduq",
+      "english": "hotel"
+    },
+    {
+      "id": "ar-day11-04",
+      "term": "الْمَطْعَم",
+      "romanization": "al-mat‘am",
+      "english": "restaurant"
+    },
+    {
+      "id": "ar-day11-05",
+      "term": "الْمَدْرَسَة",
+      "romanization": "al-madrasa",
+      "english": "school"
+    },
+    {
+      "id": "ar-day11-06",
+      "term": "الْمَتْجَر",
+      "romanization": "al-matjar",
+      "english": "shop"
+    },
+    {
+      "id": "ar-day11-07",
+      "term": "السُّوق",
+      "romanization": "as-suuq",
+      "english": "market"
+    },
+    {
+      "id": "ar-day11-08",
+      "term": "الْمَكْتَبَة",
+      "romanization": "al-maktaba",
+      "english": "library, bookshop"
+    },
+    {
+      "id": "ar-day11-09",
+      "term": "الْمَتْحَف",
+      "romanization": "al-mathaf",
+      "english": "museum"
+    },
+    {
+      "id": "ar-day11-10",
+      "term": "الْمَقْهَى",
+      "romanization": "al-maqhaa",
+      "english": "café"
+    }
+  ]
+}

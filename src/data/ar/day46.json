@@ -1,0 +1,73 @@
+{
+  "id": "ar-day46",
+  "course": "ar",
+  "number": 46,
+  "slug": "animals-farm",
+  "title": "Pets and farm animals",
+  "titleNative": "الْحَيَوَانَاتُ الْأَلِيفَة",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day46-01",
+      "term": "الْقِطّ",
+      "romanization": "al-qitt",
+      "english": "cat"
+    },
+    {
+      "id": "ar-day46-02",
+      "term": "الْكَلْب",
+      "romanization": "al-kalb",
+      "english": "dog"
+    },
+    {
+      "id": "ar-day46-03",
+      "term": "الْحِصَان",
+      "romanization": "al-hisaan",
+      "english": "horse"
+    },
+    {
+      "id": "ar-day46-04",
+      "term": "الْجَمَل",
+      "romanization": "al-jamal",
+      "english": "camel"
+    },
+    {
+      "id": "ar-day46-05",
+      "term": "الْبَقَرَة",
+      "romanization": "al-baqara",
+      "english": "cow"
+    },
+    {
+      "id": "ar-day46-06",
+      "term": "الْخَرُوف",
+      "romanization": "al-kharuuf",
+      "english": "sheep"
+    },
+    {
+      "id": "ar-day46-07",
+      "term": "الدَّجَاجَة",
+      "romanization": "ad-dajaaja",
+      "english": "hen"
+    },
+    {
+      "id": "ar-day46-08",
+      "term": "الْمَاعِز",
+      "romanization": "al-maa‘iz",
+      "english": "goat"
+    },
+    {
+      "id": "ar-day46-09",
+      "term": "الْحِمَار",
+      "romanization": "al-himaar",
+      "english": "donkey"
+    },
+    {
+      "id": "ar-day46-10",
+      "term": "الطَّائِر",
+      "romanization": "at-taa’ir",
+      "english": "bird"
+    }
+  ]
+}

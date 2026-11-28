@@ -1,0 +1,73 @@
+{
+  "id": "ar-day29",
+  "course": "ar",
+  "number": 29,
+  "slug": "accessories",
+  "title": "Bags and jewellery",
+  "titleNative": "الْحَقَائِب وَالْمُجَوْهَرَات",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day29-01",
+      "term": "حَقِيبَةُ الْيَد",
+      "romanization": "haqiibat al-yad",
+      "english": "handbag"
+    },
+    {
+      "id": "ar-day29-02",
+      "term": "الْمِحْفَظَة",
+      "romanization": "al-mihfadha",
+      "english": "wallet"
+    },
+    {
+      "id": "ar-day29-03",
+      "term": "الْمِظَلَّة",
+      "romanization": "al-midhalla",
+      "english": "umbrella"
+    },
+    {
+      "id": "ar-day29-04",
+      "term": "نَظَّارَةُ الشَّمْس",
+      "romanization": "nadhdhaarat ash-shams",
+      "english": "sunglasses"
+    },
+    {
+      "id": "ar-day29-05",
+      "term": "الْقِلَادَة",
+      "romanization": "al-qilaada",
+      "english": "necklace"
+    },
+    {
+      "id": "ar-day29-06",
+      "term": "الْإِسْوَارَة",
+      "romanization": "al-iswaara",
+      "english": "bracelet"
+    },
+    {
+      "id": "ar-day29-07",
+      "term": "الْخَاتَم",
+      "romanization": "al-khaatam",
+      "english": "ring"
+    },
+    {
+      "id": "ar-day29-08",
+      "term": "الْقُفَّازَات",
+      "romanization": "al-quffaazaat",
+      "english": "gloves"
+    },
+    {
+      "id": "ar-day29-09",
+      "term": "الْقُطْن",
+      "romanization": "al-qutn",
+      "english": "cotton"
+    },
+    {
+      "id": "ar-day29-10",
+      "term": "الصُّوف",
+      "romanization": "as-suuf",
+      "english": "wool"
+    }
+  ]
+}

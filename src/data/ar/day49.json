@@ -1,0 +1,73 @@
+{
+  "id": "ar-day49",
+  "course": "ar",
+  "number": 49,
+  "slug": "garden",
+  "title": "The garden",
+  "titleNative": "الْحَدِيقَة",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day49-01",
+      "term": "الْحَدِيقَة",
+      "romanization": "al-hadiiqa",
+      "english": "garden, park"
+    },
+    {
+      "id": "ar-day49-02",
+      "term": "الشَّجَرَة",
+      "romanization": "ash-shajara",
+      "english": "tree"
+    },
+    {
+      "id": "ar-day49-03",
+      "term": "الزَّهْرَة",
+      "romanization": "az-zahra",
+      "english": "flower"
+    },
+    {
+      "id": "ar-day49-04",
+      "term": "الْوَرْدَة",
+      "romanization": "al-warda",
+      "english": "rose"
+    },
+    {
+      "id": "ar-day49-05",
+      "term": "النَّخْلَة",
+      "romanization": "an-nakhla",
+      "english": "palm tree"
+    },
+    {
+      "id": "ar-day49-06",
+      "term": "الْوَرَقَة",
+      "romanization": "al-waraqa",
+      "english": "leaf"
+    },
+    {
+      "id": "ar-day49-07",
+      "term": "الْبَذْرَة",
+      "romanization": "al-badhra",
+      "english": "seed"
+    },
+    {
+      "id": "ar-day49-08",
+      "term": "الْعُشْب",
+      "romanization": "al-‘ushb",
+      "english": "grass"
+    },
+    {
+      "id": "ar-day49-09",
+      "term": "زَرَعَ",
+      "romanization": "zara‘a",
+      "english": "to plant"
+    },
+    {
+      "id": "ar-day49-10",
+      "term": "سَقَى",
+      "romanization": "saqaa",
+      "english": "to water"
+    }
+  ]
+}

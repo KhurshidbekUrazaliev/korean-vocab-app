@@ -1,0 +1,73 @@
+{
+  "id": "ar-day01",
+  "course": "ar",
+  "number": 1,
+  "slug": "greetings",
+  "title": "Greetings",
+  "titleNative": "التَّحِيَّات",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day01-01",
+      "term": "مَرْحَبًا",
+      "romanization": "marhaban",
+      "english": "hello"
+    },
+    {
+      "id": "ar-day01-02",
+      "term": "صَبَاحُ الْخَيْر",
+      "romanization": "sabaah al-khayr",
+      "english": "good morning"
+    },
+    {
+      "id": "ar-day01-03",
+      "term": "مَسَاءُ الْخَيْر",
+      "romanization": "masaa’ al-khayr",
+      "english": "good evening"
+    },
+    {
+      "id": "ar-day01-04",
+      "term": "مَعَ السَّلَامَة",
+      "romanization": "ma‘a as-salaama",
+      "english": "goodbye"
+    },
+    {
+      "id": "ar-day01-05",
+      "term": "شُكْرًا",
+      "romanization": "shukran",
+      "english": "thank you"
+    },
+    {
+      "id": "ar-day01-06",
+      "term": "عَفْوًا",
+      "romanization": "‘afwan",
+      "english": "you're welcome, pardon"
+    },
+    {
+      "id": "ar-day01-07",
+      "term": "نَعَم",
+      "romanization": "na‘am",
+      "english": "yes"
+    },
+    {
+      "id": "ar-day01-08",
+      "term": "لَا",
+      "romanization": "laa",
+      "english": "no"
+    },
+    {
+      "id": "ar-day01-09",
+      "term": "رَجَاءً",
+      "romanization": "rajaa’an",
+      "english": "please"
+    },
+    {
+      "id": "ar-day01-10",
+      "term": "آسِف",
+      "romanization": "aasif",
+      "english": "sorry"
+    }
+  ]
+}

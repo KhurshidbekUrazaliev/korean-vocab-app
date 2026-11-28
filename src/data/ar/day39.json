@@ -1,0 +1,73 @@
+{
+  "id": "ar-day39",
+  "course": "ar",
+  "number": 39,
+  "slug": "emergencies",
+  "title": "Emergencies",
+  "titleNative": "الطَّوَارِئ",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day39-01",
+      "term": "الْإِسْعَاف",
+      "romanization": "al-is‘aaf",
+      "english": "ambulance"
+    },
+    {
+      "id": "ar-day39-02",
+      "term": "الْإِسْعَافَاتُ الْأَوَّلِيَّة",
+      "romanization": "al-is‘aafaat al-awwaliyya",
+      "english": "first aid"
+    },
+    {
+      "id": "ar-day39-03",
+      "term": "الْجُرْح",
+      "romanization": "al-jurh",
+      "english": "cut, wound"
+    },
+    {
+      "id": "ar-day39-04",
+      "term": "الْكَسْر",
+      "romanization": "al-kasr",
+      "english": "fracture"
+    },
+    {
+      "id": "ar-day39-05",
+      "term": "الْحَرْق",
+      "romanization": "al-harq",
+      "english": "burn"
+    },
+    {
+      "id": "ar-day39-06",
+      "term": "النَّجْدَة",
+      "romanization": "an-najda",
+      "english": "help!"
+    },
+    {
+      "id": "ar-day39-07",
+      "term": "الشُّرْطَة",
+      "romanization": "ash-shurta",
+      "english": "police"
+    },
+    {
+      "id": "ar-day39-08",
+      "term": "رَجُلُ الْإِطْفَاء",
+      "romanization": "rajul al-itfaa’",
+      "english": "firefighter"
+    },
+    {
+      "id": "ar-day39-09",
+      "term": "الْحَرِيق",
+      "romanization": "al-hariiq",
+      "english": "fire"
+    },
+    {
+      "id": "ar-day39-10",
+      "term": "وَقَعَ",
+      "romanization": "waqa‘a",
+      "english": "to fall"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "id": "ar-day03",
+  "course": "ar",
+  "number": 3,
+  "slug": "family",
+  "title": "Family",
+  "titleNative": "الْعَائِلَة",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day03-01",
+      "term": "الْأَب",
+      "romanization": "al-ab",
+      "english": "father"
+    },
+    {
+      "id": "ar-day03-02",
+      "term": "الْأُمّ",
+      "romanization": "al-umm",
+      "english": "mother"
+    },
+    {
+      "id": "ar-day03-03",
+      "term": "الْأَخ",
+      "romanization": "al-akh",
+      "english": "brother"
+    },
+    {
+      "id": "ar-day03-04",
+      "term": "الْأُخْت",
+      "romanization": "al-ukht",
+      "english": "sister"
+    },
+    {
+      "id": "ar-day03-05",
+      "term": "الِابْن",
+      "romanization": "al-ibn",
+      "english": "son"
+    },
+    {
+      "id": "ar-day03-06",
+      "term": "الِابْنَة",
+      "romanization": "al-ibna",
+      "english": "daughter"
+    },
+    {
+      "id": "ar-day03-07",
+      "term": "الزَّوْج",
+      "romanization": "az-zawj",
+      "english": "husband"
+    },
+    {
+      "id": "ar-day03-08",
+      "term": "الزَّوْجَة",
+      "romanization": "az-zawja",
+      "english": "wife"
+    },
+    {
+      "id": "ar-day03-09",
+      "term": "الْجَدّ",
+      "romanization": "al-jadd",
+      "english": "grandfather"
+    },
+    {
+      "id": "ar-day03-10",
+      "term": "الْجَدَّة",
+      "romanization": "al-jadda",
+      "english": "grandmother"
+    }
+  ]
+}

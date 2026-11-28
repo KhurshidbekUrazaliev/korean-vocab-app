@@ -1,0 +1,73 @@
+{
+  "id": "ar-day02",
+  "course": "ar",
+  "number": 2,
+  "slug": "numbers",
+  "title": "Numbers",
+  "titleNative": "الْأَعْدَاد",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day02-01",
+      "term": "وَاحِد",
+      "romanization": "waahid",
+      "english": "one"
+    },
+    {
+      "id": "ar-day02-02",
+      "term": "اثْنَان",
+      "romanization": "ithnaan",
+      "english": "two"
+    },
+    {
+      "id": "ar-day02-03",
+      "term": "ثَلَاثَة",
+      "romanization": "thalaatha",
+      "english": "three"
+    },
+    {
+      "id": "ar-day02-04",
+      "term": "أَرْبَعَة",
+      "romanization": "arba‘a",
+      "english": "four"
+    },
+    {
+      "id": "ar-day02-05",
+      "term": "خَمْسَة",
+      "romanization": "khamsa",
+      "english": "five"
+    },
+    {
+      "id": "ar-day02-06",
+      "term": "سِتَّة",
+      "romanization": "sitta",
+      "english": "six"
+    },
+    {
+      "id": "ar-day02-07",
+      "term": "سَبْعَة",
+      "romanization": "sab‘a",
+      "english": "seven"
+    },
+    {
+      "id": "ar-day02-08",
+      "term": "ثَمَانِيَة",
+      "romanization": "thamaaniya",
+      "english": "eight"
+    },
+    {
+      "id": "ar-day02-09",
+      "term": "تِسْعَة",
+      "romanization": "tis‘a",
+      "english": "nine"
+    },
+    {
+      "id": "ar-day02-10",
+      "term": "عَشَرَة",
+      "romanization": "‘ashara",
+      "english": "ten"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "id": "ar-day22",
+  "course": "ar",
+  "number": 22,
+  "slug": "groceries",
+  "title": "Groceries",
+  "titleNative": "الْبِقَالَة",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day22-01",
+      "term": "الْخُبْز",
+      "romanization": "al-khubz",
+      "english": "bread"
+    },
+    {
+      "id": "ar-day22-02",
+      "term": "الْحَلِيب",
+      "romanization": "al-haliib",
+      "english": "milk"
+    },
+    {
+      "id": "ar-day22-03",
+      "term": "الْمَاء",
+      "romanization": "al-maa’",
+      "english": "water"
+    },
+    {
+      "id": "ar-day22-04",
+      "term": "السُّكَّر",
+      "romanization": "as-sukkar",
+      "english": "sugar"
+    },
+    {
+      "id": "ar-day22-05",
+      "term": "الْمِلْح",
+      "romanization": "al-milh",
+      "english": "salt"
+    },
+    {
+      "id": "ar-day22-06",
+      "term": "الْأَرُزّ",
+      "romanization": "al-aruzz",
+      "english": "rice"
+    },
+    {
+      "id": "ar-day22-07",
+      "term": "زَيْتُ الزَّيْتُون",
+      "romanization": "zayt az-zaytuun",
+      "english": "olive oil"
+    },
+    {
+      "id": "ar-day22-08",
+      "term": "الْعَسَل",
+      "romanization": "al-‘asal",
+      "english": "honey"
+    },
+    {
+      "id": "ar-day22-09",
+      "term": "الشَّاي",
+      "romanization": "ash-shaay",
+      "english": "tea"
+    },
+    {
+      "id": "ar-day22-10",
+      "term": "الْقَهْوَة",
+      "romanization": "al-qahwa",
+      "english": "coffee"
+    }
+  ]
+}

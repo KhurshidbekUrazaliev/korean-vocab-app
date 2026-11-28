@@ -1,0 +1,73 @@
+{
+  "id": "ar-day13",
+  "course": "ar",
+  "number": 13,
+  "slug": "on-the-road",
+  "title": "On the road",
+  "titleNative": "عَلَى الطَّرِيق",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day13-01",
+      "term": "الشَّارِع",
+      "romanization": "ash-shaari‘",
+      "english": "street"
+    },
+    {
+      "id": "ar-day13-02",
+      "term": "الطَّرِيق",
+      "romanization": "at-tariiq",
+      "english": "road, route"
+    },
+    {
+      "id": "ar-day13-03",
+      "term": "الْجِسْر",
+      "romanization": "al-jisr",
+      "english": "bridge"
+    },
+    {
+      "id": "ar-day13-04",
+      "term": "السَّائِق",
+      "romanization": "as-saa’iq",
+      "english": "driver"
+    },
+    {
+      "id": "ar-day13-05",
+      "term": "الرَّاكِب",
+      "romanization": "ar-raakib",
+      "english": "passenger"
+    },
+    {
+      "id": "ar-day13-06",
+      "term": "زَحْمَةُ السَّيْر",
+      "romanization": "zahmat as-sayr",
+      "english": "traffic jam"
+    },
+    {
+      "id": "ar-day13-07",
+      "term": "مَحَطَّةُ الْوَقُود",
+      "romanization": "mahattat al-waquud",
+      "english": "petrol station"
+    },
+    {
+      "id": "ar-day13-08",
+      "term": "الْمَوْقِف",
+      "romanization": "al-mawqif",
+      "english": "parking space"
+    },
+    {
+      "id": "ar-day13-09",
+      "term": "الْحَادِث",
+      "romanization": "al-haadith",
+      "english": "accident"
+    },
+    {
+      "id": "ar-day13-10",
+      "term": "حِزَامُ الْأَمَان",
+      "romanization": "hizaam al-amaan",
+      "english": "seatbelt"
+    }
+  ]
+}

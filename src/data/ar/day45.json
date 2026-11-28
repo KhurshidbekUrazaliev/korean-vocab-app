@@ -1,0 +1,73 @@
+{
+  "id": "ar-day45",
+  "course": "ar",
+  "number": 45,
+  "slug": "sport",
+  "title": "Sport",
+  "titleNative": "الرِّيَاضَة",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day45-01",
+      "term": "كُرَةُ الْقَدَم",
+      "romanization": "kurat al-qadam",
+      "english": "football"
+    },
+    {
+      "id": "ar-day45-02",
+      "term": "كُرَةُ السَّلَّة",
+      "romanization": "kurat as-salla",
+      "english": "basketball"
+    },
+    {
+      "id": "ar-day45-03",
+      "term": "الْفَرِيق",
+      "romanization": "al-fariiq",
+      "english": "team"
+    },
+    {
+      "id": "ar-day45-04",
+      "term": "الْمُبَارَاة",
+      "romanization": "al-mubaaraa",
+      "english": "match"
+    },
+    {
+      "id": "ar-day45-05",
+      "term": "الْمَلْعَب",
+      "romanization": "al-mal‘ab",
+      "english": "pitch, stadium"
+    },
+    {
+      "id": "ar-day45-06",
+      "term": "اللَّاعِب",
+      "romanization": "al-laa‘ib",
+      "english": "player"
+    },
+    {
+      "id": "ar-day45-07",
+      "term": "الْهَدَف",
+      "romanization": "al-hadaf",
+      "english": "goal"
+    },
+    {
+      "id": "ar-day45-08",
+      "term": "الْحَكَم",
+      "romanization": "al-hakam",
+      "english": "referee"
+    },
+    {
+      "id": "ar-day45-09",
+      "term": "رَبِحَ",
+      "romanization": "rabiha",
+      "english": "to win"
+    },
+    {
+      "id": "ar-day45-10",
+      "term": "خَسِرَ",
+      "romanization": "khasira",
+      "english": "to lose"
+    }
+  ]
+}

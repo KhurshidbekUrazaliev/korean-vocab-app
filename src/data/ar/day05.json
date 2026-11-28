@@ -1,0 +1,73 @@
+{
+  "id": "ar-day05",
+  "course": "ar",
+  "number": 5,
+  "slug": "feelings",
+  "title": "Feelings",
+  "titleNative": "الْمَشَاعِر",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day05-01",
+      "term": "سَعِيد",
+      "romanization": "sa‘iid",
+      "english": "happy"
+    },
+    {
+      "id": "ar-day05-02",
+      "term": "حَزِين",
+      "romanization": "haziin",
+      "english": "sad"
+    },
+    {
+      "id": "ar-day05-03",
+      "term": "غَضْبَان",
+      "romanization": "ghadbaan",
+      "english": "angry"
+    },
+    {
+      "id": "ar-day05-04",
+      "term": "قَلِق",
+      "romanization": "qaliq",
+      "english": "worried"
+    },
+    {
+      "id": "ar-day05-05",
+      "term": "خَائِف",
+      "romanization": "khaa’if",
+      "english": "afraid"
+    },
+    {
+      "id": "ar-day05-06",
+      "term": "مُتَحَمِّس",
+      "romanization": "mutahammis",
+      "english": "excited"
+    },
+    {
+      "id": "ar-day05-07",
+      "term": "جَيِّد",
+      "romanization": "jayyid",
+      "english": "good, well"
+    },
+    {
+      "id": "ar-day05-08",
+      "term": "مَرِيض",
+      "romanization": "mariid",
+      "english": "ill, unwell"
+    },
+    {
+      "id": "ar-day05-09",
+      "term": "أَفْضَل",
+      "romanization": "afdal",
+      "english": "better"
+    },
+    {
+      "id": "ar-day05-10",
+      "term": "أَسْوَأ",
+      "romanization": "aswa’",
+      "english": "worse"
+    }
+  ]
+}

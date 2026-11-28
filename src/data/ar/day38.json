@@ -1,0 +1,73 @@
+{
+  "id": "ar-day38",
+  "course": "ar",
+  "number": 38,
+  "slug": "doctor",
+  "title": "At the doctor's",
+  "titleNative": "عِنْدَ الطَّبِيب",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day38-01",
+      "term": "الْمَرِيض",
+      "romanization": "al-mariid",
+      "english": "patient"
+    },
+    {
+      "id": "ar-day38-02",
+      "term": "الدَّوَاء",
+      "romanization": "ad-dawaa’",
+      "english": "medicine"
+    },
+    {
+      "id": "ar-day38-03",
+      "term": "الْأَلَم",
+      "romanization": "al-alam",
+      "english": "pain"
+    },
+    {
+      "id": "ar-day38-04",
+      "term": "الْمَوْعِد",
+      "romanization": "al-maw‘id",
+      "english": "appointment"
+    },
+    {
+      "id": "ar-day38-05",
+      "term": "الْوَصْفَةُ الطِّبِّيَّة",
+      "romanization": "al-wasfa at-tibbiyya",
+      "english": "prescription"
+    },
+    {
+      "id": "ar-day38-06",
+      "term": "الْحُمَّى",
+      "romanization": "al-hummaa",
+      "english": "fever"
+    },
+    {
+      "id": "ar-day38-07",
+      "term": "الزُّكَام",
+      "romanization": "az-zukaam",
+      "english": "cold"
+    },
+    {
+      "id": "ar-day38-08",
+      "term": "الصُّدَاع",
+      "romanization": "as-sudaa‘",
+      "english": "headache"
+    },
+    {
+      "id": "ar-day38-09",
+      "term": "السُّعَال",
+      "romanization": "as-su‘aal",
+      "english": "cough"
+    },
+    {
+      "id": "ar-day38-10",
+      "term": "الْعِيَادَة",
+      "romanization": "al-‘iyaada",
+      "english": "clinic"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "id": "ar-day18",
+  "course": "ar",
+  "number": 18,
+  "slug": "living-room",
+  "title": "The living room",
+  "titleNative": "غُرْفَةُ الْجُلُوس",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day18-01",
+      "term": "الْكَنَبَة",
+      "romanization": "al-kanaba",
+      "english": "sofa"
+    },
+    {
+      "id": "ar-day18-02",
+      "term": "الْكُرْسِيّ",
+      "romanization": "al-kursii",
+      "english": "chair"
+    },
+    {
+      "id": "ar-day18-03",
+      "term": "الطَّاوِلَة",
+      "romanization": "at-taawila",
+      "english": "table"
+    },
+    {
+      "id": "ar-day18-04",
+      "term": "السَّجَّادَة",
+      "romanization": "as-sajjaada",
+      "english": "carpet, rug"
+    },
+    {
+      "id": "ar-day18-05",
+      "term": "السَّتَائِر",
+      "romanization": "as-sataa’ir",
+      "english": "curtains"
+    },
+    {
+      "id": "ar-day18-06",
+      "term": "التِّلْفَاز",
+      "romanization": "at-tilfaaz",
+      "english": "television, TV"
+    },
+    {
+      "id": "ar-day18-07",
+      "term": "الْمِصْبَاح",
+      "romanization": "al-misbaah",
+      "english": "lamp"
+    },
+    {
+      "id": "ar-day18-08",
+      "term": "الْوِسَادَة",
+      "romanization": "al-wisaada",
+      "english": "cushion, pillow"
+    },
+    {
+      "id": "ar-day18-09",
+      "term": "الْمِرْآة",
+      "romanization": "al-mir’aa",
+      "english": "mirror"
+    },
+    {
+      "id": "ar-day18-10",
+      "term": "الصُّورَة",
+      "romanization": "as-suura",
+      "english": "picture, photo"
+    }
+  ]
+}

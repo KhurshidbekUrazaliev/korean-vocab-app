@@ -1,0 +1,73 @@
+{
+  "id": "ar-day16",
+  "course": "ar",
+  "number": 16,
+  "slug": "directions",
+  "title": "Directions",
+  "titleNative": "الِاتِّجَاهَات",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day16-01",
+      "term": "مَشَى",
+      "romanization": "mashaa",
+      "english": "to walk"
+    },
+    {
+      "id": "ar-day16-02",
+      "term": "قَادَ",
+      "romanization": "qaada",
+      "english": "to drive"
+    },
+    {
+      "id": "ar-day16-03",
+      "term": "انْعَطَفَ",
+      "romanization": "in‘atafa",
+      "english": "to turn"
+    },
+    {
+      "id": "ar-day16-04",
+      "term": "الْيَمِين",
+      "romanization": "al-yamiin",
+      "english": "right"
+    },
+    {
+      "id": "ar-day16-05",
+      "term": "الْيَسَار",
+      "romanization": "al-yasaar",
+      "english": "left"
+    },
+    {
+      "id": "ar-day16-06",
+      "term": "إِلَى الْأَمَام",
+      "romanization": "ilaa al-amaam",
+      "english": "straight ahead, forward"
+    },
+    {
+      "id": "ar-day16-07",
+      "term": "قَرِيب",
+      "romanization": "qariib",
+      "english": "near"
+    },
+    {
+      "id": "ar-day16-08",
+      "term": "بَعِيد",
+      "romanization": "ba‘iid",
+      "english": "far"
+    },
+    {
+      "id": "ar-day16-09",
+      "term": "الْخَرِيطَة",
+      "romanization": "al-khariita",
+      "english": "map"
+    },
+    {
+      "id": "ar-day16-10",
+      "term": "الْإِشَارَة",
+      "romanization": "al-ishaara",
+      "english": "sign, signal"
+    }
+  ]
+}

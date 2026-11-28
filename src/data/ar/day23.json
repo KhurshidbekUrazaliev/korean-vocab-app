@@ -1,0 +1,73 @@
+{
+  "id": "ar-day23",
+  "course": "ar",
+  "number": 23,
+  "slug": "fruit",
+  "title": "Fruit",
+  "titleNative": "الْفَوَاكِه",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day23-01",
+      "term": "التُّفَّاح",
+      "romanization": "at-tuffaah",
+      "english": "apple"
+    },
+    {
+      "id": "ar-day23-02",
+      "term": "الْمَوْز",
+      "romanization": "al-mawz",
+      "english": "banana"
+    },
+    {
+      "id": "ar-day23-03",
+      "term": "الْبُرْتُقَال",
+      "romanization": "al-burtuqaal",
+      "english": "orange"
+    },
+    {
+      "id": "ar-day23-04",
+      "term": "الْعِنَب",
+      "romanization": "al-‘inab",
+      "english": "grapes"
+    },
+    {
+      "id": "ar-day23-05",
+      "term": "اللَّيْمُون",
+      "romanization": "al-laymuun",
+      "english": "lemon"
+    },
+    {
+      "id": "ar-day23-06",
+      "term": "التَّمْر",
+      "romanization": "at-tamr",
+      "english": "dates"
+    },
+    {
+      "id": "ar-day23-07",
+      "term": "التِّين",
+      "romanization": "at-tiin",
+      "english": "figs"
+    },
+    {
+      "id": "ar-day23-08",
+      "term": "الرُّمَّان",
+      "romanization": "ar-rummaan",
+      "english": "pomegranate"
+    },
+    {
+      "id": "ar-day23-09",
+      "term": "الْبِطِّيخ",
+      "romanization": "al-bittiikh",
+      "english": "watermelon"
+    },
+    {
+      "id": "ar-day23-10",
+      "term": "الْفَرَاوْلَة",
+      "romanization": "al-faraawla",
+      "english": "strawberries"
+    }
+  ]
+}

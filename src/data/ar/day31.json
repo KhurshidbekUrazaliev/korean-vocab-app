@@ -1,0 +1,73 @@
+{
+  "id": "ar-day31",
+  "course": "ar",
+  "number": 31,
+  "slug": "daily-routine",
+  "title": "Daily routine",
+  "titleNative": "الْحَيَاةُ الْيَوْمِيَّة",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day31-01",
+      "term": "اسْتَيْقَظَ",
+      "romanization": "istayqadha",
+      "english": "to wake up"
+    },
+    {
+      "id": "ar-day31-02",
+      "term": "لَبِسَ",
+      "romanization": "labisa",
+      "english": "to get dressed"
+    },
+    {
+      "id": "ar-day31-03",
+      "term": "أَكَلَ",
+      "romanization": "akala",
+      "english": "to eat"
+    },
+    {
+      "id": "ar-day31-04",
+      "term": "شَرِبَ",
+      "romanization": "shariba",
+      "english": "to drink"
+    },
+    {
+      "id": "ar-day31-05",
+      "term": "عَمِلَ",
+      "romanization": "‘amila",
+      "english": "to work"
+    },
+    {
+      "id": "ar-day31-06",
+      "term": "دَرَسَ",
+      "romanization": "darasa",
+      "english": "to study"
+    },
+    {
+      "id": "ar-day31-07",
+      "term": "طَبَخَ",
+      "romanization": "tabakha",
+      "english": "to cook"
+    },
+    {
+      "id": "ar-day31-08",
+      "term": "غَسَلَ",
+      "romanization": "ghasala",
+      "english": "to wash"
+    },
+    {
+      "id": "ar-day31-09",
+      "term": "نَظَّفَ",
+      "romanization": "nadhdhafa",
+      "english": "to clean"
+    },
+    {
+      "id": "ar-day31-10",
+      "term": "اسْتَرْخَى",
+      "romanization": "istarkhaa",
+      "english": "to relax"
+    }
+  ]
+}

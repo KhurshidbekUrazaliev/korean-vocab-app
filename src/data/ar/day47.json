@@ -1,0 +1,73 @@
+{
+  "id": "ar-day47",
+  "course": "ar",
+  "number": 47,
+  "slug": "wild-animals",
+  "title": "Wild animals",
+  "titleNative": "الْحَيَوَانَاتُ الْبَرِّيَّة",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day47-01",
+      "term": "الْأَسَد",
+      "romanization": "al-asad",
+      "english": "lion"
+    },
+    {
+      "id": "ar-day47-02",
+      "term": "الْفِيل",
+      "romanization": "al-fiil",
+      "english": "elephant"
+    },
+    {
+      "id": "ar-day47-03",
+      "term": "الْقِرْد",
+      "romanization": "al-qird",
+      "english": "monkey"
+    },
+    {
+      "id": "ar-day47-04",
+      "term": "الثَّعْلَب",
+      "romanization": "ath-tha‘lab",
+      "english": "fox"
+    },
+    {
+      "id": "ar-day47-05",
+      "term": "الدُّبّ",
+      "romanization": "ad-dubb",
+      "english": "bear"
+    },
+    {
+      "id": "ar-day47-06",
+      "term": "الْغَزَال",
+      "romanization": "al-ghazaal",
+      "english": "gazelle, deer"
+    },
+    {
+      "id": "ar-day47-07",
+      "term": "الزَّرَافَة",
+      "romanization": "az-zaraafa",
+      "english": "giraffe"
+    },
+    {
+      "id": "ar-day47-08",
+      "term": "الثُّعْبَان",
+      "romanization": "ath-thu‘baan",
+      "english": "snake"
+    },
+    {
+      "id": "ar-day47-09",
+      "term": "السُّلَحْفَاة",
+      "romanization": "as-sulahfaa",
+      "english": "tortoise, turtle"
+    },
+    {
+      "id": "ar-day47-10",
+      "term": "النَّمِر",
+      "romanization": "an-namir",
+      "english": "tiger"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "id": "ar-day10",
+  "course": "ar",
+  "number": 10,
+  "slug": "colours",
+  "title": "Colours and sizes",
+  "titleNative": "الْأَلْوَان وَالْأَحْجَام",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day10-01",
+      "term": "أَحْمَر",
+      "romanization": "ahmar",
+      "english": "red"
+    },
+    {
+      "id": "ar-day10-02",
+      "term": "أَزْرَق",
+      "romanization": "azraq",
+      "english": "blue"
+    },
+    {
+      "id": "ar-day10-03",
+      "term": "أَخْضَر",
+      "romanization": "akhdar",
+      "english": "green"
+    },
+    {
+      "id": "ar-day10-04",
+      "term": "أَصْفَر",
+      "romanization": "asfar",
+      "english": "yellow"
+    },
+    {
+      "id": "ar-day10-05",
+      "term": "أَبْيَض",
+      "romanization": "abyad",
+      "english": "white"
+    },
+    {
+      "id": "ar-day10-06",
+      "term": "أَسْوَد",
+      "romanization": "aswad",
+      "english": "black"
+    },
+    {
+      "id": "ar-day10-07",
+      "term": "كَبِير",
+      "romanization": "kabiir",
+      "english": "big"
+    },
+    {
+      "id": "ar-day10-08",
+      "term": "صَغِير",
+      "romanization": "saghiir",
+      "english": "small"
+    },
+    {
+      "id": "ar-day10-09",
+      "term": "جَدِيد",
+      "romanization": "jadiid",
+      "english": "new"
+    },
+    {
+      "id": "ar-day10-10",
+      "term": "قَدِيم",
+      "romanization": "qadiim",
+      "english": "old"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "id": "ar-day08",
+  "course": "ar",
+  "number": 8,
+  "slug": "days-of-the-week",
+  "title": "Days of the week",
+  "titleNative": "أَيَّامُ الْأُسْبُوع",
+  "status": "draft",
+  "source": "collins-3000",
+  "cover": null,
+  "words": [
+    {
+      "id": "ar-day08-01",
+      "term": "الْأَحَد",
+      "romanization": "al-ahad",
+      "english": "Sunday"
+    },
+    {
+      "id": "ar-day08-02",
+      "term": "الِاثْنَيْن",
+      "romanization": "al-ithnayn",
+      "english": "Monday"
+    },
+    {
+      "id": "ar-day08-03",
+      "term": "الثُّلَاثَاء",
+      "romanization": "ath-thulaathaa’",
+      "english": "Tuesday"
+    },
+    {
+      "id": "ar-day08-04",
+      "term": "الْأَرْبِعَاء",
+      "romanization": "al-arbi‘aa’",
+      "english": "Wednesday"
+    },
+    {
+      "id": "ar-day08-05",
+      "term": "الْخَمِيس",
+      "romanization": "al-khamiis",
+      "english": "Thursday"
+    },
+    {
+      "id": "ar-day08-06",
+      "term": "الْجُمُعَة",
+      "romanization": "al-jumu‘a",
+      "english": "Friday"
+    },
+    {
+      "id": "ar-day08-07",
+      "term": "السَّبْت",
+      "romanization": "as-sabt",
+      "english": "Saturday"
+    },
+    {
+      "id": "ar-day08-08",
+      "term": "الْأُسْبُوع",
+      "romanization": "al-usbuu‘",
+      "english": "week"
+    },
+    {
+      "id": "ar-day08-09",
+      "term": "الشَّهْر",
+      "romanization": "ash-shahr",
+      "english": "month"
+    },
+    {
+      "id": "ar-day08-10",
+      "term": "السَّنَة",
+      "romanization": "as-sana",
+      "english": "year"
+    }
+  ]
+}
