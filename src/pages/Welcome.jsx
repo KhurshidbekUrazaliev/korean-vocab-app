@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from '../components/Icons.jsx';
 import { COURSES, COURSE_LIST } from '../data/index.js';
@@ -12,15 +12,21 @@ const SAMPLE = { ko: '안녕하세요', ar: 'مَرْحَبًا' };
 /**
  * Sign-in: a name, a language and a daily goal, saved on this device. No server, no password.
  * New visitors see this at / and /ar. Signed-in learners reach it from their avatar to edit.
- * The language starts as the page's course (/ar → Arabic) and follows the app-bar switch.
+ * The language follows the URL (/ar/welcome is Arabic) or, at /welcome, the saved profile.
  */
 export default function Welcome() {
   const profile = useProfile();
   const navigate = useNavigate();
   const routeCourse = useCourse();
   const [name, setName] = useState(profile?.name ?? '');
-  const [courseId, setCourseId] = useState(routeCourse.id);
-  useEffect(() => setCourseId(routeCourse.id), [routeCourse.id]);
+  // /ar/welcome means Arabic; /welcome shows the profile's language (or Korean for a new visitor).
+  const [courseId, setCourseId] = useState(routeCourse.base ? routeCourse.id : (profile?.course ?? routeCourse.id));
+  const firstRoute = useRef(routeCourse.id);
+  useEffect(() => {
+    // Follow the app-bar switch, which moves between /welcome and /ar/welcome.
+    if (routeCourse.id !== firstRoute.current) setCourseId(routeCourse.id);
+    firstRoute.current = null;
+  }, [routeCourse.id]);
   const [goal, setGoal] = useState(profile?.goal ?? 20);
   const [error, setError] = useState('');
   const ids = { name: useId(), error: useId() };

@@ -26,3 +26,14 @@ These five were still transcribed differently after every attempt. They are most
 | 짖다 | day44-10 | 짙다 | Same pronunciation [짇따]; now listed as a same-sound spelling |
 
 To redo one word: `.venv-audio/bin/python scripts/make-audio.py --check --only day41-08`.
+
+## Arabic (2026-11-28)
+
+All 500 Arabic words and the 34 entries of the Arabic Letters page are recorded with the same model and settings (`--course ar`), from the vowelled spelling, so the model reads the vowel marks. Whisper checks Arabic without vowel marks and with loose hamza and tāʾ marbūṭa spelling, and accepts digits for the number words. 34 words use the fallback voice F2.
+
+In the final run, 376 of 425 words were transcribed as written (the first 75 were checked in an earlier run that was stopped before its summary). The 49 others fall into two groups:
+
+- **Whisper spelling, not pronunciation.** Past-tense verbs end in a short *-a* (*shariba*, *darasa*, *zaara*), which Whisper writes as a noun ending: شريبة, درسة, زارة. Adjectives in *-ii* (الْمَنْزِلِيّ, الْإِلِكْتُرُونِيّ) come back with a feminine ending. These clips say the word as written.
+- **Worth a listen.** الرَّكْض (heard as أرغب), تَمَرَّنَ (تمر لنا), كُرَةُ السَّلَّة (كرة السلام), كَلِمَةُ السِّرّ (كلمة السيرة), الْقِطّ (القيطة), الْفِيل (الفيول). Re-record one with `--course ar --check --only ar-dayNN-MM`.
+
+Letters (24 Hangul, 34 Arabic) are recorded without the Whisper check, which is unreliable on single syllables and letter names. Korean letters are spoken as a syllable (가, 나, 아…), Arabic letters by their names (أَلِف, بَاء…).
