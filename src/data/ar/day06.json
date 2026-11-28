@@ -5,9 +5,9 @@
   "slug": "jobs",
   "title": "Jobs",
   "titleNative": "الْمِهَن",
-  "status": "draft",
+  "status": "reviewed",
   "source": "collins-3000",
-  "cover": null,
+  "cover": "images/ar/days/day06.webp",
   "words": [
     {
       "id": "ar-day06-01",

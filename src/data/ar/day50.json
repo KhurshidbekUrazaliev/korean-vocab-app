@@ -5,9 +5,9 @@
   "slug": "celebrations",
   "title": "Celebrations",
   "titleNative": "الِاحْتِفَالَات",
-  "status": "draft",
+  "status": "reviewed",
   "source": "collins-3000",
-  "cover": null,
+  "cover": "images/ar/days/day50.webp",
   "words": [
     {
       "id": "ar-day50-01",
@@ -65,7 +65,7 @@
     },
     {
       "id": "ar-day50-10",
-      "term": "احْتَفَلَ",
+      "term": "اِحْتَفَلَ",
       "romanization": "ihtafala",
       "english": "to celebrate"
     }

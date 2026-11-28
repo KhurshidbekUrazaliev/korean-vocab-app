@@ -5,9 +5,9 @@
   "slug": "kitchen",
   "title": "The kitchen",
   "titleNative": "الْمَطْبَخ",
-  "status": "draft",
+  "status": "reviewed",
   "source": "collins-3000",
-  "cover": null,
+  "cover": "images/ar/days/day19.webp",
   "words": [
     {
       "id": "ar-day19-01",

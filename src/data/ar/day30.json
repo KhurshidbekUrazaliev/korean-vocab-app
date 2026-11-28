@@ -5,9 +5,9 @@
   "slug": "shops",
   "title": "Shops",
   "titleNative": "الْمَحَلَّات",
-  "status": "draft",
+  "status": "reviewed",
   "source": "collins-3000",
-  "cover": null,
+  "cover": "images/ar/days/day30.webp",
   "words": [
     {
       "id": "ar-day30-01",

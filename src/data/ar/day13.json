@@ -5,9 +5,9 @@
   "slug": "on-the-road",
   "title": "On the road",
   "titleNative": "عَلَى الطَّرِيق",
-  "status": "draft",
+  "status": "reviewed",
   "source": "collins-3000",
-  "cover": null,
+  "cover": "images/ar/days/day13.webp",
   "words": [
     {
       "id": "ar-day13-01",

@@ -5,9 +5,9 @@
   "slug": "work",
   "title": "At work",
   "titleNative": "فِي الْعَمَل",
-  "status": "draft",
+  "status": "reviewed",
   "source": "collins-3000",
-  "cover": null,
+  "cover": "images/ar/days/day33.webp",
   "words": [
     {
       "id": "ar-day33-01",

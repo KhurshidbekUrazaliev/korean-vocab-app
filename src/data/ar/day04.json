@@ -5,21 +5,21 @@
   "slug": "relatives-friends",
   "title": "Relatives and friends",
   "titleNative": "الْأَقَارِب وَالْأَصْدِقَاء",
-  "status": "draft",
+  "status": "reviewed",
   "source": "collins-3000",
-  "cover": null,
+  "cover": "images/ar/days/day04.webp",
   "words": [
     {
       "id": "ar-day04-01",
       "term": "الْعَمّ",
       "romanization": "al-‘amm",
-      "english": "uncle"
+      "english": "paternal uncle"
     },
     {
       "id": "ar-day04-02",
       "term": "الْعَمَّة",
       "romanization": "al-‘amma",
-      "english": "aunt"
+      "english": "paternal aunt"
     },
     {
       "id": "ar-day04-03",
@@ -53,9 +53,9 @@
     },
     {
       "id": "ar-day04-08",
-      "term": "ابْنُ الْعَمّ",
+      "term": "اِبْنُ الْعَمّ",
       "romanization": "ibn al-‘amm",
-      "english": "cousin"
+      "english": "male cousin (paternal uncle's son)"
     },
     {
       "id": "ar-day04-09",

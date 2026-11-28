@@ -5,9 +5,9 @@
   "slug": "feelings",
   "title": "Feelings",
   "titleNative": "الْمَشَاعِر",
-  "status": "draft",
+  "status": "reviewed",
   "source": "collins-3000",
-  "cover": null,
+  "cover": "images/ar/days/day05.webp",
   "words": [
     {
       "id": "ar-day05-01",

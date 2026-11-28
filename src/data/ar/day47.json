@@ -5,9 +5,9 @@
   "slug": "wild-animals",
   "title": "Wild animals",
   "titleNative": "الْحَيَوَانَاتُ الْبَرِّيَّة",
-  "status": "draft",
+  "status": "reviewed",
   "source": "collins-3000",
-  "cover": null,
+  "cover": "images/ar/days/day47.webp",
   "words": [
     {
       "id": "ar-day47-01",
@@ -43,7 +43,7 @@
       "id": "ar-day47-06",
       "term": "الْغَزَال",
       "romanization": "al-ghazaal",
-      "english": "gazelle, deer"
+      "english": "gazelle"
     },
     {
       "id": "ar-day47-07",

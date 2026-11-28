@@ -5,9 +5,9 @@
   "slug": "bank-post",
   "title": "Bank and post",
   "titleNative": "الْبَنْك وَالْبَرِيد",
-  "status": "draft",
+  "status": "reviewed",
   "source": "collins-3000",
-  "cover": null,
+  "cover": "images/ar/days/day35.webp",
   "words": [
     {
       "id": "ar-day35-01",

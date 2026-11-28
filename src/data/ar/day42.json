@@ -5,9 +5,9 @@
   "slug": "sightseeing",
   "title": "Sightseeing",
   "titleNative": "السِّيَاحَة",
-  "status": "draft",
+  "status": "reviewed",
   "source": "collins-3000",
-  "cover": null,
+  "cover": "images/ar/days/day42.webp",
   "words": [
     {
       "id": "ar-day42-01",
@@ -60,7 +60,7 @@
     {
       "id": "ar-day42-09",
       "term": "غُرْفَةٌ لِشَخْصَيْن",
-      "romanization": "ghurfa li-shakhsayn",
+      "romanization": "ghurfatun li-shakhsayn",
       "english": "double room"
     },
     {

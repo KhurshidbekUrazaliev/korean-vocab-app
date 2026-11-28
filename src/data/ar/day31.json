@@ -5,13 +5,13 @@
   "slug": "daily-routine",
   "title": "Daily routine",
   "titleNative": "الْحَيَاةُ الْيَوْمِيَّة",
-  "status": "draft",
+  "status": "reviewed",
   "source": "collins-3000",
-  "cover": null,
+  "cover": "images/ar/days/day31.webp",
   "words": [
     {
       "id": "ar-day31-01",
-      "term": "اسْتَيْقَظَ",
+      "term": "اِسْتَيْقَظَ",
       "romanization": "istayqadha",
       "english": "to wake up"
     },
@@ -65,7 +65,7 @@
     },
     {
       "id": "ar-day31-10",
-      "term": "اسْتَرْخَى",
+      "term": "اِسْتَرْخَى",
       "romanization": "istarkhaa",
       "english": "to relax"
     }

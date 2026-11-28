@@ -5,9 +5,9 @@
   "slug": "animals-farm",
   "title": "Pets and farm animals",
   "titleNative": "الْحَيَوَانَاتُ الْأَلِيفَة",
-  "status": "draft",
+  "status": "reviewed",
   "source": "collins-3000",
-  "cover": null,
+  "cover": "images/ar/days/day46.webp",
   "words": [
     {
       "id": "ar-day46-01",

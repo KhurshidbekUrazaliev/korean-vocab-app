@@ -5,9 +5,9 @@
   "slug": "fruit",
   "title": "Fruit",
   "titleNative": "الْفَوَاكِه",
-  "status": "draft",
+  "status": "reviewed",
   "source": "collins-3000",
-  "cover": null,
+  "cover": "images/ar/days/day23.webp",
   "words": [
     {
       "id": "ar-day23-01",

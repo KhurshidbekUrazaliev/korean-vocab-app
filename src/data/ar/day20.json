@@ -5,9 +5,9 @@
   "slug": "bedroom-bathroom",
   "title": "Bedroom and bathroom",
   "titleNative": "غُرْفَةُ النَّوْم وَالْحَمَّام",
-  "status": "draft",
+  "status": "reviewed",
   "source": "collins-3000",
-  "cover": null,
+  "cover": "images/ar/days/day20.webp",
   "words": [
     {
       "id": "ar-day20-01",

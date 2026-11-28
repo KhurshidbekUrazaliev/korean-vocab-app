@@ -5,9 +5,9 @@
   "slug": "music-arts",
   "title": "Music and arts",
   "titleNative": "الْمُوسِيقَى وَالْفُنُون",
-  "status": "draft",
+  "status": "reviewed",
   "source": "collins-3000",
-  "cover": null,
+  "cover": "images/ar/days/day44.webp",
   "words": [
     {
       "id": "ar-day44-01",

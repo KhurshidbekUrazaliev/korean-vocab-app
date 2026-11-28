@@ -5,9 +5,9 @@
   "slug": "weather",
   "title": "Weather and seasons",
   "titleNative": "الطَّقْس وَالْفُصُول",
-  "status": "draft",
+  "status": "reviewed",
   "source": "collins-3000",
-  "cover": null,
+  "cover": "images/ar/days/day09.webp",
   "words": [
     {
       "id": "ar-day09-01",

@@ -5,9 +5,9 @@
   "slug": "living-room",
   "title": "The living room",
   "titleNative": "غُرْفَةُ الْجُلُوس",
-  "status": "draft",
+  "status": "reviewed",
   "source": "collins-3000",
-  "cover": null,
+  "cover": "images/ar/days/day18.webp",
   "words": [
     {
       "id": "ar-day18-01",

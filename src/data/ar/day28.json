@@ -5,9 +5,9 @@
   "slug": "clothes",
   "title": "Clothes",
   "titleNative": "الْمَلَابِس",
-  "status": "draft",
+  "status": "reviewed",
   "source": "collins-3000",
-  "cover": null,
+  "cover": "images/ar/days/day28.webp",
   "words": [
     {
       "id": "ar-day28-01",
@@ -37,7 +37,7 @@
       "id": "ar-day28-05",
       "term": "الْحِذَاء",
       "romanization": "al-hidhaa’",
-      "english": "shoes"
+      "english": "shoe"
     },
     {
       "id": "ar-day28-06",
