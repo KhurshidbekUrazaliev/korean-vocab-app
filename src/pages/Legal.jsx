@@ -8,7 +8,7 @@ export function Privacy() {
       <link rel="canonical" href={`${SITE}/privacy`} />
       <div className="prose">
         <h1 className="display">Privacy</h1>
-        <p>Last updated 27 November 2026.</p>
+        <p>Last updated 28 November 2026.</p>
         <h2>What is stored</h2>
         <p>Your practice progress (which words you answered, when they are due for review, your streak), your light or dark theme choice and whether practice sound effects are on. All of it is saved in your browser’s local storage on your device. They are never sent to us or anyone else.</p>
         <h2>No accounts, no tracking</h2>
@@ -18,10 +18,8 @@ export function Privacy() {
         <h2>Deleting your data</h2>
         <p>Clear this site’s data in your browser settings to remove all saved progress.</p>
         <h2>Contact</h2>
-        {/* TODO(owner): add a contact email for privacy questions. */}
         <p>
-          Questions about privacy: open an issue on the{' '}
-          <a href="https://github.com/KhurshidbekUrazaliev/korean-vocab-app/issues">project’s GitHub page</a>.
+          Questions about privacy: email Khurshidbek at <a href="mailto:ummahfaris@gmail.com">ummahfaris@gmail.com</a>.
         </p>
       </div>
     </article>
@@ -36,7 +34,7 @@ export function Terms() {
       <link rel="canonical" href={`${SITE}/terms`} />
       <div className="prose">
         <h1 className="display">Terms of use</h1>
-        <p>Last updated 27 November 2026.</p>
+        <p>Last updated 28 November 2026.</p>
         <h2>Using the site</h2>
         <p>Essential Korean Vocabulary is a free study tool. You may use it for personal learning. Please don’t copy the site or its word lists to republish them elsewhere.</p>
         <h2>Accuracy</h2>
@@ -44,12 +42,10 @@ export function Terms() {
         <h2>No warranty</h2>
         <p>The site is provided as is, without any warranty. Your saved progress lives in your browser and can be lost if browser data is cleared.</p>
         <h2>Owner and contact</h2>
-        {/* TODO(owner): add the owner's legal name, country and a contact email. */}
+        {/* TODO(owner): add the country the site is run from, if wanted. */}
         <p>
-          The site is run by the owner of the{' '}
-          <a href="https://github.com/KhurshidbekUrazaliev">KhurshidbekUrazaliev</a> GitHub account. To report an error in a
-          word list or ask a question, open an issue on the{' '}
-          <a href="https://github.com/KhurshidbekUrazaliev/korean-vocab-app/issues">project’s GitHub page</a>.
+          The site is developed and run by Khurshidbek. To report an error in a word list or ask a question, email{' '}
+          <a href="mailto:ummahfaris@gmail.com">ummahfaris@gmail.com</a>.
         </p>
       </div>
     </article>

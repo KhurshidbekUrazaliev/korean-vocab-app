@@ -132,4 +132,4 @@ See `docs/DESIGN-CRITIQUE.md`: it explains why v1 looked like a template and wha
 - **Q2** "Conversion" means what: sign-ups, paid plan, or daily return? (Paid plan = backend + payment provider = new plan section.)
 - **Q3** Stay on GitHub Pages, or move to Vercel/Netlify (needed if we add accounts/payments)?
 - **Q5** Site name and domain. Current candidates: "한국어 공부", "Essential Korean Vocabulary".
-- **Q6** Name/contact for footer, Privacy, Terms, and structured data.
+- **Q6 resolved** Footer, Privacy and Terms name Khurshidbek with ummahfaris@gmail.com. Country not given.
