@@ -90,7 +90,7 @@ Status: `todo` · `doing` · `review` · `done` · `blocked`
 | B3 | **Sharing cards** for both courses in `scripts/make-images.cjs`: site name "Essential Vocabulary", Arabic titles in Noto Naskh Arabic rendered right to left, outputs listed under Assets, JPEG under 60 KB | Builder | B1, L2 | todo |
 | B4 | **Match engine**: `src/lib/match.js` with `buildMatchRound(words, { pairs = 5, random })` returning `{ left: [{ id, text }], right: [{ id, text }] }` (Arabic or Korean term on the left, English on the right, each shuffled) and `isPair(leftId, rightId)`. Unit tests | Builder | | done. Merged 2026-11-28 |
 | B5 | **Tests and accessibility** for the new screens: Testing Library tests for sign-in, language switch and Match. Extend `e2e/` scans to `/welcome`, `/ar`, `/ar/day/1`, every Arabic practice mode, `/ar/letters`, both themes and viewports | Builder | L3, L5 | todo |
-| B6 | **Performance** with the Arabic font: measure Home, `/ar` and `/ar/day/1` on mobile Lighthouse; keep Home at 80 or above; report in `.github/PERFORMANCE.md` | Builder | L2, L3 | doing |
+| B6 | **Performance** with the Arabic font: measure Home, `/ar` and `/ar/day/1` on mobile Lighthouse; keep Home at 80 or above; report in `.github/PERFORMANCE.md` | Builder | L2, L3 | review |
 
 ## File ownership
 
@@ -131,3 +131,4 @@ _(format: `YYYY-MM-DD HH:MM UTC | role | task | note`)_
 - 2026-11-28 | Lead | B2, B4 | Reviewed and merged the Arabic language review (15 corrections, all 50 days `reviewed`) and the Match engine. The kasra added under silent initial alifs does not change pronunciation, so no clip needs re-recording.
 - 2026-11-28 | Lead | L2, L3, L5 | Multi-course app, sign-in, language switch, Letters page, slow replay and Match UI are on `ui/L2-multi-course`. Merging when the Arabic audio (L4) is recorded.
 - 2026-11-28 03:12 UTC | Builder | B6 | Started mobile measurements on the public multi-course branch with device sign-in. Checking first visits, saved profiles and the rendered Arabic font.
+- 2026-11-28 03:35 UTC | Builder | B6 | Bundled the licensed Arabic font and measured cold mobile loads with the final lesson covers. Median scores were 93 on Home, 91 on Arabic Home and 96 on Arabic Day 1. Build and 72 accessibility scans passed. Two recording-presence tests await L4. Signed-in dashboard shifts are documented under Requests.
