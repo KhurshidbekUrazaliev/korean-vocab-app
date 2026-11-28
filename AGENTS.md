@@ -91,6 +91,7 @@ Status: `todo` · `doing` · `review` · `done` · `blocked`
 | B4 | **Match engine**: `src/lib/match.js` with `buildMatchRound(words, { pairs = 5, random })` returning `{ left: [{ id, text }], right: [{ id, text }] }` (Arabic or Korean term on the left, English on the right, each shuffled) and `isPair(leftId, rightId)`. Unit tests | Builder | | done. Merged 2026-11-28 |
 | B5 | **Tests and accessibility** for the new screens: Testing Library tests for sign-in, language switch and Match. Extend `e2e/` scans to `/welcome`, `/ar`, `/ar/day/1`, every Arabic practice mode, `/ar/letters`, both themes and viewports | Builder | L3, L5 | done. Merged 2026-11-28; found two bugs, both fixed |
 | B6 | **Performance** with the Arabic font: measure Home, `/ar` and `/ar/day/1` on mobile Lighthouse; keep Home at 80 or above; report in `.github/PERFORMANCE.md` | Builder | L2, L3 | done. Merged 2026-11-28; the layout shift it found is fixed |
+| B7 | Use the saved profile language in the welcome header and verify language switching | Builder | | done |
 
 ## File ownership
 
@@ -148,3 +149,5 @@ _(format: `YYYY-MM-DD HH:MM UTC | role | task | note`)_
 - 2026-11-28 | Lead | B1, B3, B5, B6 | Merged the Arabic artwork, sharing cards, course-screen tests and the bundled Arabic font. Fixed what B5 and B6 found: switching language on the sign-in page now opens `/ar/welcome` instead of a 404, Match cards stay in place after a pair, and Today loads with the page so the footer no longer jumps (CLS 0.47 on signed-in Home). The Arabic street scene is wired into the Arabic home page.
 - 2026-11-28 | Lead | L4, L6 | Recorded all 500 Arabic words (Whisper-checked, six flagged for a human listen in docs/AUDIO.md) and the letters of both scripts. 73 unit tests and 192 strict accessibility scans (both courses, themes and viewports) pass. Deployed; verified sign-in, Arabic lessons, audio, Match and the language switch on the live site.
 - 2026-11-28 | Lead | requests | Closed every Builder request. Fallback lesson tiles keep dark ink on the light illustration paper in dark mode. The owner deleted the merged branches.
+- 2026-11-28 04:39 UTC | Builder | B7 | Started the saved-language welcome-header fix and regression test.
+- 2026-11-28 04:40 UTC | Builder | B7 | Unified the welcome header and form course selection; added regression coverage for saved Arabic and switching back to Korean on the same URL.

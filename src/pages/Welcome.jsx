@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState } from 'react';
+import { useEffect, useId, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from '../components/Icons.jsx';
 import { COURSES, COURSE_LIST } from '../data/index.js';
@@ -19,13 +19,9 @@ export default function Welcome() {
   const navigate = useNavigate();
   const routeCourse = useCourse();
   const [name, setName] = useState(profile?.name ?? '');
-  // /ar/welcome means Arabic; /welcome shows the profile's language (or Korean for a new visitor).
-  const [courseId, setCourseId] = useState(routeCourse.base ? routeCourse.id : (profile?.course ?? routeCourse.id));
-  const firstRoute = useRef(routeCourse.id);
+  const [courseId, setCourseId] = useState(routeCourse.id);
   useEffect(() => {
-    // Follow the app-bar switch, which moves between /welcome and /ar/welcome.
-    if (routeCourse.id !== firstRoute.current) setCourseId(routeCourse.id);
-    firstRoute.current = null;
+    setCourseId(routeCourse.id);
   }, [routeCourse.id]);
   const [goal, setGoal] = useState(profile?.goal ?? 20);
   const [error, setError] = useState('');
