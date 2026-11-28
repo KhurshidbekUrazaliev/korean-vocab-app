@@ -19,9 +19,19 @@ const days = readdirSync('src/data/days')
 const wordCount = days.reduce((n, d) => n + d.words.length, 0);
 const shell = readFileSync(join(DIST, 'index.html'), 'utf8');
 
+const BASE = '/korean-vocab-app/';
+
+// A day's cover is its largest element, but React only adds it after the scripts run.
+// Preloading it from the static HTML lets the browser fetch it right away.
+function coverPreload(path) {
+  const day = days.find((d) => path === `/day/${d.number}`);
+  return day?.cover ? `<link rel="preload" as="image" href="${BASE}${esc(day.cover)}" fetchpriority="high" />` : '';
+}
+
 function page(path, body = '') {
   const info = pageMetadata(path, days);
   const head = [
+    coverPreload(path),
     `<title>${esc(info.title)}</title>`,
     `<meta name="description" content="${esc(info.description)}" />`,
     info.noindex ? '<meta data-route-head name="robots" content="noindex" />' : `<link data-route-head rel="canonical" href="${esc(info.url)}" />`,
