@@ -1,106 +1,168 @@
-// Generates link-preview images (1200x630) and app icons from the day data.
-// Dev-only: needs Playwright with Chromium. Run with `node scripts/make-images.cjs`
-// after adding or renaming days, then commit the files in public/. Pass
-// --previews-only to leave app icons alone, or --days=8,16-50 for selected lessons.
+// Run after changing lesson titles or artwork. --previews-only skips app icons;
+// --days=8,16-50 regenerates just those lesson cards in both courses.
+const fs = require('node:fs');
+const path = require('node:path');
 const { chromium } = require('playwright');
-const fs = require('fs');
-const path = require('path');
 
-const root = path.join(__dirname, '..');
-const days = fs.readdirSync(path.join(root, 'src/data/days')).filter((f) => f.endsWith('.json'))
-  .map((f) => JSON.parse(fs.readFileSync(path.join(root, 'src/data/days', f), 'utf8'))).sort((a, b) => a.number - b.number);
-const pad = (n) => String(n).padStart(2, '0');
-const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-const FONT = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700&display=swap">';
-const base = `*{margin:0;box-sizing:border-box}body{width:1200px;height:630px;background:#f6ede2;color:#1c1a16;font-family:'Pretendard Variable','Apple SD Gothic Neo','Noto Sans KR',sans-serif;overflow:hidden;position:relative}
-.brand{position:absolute;left:64px;bottom:56px;display:flex;align-items:center;gap:14px;font-size:22px;font-weight:600}
-.mark{width:48px;height:48px;border-radius:10px;background:#a8322a;color:#fffaf3;display:grid;place-items:center;font-family:'Noto Serif KR','AppleMyungjo','Batang',serif;font-weight:700;font-size:24px}
-.meta{position:absolute;right:64px;bottom:62px;font-size:20px;color:#5f584d;font-weight:500}
-.chip{display:inline-block;background:#f2ddd2;color:#a8322a;font-weight:600;padding:4px 12px;border-radius:8px}`;
+const root = path.resolve(__dirname, '..');
+const publicDir = path.join(root, 'public');
+const pad = n => String(n).padStart(2, '0');
+const esc = text => text.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+const courses = [
+  { id: 'ko', name: 'Korean', native: '한국어', dir: 'ltr', seal: '한', hero: 'images/hero.webp', out: 'og' },
+  { id: 'ar', name: 'Arabic', native: 'الْعَرَبِيَّة', dir: 'rtl', seal: 'ع', hero: 'images/ar/hero.webp', out: 'og/ar' },
+];
 
-const coverData = (d) => d.cover && `data:image/webp;base64,${fs.readFileSync(path.join(root, 'public', d.cover)).toString('base64')}`;
+function loadDays(id) {
+  const dir = path.join(root, 'src/data', id);
+  return fs.readdirSync(dir).filter(file => /^day\d+\.json$/.test(file))
+    .map(file => JSON.parse(fs.readFileSync(path.join(dir, file), 'utf8')))
+    .sort((a, b) => a.number - b.number);
+}
 
-const dayHtml = (d) => `<!doctype html><html><head>${FONT}<style>${base}
-.cover{position:absolute;right:48px;top:48px;width:560px;height:350px;border-radius:28px;object-fit:cover;object-position:80% 50%;background:#f6ecdf;box-shadow:0 24px 64px rgb(20 21 17/.12)}
-.num{position:absolute;right:40px;top:-40px;font-size:520px;font-weight:200;letter-spacing:-0.08em;color:#ebdfcf;line-height:1}
-.ko{position:absolute;left:64px;top:150px;font-family:'Noto Serif KR','AppleMyungjo','Batang',serif;font-size:${d.cover ? (d.titleKo.length > 4 ? 76 : 100) : d.titleKo.length > 5 ? 108 : 132}px;font-weight:700;letter-spacing:-0.03em;line-height:1}
-.en{position:absolute;left:68px;top:${d.cover ? 270 : d.titleKo.length > 5 ? 290 : 310}px;font-size:${d.cover ? 36 : 44}px;max-width:${d.cover ? 520 : 1000}px;font-weight:300;letter-spacing:-0.03em}
-.eyebrow{position:absolute;left:68px;top:84px;font-size:18px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#5f584d}
-.words{position:absolute;left:68px;top:${d.cover ? 340 : d.titleKo.length > 5 ? 370 : 390}px;font-size:${d.cover ? 22 : 26}px;max-width:${d.cover ? 520 : 1000}px;font-weight:600;color:#5f584d}
-</style></head><body>${d.cover ? `<img class="cover" alt="" src="${coverData(d)}">` : `<div class="num">${pad(d.number)}</div>`}<div class="eyebrow">Day ${pad(d.number)} · ${d.words.length} Korean words</div>
-<div class="ko">${esc(d.titleKo)}</div><div class="en">${esc(d.title)}</div><div class="words">${d.words.slice(0, 4).map((w) => esc(w.korean)).join(' · ')}</div>
-<div class="brand"><span class="mark">한</span>Essential Korean Vocabulary</div><div class="meta"><span class="chip">Audio</span> · Flashcards · Quiz · Typing · Listening</div></body></html>`;
-
-const homeHtml = `<!doctype html><html><head>${FONT}<style>${base}
-h1{position:absolute;left:64px;top:84px;font-size:104px;font-weight:500;letter-spacing:-0.05em;line-height:.95}
-.big{position:absolute;right:-10px;bottom:-60px;font-family:'Noto Serif KR','AppleMyungjo','Batang',serif;font-size:320px;font-weight:700;letter-spacing:-0.04em;color:#a8322a;line-height:1}
-</style></head><body><h1>Learn Korean,<br>ten words<br>a day.</h1><div class="big">공부</div>
-<div class="brand"><span class="mark">한</span>${days.length} days · ${days.length * 10} words</div></body></html>`;
-
-const iconHtml = (size) => `<!doctype html><html><head>${FONT}<style>*{margin:0}body{width:${size}px;height:${size}px;background:#a8322a;display:grid;place-items:center;font-family:'Noto Serif KR','AppleMyungjo','Batang',serif}
-span{color:#fffaf3;font-weight:700;font-size:${Math.round(size * 0.56)}px;line-height:1;letter-spacing:-0.04em}</style></head><body><span>한</span></body></html>`;
-
-function requestedDays() {
-  const option = process.argv.find((arg) => arg.startsWith('--days='));
+function requestedDays(days) {
+  const option = process.argv.find(arg => arg.startsWith('--days='));
   if (!option) return null;
-  const selected = new Set();
-  for (const part of option.slice('--days='.length).split(',')) {
-    const match = /^(\d+)(?:-(\d+))?$/.exec(part);
-    if (!match) throw new Error('Expected --days=8,16-50');
-    const from = Number(match[1]), to = Number(match[2] || from);
-    if (from > to || from < 1 || to > days.at(-1).number) throw new Error('Invalid day range: ' + part);
-    for (let n = from; n <= to; n++) selected.add(n);
+  const requested = new Set();
+  for (const part of option.slice(7).split(',')) {
+    const range = /^(\d+)(?:-(\d+))?$/.exec(part);
+    if (!range) throw Error('Expected --days=8,16-50');
+    const from = Number(range[1]), to = Number(range[2] || range[1]);
+    if (from < 1 || from > to || to > days.at(-1).number) throw Error('Invalid day range: ' + part);
+    for (let i = from; i <= to; i++) requested.add(i);
   }
-  return selected;
+  return requested;
+}
+
+const css = `
+@font-face{font-family:'Noto Naskh Arabic';src:url('/arabic.woff2') format('woff2');font-weight:400 700}
+*{box-sizing:border-box}
+body{margin:0;background:#f6ecdf;color:#26221d;font-family:Arial,sans-serif}
+main{position:relative;width:1200px;height:630px;overflow:hidden}
+[lang=ko]{font-family:'Noto Serif KR Variable',serif}
+[lang=ar]{font-family:'Noto Naskh Arabic',serif}
+header,footer{position:absolute;left:60px;right:60px;display:flex;align-items:center}
+header{top:40px;gap:14px;font-size:26px;font-weight:600;letter-spacing:-.025em}
+.seal{background:#a8322a;color:#fff7ec;display:grid;place-items:center;width:46px;height:46px;border-radius:10px;font-size:30px;line-height:1}
+.seal[lang=ar]{font-size:34px}
+.art{position:absolute;right:52px;top:117px;width:556px;height:366px;object-fit:cover;object-position:78% 50%;border:1px solid #d5c7b6;border-radius:18px}
+.copy{position:absolute;top:133px;left:60px;width:504px}
+.kicker{color:#8c3029;font-weight:700;font-size:22px;letter-spacing:.035em;margin:0 0 12px}
+.native{display:block;width:max-content;white-space:nowrap;margin:0;font-weight:650;font-size:88px;line-height:1.55}
+.native[lang=ar]{font-size:94px;line-height:1.54}
+.english{font-size:39px;font-weight:500;letter-spacing:-.025em;line-height:1.12;margin:4px 0 0}
+footer{bottom:41px;min-height:63px;border-top:1px solid #b9ac99;padding-top:19px;gap:26px;justify-content:space-between;color:#51483b}
+.samples{font-size:27px;line-height:1.6;white-space:nowrap;font-weight:600}
+.samples[lang=ar]{font-size:31px}
+.count{white-space:nowrap;font-size:21px;letter-spacing:-.015em}
+.icon{background:#a8322a;color:#fffaf3;display:grid;place-items:center;font-weight:700;line-height:1}
+`;
+
+function card(course, days, day) {
+  const native = day ? day.titleNative : course.native;
+  const label = day ? day.title : 'Learn ' + course.name;
+  const cover = day ? day.cover : course.hero;
+  if (!cover) throw Error('Missing artwork for ' + (day?.id || course.id));
+  const image = fs.readFileSync(path.join(publicDir, cover)).toString('base64');
+  const lang = 'lang="' + course.id + '" dir="' + course.dir + '"';
+  const count = day ? day.words.length : days.reduce((total, d) => total + d.words.length, 0);
+  const samples = (day || days[0]).words.slice(0, 3).map(w => '<bdi>' + esc(w.term) + '</bdi>').join(' · ');
+  return `<main>
+    <header><span class="seal" ${lang}>${course.seal}</span>Essential Vocabulary</header>
+    <img class="art" src="data:image/webp;base64,${image}" alt="">
+    <div class="copy"><p class="kicker">${day ? course.name + ' · Day ' + pad(day.number) : course.name + ' course'}</p>
+      <h1 class="native" ${lang}>${esc(native)}</h1><p class="english">${esc(label)}</p></div>
+    <footer><div class="samples" ${lang}>${samples}</div><div class="count">
+      ${day ? count + ' words' : days.length + ' days · ' + count + ' words'}
+    </div></footer></main>`;
+}
+
+// Serve the pinned fonts to the rendering browser without an external service.
+async function loadTemplate(page) {
+  const origin = 'https://cards.invalid';
+  const korean = path.dirname(require.resolve('@fontsource-variable/noto-serif-kr/wght.css'));
+  const arabic = require.resolve('@fontsource-variable/noto-naskh-arabic/files/noto-naskh-arabic-arabic-wght-normal.woff2');
+  await page.route(origin + '/**', route => {
+    const name = new URL(route.request().url()).pathname;
+    if (name === '/') return route.fulfill({ contentType: 'text/html', body:
+      '<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="/ko/wght.css"><style>' + css + '</style><body></body>' });
+    if (name === '/arabic.woff2') return route.fulfill({ path: arabic, contentType: 'font/woff2' });
+    if (name === '/ko/wght.css' || /^\/ko\/files\/[\w-]+\.woff2$/.test(name)) {
+      return route.fulfill({ path: path.join(korean, name.slice(4)), contentType: name.endsWith('.css') ? 'text/css' : 'font/woff2' });
+    }
+    return route.abort();
+  });
+  await page.goto(origin);
+}
+
+async function draw(page, html) {
+  await page.evaluate(async markup => {
+    document.body.innerHTML = markup;
+    const title = document.querySelector('.native');
+    const copy = document.querySelector('.copy');
+    const footer = document.querySelector('footer');
+    const samples = document.querySelector('.samples');
+    const face = title.lang === 'ar' ? 'Noto Naskh Arabic' : 'Noto Serif KR Variable';
+    const fonts = await document.fonts.load('650 64px "' + face + '"', title.textContent + samples.textContent);
+    if (!fonts.length || fonts.some(font => font.status !== 'loaded')) throw Error('Could not load ' + face);
+    await document.fonts.ready;
+    await document.querySelector('.art').decode();
+    function fit(element, width) {
+      let size = parseFloat(getComputedStyle(element).fontSize);
+      while (element.offsetWidth > width && size > 22) element.style.fontSize = --size + 'px';
+      if (element.offsetWidth > width) throw Error('Text exceeds the card: ' + element.textContent);
+    }
+    fit(title, copy.clientWidth);
+    fit(samples, footer.clientWidth - document.querySelector('.count').offsetWidth - 28);
+    if (copy.getBoundingClientRect().bottom + 12 >= footer.getBoundingClientRect().top)
+      throw Error('Title overlaps the footer: ' + title.textContent);
+  }, html);
+}
+
+async function saveJpeg(page, file) {
+  for (const quality of [86, 80, 74, 68, 62, 56, 50, 44, 38]) {
+    const jpeg = await page.screenshot({ type: 'jpeg', quality });
+    if (jpeg.length < 60000) {
+      fs.writeFileSync(file, jpeg);
+      return;
+    }
+  }
+  throw Error('Cannot fit the sharing image into 60 KB: ' + file);
 }
 
 async function generate() {
-  const selected = requestedDays();
   const browser = await chromium.launch({ channel: process.env.CHROMIUM_CHANNEL || undefined });
   try {
     const page = await browser.newPage({ viewport: { width: 1200, height: 630 } });
-    async function shot(html, file, w = 1200, h = 630) {
-      await page.setViewportSize({ width: w, height: h });
-      await page.setContent(html, { waitUntil: 'load' });
-      await page.evaluate(async () => {
-        await document.fonts.ready;
-        if (document.querySelector('img')) await document.querySelector('img').decode();
-        const title = document.querySelector('.ko');
-        const cover = document.querySelector('.cover');
-        if (title && cover) {
-          const available = cover.getBoundingClientRect().left - title.offsetLeft - 20;
-          title.style.whiteSpace = 'nowrap';
-          let size = parseFloat(getComputedStyle(title).fontSize);
-          while (title.offsetWidth > available && size > 26) title.style.fontSize = --size + 'px';
-          if (title.offsetWidth > available) throw new Error('The Korean title does not fit: ' + title.textContent);
-        }
-      });
-      const out = path.join(root, 'public', file);
-      if (!file.endsWith('.jpg')) {
-        await page.screenshot({ path: out });
-        return;
+    await loadTemplate(page);
+    let total = 0;
+    for (const course of courses) {
+      const days = loadDays(course.id);
+      const selected = requestedDays(days);
+      const out = path.join(publicDir, course.out);
+      fs.mkdirSync(out, { recursive: true });
+      const cards = selected ? days.filter(day => selected.has(day.number)) : [null, ...days];
+      for (const day of cards) {
+        await draw(page, card(course, days, day));
+        await saveJpeg(page, path.join(out, day ? 'day' + pad(day.number) + '.jpg' : 'home.jpg'));
+        total++;
       }
-      for (const quality of [84, 78, 72, 66, 60, 54, 48, 42]) {
-        const jpeg = await page.screenshot({ type: 'jpeg', quality });
-        if (jpeg.length < 60000) {
-          fs.writeFileSync(out, jpeg);
-          return;
-        }
+    }
+    if (!process.argv.some(arg => arg.startsWith('--days=') || arg === '--previews-only')) {
+      for (const [size, file] of [[32, 'favicon-32.png'], [180, 'apple-touch-icon.png'], [192, 'icon-192.png'], [512, 'icon-512.png']]) {
+        await page.setViewportSize({ width: size, height: size });
+        await page.evaluate(async size => {
+          document.body.innerHTML = '<span class="icon" lang="ko">한</span>';
+          Object.assign(document.querySelector('.icon').style, { height: size+'px', fontSize: Math.round(size*.56)+'px' });
+          await document.fonts.ready;
+        }, size);
+        await page.screenshot({ path: path.join(publicDir, file) });
       }
-      throw new Error('Could not meet the 60 KB budget: ' + file);
     }
-
-    fs.mkdirSync(path.join(root, 'public/og'), { recursive: true });
-    if (!selected) await shot(homeHtml, 'og/home.jpg');
-    for (const d of days) {
-      if (!selected || selected.has(d.number)) await shot(dayHtml(d), `og/day${pad(d.number)}.jpg`);
-    }
-    if (!selected && !process.argv.includes('--previews-only')) {
-      for (const [s, f] of [[32, 'favicon-32.png'], [180, 'apple-touch-icon.png'], [192, 'icon-192.png'], [512, 'icon-512.png']]) await shot(iconHtml(s), f, s, s);
-    }
-    console.log(`Generated ${selected ? selected.size : days.length + 1} sharing cards.`);
+    console.log('Generated ' + total + ' sharing cards.');
   } finally {
     await browser.close();
   }
 }
-generate().catch((error) => { console.error(error); process.exitCode = 1; });
+
+generate().catch(error => { console.error(error); process.exitCode = 1; });

@@ -33,7 +33,7 @@ export function pageMetadata(pathname, courses, returning = false) {
   const { days } = courses[id];
   const name = COURSE_NAMES[id];
   const route = (title, description, extras = {}) => ({
-    title, description, url: SITE + lowerPath, image: SITE + '/og/home.jpg', ...extras,
+    title, description, url: SITE + lowerPath, image: SITE + '/og' + base + '/home.jpg', ...extras,
   });
 
   if (rest === '/') {
@@ -56,7 +56,7 @@ export function pageMetadata(pathname, courses, returning = false) {
   if (day && (!match[2] || Object.hasOwn(MODE_TITLES, match[2]))) {
     const number = pad(day.number);
     // Arabic sharing cards arrive with task B3; until then Arabic days use the site card.
-    const image = id === 'ko' ? `${SITE}/og/day${number}.jpg` : day.cover ? `${SITE}/og/ar/day${number}.jpg` : SITE + '/og/home.jpg';
+    const image = `${SITE}/og${base}/day${number}.jpg`;
     const url = `${SITE}${base}/day/${day.number}`;
     if (match[2]) return route(`${MODE_TITLES[match[2]]}: Day ${number} ${day.title} · ${name} | ${NAME}`, `Practice the ${name} ${day.title} words.`, { image, noindex: true, url: `${url}/practice/${match[2]}` });
     const title = `Day ${number}: ${day.title} · ${name}`;
