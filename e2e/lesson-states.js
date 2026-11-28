@@ -10,6 +10,24 @@ export const expectedStates = [
   'reverse-choice', 'typing', 'typing-feedback', 'listening', '404',
 ];
 
+function typingTarget(button) {
+  const bounds = element => {
+    const { left, top, width, height } = element.getBoundingClientRect();
+    return { left, top, width, height };
+  };
+  const input = bounds(document.getElementById('answer'));
+  const target = bounds(button);
+  const center = document.elementFromPoint(target.left + target.width / 2, target.top + target.height / 2);
+  const { width, height, offsetLeft, offsetTop, scale } = visualViewport;
+  return {
+    input, target, viewport: { width, height, offsetLeft, offsetTop, scale },
+    layoutWidth: document.documentElement.clientWidth, scrollWidth: document.documentElement.scrollWidth,
+    centerElement: center?.outerHTML.slice(0, 180), receivesTap: button.contains(center),
+    fits: target.left >= offsetLeft - 1 && target.left + target.width <= offsetLeft + width + 1 &&
+      target.top >= offsetTop - 1 && target.top + target.height <= offsetTop + height + 1,
+  };
+}
+
 /** Every scan follows an assertion on the rendered React page or feedback state. */
 export async function visitStates(page, baseURL, { theme, mobile }, scan) {
   const activate = locator => mobile ? locator.tap() : locator.click();
@@ -88,9 +106,21 @@ export async function visitStates(page, baseURL, { theme, mobile }, scan) {
   await scan('reverse-choice');
 
   await mode('typing', '#answer');
+  const check = page.getByRole('button', { name: 'Check', exact: true });
+  const beforeScan = mobile ? await check.evaluate(typingTarget) : undefined;
   await scan('typing');
   await page.locator('#answer').fill('incorrect answer');
-  await activate(page.getByRole('button', { name: 'Check', exact: true }));
+  if (mobile) {
+    await check.scrollIntoViewIfNeeded();
+    const beforeTap = await check.evaluate(typingTarget);
+    assert.ok(beforeTap.receivesTap && beforeTap.fits, JSON.stringify({ beforeScan, beforeTap }));
+    try {
+      await check.tap();
+    } catch (error) {
+      const afterTap = await check.evaluate(typingTarget);
+      throw new Error(`Check tap failed. ${JSON.stringify({ beforeScan, beforeTap, afterTap })}\n${error.message}`);
+    }
+  } else await check.click();
   await page.locator('.feedback[data-correct="false"]').waitFor();
   await scan('typing-feedback');
 

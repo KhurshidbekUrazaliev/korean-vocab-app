@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { appendFile, mkdir, readFile, writeFile } from 'node:fs/promises';
 import { createRequire } from 'node:module';
-import { chromium } from 'playwright';
+import { chromium, devices } from 'playwright';
 import { servePages } from './pages-server.js';
 import { expectedStates, visitStates } from './lesson-states.js';
 import { renderedFonts } from './rendered-fonts.js';
@@ -12,7 +12,7 @@ const baseline = JSON.parse(await readFile(new URL('known-findings.json', import
 const strict = process.env.A11Y_STRICT === '1';
 const profiles = {
   desktop: { viewport: { width: 1280, height: 900 } },
-  mobile: { viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true },
+  mobile: { ...devices['Pixel 5'], viewport: { width: 390, height: 844 } },
 };
 
 function fingerprint(rule, node, state) {
