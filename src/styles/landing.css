@@ -780,6 +780,7 @@
   height: 100%;
   padding: var(--s-4);
   background: var(--art-bg);
+  color: #1c1a16; /* the illustration paper stays light in dark mode, so the ink does too */
   font-size: clamp(1.75rem, 3vw, 2.5rem);
   text-align: center;
   line-height: 1.6;
